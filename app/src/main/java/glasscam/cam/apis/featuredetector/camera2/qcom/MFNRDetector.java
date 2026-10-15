@@ -1,0 +1,34 @@
+package glasscam.cam.apis.featuredetector.camera2.qcom;
+
+import android.hardware.camera2.CameraCharacteristics;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
+import java.util.HashSet;
+
+import camera2_hidden_keys.qcom.CameraCharacteristicsQcom;
+import camera2_hidden_keys.qcom.CaptureRequestQcom;
+import glasscam.cam.apis.featuredetector.Camera2FeatureDetectorTask;
+import glasscam.cam.apis.featuredetector.camera2.BaseParameter2Detector;
+import glasscam.cam.apis.featuredetector.camera2.VendorKeyDetector;
+import glasscam.settings.SettingKeys;
+import glasscam.utils.Log;
+
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+public class MFNRDetector extends BaseParameter2Detector implements VendorKeyDetector {
+    private static final String TAG = MFNRDetector.class.getSimpleName();
+
+    @Override
+    protected void findAndFillSettings(CameraCharacteristics cameraCharacteristics) {
+        int mfnr_type = cameraCharacteristics.get(CameraCharacteristicsQcom.MFNRType);
+        Log.d(TAG,"mfnr type:" + mfnr_type);
+    }
+
+
+    @Override
+    public void checkIfVendorKeyIsSupported(HashSet<String> keys) {
+        settingsManager.get(SettingKeys.MFNR).setIsSupported(Camera2FeatureDetectorTask.isKeySupported(keys, CaptureRequestQcom.MFNR));
+        Log.d(TAG, "MFNR supported:" + settingsManager.get(SettingKeys.MFNR).isSupported());
+    }
+}

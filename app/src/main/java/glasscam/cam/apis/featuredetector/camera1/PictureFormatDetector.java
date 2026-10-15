@@ -1,0 +1,110 @@
+package glasscam.cam.apis.featuredetector.camera1;
+
+import android.hardware.Camera;
+
+import com.hazia.glasscam.R;
+
+import java.util.ArrayList;
+
+import glasscam.GlassCamApplication;
+import glasscam.settings.Frameworks;
+import glasscam.settings.SettingKeys;
+import glasscam.utils.Log;
+
+public class PictureFormatDetector extends BaseParameter1Detector {
+
+    private final String TAG = PictureFormatDetector.class.getSimpleName();
+
+    @Override
+    protected void findAndFillSettings(Camera.Parameters cameraCharacteristics) {
+        detectedPictureFormats(cameraCharacteristics);
+    }
+
+    private void detectedPictureFormats(Camera.Parameters parameters)
+    {
+        //drop raw for front camera
+        if (false)
+        {
+            settingsManager.get(SettingKeys.PICTURE_FORMAT).setIsSupported(false);
+            settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setIsSupported(false);
+        }
+        else {
+            if (settingsManager.getFrameWork() == Frameworks.MTK) {
+                settingsManager.get(SettingKeys.PICTURE_FORMAT).setIsSupported(true);
+                settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setIsSupported(true);
+            } else {
+
+                String formats = parameters.get(camstring(R.string.picture_format_values));
+
+                if (!settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).isPresetted()) {
+                    Log.d(TAG, "rawpictureformat is not preseted try to find it");
+                    if (formats.contains("bayer-mipi") || formats.contains("raw")) {
+                        settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setIsSupported(true);
+                        String[] forms = formats.split(",");
+                        for (String s : forms) {
+                            if (s.contains("bayer-mipi") || s.contains("raw")) {
+                                Log.d(TAG, "rawpictureformat set to:" +s);
+                                settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).set(s);
+                                settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setIsSupported(true);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (!formats.contains(settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).get()))
+                    {
+                        settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).set(settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).get());
+                        settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setIsSupported(true);
+                    }
+
+
+                }
+                if (formats.contains(GlassCamApplication.getStringFromRessources(R.string.bayer_)))
+                {
+                    Log.d(TAG, "create rawformats");
+                    ArrayList<String> tmp = new ArrayList<>();
+                    String[] forms = formats.split(",");
+                    for (String s : forms) {
+                        if (s.contains(GlassCamApplication.getStringFromRessources(R.string.bayer_)))
+                        {
+                            tmp.add(s);
+                        }
+                    }
+                    String[] rawFormats = new String[tmp.size()];
+                    tmp.toArray(rawFormats);
+                    settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setValues(rawFormats);
+                    settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).setIsSupported(rawFormats.length != 0);
+                }
+            }
+            settingsManager.get(SettingKeys.PICTURE_FORMAT).setIsSupported(true);
+
+            if (settingsManager.getDngProfilesMap() != null && settingsManager.getDngProfilesMap().size() > 0)
+            {
+                Log.d(TAG, "Dng, bayer, jpeg supported");
+                settingsManager.get(SettingKeys.PICTURE_FORMAT).setValues(new String[]
+                        {
+                                GlassCamApplication.getStringFromRessources(R.string.jpeg_),
+                                GlassCamApplication.getStringFromRessources(R.string.dng_),
+                                GlassCamApplication.getStringFromRessources(R.string.bayer_)
+                        });
+            }
+            else if (settingsManager.get(SettingKeys.RAW_PICTURE_FORMAT_SETTING).isSupported()) {
+                Log.d(TAG, "bayer, jpeg supported");
+                settingsManager.get(SettingKeys.PICTURE_FORMAT).setValues(new String[]{
+                        GlassCamApplication.getStringFromRessources(R.string.jpeg_),
+                        GlassCamApplication.getStringFromRessources(R.string.bayer_)
+                });
+            }
+            else
+            {
+                Log.d(TAG, "jpeg supported");
+                settingsManager.get(SettingKeys.PICTURE_FORMAT).setValues(new String[]{
+                        GlassCamApplication.getStringFromRessources(R.string.jpeg_)
+                });
+            }
+
+        }
+    }
+}

@@ -1,0 +1,38 @@
+package glasscam.cam.apis.camera1.parameters.manual.kirin;
+
+import android.hardware.Camera;
+
+import glasscam.cam.apis.basecamera.CameraWrapperInterface;
+import glasscam.cam.apis.basecamera.parameters.AbstractParameter;
+import glasscam.settings.SettingKeys;
+
+/**
+ * Created by troop on 27.03.2017.
+ */
+
+public class ManualAperture extends AbstractParameter
+{
+    private final Camera.Parameters parameters;
+    public ManualAperture(CameraWrapperInterface cameraUiWrapper, Camera.Parameters parameters)
+    {
+        super(cameraUiWrapper,SettingKeys.M_APERTURE);
+        this.parameters = parameters;
+        setViewState(ViewState.Visible);
+    }
+
+    @Override
+    public void setValue(int valueToSet, boolean setToCamera)
+    {
+        currentInt = valueToSet;
+        if (valueToSet == 0) {
+            parameters.set("hw-hwcamera-flag", "on");
+            parameters.set("hw-big-aperture-mode", "off");
+        } else {
+
+            parameters.set("hw-hwcamera-flag", "on");
+            parameters.set("hw-big-aperture-mode", "on");
+            parameters.set(settingsManager.get(SettingKeys.M_APERTURE).getCamera1ParameterKEY(), stringvalues[currentInt]);
+        }
+        fireStringValueChanged(stringvalues[valueToSet]);
+    }
+}

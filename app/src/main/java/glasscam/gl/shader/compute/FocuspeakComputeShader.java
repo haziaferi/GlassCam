@@ -1,0 +1,19 @@
+package glasscam.gl.shader.compute;
+
+import glasscam.gl.shader.Shader;
+
+public class FocuspeakComputeShader extends Shader {
+    public FocuspeakComputeShader(float glesVersion) {
+        super(glesVersion);
+    }
+
+    @Override
+    public String getShaderName() {
+        return "computeFocuspeak";
+    }
+
+    @Override
+    public ShaderType getShaderType() {
+        return ShaderType.compute;
+    }
+}

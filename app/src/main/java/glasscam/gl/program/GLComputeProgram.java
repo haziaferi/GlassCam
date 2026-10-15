@@ -1,0 +1,37 @@
+package glasscam.gl.program;
+
+import android.opengl.GLES31;
+
+import glasscam.gl.shader.Shader;
+
+public abstract class GLComputeProgram extends GLProgram implements GLComputeProgramInterface{
+
+    private Shader computeShader;
+
+    public GLComputeProgram(float glesVersion) {
+        super(glesVersion);
+    }
+
+    @Override
+    public void setComputeShader(Shader shader) {
+        this.computeShader = shader;
+        createAndLinkProgram();
+    }
+
+    @Override
+    public void compute(int width, int height, int input, int output) {
+
+    }
+
+    @Override
+    public void createAndLinkProgram() {
+        super.createAndLinkProgram();
+        if (computeShader != null) {
+            GLES31.glAttachShader(hProgram, computeShader.getHandel());
+            checkGlError("glAttachShader compute");
+        }
+        GLES31.glLinkProgram(hProgram);
+        checkGlError("glLinkProgram");
+    }
+
+}

@@ -1,0 +1,23 @@
+package glasscam.cam.ui.videoprofileeditor.models;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import glasscam.utils.VideoMediaProfile;
+
+public class RecordModel extends ButtonModel {
+
+    public RecordModel(PopupModel popupModel) {
+        super(popupModel);
+    }
+
+    @Override
+    public List<String> getStrings() {
+        List<String> strings = new ArrayList<>();
+        strings.add(VideoMediaProfile.VideoMode.Normal.toString());
+        strings.add(VideoMediaProfile.VideoMode.Timelapse.toString());
+        strings.add(VideoMediaProfile.VideoMode.Highspeed.toString());
+        return strings;
+    }
+
+}

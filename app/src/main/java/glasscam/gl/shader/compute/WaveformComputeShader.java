@@ -1,0 +1,19 @@
+package glasscam.gl.shader.compute;
+
+import glasscam.gl.shader.Shader;
+
+public class WaveformComputeShader extends Shader {
+    public WaveformComputeShader(float glesVersion) {
+        super(glesVersion);
+    }
+
+    @Override
+    public String getShaderName() {
+        return "computeWaveform";
+    }
+
+    @Override
+    public ShaderType getShaderType() {
+        return ShaderType.compute;
+    }
+}

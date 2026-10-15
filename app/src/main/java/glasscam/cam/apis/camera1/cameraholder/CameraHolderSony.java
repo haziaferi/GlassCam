@@ -1,0 +1,107 @@
+package glasscam.cam.apis.camera1.cameraholder;
+
+import android.hardware.Camera;
+
+import com.sonyericsson.cameraextension.CameraExtension;
+
+import glasscam.cam.apis.basecamera.CameraWrapperInterface;
+import glasscam.cam.apis.basecamera.FocusEvents;
+import glasscam.cam.apis.camera1.CameraHolder;
+import glasscam.settings.Frameworks;
+import glasscam.utils.Log;
+
+/**
+ * Created by troop on 20.03.2017.
+ */
+
+public class CameraHolderSony extends CameraHolder {
+    private final String TAG = CameraHolderSony.class.getSimpleName();
+    private CameraExtension sonyCameraExtension;
+
+    public CameraHolderSony(CameraWrapperInterface cameraUiWrapper, Frameworks frameworks) {
+        super(cameraUiWrapper, frameworks);
+    }
+
+    /**
+     * Opens the Camera
+     * @param camera the camera to open
+     * @return false if camera open fails, return true when open
+     */
+    @Override
+    public boolean OpenCamera(int camera)
+    {
+        boolean isRdy;
+        try
+        {
+            Log.d(TAG, "open camera");
+            mCamera = Camera.open(camera);
+            isRdy = true;
+
+
+        } catch (Exception ex) {
+            isRdy = false;
+            Log.WriteEx(ex);
+        }
+
+        try
+        {
+            Log.d(TAG, "open SonyCameraExtension");
+            CameraExtension.open(mCamera,camera);
+        } catch (Exception ex) {
+            isRdy = false;
+            Log.WriteEx(ex);
+        }
+        fireCameraOpen();
+        return isRdy;
+    }
+
+    @Override
+    public void CloseCamera()
+    {
+        Log.d(TAG, "Try to close Camera");
+        try
+        {
+            mCamera.release();
+            sonyCameraExtension.release();
+            Log.d(TAG, "Camera Released");
+        }
+        catch (Exception ex)
+        {
+            Log.WriteEx(ex);
+        }
+        finally {
+            mCamera = null;
+            Log.d(TAG, "Camera closed");
+        }
+        fireCameraClose();
+    }
+
+    @Override
+    public Camera.Parameters GetCameraParameters()
+    {
+        Camera.Parameters parameters = mCamera.getParameters();
+        try {
+            sonyCameraExtension.fetchParameters(parameters);
+        }
+        catch (NullPointerException ex)
+        {
+            parameters = mCamera.getParameters();
+        }
+
+        return parameters;
+    }
+
+    @Override
+    public void StartFocus(final FocusEvents autoFocusCallback) {
+        sonyCameraExtension.startAutoFocus(autoFocusResult -> {
+            if (autoFocusResult.isFocused())
+                sonyCameraExtension.stopAutoFocus();
+            autoFocusCallback.onFocusEvent(autoFocusResult.isFocused());
+        },true,true,true);
+    }
+
+    @Override
+    public void CancelFocus() {
+        sonyCameraExtension.stopAutoFocus();
+    }
+}

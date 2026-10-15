@@ -1,0 +1,29 @@
+package glasscam.cam.apis.featuredetector.camera1;
+
+import android.hardware.Camera;
+
+import com.hazia.glasscam.R;
+
+import glasscam.settings.Frameworks;
+import glasscam.settings.SettingKeys;
+
+public class TruePortraitDetector extends BaseParameter1Detector {
+    @Override
+    protected void findAndFillSettings(Camera.Parameters cameraCharacteristics) {
+        detectTruePotrait(cameraCharacteristics);
+    }
+
+    private void detectTruePotrait(Camera.Parameters parameters)
+    {
+        if (settingsManager.getFrameWork() == Frameworks.MTK)
+        {
+            settingsManager.get(SettingKeys.TRUE_POTRAIT).setIsSupported(false);
+            return;
+        }
+        else
+        {
+            detectMode(parameters, R.string.truepotrait,R.string.truepotrait_mode, settingsManager.get(SettingKeys.TRUE_POTRAIT));
+        }
+
+    }
+}

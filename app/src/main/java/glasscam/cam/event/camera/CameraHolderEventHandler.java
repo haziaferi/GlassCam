@@ -1,0 +1,41 @@
+package glasscam.cam.event.camera;
+
+import glasscam.cam.apis.basecamera.Size;
+import glasscam.cam.event.BaseEventHandler;
+import glasscam.utils.Log;
+
+public class CameraHolderEventHandler extends BaseEventHandler<CameraHolderEvent> {
+
+    private static final String TAG = CameraHolderEventHandler.class.getSimpleName();
+
+    public void fireOnCameraOpen()
+    {
+        Log.d(TAG, "fireOnCameraOpen");
+        for (CameraHolderEvent event : eventListners)
+            event.onCameraOpen();
+    }
+
+    public synchronized void fireOnCameraOpenFinished() {
+        Log.d(TAG, "fireOnCameraOpenFinished");
+        for (CameraHolderEvent event : eventListners)
+            event.onCameraOpenFinished();
+    }
+
+    public synchronized void fireOnCameraClose() {
+        Log.d(TAG, "fireOnCameraClose");
+        for (CameraHolderEvent event : eventListners)
+            event.onCameraClose();
+    }
+
+    public void fireOnCameraError(String error) {
+        Log.d(TAG, "fireOnCameraError");
+        for (CameraHolderEvent event : eventListners)
+            event.onCameraError(error);
+    }
+
+    public void fireOnCameraChangedAspectRatioEvent(Size size) {
+        Log.d(TAG, "fireOnCameraChangedAspectRatioEvent");
+        for (CameraHolderEvent event : eventListners)
+            event.onCameraChangedAspectRatioEvent(size);
+    }
+}
