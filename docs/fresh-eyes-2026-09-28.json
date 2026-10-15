@@ -1,0 +1,2221 @@
+[
+ {
+  "id": "A000",
+  "lane": "xref",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "chunker artefact: the id regex matched phone names in README's device table (e.g. 'G3'), not citations",
+  "where": "T3#0",
+  "quote": "|Alcatel 985n | ![true] | ![false]| ![false] | ![false] |"
+ },
+ {
+  "id": "A001",
+  "lane": "xref",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: C2 describes the *winner* as putting a third row under the shutter (i.e. asymmetric, shutter off-centre) and never calls the optimizer's winning result symmetri",
+  "where": "T6#0",
+  "quote": "the winner put a third row under the shutter that clipped at 360 dp"
+ },
+ {
+  "id": "A002",
+  "lane": "xref",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: ST5's own entry already calls the behavior \"a known dead end under T1, recorded, not fixed,\" so item 4's \"Known dead ends kept\" repeats the entry's own classifi",
+  "where": "ST5#0",
+  "quote": "ST5 | The DNG stacker refuses SAF/MediaStore holders... recorded, not fixed"
+ },
+ {
+  "id": "A003",
+  "lane": "xref",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "different measures: MCP's entry distance (110 dp) was measured; its fill/reach were not",
+  "where": "C4#0",
+  "quote": "gear is 734 dp from the right thumb (Manual Camera Pro: 110)"
+ },
+ {
+  "id": "A004",
+  "lane": "xref",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "chunker artefact (README device table)",
+  "where": "C5#0",
+  "quote": "The manual seekbar lives in the left band."
+ },
+ {
+  "id": "A005",
+  "lane": "xref",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The material's paragraph 4 heading \"Known dead ends kept\" frames all four entries identically as known dead ends, and nothing in the text characterises ST5, I2 ",
+  "where": "C10#0",
+  "quote": "RawZsl unregistered (C10)"
+ },
+ {
+  "id": "A006",
+  "lane": "xref",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The same cell's own words \"Built in 4.3.89, not device-verified\" attach the evidence status directly to the \"shows\" claim, so the entry states exactly what back",
+  "where": "C11#0",
+  "quote": "Not device-verified: C11 (Camera1 flash glyphs), ST3 (stale SAF tree)."
+ },
+ {
+  "id": "A007",
+  "lane": "xref",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "chunker artefact (README device table)",
+  "where": "G2#0",
+  "quote": "The gallery opens inside the newest folder, not at the folder root."
+ },
+ {
+  "id": "A008",
+  "lane": "xref",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "chunker artefact (README device table)",
+  "where": "G3#0",
+  "quote": "cross-references of G3\" heading precedes an unrelated device table"
+ },
+ {
+  "id": "A009",
+  "lane": "xref",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "SPEC L4 recomputed from measure.py: 54.1 %, 196 entries, 5 empty, 353 keys",
+  "where": "L4#0",
+  "quote": "54 % after Batch 3; 194 of 351 keys in this revision"
+ },
+ {
+  "id": "A010",
+  "lane": "tag",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The check is a negative substring test over the whole manifest, so absence of `WRITE_EXTERNAL_STORAGE`/`READ_EXTERNAL_STORAGE` anywhere in the file entails abse",
+  "where": "S-01",
+  "quote": "`need(\"WRITE_EXTERNAL_STORAGE\" not in m and \"READ_EXTERNAL_STORAGE\" not in m, ...)`"
+ },
+ {
+  "id": "A011",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-01 parses the manifest; mutant: allowBackup true with the old string in a comment",
+  "where": "S-01",
+  "quote": "`need('android:allowBackup=\"false\"' in m, \"allowBackup is not false\")`"
+ },
+ {
+  "id": "A012",
+  "lane": "tag",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "the check tests minSdkVersion, the key app/build.gradle actually uses (line 36)",
+  "where": "S-02",
+  "quote": "minSdkVersion\", \"30\" ... key, val in ((\"minSdkVersion\"...`"
+ },
+ {
+  "id": "A013",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "S-03 also fails on a revision mismatch, which the separate rev line reports too; redundant, not wrong",
+  "where": "S-03",
+  "quote": "name, code = revision()"
+ },
+ {
+  "id": "A014",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-04 tag moved onto the still-image clause; the rest of ST2 is untagged",
+  "where": "S-04",
+  "quote": "every capture (still, DNG, video, DNG output) lands in a `GlassCam/` child"
+ },
+ {
+  "id": "A015",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-04 now certifies only the still-image path",
+  "where": "S-04",
+  "quote": "getExternalSdDocumentFile(context).createFile\" not in src"
+ },
+ {
+  "id": "A016",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "'used as is' clause untagged",
+  "where": "S-04",
+  "quote": "a picked tree already named `GlassCam` is used as is"
+ },
+ {
+  "id": "A017",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-05 requires both guards to return null; mutant: a rethrown SecurityException",
+  "where": "S-05",
+  "quote": "`need(\".exists()\" in body and \"SecurityException\" in body, ...)`"
+ },
+ {
+  "id": "A018",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-06 counts every fireCaptureSaved call; mutant: a second raiser",
+  "where": "S-06",
+  "quote": "fireCaptureSaved\" not in method_body(src, \"notifyFilesChanged\")"
+ },
+ {
+  "id": "A019",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "listener clause untagged",
+  "where": "S-06",
+  "quote": "listeners that need \"a new capture happened\" use it, never a diff of the file list"
+ },
+ {
+  "id": "A020",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "one onCaptureSaved declaration in the file, on the interface",
+  "where": "S-06",
+  "quote": "void onCaptureSaved(BaseHolder\" in src, \"NotifyFilesChanged has no onCaptureSaved"
+ },
+ {
+  "id": "A021",
+  "lane": "tag",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "S-07 tag moved onto the sizes clause",
+  "where": "S-07",
+  "quote": "the whole cell is the target; captions short and static"
+ },
+ {
+  "id": "A022",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-08 checks the intent, the newest-folder extra and the refresh",
+  "where": "S-08",
+  "quote": "refreshed on every save; it opens GlassGallery inside the newest folder"
+ },
+ {
+  "id": "A023",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "start-up clause untagged",
+  "where": "S-09",
+  "quote": "the saved Image Level value is applied on start-up"
+ },
+ {
+  "id": "A024",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-09 now certifies the constants clause only",
+  "where": "S-09",
+  "quote": "LEVEL_TOLERANCE = 0.5f\" in src and \"MIN_CHANGE = 0.2f"
+ },
+ {
+  "id": "A025",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "drawing clause untagged",
+  "where": "S-09",
+  "quote": "one bar, centre tick, signed angle, dark outline"
+ },
+ {
+  "id": "A026",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-09 certifies the constants, the redraw rule is stated separately",
+  "where": "S-09",
+  "quote": "fades 2 s after level, `SENSOR_DELAY_UI`"
+ },
+ {
+  "id": "A027",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "C13 reworded: 'first', and the two end states stated",
+  "where": "S-10",
+  "quote": "both paths call `closeSettingsIfOpen()` before anything moves the task to the back"
+ },
+ {
+  "id": "A028",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "a substring inside onKeyUp's body; a comment there could satisfy it - residual, recorded",
+  "where": "S-10",
+  "quote": "`\"KEYCODE_BACK && closeSettingsIfOpen()\" in method_body(src, \"onKeyUp\")`"
+ },
+ {
+  "id": "A029",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-11 parses setting_holder; mutant: holder wrap_content, root match_parent",
+  "where": "S-11",
+  "quote": "need('android:layout_width=\\\"match_parent\\\"' in head"
+ },
+ {
+  "id": "A030",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "insets clause untagged and corrected (code, not layout; side gesture strips not inset)",
+  "where": "S-11",
+  "quote": "insets on all four edges (`nextgen_setting_fragment.xml`) `[S-11]`"
+ },
+ {
+  "id": "A031",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-11 requires the ids inside setting_holder",
+  "where": "S-11",
+  "quote": "need(f'@+id/{id_}\\\"' in x, f\\\"{id_} missing from the panel\\\")"
+ },
+ {
+  "id": "A032",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "'not counted as targets' untagged",
+  "where": "S-12",
+  "quote": "are not counted as targets"
+ },
+ {
+  "id": "A033",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "setClickable(false) anywhere in the adapter - residual, recorded",
+  "where": "S-12",
+  "quote": "`need(\"setClickable(false)\" in ad, ...)`"
+ },
+ {
+  "id": "A034",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "SpanSizeLookup presence - residual, recorded",
+  "where": "S-12",
+  "quote": "`\"SpanSizeLookup\" in src`"
+ },
+ {
+  "id": "A035",
+  "lane": "tag",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "T7 retagged to S-22 (every layout); S-13 now only in D4 and appears once",
+  "where": "S-13",
+  "quote": "the drawer and the pickers hold that floor on every row"
+ },
+ {
+  "id": "A036",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "dimen name presence in the row layouts - residual, recorded",
+  "where": "S-13",
+  "quote": "`\"@dimen/nextgen_settings_row_min_height\" in read(layout(lay))`"
+ },
+ {
+  "id": "A037",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "two 48dp widths + maxLines=1 - residual, recorded",
+  "where": "S-13",
+  "quote": "`st.count('android:layout_width=\"48dp\"') >= 2 and 'android:maxLines=\"1\"' in st`"
+ },
+ {
+  "id": "A038",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "alignment clause untagged",
+  "where": "S-14",
+  "quote": "right-aligned toward the shutter thumb"
+ },
+ {
+  "id": "A039",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "tap behaviour clause untagged",
+  "where": "S-14",
+  "quote": "tap scrolls the section to the top and closes an open picker"
+ },
+ {
+  "id": "A040",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "lime clause untagged",
+  "where": "S-14",
+  "quote": "the section in view is lime (`manual_button_active`)"
+ },
+ {
+  "id": "A041",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "dimming clause untagged",
+  "where": "S-14",
+  "quote": "a chip whose section the search emptied is dimmed and disabled"
+ },
+ {
+  "id": "A042",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "36 dp pill clause untagged; tag on the 48 dp targets clause",
+  "where": "S-14",
+  "quote": "36 dp pill inside a 48 dp target, min width 48 dp"
+ },
+ {
+  "id": "A043",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "filter behaviour untagged; S-15 on strings + filter presence",
+  "where": "S-15",
+  "quote": "filters header + description case-insensitively... orphaned labels are pruned"
+ },
+ {
+  "id": "A044",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "keyboard clause untagged",
+  "where": "S-15",
+  "quote": "keyboard drops on row tap, chip tap, Search action and when the page is swiped away"
+ },
+ {
+  "id": "A045",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "rule untagged; the nested-section bug it hid is fixed (A097)",
+  "where": "S-15",
+  "quote": "a section whose own label matches keeps all its rows"
+ },
+ {
+  "id": "A046",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-15 scoped to what it checks",
+  "where": "S-15",
+  "quote": "`need(\"void setFilter(String\" in read(...`"
+ },
+ {
+  "id": "A047",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-16 on the title-row clause only",
+  "where": "S-16",
+  "quote": "full-span 48 dp title row that is not clickable and is an accessibility heading"
+ },
+ {
+  "id": "A048",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "Back chip clause untagged",
+  "where": "S-16",
+  "quote": "an outlined \"‹ Back\" chip"
+ },
+ {
+  "id": "A049",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "columns clause untagged",
+  "where": "S-16",
+  "quote": "two columns of values"
+ },
+ {
+  "id": "A050",
+  "lane": "tag",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "scroll clause untagged",
+  "where": "S-16",
+  "quote": "list scroll preserved after a pick"
+ },
+ {
+  "id": "A051",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-17 URL pattern, res included; mutant: URL in strings.xml",
+  "where": "S-17",
+  "quote": "https?://github\\.com/\", read(os.path.join(d, f))"
+ },
+ {
+  "id": "A052",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-17 walks res too",
+  "where": "S-17",
+  "quote": "for d, _, fs in os.walk(J):"
+ },
+ {
+  "id": "A053",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-18 follows the colour clause only",
+  "where": "S-18",
+  "quote": "Video Profile Editor, DNG converter and curve view use the app's tokens"
+ },
+ {
+  "id": "A054",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-19 compares configChanges with the main activity's",
+  "where": "S-19",
+  "quote": "the same configChanges as the main activity"
+ },
+ {
+  "id": "A055",
+  "lane": "tag",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "not live: the old check caught the plant (the share tag has no screenOrientation); hardened anyway",
+  "where": "S-19",
+  "quote": "`\"orientation\" in a.group(0) and \"screenSize\" in a.group(0)`"
+ },
+ {
+  "id": "A056",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-19 on the manifest clause; behaviour untagged",
+  "where": "S-19",
+  "quote": "waits for `onCaptureSaved`, streams the capture ..., sets the result, finishes"
+ },
+ {
+  "id": "A057",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-21: no orphan layout, count as SPEC states; mutant: an orphan layout",
+  "where": "S-21",
+  "quote": "the five orphan `cameraui_*` layouts (38 layouts remain)"
+ },
+ {
+  "id": "A058",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "KillerInk link moved to D10 (S-17)",
+  "where": "S-21",
+  "quote": "the KillerInk update link, the \"Check for new updates\" row"
+ },
+ {
+  "id": "A059",
+  "lane": "tag",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-21 checks the themesample package and all build files for Hilt",
+  "where": "S-21",
+  "quote": "the classic `themesample` theme (Stage 4), Hilt (Stage 4)"
+ },
+ {
+  "id": "A060",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "editorial",
+  "why": "comment says 'silently breaks' beside the message it quotes",
+  "where": "app/build.gradle#0",
+  "quote": "silently breaks there with \"Android Gradle plugin requires Java 17/21 to run\" instead of failing"
+ },
+ {
+  "id": "A061",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "editorial",
+  "why": "comment asserts AGP internal behaviour without a source",
+  "where": "app/build.gradle#0",
+  "quote": "Data Binding integration append its own \"-Xlint:-unchecked\" during variant configuration"
+ },
+ {
+  "id": "A062",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "editorial",
+  "why": "comment names a cause (compat tooltip) without evidence",
+  "where": "app/src/main/AndroidManifest.xml#0",
+  "quote": "that tooltip is the glitching blink reported over the app on first launch"
+ },
+ {
+  "id": "A063",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "ActivityAbstract: shared singletons torn down by the last live activity only",
+  "where": "app/src/main/java/glasscam/ActivityAbstract.java#0",
+  "quote": "settingsManager.release();"
+ },
+ {
+  "id": "A064",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "same",
+  "where": "app/src/main/java/glasscam/ActivityAbstract.java#0",
+  "quote": "imageManager.cancelImageSaveTasks();"
+ },
+ {
+  "id": "A065",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "SPEC C13 reworded",
+  "where": "app/src/main/java/glasscam/cam/ActivityGlassCamMain.java#0",
+  "quote": "before anything moves the task to the back"
+ },
+ {
+  "id": "A066",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "share delivery via AtomicBoolean.compareAndSet",
+  "where": "app/src/main/java/glasscam/cam/ActivityGlassCamShare.java#0",
+  "quote": "if (!captureRequested \\|\\| delivered \\|\\| file == null) return; delivered = true;"
+ },
+ {
+  "id": "A067",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "inherited",
+  "why": "CameraApiManager.onResume reads camera right after an async switch (upstream)",
+  "where": "app/src/main/java/glasscam/cam/apis/CameraApiManager.java#0",
+  "quote": "else if (PreviewSurfaceRdy && !camera.isCameraOpen())"
+ },
+ {
+  "id": "A068",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "unreachable: SDK_INT >= LOLLIPOP is always true at minSdk 30",
+  "where": "app/src/main/java/glasscam/cam/apis/CameraApiManager.java#0",
+  "quote": "if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {"
+ },
+ {
+  "id": "A069",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "inherited",
+  "why": "setModule refires on the same module (upstream)",
+  "where": "app/src/main/java/glasscam/cam/apis/basecamera/modules/ModuleHandlerAbstract.java#0",
+  "quote": "Gets thrown when the module has changed"
+ },
+ {
+  "id": "A070",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "editorial",
+  "why": "cross-class cause stated in a comment",
+  "where": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/modes/Horizont.java#0",
+  "quote": "the global SettingMode is not flagged supported, so SetAppSettingsToParameters skips it"
+ },
+ {
+  "id": "A071",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "SDModeParameter announces the state the grant produced",
+  "where": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/modes/SDModeParameter.java#0",
+  "quote": "fireStringValueChanged(value);"
+ },
+ {
+  "id": "A072",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "same, and a cancelled picker now calls back",
+  "where": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/modes/SDModeParameter.java#0",
+  "quote": "settingsManager.SetWriteExternal(f.canWrite() && lastval.equals(SDModeParameter.external));"
+ },
+ {
+  "id": "A073",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "inherited",
+  "why": "Camera1 PictureModule isWorking check-then-act (upstream)",
+  "where": "app/src/main/java/glasscam/cam/apis/camera1/modules/PictureModule.java#0",
+  "quote": "if(isWorking){"
+ },
+ {
+  "id": "A074",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "inherited",
+  "why": "Camera1 Moto preview reset writes the camera id twice (upstream)",
+  "where": "app/src/main/java/glasscam/cam/apis/camera1/modules/PictureModule.java#1",
+  "quote": "settingsManager.SetCurrentCamera(1); CameraThreadHandler.restartCameraAsync();"
+ },
+ {
+  "id": "A075",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "inherited",
+  "why": "Camera1 BAYER/RAW routed through the JPEG save path (upstream)",
+  "where": "app/src/main/java/glasscam/cam/apis/camera1/modules/PictureModule.java#1",
+  "quote": "else if ((picFormat.equals(FileEnding.BAYER) || picFormat.equals(FileEnding.RAW)))"
+ },
+ {
+  "id": "A076",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "inherited",
+  "why": "zebra high/low default naming (upstream)",
+  "where": "app/src/main/java/glasscam/cam/previewpostprocessing/PreviewController.java#0",
+  "quote": "float zebrahigh = 0.001f; float zebralow = 0.01f;"
+ },
+ {
+  "id": "A077",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "owed",
+  "why": "level angle is orientation[1]; which axis it tracks needs the phone",
+  "where": "app/src/main/java/glasscam/cam/ui/cameraui/HorizontLineFragment.java#0",
+  "quote": "float rolldegree = get360Degrees(orientation[1]);"
+ },
+ {
+  "id": "A078",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "LevelBarView doc + SPEC C7: redraw also on crossing the tolerance",
+  "where": "app/src/main/java/glasscam/cam/ui/cameraui/LevelBarView.java#0",
+  "quote": "redraws only on ≥ 0.2° change"
+ },
+ {
+  "id": "A079",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "same",
+  "where": "app/src/main/java/glasscam/cam/ui/cameraui/LevelBarView.java#0",
+  "quote": "The view only invalidates when the reading moves by MIN_CHANGE degrees"
+ },
+ {
+  "id": "A080",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "startWork toggles; low storage was set just before, so it can only stop (AbstractVideoModule:108)",
+  "where": "app/src/main/java/glasscam/cam/ui/infooverlay/modelview/InfoOverlayModelView.java#0",
+  "quote": "low storage reached; automatically stop the video."
+ },
+ {
+  "id": "A081",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "inherited",
+  "why": "timelapse stepper cannot reach (1,2) (upstream arithmetic)",
+  "where": "app/src/main/java/glasscam/cam/ui/settings/childs/SettingsChildMenuTimeLapseFrames.java#0",
+  "quote": "current +mover > 1 && current + bigmover <= max"
+ },
+ {
+  "id": "A082",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "inherited",
+  "why": "timelapse stepper floor is 1/60, not min (upstream arithmetic)",
+  "where": "app/src/main/java/glasscam/cam/ui/settings/childs/SettingsChildMenuTimeLapseFrames.java#0",
+  "quote": "current - mover > min"
+ },
+ {
+  "id": "A083",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "keyboard hidden on any non-settings arrival: harmless superset",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/NextGenMainFragment.java#0",
+  "quote": "leaving the settings page: drop the search field's keyboard and focus"
+ },
+ {
+  "id": "A084",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "editorial",
+  "why": "comment states a fix guarantee",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/NextGenMainFragment.java#0",
+  "quote": "so if the pager's fragments live in the parent manager they can outlive this fragment's view"
+ },
+ {
+  "id": "A085",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "'Save Camera Parameters' was shown on Camera2 and threw on tap; API_1 only now",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/adapter/NextGenSettingItemAdapterTools.java#0",
+  "quote": "conf.getKey() == null) { validList.add(conf); }"
+ },
+ {
+  "id": "A086",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "a new adapter per rebuild + setAdapter clears the pool (NextGenSettingDummyFragment:278); comment corrected",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/adapter/NextGenSettingItemRecyclerAdapter.java#0",
+  "quote": "cleanly and correctly discard the old hierarchy and build a fresh one on notifyDataSetChanged()"
+ },
+ {
+  "id": "A087",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "comment and SPEC D1: side gesture strips are not inset",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraSettingFragment.java#0",
+  "quote": "keep the panel's edges off the landscape cutout, the system bars and the gesture strips"
+ },
+ {
+  "id": "A088",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "above-right holder grows with the OpenGL preview mode and un-centres the shutter; comment + SPEC C1 corrected; §11 item 15",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraUiFragment.java#0",
+  "quote": "then self-timer | focus mode.",
+  "resolution": "parked by the owner (SPEC §11 item 6)"
+ },
+ {
+  "id": "A089",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "unreachable at minSdk 30",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraUiFragment.java#1",
+  "quote": "faceRectDrawer = new FaceRectDrawer(getContext());"
+ },
+ {
+  "id": "A090",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "onCameraClose carries the detach guard",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraUiFragment.java#2",
+  "quote": "posted from the camera thread; skip if this instance was detached by a recreation"
+ },
+ {
+  "id": "A091",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "dead AF-bracket branch replaced by the reset it always produced",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenManualsFragment.java#0",
+  "quote": "currentButton instanceof NextGenMfItem && seekbar.getVisibility() == View.VISIBLE"
+ },
+ {
+  "id": "A092",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "detach guard",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenManualsFragment.java#1",
+  "quote": "handler.post(() -> setCameraToUi(null));"
+ },
+ {
+  "id": "A093",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "Hidden case posted and null-guarded",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenManualsFragment.java#1",
+  "quote": "case Hidden: seekbar.setVisibility(View.GONE); currentButton.SetActive(false);"
+ },
+ {
+  "id": "A094",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The comment states the present rule first (\"Below SINGLE_COLUMN_BELOW_DP the list is one column\") and then attributes the two-224dp-column split to the *previou",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenSettingDummyFragment.java#0",
+  "quote": "targets the 60% phone panel (~460dp) split into two 224dp columns"
+ },
+ {
+  "id": "A095",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "comment: 300 dp target, 200 dp history",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenSettingDummyFragment.java#0",
+  "quote": "Matches the previous GridView columnWidth=\\\"200dp\\\" auto_fit target"
+ },
+ {
+  "id": "A096",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "SPEC D2: full-span, every column",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenSettingDummyFragment.java#0",
+  "quote": "section rows span both columns (`SpanSizeLookup`), are not clickable"
+ },
+ {
+  "id": "A097",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "search keeps nested Raw/Interval rows of a matching section",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenSettingDummyFragment.java#1",
+  "quote": "a section whose own label matches keeps all its rows"
+ },
+ {
+  "id": "A098",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "comment: ROW_TITLE/ROW_BACK/ROW_VALUE",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenSettingDummyFragment.java#2",
+  "quote": "Position 0 is always the \"Back\"/cancel row"
+ },
+ {
+  "id": "A099",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "comment: tabs removed in Batch 4",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java#0",
+  "quote": "merged here as sections so the strip holds five tabs on a phone"
+ },
+ {
+  "id": "A100",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "White Balance row gets its own description (it borrowed an empty string)",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java#1",
+  "quote": "R.string.uisetting_wb_header,R.string.setting_distortion_description"
+ },
+ {
+  "id": "A101",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "no red-eye glyph in the font; comment corrected; §11 item 11",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/view/NextGenCameraUiTextSwitch.java#0",
+  "quote": "carries the driver's plain word (\\\"off\\\", \\\"auto\\\", \\\"on\\\", \\\"torch\\\", \\\"red-eye\\\")",
+  "resolution": "open (SPEC §11 item 8)"
+ },
+ {
+  "id": "A102",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "gallery cell drops out-of-order decodes (generation counter)",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/view/NextGenGalleryButton.java#0",
+  "quote": "reloads the newest file's thumbnail on the pool thread and swaps it in on the UI thread"
+ },
+ {
+  "id": "A103",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "ripple skipped only if a theme attribute is missing",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/view/button/NextGenRowFeedback.java#0",
+  "quote": "Applies a Material press ripple to a clickable settings row"
+ },
+ {
+  "id": "A104",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "setArrts is dead code: no layout passes those attributes",
+  "where": "app/src/main/java/glasscam/cam/ui/themenextgen/view/button/NextGenSettingButton.java#0",
+  "quote": "settingItemBinding.textViewHeader.setText(a.getText(...))"
+ },
+ {
+  "id": "A105",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "inherited",
+  "why": "empty PersistableBundle onCreate override (upstream)",
+  "where": "app/src/main/java/glasscam/cam/ui/videoprofileeditor/views/VideoProfileEditorActivity.java#0",
+  "quote": "public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {"
+ },
+ {
+  "id": "A106",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "GlassCam/ child creation failure falls back to the root; §11 item 9",
+  "where": "app/src/main/java/glasscam/file/FileListController.java#0",
+  "quote": "return child != null ? child : root;",
+  "resolution": "4.3.91: capture refused with a toast"
+ },
+ {
+  "id": "A107",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "same",
+  "where": "app/src/main/java/glasscam/file/FileListController.java#0",
+  "quote": "Log.WriteEx(ex); return root;",
+  "resolution": "4.3.91: capture refused with a toast"
+ },
+ {
+  "id": "A108",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "DeleteFile indexes and removes under filesLock",
+  "where": "app/src/main/java/glasscam/file/FileListController.java#0",
+  "quote": "if (getFiles().get(i).getName().equals(file.getName()))"
+ },
+ {
+  "id": "A109",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: ST2 attributes the `GlassCam/` child to `getGlassCamDocumentFolder` itself, whose body is not in the material, and the shown code's own comment calls `df` \"the ",
+  "where": "app/src/main/java/glasscam/file/FileListController.java#1",
+  "quote": "wr.getUri()); Log.d(TAG,\"Filepath: \" + wr.getUri()); Uri uri = wr.getUri();\" (getNewMovieFileHolder uses createFile(\"*/*\", ...))"
+ },
+ {
+  "id": "A110",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "SPEC ST2 states both rules and the fallback",
+  "where": "app/src/main/java/glasscam/file/FileListController.java#1",
+  "quote": "a picked tree already named `GlassCam` is used as is"
+ },
+ {
+  "id": "A111",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "the only caller is guarded by isGithubRelease && CHECKFORUPDATES (NextGenCameraUiFragment:400)",
+  "where": "app/src/main/java/glasscam/update/ReleaseChecker.java#0",
+  "quote": "`ReleaseChecker` is hard-off"
+ },
+ {
+  "id": "A112",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The comment only states that `isGithubRelease` stays false and that the upstream URL is gone; it never says the field gates `checkupdate()` (its \"so a future fe",
+  "where": "app/src/main/java/glasscam/update/ReleaseChecker.java#0",
+  "quote": "isGithubRelease stays false and the upstream KillerInk URL is gone"
+ },
+ {
+  "id": "A113",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "editorial",
+  "why": "comment claims idempotence",
+  "where": "app/src/main/java/glasscam/utils/HideNavBarHelper.java#0",
+  "quote": "so calling it on every onWindowFocusChanged(true) ... doesn't re-enter sticky mode"
+ },
+ {
+  "id": "A114",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "editorial",
+  "why": "comment names a past cause",
+  "where": "app/src/main/java/glasscam/utils/HideNavBarHelper.java#0",
+  "quote": "a getRootWindowInsets() snapshot can be stale right at focus-change time, which caused the system bars to incorrectly stay visible"
+ },
+ {
+  "id": "A115",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "Back during the zoom returns to the grid",
+  "where": "app/src/main/java/glasscam/viewer/ActivityGlassCamViewer.java#0",
+  "quote": "now it returns to the grid first, like the on-screen chevron"
+ },
+ {
+  "id": "A116",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "PopupMenuModel.setStrings turns visibility on (PopupMenuModel.java:27-28)",
+  "where": "app/src/main/java/glasscam/viewer/gridview/models/ButtonOptionsModel.java#0",
+  "quote": "gridViewFragmentModelView.getPopupMenuModel().setVisibility(false);"
+ },
+ {
+  "id": "A117",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "grid removes the deleted model from the bound list",
+  "where": "app/src/main/java/glasscam/viewer/gridview/models/FilesHolderModel.java#0",
+  "quote": "notifyPropertyChanged(BR.files);\" in onFileDeleted"
+ },
+ {
+  "id": "A118",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "same",
+  "where": "app/src/main/java/glasscam/viewer/gridview/models/FilesHolderModel.java#0",
+  "quote": "gridImageViewModels.remove(id);"
+ },
+ {
+  "id": "A119",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "an emptied folder clears the grid",
+  "where": "app/src/main/java/glasscam/viewer/gridview/models/FilesHolderModel.java#0",
+  "quote": "fileListController.getFiles().size() > 0)"
+ },
+ {
+  "id": "A120",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "own message for a selection without DNG files",
+  "where": "app/src/main/java/glasscam/viewer/gridview/modelview/GridViewFragmentModelView.java#1",
+  "quote": "if (hasUnsupportedFile || ar.isEmpty())"
+ },
+ {
+  "id": "A121",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "deletes route per holder",
+  "where": "app/src/main/java/glasscam/viewer/gridview/modelview/GridViewFragmentModelView.java#1",
+  "quote": "filesSelectedList.get(0).getHolderType() == FileHolder.class || filesSelectedList.get(0).getHolderType() == DocumentHolder.class"
+ },
+ {
+  "id": "A122",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "reset updates the selected count",
+  "where": "app/src/main/java/glasscam/viewer/gridview/modelview/GridViewFragmentModelView.java#2",
+  "quote": "resetFilesSelected()\" clears filesSelectedList but never calls updateFilesSelected()"
+ },
+ {
+  "id": "A123",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "comment: decoded edge between the target and twice it",
+  "where": "app/src/main/java/glasscam/viewer/helper/BitmapHelper.java#0",
+  "quote": "Cap for the decoded \"full view\" bitmap's longest edge"
+ },
+ {
+  "id": "A124",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": ".bayer shows no stale EXIF",
+  "where": "app/src/main/java/glasscam/viewer/screenslide/modelview/ScreenSlideFragmentModelView.java#0",
+  "quote": "StringUtils.FileEnding.BAYER)) {"
+ },
+ {
+  "id": "A125",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "Play on DNG stills; §11 item 10",
+  "where": "app/src/main/java/glasscam/viewer/screenslide/modelview/ScreenSlideFragmentModelView.java#0",
+  "quote": "a still has nothing to play (Batch 2)",
+  "resolution": "4.3.91: no Play on stills"
+ },
+ {
+  "id": "A126",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "volatile",
+  "where": "app/src/main/java/glasscam/views/shutter/ShutterAnimationHandler.java#0",
+  "quote": "/* synchronized (this) {*/"
+ },
+ {
+  "id": "A127",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "volatile",
+  "where": "app/src/main/java/glasscam/views/shutter/ShutterAnimationHandler.java#0",
+  "quote": "if (stopTimer) {"
+ },
+ {
+  "id": "A128",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The field is declared `private volatile boolean drawTimer = false;`, so the unsynchronized read in `run()` is a volatile read and visibility is guaranteed.",
+  "where": "app/src/main/java/glasscam/views/shutter/ShutterAnimationHandler.java#0",
+  "quote": "if (drawTimer)"
+ },
+ {
+  "id": "A129",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "volatile",
+  "where": "app/src/main/java/glasscam/views/shutter/ShutterAnimationHandler.java#0",
+  "quote": "shutteropentime = getTimeGoneString(startime);"
+ },
+ {
+  "id": "A130",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "volatile",
+  "where": "app/src/main/java/glasscam/views/shutter/ShutterAnimationHandler.java#0",
+  "quote": "private boolean running = false;"
+ },
+ {
+  "id": "A131",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "editorial",
+  "why": "comment ties a plain state selector to minSdk 30",
+  "where": "app/src/main/res/color/nextgen_switch_thumb.xml#0",
+  "quote": "minSdk 30 supports state colors"
+ },
+ {
+  "id": "A132",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The comment does not present the API-23 requirement as a live limitation; the parenthetical \"(minSdk is 30)\" is stated in the same breath precisely to record th",
+  "where": "app/src/main/res/color/nextgen_switch_track.xml#0",
+  "quote": "android:alpha on a color-state item requires API 23+ (minSdk is 30)"
+ },
+ {
+  "id": "A133",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The claim's premise that the off state is \"fully opaque\" rests on the value of @color/nextgen_switch_track_off, which this material never shows, so nothing in t",
+  "where": "app/src/main/res/color/nextgen_switch_track.xml#0",
+  "quote": "lime when on, neutral white when off"
+ },
+ {
+  "id": "A134",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The comment says \"outer edge\", and 31.45 (the pathData centreline radius) plus half the 1.36 strokeWidth gives 32.13 ≈ 32.1dp, so the stated figure is the strok",
+  "where": "app/src/main/res/drawable/ic_launcher_foreground.xml#0",
+  "quote": "the ring's outer edge (r≈32.1dp) sits inside Android's 66dp/33dp-radius"
+ },
+ {
+  "id": "A135",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "rays at exact sevenths in both drawables",
+  "where": "app/src/main/res/drawable/ic_launcher_monochrome.xml#0",
+  "quote": "android:rotation=\"308.4"
+ },
+ {
+  "id": "A136",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "inert unprefixed layout_width removed",
+  "where": "app/src/main/res/layout/curve_view_control.xml#0",
+  "quote": "`layout_width=\"match_parent\"` (custom attr, no `android:` prefix)"
+ },
+ {
+  "id": "A137",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "CurveViewControl hides both panels at inflation (lines 199, 206)",
+  "where": "app/src/main/res/layout/curve_view_control.xml#0",
+  "quote": "`save_panel` and `load_panel` both `match_parent` inside same RelativeLayout, no visibility set"
+ },
+ {
+  "id": "A138",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "inert RelativeLayout orientation",
+  "where": "app/src/main/res/layout/glasscamviewer_gridviewfragment.xml#0",
+  "quote": "android:orientation=\"vertical"
+ },
+ {
+  "id": "A139",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "inert RelativeLayout orientation",
+  "where": "app/src/main/res/layout/glasscamviewer_gridviewfragment.xml#0",
+  "quote": "android:orientation=\"horizontal"
+ },
+ {
+  "id": "A140",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: `bottom_bar` also declares `android:layout_width=\"match_parent\"`, so under either rule the view spans the full parent width and no two distinct positions can re",
+  "where": "app/src/main/res/layout/glasscamviewer_gridviewfragment.xml#0",
+  "quote": "android:layout_alignParentStart=\"true\" ... android:layout_alignParentLeft=\"true"
+ },
+ {
+  "id": "A141",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "noimpact",
+  "why": "weight under wrap_content",
+  "where": "app/src/main/res/layout/glasscamviewer_gridviewfragment.xml#0",
+  "quote": "android:layout_weight=\"1"
+ },
+ {
+  "id": "A142",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "editorial",
+  "why": "comment 'every reference app has a gear' without the sample",
+  "where": "app/src/main/res/layout/nextgen_cameraui_fragment.xml#0",
+  "quote": "every reference app has a gear"
+ },
+ {
+  "id": "A143",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "comment: not on the glyph alone",
+  "where": "app/src/main/res/layout/nextgen_cameraui_text_switch.xml#0",
+  "quote": "the click listener sits on the holder, not on the 30dp glyph"
+ },
+ {
+  "id": "A144",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The clickable view is layout_holder itself, declared `android:layout_width=\"match_parent\"`, so the tap target spans the full cell width regardless of the center",
+  "where": "app/src/main/res/layout/nextgen_cameraui_text_switch.xml#0",
+  "quote": "the whole cell is the tap target (minHeight 48dp"
+ },
+ {
+  "id": "A145",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "SPEC D1 names the code, not the layout",
+  "where": "app/src/main/res/layout/nextgen_setting_fragment.xml#0",
+  "quote": "insets on all four edges (`nextgen_setting_fragment.xml`)"
+ },
+ {
+  "id": "A146",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The material explicitly scopes the counts with \"on this phone\" rather than claiming they generalize, and attributes the removal to \"the owner's decision\" plus a",
+  "where": "app/src/main/res/layout/nextgen_setting_fragment.xml#0",
+  "quote": "on this phone it held 3 / 9 / ~20 / ~10 / 4 rows"
+ },
+ {
+  "id": "A147",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "comment: 8dp margin remains",
+  "where": "app/src/main/res/layout/nextgen_setting_item.xml#0",
+  "quote": "takes zero width so the label keeps the whole row"
+ },
+ {
+  "id": "A148",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "comment: at least 48 dp",
+  "where": "app/src/main/res/layout/nextgen_setting_picker_title.xml#0",
+  "quote": "48 dp tall like every other row"
+ },
+ {
+  "id": "A149",
+  "lane": "code",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: The entry is marked [NONE]/N/A and merely restates attributes the file really contains (letterSpacing 0.08, textAllCaps, textStyle bold on a secondary-text labe",
+  "where": "app/src/main/res/layout/nextgen_setting_section.xml#0",
+  "quote": "letterSpacing=\"0.08\"\" textAllCaps + textStyle=\"bold\" on secondary_text label"
+ },
+ {
+  "id": "A150",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "editorial",
+  "why": "comment asserts a rendering outcome",
+  "where": "app/src/main/res/layout/settings_booleansettingschild.xml#0",
+  "quote": "so it no longer renders as a bold-green, differently-sized outlier next to its"
+ },
+ {
+  "id": "A151",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "74 literals moved vs 56-65 keys: literals share keys; counts of different things",
+  "where": "app/src/main/res/values-it/strings.xml#1",
+  "quote": "Batch 1: copy pass, colon policy, 74 strings to resources"
+ },
+ {
+  "id": "A152",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "ic_launcher_background is #0a0a0a, dark",
+  "where": "app/src/main/res/values-v31/styles.xml#0",
+  "quote": "brands the platform's automatic splash screen ... with the icon's own dark background"
+ },
+ {
+  "id": "A153",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "value shares the header line (nextgen_setting_item.xml:26), so header + two description lines is the budget",
+  "where": "app/src/main/res/values/dimens.xml#0",
+  "quote": "header + two description lines), so the two-column grid has no gap"
+ },
+ {
+  "id": "A154",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "SPEC §2 scoped to detector-cached strings",
+  "where": "app/src/main/res/values/strings.xml#0",
+  "quote": "a copy fix in `strings.xml` is invisible until it runs"
+ },
+ {
+  "id": "A155",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "both colon-less headers are Boolean rows; L1 says switch rows take no colon",
+  "where": "app/src/main/res/values/strings.xml#1",
+  "quote": "colon policy, 74 strings to resources, stepper header"
+ },
+ {
+  "id": "A156",
+  "lane": "code",
+  "verdict": "NARROWED",
+  "disp": "withdrawn",
+  "why": "same as A151",
+  "where": "app/src/main/res/values/strings.xml#2",
+  "quote": "74 strings to resources, stepper header"
+ },
+ {
+  "id": "A157",
+  "lane": "code",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "SPEC §12 names app/build.gradle",
+  "where": "build.gradle#0",
+  "quote": "revision = `build.gradle`; every `[S-nn]` here has a check"
+ },
+ {
+  "id": "A158",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "true of the sample: all eight reference apps open a gallery in 1 tap (CRITIQUE workflow table, row g)",
+  "where": "tools/critique/build_artifact.py#0",
+  "quote": "Every reference app has a one-tap gallery from the viewfinder."
+ },
+ {
+  "id": "A159",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "two defects listed in one bullet are not a contradiction",
+  "where": "tools/critique/build_artifact.py#1",
+  "quote": "the help overlay returns on every launch until its checkbox is ticked"
+ },
+ {
+  "id": "A160",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "artifact lede: 'where a screen shows it'",
+  "where": "tools/critique/build_artifact.py#2",
+  "quote": "and points at a screenshot number in tools/critique/screenshots/"
+ },
+ {
+  "id": "A161",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "dated critique observation, not cited by SPEC",
+  "where": "tools/critique/build_artifact.py#3",
+  "quote": "ISO is now manual with no auto affordance."
+ },
+ {
+  "id": "A162",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "CRITIQUE + artifact errata",
+  "where": "tools/critique/build_artifact.py#4",
+  "quote": "median 48 dp, 0 under 48 (5)"
+ },
+ {
+  "id": "A163",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "CRITIQUE + artifact errata",
+  "where": "tools/critique/build_artifact.py#4",
+  "quote": "entry, room and context rest on the numbers"
+ },
+ {
+  "id": "A164",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata: 7 glyph cells + the gallery cell",
+  "where": "tools/critique/build_artifact.py#4",
+  "quote": "7 cells at 56×48 dp"
+ },
+ {
+  "id": "A165",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata: 40 -> 44 not settled from the tree; 37 now",
+  "where": "tools/critique/build_artifact.py#5",
+  "quote": "203 dp/sp literals across 38 layouts (was 244 across 40)"
+ },
+ {
+  "id": "A166",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "withdrawn",
+  "why": "documented Android 11 behaviour change for IMAGE_CAPTURE, not a one-phone generalisation",
+  "where": "tools/critique/build_artifact.py#5",
+  "quote": "since Android 11 an implicit IMAGE_CAPTURE resolves only to the pre-installed camera"
+ },
+ {
+  "id": "A167",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata: the 48 dp median is tappables, rows are 76 dp",
+  "where": "tools/critique/build_artifact.py#6",
+  "quote": "Uniform rows</td><td>every row ≥ 76 dp"
+ },
+ {
+  "id": "A168",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "L4",
+  "where": "tools/critique/measure.py#0",
+  "quote": "54 % after Batch 3; 194 of 351 keys"
+ },
+ {
+  "id": "A169",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "L2: layouts only",
+  "where": "tools/critique/measure.py#0",
+  "quote": "in layouts or Java (`measure.py` reports the count"
+ },
+ {
+  "id": "A170",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "L4",
+  "where": "tools/critique/measure.py#1",
+  "quote": "54 % after Batch 3; 194 of 351 keys in this revision"
+ },
+ {
+  "id": "A171",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "scorers.reach clamped to [0,1]",
+  "where": "tools/critique/scorers.py#0",
+  "quote": "return 1.0 - num / den"
+ },
+ {
+  "id": "A172",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "settings_compare docstring: tappables",
+  "where": "tools/critique/settings_compare.py#0",
+  "quote": "clickable rows on the first settings screen, their median/min height in dp"
+ },
+ {
+  "id": "A173",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "docstring: EditText is a proxy",
+  "where": "tools/critique/settings_compare.py#0",
+  "quote": "whether a search field exists"
+ },
+ {
+  "id": "A174",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "docstring states the misread",
+  "where": "tools/critique/settings_compare.py#0",
+  "quote": "the page does not expose its rows to accessibility"
+ },
+ {
+  "id": "A175",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "docstring names both anchors",
+  "where": "tools/critique/settings_compare.py#0",
+  "quote": "entry position relative to the bottom-right corner (right thumb) in dp"
+ },
+ {
+  "id": "A176",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "docstring lists every judgement",
+  "where": "tools/critique/settings_scorers.py#0",
+  "quote": "Usage weights are the one judgement in here"
+ },
+ {
+  "id": "A177",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "fill comment arithmetic",
+  "where": "tools/critique/settings_scorers.py#0",
+  "quote": "gaps (about 6 % of the list) score ~0.5"
+ },
+ {
+  "id": "A178",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "row model re-built on 76 dp rows",
+  "where": "tools/critique/settings_scorers.py#0",
+  "quote": "4.3.89 made every row 76 dp"
+ },
+ {
+  "id": "A179",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "nested-section flush",
+  "where": "tools/critique/settings_scorers.py#0",
+  "quote": "y_cols = [top + HEIGHT[\\\"Sect\\\"]] * cols"
+ },
+ {
+  "id": "A180",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "docstring: key is the stated exception",
+  "where": "tools/critique/walk.py#0",
+  "quote": "which refuses to act if another package owns the foreground"
+ },
+ {
+  "id": "A181",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "tapt in the command list",
+  "where": "tools/critique/walk.py#0",
+  "quote": "walk.py shot / tapt / nodes / free / log"
+ },
+ {
+  "id": "A182",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "restore presses HOME over our own app",
+  "where": "tools/critique/walk.py#1",
+  "quote": "removed, launcher in front"
+ },
+ {
+  "id": "A183",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "free: unknown foreground no longer counts",
+  "where": "tools/critique/walk.py#1",
+  "quote": "Wait until the launcher (or our app) has owned"
+ },
+ {
+  "id": "A184",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "tapt warns when the tree never settles",
+  "where": "tools/critique/walk.py#1",
+  "quote": "`tapt` waits for a settled tree"
+ },
+ {
+  "id": "A185",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-04 claim narrowed",
+  "where": "tools/spec_check.py#0",
+  "quote": "every capture path writes into the GlassCam/ child of the SAF tree"
+ },
+ {
+  "id": "A186",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-04 claim narrowed",
+  "where": "tools/spec_check.py#0",
+  "quote": "getExternalSdDocumentFile(context).createFile\" not in src"
+ },
+ {
+  "id": "A187",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-06 'only' enforced",
+  "where": "tools/spec_check.py#0",
+  "quote": "onCaptureSaved is raised from the capture path only"
+ },
+ {
+  "id": "A188",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-08 hardened",
+  "where": "tools/spec_check.py#0",
+  "quote": "gallery thumbnail cell exists and opens the newest folder"
+ },
+ {
+  "id": "A189",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-11 self-sealing fallback removed",
+  "where": "tools/spec_check.py#0",
+  "quote": "else x[:800]"
+ },
+ {
+  "id": "A190",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "jfile fails on duplicates; gone() for removals",
+  "where": "tools/spec_check.py#0",
+  "quote": "jfile(\"SettingTabPagerAdapter.java\") is None"
+ },
+ {
+  "id": "A191",
+  "lane": "gate",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "S-14 -1 guard",
+  "where": "tools/spec_check.py#0",
+  "quote": "x.find(\"setting_fragment_holder\") < x.find(\"settings_chips_scroll\")"
+ },
+ {
+  "id": "A192",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-15 scoped",
+  "where": "tools/spec_check.py#1",
+  "quote": "filter in the list"
+ },
+ {
+  "id": "A193",
+  "lane": "gate",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-19 scoped",
+  "where": "tools/spec_check.py#1",
+  "quote": "waits for onCaptureSaved"
+ },
+ {
+  "id": "D-spec-0",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "AGP 8.13.2",
+  "where": "SPEC.md:35",
+  "quote": "Toolchain: AGP 8.12.1, Gradle 8.14.3, NDK 27.3.13750724"
+ },
+ {
+  "id": "D-spec-1",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "format chip vs T7; §11 item 6",
+  "where": "SPEC.md:60",
+  "quote": "the **format chip** tap-cycles Jpeg → DNG → Jpg+DNG (48×32 dp target)",
+  "resolution": "4.3.91: format chip 48 dp target, pill unchanged"
+ },
+ {
+  "id": "D-spec-2",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "viewer and curve buttons 48 dp; manual strip -> §11 item 14",
+  "where": "SPEC.md:25",
+  "quote": "Every tappable control is at least 48 dp on its short side"
+ },
+ {
+  "id": "D-spec-3",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-22 over every layout",
+  "where": "SPEC.md:25",
+  "quote": "the drawer and the pickers hold that floor on every row `[S-13]`"
+ },
+ {
+  "id": "D-spec-4",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "viewer buttons 48 x 48",
+  "where": "SPEC.md:99",
+  "quote": "48 dp bar and viewer buttons"
+ },
+ {
+  "id": "D-spec-5",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "§5 measurement re-read and restated",
+  "where": "SPEC.md:90",
+  "quote": "11 rows on the first screen, median row 48 dp, none under 48"
+ },
+ {
+  "id": "D-spec-6",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "D3/D4 re-scored; D4 no longer credited to the optimizer",
+  "where": "SPEC.md:82",
+  "quote": "uniform rows are the fix, not staggered packing ... | optimizer, Batch 5"
+ },
+ {
+  "id": "D-spec-7",
+  "lane": "doc",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "L4",
+  "where": "SPEC.md:122",
+  "quote": "54 % after Batch 3; 194 of 351 keys in this revision"
+ },
+ {
+  "id": "D-spec-8",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "walk.py restore presses HOME",
+  "where": "SPEC.md:169",
+  "quote": "locale cleared, timeout restored, `/sdcard/critique` removed, launcher in front"
+ },
+ {
+  "id": "D-spec-9",
+  "lane": "doc",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: line 334 supersedes the line 284 aside",
+  "where": "SPEC.md:75",
+  "quote": "3 · 9 · ~20 · ~10 · 4 rows with blank space"
+ },
+ {
+  "id": "D-spec-10",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "§11 item 2 lists the unverified items",
+  "where": "SPEC.md:152",
+  "quote": "**Not device-verified**: C11 (Camera1 flash glyphs), ST3 (stale SAF tree)."
+ },
+ {
+  "id": "D-spec-11",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-08 hardened",
+  "where": "SPEC.md:57",
+  "quote": "refreshed on every save; it opens GlassGallery inside the newest folder. `[S-08]`"
+ },
+ {
+  "id": "D-critique-0",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata",
+  "where": "CRITIQUE_2026-09-16.md:378",
+  "quote": "rows per screen **8 → 11** (4.3.84 vs 4.3.89, same measure on the saved dumps)"
+ },
+ {
+  "id": "D-critique-1",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata",
+  "where": "CRITIQUE_2026-09-16.md:368",
+  "quote": "| **GlassCam 4.3.89** | 734 | 11 | 48 / 0 | yes | 0.68 | 321 | |"
+ },
+ {
+  "id": "D-critique-2",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata",
+  "where": "CRITIQUE_2026-09-16.md:274",
+  "quote": "median row 48 dp, 0 under 48 (4)"
+ },
+ {
+  "id": "D-critique-3",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata",
+  "where": "CRITIQUE_2026-09-16.md:284",
+  "quote": "**search** (MA Camera has it, nobody else does)"
+ },
+ {
+  "id": "D-critique-4",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata",
+  "where": "CRITIQUE_2026-09-16.md:284",
+  "quote": "(Camera tab alone has ~30 rows on this SoC)"
+ },
+ {
+  "id": "D-critique-5",
+  "lane": "doc",
+  "verdict": "NARROWED",
+  "disp": "noimpact",
+  "why": "narrowed: the stated mechanism is wrong, the number is not used by SPEC",
+  "where": "CRITIQUE_2026-09-16.md:262",
+  "quote": "the overlay rows in the original contrast table were a measurement artefact — they sit on the scrim pill"
+ },
+ {
+  "id": "D-critique-6",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata; docstring",
+  "where": "CRITIQUE_2026-09-16.md:270",
+  "quote": "*entry*, *room* and *context* rest on the numbers"
+ },
+ {
+  "id": "D-critique-7",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "errata; owed list",
+  "where": "CRITIQUE_2026-09-16.md:260",
+  "quote": "| Back → grid; targets 48 dp |"
+ },
+ {
+  "id": "D-critique-8",
+  "lane": "doc",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "errata; D8 owed",
+  "where": "CRITIQUE_2026-09-16.md:344",
+  "quote": "| Picker title row | 48 dp, not clickable, `accessibilityHeading`; ... | built |"
+ },
+ {
+  "id": "D-critique-9",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "AGP (same as spec#0)",
+  "where": "SPEC.md:35",
+  "quote": "Toolchain: AGP 8.12.1, Gradle 8.14.3, NDK 27.3.13750724"
+ },
+ {
+  "id": "D-migration-0",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "AGP (same as spec#0)",
+  "where": "SPEC.md:35",
+  "quote": "Toolchain: AGP 8.12.1, Gradle 8.14.3, NDK 27.3.13750724"
+ },
+ {
+  "id": "D-migration-1",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "build steps corrected",
+  "where": "MIGRATION_NOTES.md:121",
+  "quote": "This uses the project's own existing dev signing key (key/freedcamkey.jks, checked into the repo"
+ },
+ {
+  "id": "D-migration-2",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "build steps corrected",
+  "where": "MIGRATION_NOTES.md:117",
+  "quote": "NDK 21.1.6352462 (pinned in app/build.gradle - see caveat below)"
+ },
+ {
+  "id": "D-migration-3",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "correction appended",
+  "where": "MIGRATION_NOTES.md:147",
+  "quote": "six more LibRaw heap-overflow/integer-overflow CVEs in 2026 alone"
+ },
+ {
+  "id": "D-migration-4",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "premise corrected: read path reaches it, but in read mode the block only warned - no change to the input surface",
+  "where": "MIGRATION_NOTES.md:157",
+  "quote": "the tag-*write* path, exercised when this app itself writes a DNG, not when it parses"
+ },
+ {
+  "id": "D-migration-5",
+  "lane": "doc",
+  "verdict": "NARROWED",
+  "disp": "decision",
+  "why": "PictureModuleMTK; §11 item 16; correction appended",
+  "where": "MIGRATION_NOTES.md:33",
+  "quote": "No raw File writes to shared/user-visible storage remain.",
+  "resolution": "open (SPEC §11 item 9)"
+ },
+ {
+  "id": "D-migration-6",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "S-21 rewritten",
+  "where": "SPEC.md:130",
+  "quote": "`themesample` theme (Stage 4), Hilt (Stage 4) `[S-21]`"
+ },
+ {
+  "id": "D-readme-0",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "README upstream content; §11 item 16",
+  "where": "README.md:355",
+  "quote": "Copy that file now on your phones internalSD/DCIM/FreeDcam/config/matrixes.xml",
+  "resolution": "4.3.91: README replaced"
+ },
+ {
+  "id": "D-readme-1",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "same",
+  "where": "README.md:19",
+  "quote": "height=\"80\">](https://f-droid.org/packages/troop.com.freedcam/)",
+  "resolution": "4.3.91: README replaced"
+ },
+ {
+  "id": "D-readme-2",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "fastlane; §11 item 16",
+  "where": "fastlane/metadata/android/en-US/title.txt:1",
+  "quote": "FreeDcam",
+  "resolution": "4.3.91: fastlane/ retired"
+ },
+ {
+  "id": "D-readme-3",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "same",
+  "where": "README.md:23",
+  "quote": "To build use latest [Android Studio]",
+  "resolution": "4.3.91: README replaced"
+ },
+ {
+  "id": "D-readme-4",
+  "lane": "doc",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "same",
+  "where": "README.md:113",
+  "quote": "<td><img src=\"/app/src/main/res/drawable-hdpi/ae_priority.png\" width=\"50\" height=\"50\"></td>",
+  "resolution": "4.3.91: README replaced"
+ },
+ {
+  "id": "C-lifecycle-0",
+  "lane": "crossfile",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "gallery orientation; manifest comments corrected; §11 item 7",
+  "where": "app/src/main/AndroidManifest.xml:156",
+  "quote": "All three are also locked to landscape, matching every other screen in the app",
+  "resolution": "4.3.91: GlassGallery landscape-locked (S-24)"
+ },
+ {
+  "id": "C-lifecycle-1",
+  "lane": "crossfile",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: the clause is about order, which the code keeps",
+  "where": "SPEC.md:67",
+  "quote": "before anything moves the task to the back"
+ },
+ {
+  "id": "C-lifecycle-2",
+  "lane": "crossfile",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "same fix as A063/A064",
+  "where": "glasscam/ActivityAbstract.java:126",
+  "quote": "if (context == this)      // never clear another activity's claim"
+ },
+ {
+  "id": "C-storage-0",
+  "lane": "crossfile",
+  "verdict": "NARROWED",
+  "disp": "fixed",
+  "why": "videos reported by the recorder's Uri, both APIs",
+  "where": "app/src/main/java/glasscam/cam/apis/camera1/modules/AbstractVideoModule.java:279",
+  "quote": "fireOnWorkFinish(new FileHolder(file,settingsManager.GetWriteExternal()));"
+ },
+ {
+  "id": "C-settings-0",
+  "lane": "crossfile",
+  "verdict": "CONFIRMED",
+  "disp": "decision",
+  "why": "detector resets seven settings on a bump; SPEC §2; §11 item 8",
+  "where": "app/src/main/java/glasscam/cam/apis/featuredetector/CameraFeatureDetector.java:74",
+  "quote": "settingsManager.getGlobal(SettingKeys.THEME).set(ThemeManager.NEXTGEN);",
+  "resolution": "4.3.91: a bump keeps the user's choices"
+ },
+ {
+  "id": "C-settings-1",
+  "lane": "crossfile",
+  "verdict": "CONFIRMED",
+  "disp": "fixed",
+  "why": "SPEC §2: theme and detector save at once",
+  "where": "SPEC.md:34",
+  "quote": "Settings persist only in `onPause`: press HOME before `adb install`"
+ },
+ {
+  "id": "C-drawer-0",
+  "lane": "crossfile",
+  "verdict": "REFUTED",
+  "disp": "withdrawn",
+  "why": "verifier: the outer pager still exists, the swipe clause holds",
+  "where": "CRITIQUE_2026-09-16.md:342",
+  "quote": "the keyboard is dropped on row tap, chip tap, Search action and when the page is swiped away"
+ },
+ {
+  "id": "X1",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "FileListController listener list was a plain ArrayList walked from capture threads -> CopyOnWriteArrayList",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X2",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "NextGenGalleryButton synchronized on the list, not the controller's lock -> newestFile() under filesLock",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X3",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "White Balance description was the EMPTY distortion string, worse than reported",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X4",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "S-17 would have flagged GPL author attribution; limited to URLs",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X5",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "noimpact",
+  "why": "upstream opcode URLs in res/raw/supported_devices.xml are parsed, never fetched",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X6",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "noimpact",
+  "why": "OPCODE settings row is dead (no parameter registered), so its 'download' text never shows",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X7",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "settings scorer: chips top vs bottom flips at thumb rest 0.57 H; section order spread 0.007 - SPEC D6/D9, §11 items 12-13",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X8",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "SPEC §5: 3 settings fully visible on 4.3.84, not 4",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X9",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "camera column upper-left cells measured 44 dp wide at runtime (dump 150; 7+5 dp holder padding) - 56 dp in 4.3.91",
+  "where": "",
+  "quote": ""
+ },
+ {
+  "id": "X10",
+  "lane": "fixing",
+  "verdict": "-",
+  "disp": "fixed",
+  "why": "a version bump also reset a manually chosen camera API (detectFeatures set API_1 first) - kept in 4.3.91",
+  "where": "",
+  "quote": ""
+ }
+]

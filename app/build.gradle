@@ -1,0 +1,109 @@
+plugins {
+    alias(libs.plugins.android.application)
+}
+
+// Project-level Gradle toolchain pin (BUILD-014). Without this, the JDK that runs the
+// Gradle daemon is whatever one developer's Android Studio happens to have configured -
+// invisible to anyone opening the project on a different machine or in CI, and it
+// silently breaks there with "Android Gradle plugin requires Java 17/21 to run" instead
+// of failing with a clear message. This does not affect the Java *bytecode* target
+// (compileOptions.sourceCompatibility/targetCompatibility below stay at 17 - that's what
+// ART actually runs, independent of the JDK used to build).
+
+tasks.withType(JavaCompile).configureEach {
+    // Appended in doFirst (task-execution time), not directly in configureEach
+    // (configuration time). buildFeatures.dataBinding = true below makes AGP's
+    // Data Binding integration append its own "-Xlint:-unchecked" during variant
+    // configuration (afterEvaluate), which runs AFTER this script block finishes
+    // registering - and a later "-Xlint:-unchecked" silently cancels an earlier
+    // "-Xlint:unchecked" since javac applies -Xlint flags left-to-right. doFirst
+    // runs after the whole configuration phase (all plugins, all variants) is
+    // done, so these two are guaranteed to be the last -Xlint flags in the list.
+    doFirst {
+        options.compilerArgs << "-Xlint:deprecation" << "-Xlint:unchecked"
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+android {
+    compileSdk 36
+    defaultConfig {
+        minSdkVersion 30
+        versionCode 294
+        versionName '4.3.94'
+        targetSdk 36
+        applicationId "com.hazia.glasscam"
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++11 -Wno-c++11-narrowing -frtti -fexceptions -fpic'
+            }
+        }
+        ndk {
+            // Dropped 32-bit x86: no real device ships it (only the 32-bit
+            // emulator image, which isn't a meaningful target for a camera
+            // app). arm64-v8a/armeabi-v7a cover real ARM devices,
+            // x86_64 covers 64-bit emulators/rare x86 hardware.
+            abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86_64'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            ndk.debugSymbolLevel = 'full'
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+   externalNativeBuild {
+       cmake {
+           path "src/main/jni/CMakeLists.txt"
+       }
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        dataBinding = true
+        buildConfig  = true
+    }
+    lint {
+        checkReleaseBuilds = true
+        abortOnError = false
+    }
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+    namespace = 'com.hazia.glasscam'
+    ndkVersion = '27.3.13750724'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'androidx.documentfile:documentfile:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.9.4'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation libs.hiddenapibypass
+    implementation 'com.google.android.material:material:1.13.0'
+}
+
+android.applicationVariants.all { variant ->
+    // Legacy variant API - works on the AGP 8.x line this project is pinned to
+    // (see MIGRATION_NOTES.md "Build tooling downgrade"). Disabled by default in
+    // AGP 9, removed in AGP 10 - migrate to androidComponents.onVariants { } then.
+    variant.outputs.all {
+        outputFileName = "GlassCam_${variant.buildType.name}_${variant.versionName}.apk"
+    }
+}

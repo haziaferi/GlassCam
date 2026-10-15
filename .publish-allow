@@ -1,0 +1,4 @@
+# publish_check.py exceptions: rule|path|text regexes. Public file: never quote a private value here.
+# vendored libtiff / LibRaw: upstream contributor addresses and autoconf text, kept for attribution
+^email\|app/src/main/jni/(tiff|LibRaw)/
+^path\|app/src/main/jni/tiff/(configure|m4/libtool\.m4)\|/home/config$
