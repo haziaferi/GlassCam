@@ -1,0 +1,25 @@
+{
+  "domain": "glasscam-settings-panel",
+  "dimensions": [
+    {"name": "section_order", "type": "permutation",
+     "items": ["video", "picture", "camera", "preview", "etc"]},
+    {"name": "columns", "type": "ordinal", "range": [1, 3], "step": 1},
+    {"name": "packing", "type": "categorical", "values": ["grid", "staggered"]},
+    {"name": "stepper", "type": "categorical", "values": ["tall", "compact"]},
+    {"name": "sort_by_use", "type": "categorical", "values": ["declared", "by_use"]},
+    {"name": "chips_pos", "type": "categorical", "values": ["top", "bottom"]}
+  ],
+  "fitness_components": [
+    {"name": "reach",       "weight": 0.35, "scorer": "settings.reach"},
+    {"name": "fill",        "weight": 0.20, "scorer": "settings.fill"},
+    {"name": "legibility",  "weight": 0.20, "scorer": "settings.legibility"},
+    {"name": "chips_reach", "weight": 0.10, "scorer": "settings.chips_reach"},
+    {"name": "stability",   "weight": 0.15, "scorer": "settings.stability"}
+  ],
+  "seeds": [
+    {"section_order": ["video", "picture", "camera", "preview", "etc"], "columns": 2,
+     "packing": "grid", "stepper": "tall", "sort_by_use": "declared", "chips_pos": "top"}
+  ],
+  "budget": {"population": 24, "generations": 60, "seed": 7},
+  "scorer_paths": ["./settings_scorers.py"]
+}

@@ -1,0 +1,540 @@
+{
+ "uniform_76": {
+  "top": [
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "picture",
+      "preview",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "grid",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "picture",
+      "preview",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "picture",
+      "etc",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "grid",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "picture",
+      "etc",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "preview",
+      "picture",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "grid",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "preview",
+      "picture",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "preview",
+      "etc",
+      "picture"
+     ],
+     "columns": 2,
+     "packing": "grid",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "preview",
+      "etc",
+      "picture"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "etc",
+      "picture",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "grid",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.820842,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "etc",
+      "picture",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "uniform_76"
+    },
+    "parts": {
+     "reach": 0.7131,
+     "fill": 0.8433,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   }
+  ],
+  "shipped": {
+   "score": 0.815007,
+   "rank": 349,
+   "parts": {
+    "reach": 0.7023,
+    "fill": 0.8433,
+    "legibility": 1.0,
+    "chips_reach": 0.5053,
+    "stability": 1.0
+   }
+  },
+  "section_order_spread": [
+   0.810978,
+   0.818073
+  ]
+ },
+ "measured_4388": {
+  "top": [
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "picture",
+      "preview",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "picture",
+      "etc",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "preview",
+      "picture",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "preview",
+      "etc",
+      "picture"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "etc",
+      "picture",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "video",
+      "etc",
+      "preview",
+      "picture"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "picture",
+      "video",
+      "preview",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "picture",
+      "video",
+      "etc",
+      "preview"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "picture",
+      "preview",
+      "video",
+      "etc"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   },
+   {
+    "score": 0.827765,
+    "vector": {
+     "section_order": [
+      "camera",
+      "picture",
+      "preview",
+      "etc",
+      "video"
+     ],
+     "columns": 2,
+     "packing": "staggered",
+     "stepper": "compact",
+     "sort_by_use": "declared",
+     "chips_pos": "top",
+     "row_model": "measured_4388"
+    },
+    "parts": {
+     "reach": 0.7303,
+     "fill": 0.8479,
+     "legibility": 1.0,
+     "chips_reach": 0.526,
+     "stability": 1.0
+    }
+   }
+  ],
+  "shipped": {
+   "score": 0.812536,
+   "rank": 1063,
+   "parts": {
+    "reach": 0.7219,
+    "fill": 0.7968,
+    "legibility": 1.0,
+    "chips_reach": 0.5053,
+    "stability": 1.0
+   }
+  },
+  "section_order_spread": [
+   0.807526,
+   0.81462
+  ]
+ }
+}

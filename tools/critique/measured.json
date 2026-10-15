@@ -1,0 +1,4559 @@
+{
+  "layouts": [
+    {
+      "layout": "layout/cameraui_afbracketsettings.xml",
+      "contrast": [
+        {
+          "element": "button_afbracket_fragment_setMax",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        },
+        {
+          "element": "textView_afBracketFragment_maxvalue",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        },
+        {
+          "element": "button_afbracket_fragment_setMin",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        },
+        {
+          "element": "textView_afBracketFragment_minvalue",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        }
+      ],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/cameraui_guides_fragment.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/cameraui_horizontline.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/cameraui_manual_fragment_rotatingseekbar.xml",
+      "contrast": [],
+      "literals": [
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginTop",
+          "value": "80dp"
+        },
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginBottom",
+          "value": "40dp"
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_marginRight",
+          "value": "5dp"
+        },
+        {
+          "element": "horizontalScrollView2",
+          "attr": "padding",
+          "value": "2dp"
+        },
+        {
+          "element": "manualItemsHolder",
+          "attr": "layout_marginEnd",
+          "value": "10dp"
+        },
+        {
+          "element": "manualItemsHolder",
+          "attr": "layout_marginRight",
+          "value": "10dp"
+        },
+        {
+          "element": "manualItemsHolder",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "manualFragment_afbsettings",
+          "attr": "layout_marginRight",
+          "value": "5dp"
+        },
+        {
+          "element": "curveView",
+          "attr": "layout_marginRight",
+          "value": "5dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginTop",
+          "dp": 80.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginBottom",
+          "dp": 40.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_marginRight",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "horizontalScrollView2",
+          "attr": "padding",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualItemsHolder",
+          "attr": "layout_marginEnd",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualItemsHolder",
+          "attr": "layout_marginRight",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualItemsHolder",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualFragment_afbsettings",
+          "attr": "layout_marginRight",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "curveView",
+          "attr": "layout_marginRight",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/cameraui_manualbutton.xml",
+      "contrast": [
+        {
+          "element": "manualbutton_valuetext",
+          "text": "#ffffff",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 8.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "imageView_ManualButton",
+          "attr": "layout_width",
+          "value": "35dp"
+        },
+        {
+          "element": "imageView_ManualButton",
+          "attr": "layout_height",
+          "value": "44dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginStart",
+          "value": "1dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginLeft",
+          "value": "1dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginTop",
+          "value": "29dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginEnd",
+          "value": "1dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginRight",
+          "value": "1dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginBottom",
+          "value": "0dp"
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "textSize",
+          "value": "8sp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginStart",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginLeft",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginTop",
+          "dp": 29.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginEnd",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginRight",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "layout_marginBottom",
+          "dp": 0.0,
+          "on4": true,
+          "on8": true
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "manualbutton_valuetext",
+          "attr": "textColor",
+          "value": "#ffffff"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/curve_view_control.xml",
+      "contrast": [
+        {
+          "element": "button_drag",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_save",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_load",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_add_point",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_remove_point",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_rgb",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@android:color/background_light (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_red",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@android:color/holo_red_dark (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_green",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@android:color/holo_green_dark (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_blue",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@android:color/holo_blue_dark (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView3",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "editText_curvename",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_savecurve",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/dngconvertingfragment.xml",
+      "contrast": [
+        {
+          "element": "button_goback_from_conv",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/go_back (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "TextView",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "editText_customrowsize",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "editText_width",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "editText_height",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "editText_blacklevel",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textViewwhtlvl",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "editText_whitelevel",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textview_dngconvert_ColorMatrix",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textview_dngconvert_ToneMap",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView7",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView8",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "button_saveProfile",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "button_convertDng",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "checkBox_fakeGPS",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "LinearLayout",
+          "attr": "layout_height",
+          "value": "38dp"
+        },
+        {
+          "element": "button_goback_from_conv",
+          "attr": "layout_marginLeft",
+          "value": "10dp"
+        },
+        {
+          "element": "button_goback_from_conv",
+          "attr": "layout_marginTop",
+          "value": "4dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "layout_marginTop",
+          "value": "40dp"
+        },
+        {
+          "element": "TextView",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "TextView",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "TextView",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textViewwhtlvl",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textview_dngconvert_ColorMatrix",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textview_dngconvert_ToneMap",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView7",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView8",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "button_saveProfile",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "button_saveProfile",
+          "attr": "layout_marginRight",
+          "value": "5dp"
+        },
+        {
+          "element": "button_convertDng",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "button_convertDng",
+          "attr": "layout_marginRight",
+          "value": "5dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "button_goback_from_conv",
+          "attr": "layout_marginLeft",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_goback_from_conv",
+          "attr": "layout_marginTop",
+          "dp": 4.0,
+          "on4": true,
+          "on8": false
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "layout_marginTop",
+          "dp": 40.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "TextView",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "TextView",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "TextView",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewwhtlvl",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textview_dngconvert_ColorMatrix",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textview_dngconvert_ToneMap",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView7",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView8",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_saveProfile",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_saveProfile",
+          "attr": "layout_marginRight",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_convertDng",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_convertDng",
+          "attr": "layout_marginRight",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "LinearLayout",
+          "attr": "background",
+          "value": "#50000000"
+        },
+        {
+          "element": "button_saveProfile",
+          "attr": "background",
+          "value": "#00000000"
+        },
+        {
+          "element": "button_convertDng",
+          "attr": "background",
+          "value": "#00000000"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/dngstackactivity.xml",
+      "contrast": [
+        {
+          "element": "textView10",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "rawList",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "button_dngstack",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/stack (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "button_dngstack",
+          "attr": "layout_marginTop",
+          "value": "150dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "button_dngstack",
+          "attr": "layout_marginTop",
+          "dp": 150.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/emptyfragment.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/glasscam_main_activity.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/glasscamviewer_activity.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/glasscamviewer_gridview_imageview.xml",
+      "contrast": [
+        {
+          "element": "filetypetextbox",
+          "text": "#ffffff",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "foldertextbox",
+          "text": "#ffffff",
+          "textColor": "#FFFFFFFF",
+          "panel": "@android:color/background_dark (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "gridimageviewholder",
+          "attr": "layout_margin",
+          "value": "2dp"
+        },
+        {
+          "element": "filetypetextbox",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "filetypetextbox",
+          "attr": "layout_marginTop",
+          "value": "2dp"
+        },
+        {
+          "element": "foldertextbox",
+          "attr": "layout_marginBottom",
+          "value": "2dp"
+        },
+        {
+          "element": "checkBox_gridviewimage",
+          "attr": "layout_margin",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "gridimageviewholder",
+          "attr": "layout_margin",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "filetypetextbox",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "filetypetextbox",
+          "attr": "layout_marginTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "foldertextbox",
+          "attr": "layout_marginBottom",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "checkBox_gridviewimage",
+          "attr": "layout_margin",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "filetypetextbox",
+          "attr": "textColor",
+          "value": "#ffffff"
+        },
+        {
+          "element": "filetypetextbox",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "foldertextbox",
+          "attr": "textColor",
+          "value": "#ffffff"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/glasscamviewer_gridviewfragment.xml",
+      "contrast": [
+        {
+          "element": "button_goback",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/back_button_press (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_filesSelected",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/black_overlay",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 8.45,
+          "worst": 8.45,
+          "pass": true
+        },
+        {
+          "element": "button_filetype",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/black_overlay",
+          "size_sp": 18.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 8.45,
+          "worst": 8.45,
+          "pass": true
+        },
+        {
+          "element": "button_DoAction",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/black_overlay",
+          "size_sp": 18.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 8.45,
+          "worst": 8.45,
+          "pass": true
+        },
+        {
+          "element": "button_options",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/black_overlay",
+          "size_sp": 18.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 8.45,
+          "worst": 8.45,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "gridView_base",
+          "attr": "horizontalSpacing",
+          "value": "4dp"
+        },
+        {
+          "element": "gridView_base",
+          "attr": "verticalSpacing",
+          "value": "4dp"
+        },
+        {
+          "element": "button_goback",
+          "attr": "layout_marginLeft",
+          "value": "10dp"
+        },
+        {
+          "element": "button_goback",
+          "attr": "layout_marginTop",
+          "value": "4dp"
+        },
+        {
+          "element": "button_filetype",
+          "attr": "layout_width",
+          "value": "50dp"
+        },
+        {
+          "element": "button_filetype",
+          "attr": "textSize",
+          "value": "18sp"
+        },
+        {
+          "element": "button_DoAction",
+          "attr": "textSize",
+          "value": "18sp"
+        },
+        {
+          "element": "button_options",
+          "attr": "layout_width",
+          "value": "50dp"
+        },
+        {
+          "element": "button_options",
+          "attr": "textSize",
+          "value": "18sp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "button_goback",
+          "attr": "layout_marginLeft",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_goback",
+          "attr": "layout_marginTop",
+          "dp": 4.0,
+          "on4": true,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "button_filetype",
+          "attr": "background",
+          "value": "#00000000"
+        },
+        {
+          "element": "button_DoAction",
+          "attr": "background",
+          "value": "#00000000"
+        },
+        {
+          "element": "button_options",
+          "attr": "background",
+          "value": "#00000000"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/glasscamviewer_screenslide_fragment.xml",
+      "contrast": [
+        {
+          "element": "textView_filename",
+          "text": "#FFFFFFFF",
+          "textColor": "#FFFFFFFF",
+          "panel": "#71000001",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 9.28,
+          "worst": 9.28,
+          "pass": true
+        },
+        {
+          "element": "textView_imagesize",
+          "text": "#FFFFFFFF",
+          "textColor": "#FFFFFFFF",
+          "panel": "#71000001",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 9.28,
+          "worst": 9.28,
+          "pass": true
+        },
+        {
+          "element": "textView_iso",
+          "text": "#FFFFFFFF",
+          "textColor": "#FFFFFFFF",
+          "panel": "#71000001",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 9.28,
+          "worst": 9.28,
+          "pass": true
+        },
+        {
+          "element": "textView_shutter",
+          "text": "#FFFFFFFF",
+          "textColor": "#FFFFFFFF",
+          "panel": "#71000001",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 9.28,
+          "worst": 9.28,
+          "pass": true
+        },
+        {
+          "element": "textView_focal",
+          "text": "#FFFFFFFF",
+          "textColor": "#FFFFFFFF",
+          "panel": "#71000001",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 9.28,
+          "worst": 9.28,
+          "pass": true
+        },
+        {
+          "element": "textView_fnumber",
+          "text": "#FFFFFFFF",
+          "textColor": "#FFFFFFFF",
+          "panel": "#71000001",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 9.28,
+          "worst": 9.28,
+          "pass": true
+        },
+        {
+          "element": "button_info",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/info (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_closeView",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/go_back (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_play",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/ic_play (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_delete",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/delete (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "screenslide_histogram",
+          "attr": "layout_marginLeft",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_filename",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_filename",
+          "attr": "textSize",
+          "value": "10sp"
+        },
+        {
+          "element": "textView_imagesize",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_imagesize",
+          "attr": "textSize",
+          "value": "14sp"
+        },
+        {
+          "element": "top_bar",
+          "attr": "layout_width",
+          "value": "50dp"
+        },
+        {
+          "element": "button_info",
+          "attr": "textSize",
+          "value": "10sp"
+        },
+        {
+          "element": "button_closeView",
+          "attr": "textSize",
+          "value": "10sp"
+        },
+        {
+          "element": "button_play",
+          "attr": "textSize",
+          "value": "10sp"
+        },
+        {
+          "element": "button_delete",
+          "attr": "textSize",
+          "value": "10sp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "screenslide_histogram",
+          "attr": "layout_marginLeft",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_filename",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_imagesize",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "RelativeLayout",
+          "attr": "background",
+          "value": "#000000"
+        },
+        {
+          "element": "screenslide_exif_holder",
+          "attr": "background",
+          "value": "#71000001"
+        },
+        {
+          "element": "bottom_bar",
+          "attr": "background",
+          "value": "#71000001"
+        },
+        {
+          "element": "textView_filename",
+          "attr": "textColor",
+          "value": "#FFFFFFFF"
+        },
+        {
+          "element": "textView_imagesize",
+          "attr": "textColor",
+          "value": "#FFFFFFFF"
+        },
+        {
+          "element": "textView_iso",
+          "attr": "textColor",
+          "value": "#FFFFFFFF"
+        },
+        {
+          "element": "textView_shutter",
+          "attr": "textColor",
+          "value": "#FFFFFFFF"
+        },
+        {
+          "element": "textView_focal",
+          "attr": "textColor",
+          "value": "#FFFFFFFF"
+        },
+        {
+          "element": "textView_fnumber",
+          "attr": "textColor",
+          "value": "#FFFFFFFF"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/glasscamviewer_screenslide_imageframent.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/help_fragment.xml",
+      "contrast": [
+        {
+          "element": "textView_description",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "#60001eff",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 17.26,
+          "over_grey": 6.06,
+          "worst": 6.06,
+          "pass": true
+        },
+        {
+          "element": "button_nextHelp",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "#60001eff",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 17.26,
+          "over_grey": 6.06,
+          "worst": 6.06,
+          "pass": true
+        },
+        {
+          "element": "checkBox_dontShowAgain",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "#60001eff",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 17.26,
+          "over_grey": 6.06,
+          "worst": 6.06,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "value": "50dp"
+        },
+        {
+          "element": "button_nextHelp",
+          "attr": "layout_marginRight",
+          "value": "100dp"
+        },
+        {
+          "element": "button_nextHelp",
+          "attr": "layout_marginBottom",
+          "value": "40dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "dp": 50.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_nextHelp",
+          "attr": "layout_marginRight",
+          "dp": 100.0,
+          "on4": true,
+          "on8": false
+        },
+        {
+          "element": "button_nextHelp",
+          "attr": "layout_marginBottom",
+          "dp": 40.0,
+          "on4": true,
+          "on8": true
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "RelativeLayout",
+          "attr": "background",
+          "value": "#60001eff"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/new_version_view.xml",
+      "contrast": [
+        {
+          "element": "textView4",
+          "text": "@color/menuTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        },
+        {
+          "element": "button_downloadglasscam",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        },
+        {
+          "element": "button_close",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/uiSettingsBackground",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 16.1,
+          "worst": 16.1,
+          "pass": true
+        }
+      ],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_cameraui_fragment.xml",
+      "contrast": [
+        {
+          "element": "textView_usermessage",
+          "text": "@android:color/black",
+          "textColor": "#FF000000",
+          "panel": "@color/menuBackgColor",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 2.22,
+          "over_grey": 8.33,
+          "worst": 2.22,
+          "pass": false
+        },
+        {
+          "element": "shutter_button",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "button_settings",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 26.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "imageView_Crosshair",
+          "attr": "layout_width",
+          "value": "70dp"
+        },
+        {
+          "element": "imageView_Crosshair",
+          "attr": "layout_height",
+          "value": "70dp"
+        },
+        {
+          "element": "imageView_meteringarea",
+          "attr": "layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "imageView_meteringarea",
+          "attr": "layout_height",
+          "value": "120dp"
+        },
+        {
+          "element": "textView_usermessage",
+          "attr": "paddingLeft",
+          "value": "10dp"
+        },
+        {
+          "element": "textView_usermessage",
+          "attr": "paddingRight",
+          "value": "10dp"
+        },
+        {
+          "element": "histoviewholder",
+          "attr": "{http://schemas.android.com/tools}layout_height",
+          "value": "60dp"
+        },
+        {
+          "element": "histoviewholder",
+          "attr": "{http://schemas.android.com/tools}layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "hisotview",
+          "attr": "layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "hisotview",
+          "attr": "layout_height",
+          "value": "60dp"
+        },
+        {
+          "element": "hisotview",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "hisotview",
+          "attr": "layout_marginTop",
+          "value": "15dp"
+        },
+        {
+          "element": "hisotview",
+          "attr": "{http://schemas.android.com/tools}layout_height",
+          "value": "60dp"
+        },
+        {
+          "element": "hisotview",
+          "attr": "{http://schemas.android.com/tools}layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "histoviewholdercamera",
+          "attr": "{http://schemas.android.com/tools}layout_height",
+          "value": "60dp"
+        },
+        {
+          "element": "histoviewholdercamera",
+          "attr": "{http://schemas.android.com/tools}layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "layout_height",
+          "value": "60dp"
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "layout_marginLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "layout_marginTop",
+          "value": "15dp"
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "{http://schemas.android.com/tools}layout_height",
+          "value": "60dp"
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "{http://schemas.android.com/tools}layout_width",
+          "value": "120dp"
+        },
+        {
+          "element": "right_top_holder",
+          "attr": "layout_marginTop",
+          "value": "5dp"
+        },
+        {
+          "element": "linearlayout_previewpostprocessingmodes",
+          "attr": "layout_marginBottom",
+          "value": "5dp"
+        },
+        {
+          "element": "shutter_button",
+          "attr": "layout_marginRight",
+          "value": "20dp"
+        },
+        {
+          "element": "right_ui_items_bottom",
+          "attr": "layout_marginTop",
+          "value": "5dp"
+        },
+        {
+          "element": "left_ui_holder",
+          "attr": "layout_marginBottom",
+          "value": "5dp"
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_height",
+          "value": "48dp"
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_marginLeft",
+          "value": "8dp"
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_marginStart",
+          "value": "8dp"
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_marginBottom",
+          "value": "8dp"
+        },
+        {
+          "element": "button_settings",
+          "attr": "textSize",
+          "value": "26sp"
+        },
+        {
+          "element": "cameraui_values_fragment_holder",
+          "attr": "layout_marginBottom",
+          "value": "26dp"
+        },
+        {
+          "element": "curveView",
+          "attr": "layout_marginBottom",
+          "value": "20dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "textView_usermessage",
+          "attr": "paddingLeft",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_usermessage",
+          "attr": "paddingRight",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "hisotview",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "hisotview",
+          "attr": "layout_marginTop",
+          "dp": 15.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "layout_marginLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "hisotviewcamera",
+          "attr": "layout_marginTop",
+          "dp": 15.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "right_top_holder",
+          "attr": "layout_marginTop",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "linearlayout_previewpostprocessingmodes",
+          "attr": "layout_marginBottom",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "shutter_button",
+          "attr": "layout_marginRight",
+          "dp": 20.0,
+          "on4": true,
+          "on8": false
+        },
+        {
+          "element": "right_ui_items_bottom",
+          "attr": "layout_marginTop",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "left_ui_holder",
+          "attr": "layout_marginBottom",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_marginLeft",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_marginStart",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "button_settings",
+          "attr": "layout_marginBottom",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "cameraui_values_fragment_holder",
+          "attr": "layout_marginBottom",
+          "dp": 26.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "curveView",
+          "attr": "layout_marginBottom",
+          "dp": 20.0,
+          "on4": true,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_cameraui_horizontal_values_fragment.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_cameraui_info_overlay.xml",
+      "contrast": [
+        {
+          "element": "textView_rec",
+          "text": "@color/nextgen_rec",
+          "textColor": "#FFFF3B30",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 5.92,
+          "over_grey": 1.11,
+          "worst": 1.11,
+          "pass": false
+        },
+        {
+          "element": "textView_gps",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_time",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_format",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_size",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_storage",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_battery",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_dngsupported",
+          "text": "#ffffff",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_buildmodel",
+          "text": "#ffffff",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_appversion",
+          "text": "#ffffff",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/infooverlay_pill (unresolved)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingTop",
+          "value": "0dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingBottom",
+          "value": "0dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingRight",
+          "value": "10dp"
+        },
+        {
+          "element": "textView_rec",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_rec",
+          "attr": "paddingRight",
+          "value": "3dp"
+        },
+        {
+          "element": "textView_gps",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_gps",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_time",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_time",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_format",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_format",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_format",
+          "attr": "minWidth",
+          "value": "48dp"
+        },
+        {
+          "element": "textView_format",
+          "attr": "minHeight",
+          "value": "48dp"
+        },
+        {
+          "element": "textView_format",
+          "attr": "paddingRight",
+          "value": "8dp"
+        },
+        {
+          "element": "textView_format",
+          "attr": "paddingBottom",
+          "value": "16dp"
+        },
+        {
+          "element": "textView_size",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_size",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_storage",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_storage",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_battery",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_battery",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_dngsupported",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_dngsupported",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_buildmodel",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_buildmodel",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        },
+        {
+          "element": "textView_appversion",
+          "attr": "elevation",
+          "value": "2dp"
+        },
+        {
+          "element": "textView_appversion",
+          "attr": "paddingLeft",
+          "value": "5dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingTop",
+          "dp": 0.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingBottom",
+          "dp": 0.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingRight",
+          "dp": 10.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_rec",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_rec",
+          "attr": "paddingRight",
+          "dp": 3.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_gps",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_time",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_format",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_format",
+          "attr": "paddingRight",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textView_format",
+          "attr": "paddingBottom",
+          "dp": 16.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textView_size",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_storage",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_battery",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_dngsupported",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_buildmodel",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textView_appversion",
+          "attr": "paddingLeft",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "textView_gps",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_time",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_format",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_size",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_storage",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_battery",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_dngsupported",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_dngsupported",
+          "attr": "textColor",
+          "value": "#ffffff"
+        },
+        {
+          "element": "textView_buildmodel",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_buildmodel",
+          "attr": "textColor",
+          "value": "#ffffff"
+        },
+        {
+          "element": "textView_appversion",
+          "attr": "shadowColor",
+          "value": "#000000"
+        },
+        {
+          "element": "textView_appversion",
+          "attr": "textColor",
+          "value": "#ffffff"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_cameraui_manual_fragment_rotatingseekbar.xml",
+      "contrast": [],
+      "literals": [
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginTop",
+          "value": "56dp"
+        },
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginBottom",
+          "value": "64dp"
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_width",
+          "value": "50dp"
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_marginTop",
+          "value": "5dp"
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_marginBottom",
+          "value": "5dp"
+        },
+        {
+          "element": "horizontalScrollView2",
+          "attr": "padding",
+          "value": "1dp"
+        },
+        {
+          "element": "manualFragment_afbsettings",
+          "attr": "layout_marginRight",
+          "value": "8dp"
+        },
+        {
+          "element": "manualFragment_afbsettings",
+          "attr": "layout_marginEnd",
+          "value": "8dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginTop",
+          "dp": 56.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "frameLayout",
+          "attr": "layout_marginBottom",
+          "dp": 64.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_marginTop",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "seekbar",
+          "attr": "layout_marginBottom",
+          "dp": 5.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "horizontalScrollView2",
+          "attr": "padding",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "manualFragment_afbsettings",
+          "attr": "layout_marginRight",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "manualFragment_afbsettings",
+          "attr": "layout_marginEnd",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_cameraui_simplevaluechild.xml",
+      "contrast": [
+        {
+          "element": "simplevaluetext",
+          "text": "@color/uiSettingsTextColor",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 10.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "simplevalueframe",
+          "attr": "layout_marginLeft",
+          "value": "2dp"
+        },
+        {
+          "element": "simplevalueframe",
+          "attr": "layout_marginBottom",
+          "value": "2dp"
+        },
+        {
+          "element": "simplevaluetext",
+          "attr": "layout_marginLeft",
+          "value": "2dp"
+        },
+        {
+          "element": "simplevaluetext",
+          "attr": "layout_marginRight",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "simplevalueframe",
+          "attr": "layout_marginLeft",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "simplevalueframe",
+          "attr": "layout_marginBottom",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "simplevaluetext",
+          "attr": "layout_marginLeft",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "simplevaluetext",
+          "attr": "layout_marginRight",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_cameraui_text_switch.xml",
+      "contrast": [
+        {
+          "element": "textView_value_holder",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_front",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "layout_holder",
+          "attr": "minHeight",
+          "value": "48dp"
+        },
+        {
+          "element": "layout_holder",
+          "attr": "paddingTop",
+          "value": "2dp"
+        },
+        {
+          "element": "layout_holder",
+          "attr": "paddingBottom",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "layout_holder",
+          "attr": "paddingTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "layout_holder",
+          "attr": "paddingBottom",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_gallery_button.xml",
+      "contrast": [
+        {
+          "element": "textView_gallery_glyph",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 31.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "imageView_gallery_thumb",
+          "attr": "app:strokeWidth",
+          "value": "1dp"
+        },
+        {
+          "element": "textView_gallery_glyph",
+          "attr": "textSize",
+          "value": "31sp"
+        }
+      ],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_main_fragment.xml",
+      "contrast": [],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [
+        {
+          "element": "nightoverlay",
+          "attr": "background",
+          "value": "#7fff0000"
+        }
+      ],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_manual_button.xml",
+      "contrast": [
+        {
+          "element": "textViewHeader",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 22.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        },
+        {
+          "element": "textViewValue",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 9.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "values_container",
+          "attr": "minWidth",
+          "value": "48dp"
+        },
+        {
+          "element": "values_container",
+          "attr": "minHeight",
+          "value": "48dp"
+        },
+        {
+          "element": "values_container",
+          "attr": "padding",
+          "value": "1dp"
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginStart",
+          "value": "2dp"
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginLeft",
+          "value": "2dp"
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginTop",
+          "value": "1dp"
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginBottom",
+          "value": "1dp"
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "textSize",
+          "value": "22sp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginStart",
+          "value": "2dp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginLeft",
+          "value": "2dp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginTop",
+          "value": "2dp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginEnd",
+          "value": "0dp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginRight",
+          "value": "0dp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginBottom",
+          "value": "2dp"
+        },
+        {
+          "element": "textViewValue",
+          "attr": "textSize",
+          "value": "9sp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "values_container",
+          "attr": "padding",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginStart",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginLeft",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginTop",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewHeader",
+          "attr": "layout_marginBottom",
+          "dp": 1.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginStart",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginLeft",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginEnd",
+          "dp": 0.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginRight",
+          "dp": 0.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textViewValue",
+          "attr": "layout_marginBottom",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_adapterlayout_simpeltext.xml",
+      "contrast": [
+        {
+          "element": "listviewlayout_textview",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        }
+      ],
+      "literals": [],
+      "spacing": [],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_boolitem.xml",
+      "contrast": [
+        {
+          "element": "textView_header",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 16.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        },
+        {
+          "element": "switch2",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_description",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 12.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "textView_header",
+          "attr": "layout_width",
+          "value": "0dp"
+        },
+        {
+          "element": "switch2",
+          "attr": "layout_marginStart",
+          "value": "8dp"
+        },
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "switch2",
+          "attr": "layout_marginStart",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_dummyfragment.xml",
+      "contrast": [
+        {
+          "element": "nextgen_empty",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "nextgen_itemholder",
+          "attr": "paddingTop",
+          "value": "6dp"
+        },
+        {
+          "element": "nextgen_itemholder",
+          "attr": "paddingBottom",
+          "value": "8dp"
+        },
+        {
+          "element": "nextgen_empty",
+          "attr": "paddingTop",
+          "value": "20dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "nextgen_itemholder",
+          "attr": "paddingTop",
+          "dp": 6.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "nextgen_itemholder",
+          "attr": "paddingBottom",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "nextgen_empty",
+          "attr": "paddingTop",
+          "dp": 20.0,
+          "on4": true,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_fragment.xml",
+      "contrast": [
+        {
+          "element": "settings_search",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@null (unresolved)",
+          "size_sp": 16.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "settings_search_clear",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "?attr/selectableItemBackgroundBorderless (unresolved)",
+          "size_sp": 16.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "settings_sticky_section",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_settings_sticky",
+          "size_sp": 12.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.19,
+          "over_grey": 6.84,
+          "worst": 6.84,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "FrameLayout",
+          "attr": "layout_height",
+          "value": "48dp"
+        },
+        {
+          "element": "settings_search",
+          "attr": "paddingEnd",
+          "value": "48dp"
+        },
+        {
+          "element": "settings_search_clear",
+          "attr": "layout_width",
+          "value": "48dp"
+        },
+        {
+          "element": "settings_search_clear",
+          "attr": "layout_height",
+          "value": "48dp"
+        },
+        {
+          "element": "View",
+          "attr": "layout_height",
+          "value": "1dp"
+        },
+        {
+          "element": "FrameLayout",
+          "attr": "layout_height",
+          "value": "0dp"
+        },
+        {
+          "element": "settings_sticky_section",
+          "attr": "paddingTop",
+          "value": "6dp"
+        },
+        {
+          "element": "settings_sticky_section",
+          "attr": "paddingBottom",
+          "value": "6dp"
+        },
+        {
+          "element": "View",
+          "attr": "layout_height",
+          "value": "1dp"
+        },
+        {
+          "element": "settings_chips_scroll",
+          "attr": "layout_height",
+          "value": "48dp"
+        },
+        {
+          "element": "settings_chips",
+          "attr": "paddingEnd",
+          "value": "4dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "settings_search",
+          "attr": "paddingEnd",
+          "dp": 48.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "settings_sticky_section",
+          "attr": "paddingTop",
+          "dp": 6.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "settings_sticky_section",
+          "attr": "paddingBottom",
+          "dp": 6.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "settings_chips",
+          "attr": "paddingEnd",
+          "dp": 4.0,
+          "on4": true,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_item.xml",
+      "contrast": [
+        {
+          "element": "textView_header",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 16.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        },
+        {
+          "element": "textView_value",
+          "text": "@color/nextgen_setting_value",
+          "textColor": "#FF64DD17",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 11.9,
+          "over_grey": 2.24,
+          "worst": 2.24,
+          "pass": false
+        },
+        {
+          "element": "textView_description",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 12.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "textView_header",
+          "attr": "layout_width",
+          "value": "0dp"
+        },
+        {
+          "element": "textView_value",
+          "attr": "layout_marginStart",
+          "value": "8dp"
+        },
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "textView_value",
+          "attr": "layout_marginStart",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_picker_back.xml",
+      "contrast": [
+        {
+          "element": "listviewlayout_textview",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@drawable/nextgen_back_chip (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingStart",
+          "value": "14dp"
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingEnd",
+          "value": "14dp"
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingTop",
+          "value": "6dp"
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingBottom",
+          "value": "6dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingStart",
+          "dp": 14.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingEnd",
+          "dp": 14.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingTop",
+          "dp": 6.0,
+          "on4": false,
+          "on8": false
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingBottom",
+          "dp": 6.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_picker_title.xml",
+      "contrast": [
+        {
+          "element": "listviewlayout_textview",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 16.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "listviewlayout_textview",
+          "attr": "minHeight",
+          "value": "48dp"
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingTop",
+          "value": "8dp"
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingBottom",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingTop",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "listviewlayout_textview",
+          "attr": "paddingBottom",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/nextgen_setting_section.xml",
+      "contrast": [
+        {
+          "element": "textView_section",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 12.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingTop",
+          "value": "16dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingBottom",
+          "value": "4dp"
+        },
+        {
+          "element": "View",
+          "attr": "layout_height",
+          "value": "1dp"
+        },
+        {
+          "element": "textView_section",
+          "attr": "layout_marginTop",
+          "value": "8dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingTop",
+          "dp": 16.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingBottom",
+          "dp": 4.0,
+          "on4": true,
+          "on8": false
+        },
+        {
+          "element": "textView_section",
+          "attr": "layout_marginTop",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/settings_booleansettingschild.xml",
+      "contrast": [
+        {
+          "element": "header",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 16.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        },
+        {
+          "element": "switch1",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "description",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 12.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "header",
+          "attr": "layout_width",
+          "value": "0dp"
+        },
+        {
+          "element": "switch1",
+          "attr": "layout_marginStart",
+          "value": "8dp"
+        },
+        {
+          "element": "description",
+          "attr": "layout_marginTop",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "switch1",
+          "attr": "layout_marginStart",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "description",
+          "attr": "layout_marginTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/settings_expandable_childs_number.xml",
+      "contrast": [
+        {
+          "element": "textView_header",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 16.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": true
+        },
+        {
+          "element": "button_minus",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/tap_min (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "editText_number",
+          "text": "@color/nextgen_setting_value",
+          "textColor": "#FF64DD17",
+          "panel": "none (preview)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 11.9,
+          "over_grey": 2.24,
+          "worst": 2.24,
+          "pass": false
+        },
+        {
+          "element": "button_plus",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@drawable/tap_plus (unresolved)",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 21.0,
+          "over_grey": 3.95,
+          "worst": 3.95,
+          "pass": false
+        },
+        {
+          "element": "textView_description",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "none (preview)",
+          "size_sp": 12.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.37,
+          "over_grey": 2.46,
+          "worst": 2.46,
+          "pass": false
+        }
+      ],
+      "literals": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingTop",
+          "value": "4dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingBottom",
+          "value": "4dp"
+        },
+        {
+          "element": "textView_header",
+          "attr": "layout_width",
+          "value": "0dp"
+        },
+        {
+          "element": "button_minus",
+          "attr": "layout_width",
+          "value": "48dp"
+        },
+        {
+          "element": "button_minus",
+          "attr": "layout_height",
+          "value": "48dp"
+        },
+        {
+          "element": "editText_number",
+          "attr": "minWidth",
+          "value": "72dp"
+        },
+        {
+          "element": "button_plus",
+          "attr": "layout_width",
+          "value": "48dp"
+        },
+        {
+          "element": "button_plus",
+          "attr": "layout_height",
+          "value": "48dp"
+        },
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "value": "2dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingTop",
+          "dp": 4.0,
+          "on4": true,
+          "on8": false
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingBottom",
+          "dp": 4.0,
+          "on4": true,
+          "on8": false
+        },
+        {
+          "element": "textView_description",
+          "attr": "layout_marginTop",
+          "dp": 2.0,
+          "on4": false,
+          "on8": false
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    },
+    {
+      "layout": "layout/video_profile_editor_fragment.xml",
+      "contrast": [
+        {
+          "element": "textView_title",
+          "text": "@color/nextgen_menu_right_text",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 20.0,
+          "large": true,
+          "need": 3.0,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView15",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_Profile",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_ProfileName",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_Profilewidth",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_Profileheight",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView22",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "switchAudio",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView16",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_audioBitrate",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView17",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_audioSampleRate",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView18",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_videoBitrate",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView19",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_videoframerate",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textViewrecsize",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_recordsize",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView20",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "editText_recordtime",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "textView23",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_recordMode",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_videoCodec",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_videoEnCoder",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_profileLevel",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_audioCodec",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "videoHDR",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "TextView",
+          "text": "@color/nextgen_menu_secondary_text",
+          "textColor": "#99FFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 7.16,
+          "over_grey": 7.16,
+          "worst": 7.16,
+          "pass": true
+        },
+        {
+          "element": "button_opcode",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "button_Save_profile",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        },
+        {
+          "element": "button_delete_profile",
+          "text": "theme default",
+          "textColor": "#FFFFFFFF",
+          "panel": "@color/nextgen_form_background",
+          "size_sp": 14.0,
+          "large": false,
+          "need": 4.5,
+          "over_black": 18.73,
+          "over_grey": 18.73,
+          "worst": 18.73,
+          "pass": true
+        }
+      ],
+      "literals": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingStart",
+          "value": "16dp"
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingEnd",
+          "value": "16dp"
+        },
+        {
+          "element": "textView_title",
+          "attr": "paddingTop",
+          "value": "16dp"
+        },
+        {
+          "element": "textView_title",
+          "attr": "paddingBottom",
+          "value": "8dp"
+        },
+        {
+          "element": "textView_title",
+          "attr": "textSize",
+          "value": "20sp"
+        },
+        {
+          "element": "textView22",
+          "attr": "layout_width",
+          "value": "0dp"
+        }
+      ],
+      "spacing": [
+        {
+          "element": "LinearLayout",
+          "attr": "paddingStart",
+          "dp": 16.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "LinearLayout",
+          "attr": "paddingEnd",
+          "dp": 16.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textView_title",
+          "attr": "paddingTop",
+          "dp": 16.0,
+          "on4": true,
+          "on8": true
+        },
+        {
+          "element": "textView_title",
+          "attr": "paddingBottom",
+          "dp": 8.0,
+          "on4": true,
+          "on8": true
+        }
+      ],
+      "targets_under_48": [],
+      "textsize_in_dp": [],
+      "hardcoded_colors": [],
+      "hardcoded_strings": []
+    }
+  ],
+  "strings": {
+    "default": 357,
+    "it_present": 206,
+    "it_missing": [
+      "ae_mode_alwaysfLash",
+      "ae_mode_autofLash",
+      "ae_mode_redeyefLash",
+      "app_name",
+      "camera_permission_denied_settings",
+      "color_aqua",
+      "color_blackboard",
+      "color_whiteboard",
+      "controlmode_off_keep_state",
+      "curve_channel_b",
+      "curve_channel_g",
+      "curve_channel_r",
+      "curve_channel_rgb",
+      "denoise_zsl",
+      "dngstack_unsupported_storage",
+      "fcolor_blue",
+      "fcolor_cyan",
+      "fcolor_green",
+      "fcolor_magenta",
+      "fcolor_red",
+      "fcolor_white",
+      "fcolor_yellow",
+      "focus_mode_continousepicture",
+      "focus_mode_continousevideo",
+      "focusstack_done",
+      "focusstack_failed",
+      "focusstack_started",
+      "hw_dualcamera_Dual",
+      "hw_dualcamera_Primary",
+      "hw_dualcamera_Secondary",
+      "physicalcamera_auto",
+      "pictureformat_bayer10",
+      "pictureformat_jpg_p_dng",
+      "pictureformat_yuv",
+      "setting_Automation",
+      "setting_aemetering_description",
+      "setting_aemetering_header",
+      "setting_aetargetfps_description",
+      "setting_aetargetfps_header",
+      "setting_capturetemplate_description",
+      "setting_capturetemplate_header",
+      "setting_checkforupdate_description",
+      "setting_checkforupdate_header",
+      "setting_chroma_description",
+      "setting_chroma_header",
+      "setting_disablecameraui_description",
+      "setting_disablecameraui_header",
+      "setting_distortion_description",
+      "setting_distortion_header",
+      "setting_dualprimarycamera_description",
+      "setting_dualprimarycamera_header",
+      "setting_dump_vendor_keys_description",
+      "setting_dump_vendor_keys_header",
+      "setting_edge_description",
+      "setting_enablerenderscript_description",
+      "setting_enablerenderscript_header",
+      "setting_exposuremode_description",
+      "setting_exposuremode_header",
+      "setting_facemode_description",
+      "setting_facemode_header",
+      "setting_featuredetector_description",
+      "setting_featuredetector_header",
+      "setting_focuspeakcolor_description",
+      "setting_focuspeakcolor_header",
+      "setting_force_wide_preview_header",
+      "setting_force_wider_preview_description",
+      "setting_forcerawtodng_description",
+      "setting_forcerawtodng_header",
+      "setting_hdrmode_description",
+      "setting_hdrmode_header",
+      "setting_hotpixel_description",
+      "setting_interval_header",
+      "setting_maxexpotime_header",
+      "setting_maxexpotime_text",
+      "setting_maxiso_header",
+      "setting_maxiso_text",
+      "setting_mfnr_description",
+      "setting_mfnr_header",
+      "setting_minexpotime_header",
+      "setting_minexpotime_text",
+      "setting_miniso_header",
+      "setting_miniso_text",
+      "setting_mtkaov_description",
+      "setting_mtkaov_header",
+      "setting_ois_description",
+      "setting_opcode_header",
+      "setting_opencameralegacy_description",
+      "setting_opencameralegacy_header",
+      "setting_optizoom_description",
+      "setting_optizoom_header",
+      "setting_pdaf_description",
+      "setting_pdaf_header",
+      "setting_physicalcamera_description",
+      "setting_physicalcamera_header",
+      "setting_pictureformat_description",
+      "setting_pictureformat_header",
+      "setting_preview_",
+      "setting_previewtemplate_description",
+      "setting_previewtemplate_header",
+      "setting_raw_group_header",
+      "setting_rawsize_description",
+      "setting_rawsize_header",
+      "setting_rdi_description",
+      "setting_rdi_header",
+      "setting_refocus_header",
+      "setting_refous_description",
+      "setting_savecamparams_description",
+      "setting_secondarypicturesize_description",
+      "setting_secondarypicturesize_header",
+      "setting_seemore_description",
+      "setting_seemore_header",
+      "setting_switch_aspect_header",
+      "setting_switch_aspect_text",
+      "setting_temporaldenoiseV_description",
+      "setting_temporaldenoiseV_header",
+      "setting_tonemap_description",
+      "setting_tonemap_header",
+      "setting_tonemapchooser_description",
+      "setting_tonemapchooser_header",
+      "setting_touchtocapture_description",
+      "setting_touchtocapture_header",
+      "setting_truepotrait_description",
+      "setting_truepotrait_header",
+      "setting_use_glasscamae_text",
+      "setting_usecustomdngprofile_description",
+      "setting_usecustomdngprofile_header",
+      "setting_useglasscamae_header",
+      "setting_waveletdenoise_description",
+      "setting_xiaomimfnr_header",
+      "setting_yuvsize_description",
+      "setting_yuvsize_header",
+      "setting_zoom_on_mf_description",
+      "setting_zoom_on_mf_duration_description",
+      "setting_zoom_on_mf_duration_header",
+      "setting_zoom_on_mf_factor_description",
+      "setting_zoom_on_mf_factor_header",
+      "setting_zoom_on_mf_header",
+      "setting_zsl_header",
+      "settings_gear_glyph",
+      "settings_search_clear_glyph",
+      "symbol_minus",
+      "symbol_more",
+      "symbol_plus",
+      "update_available",
+      "video_audio_source_camcorder",
+      "video_audio_source_default",
+      "video_audio_source_mic",
+      "video_audio_source_unprocessed",
+      "video_audio_source_voice_communication",
+      "video_audio_source_voice_recognition",
+      "whitelevel",
+      "zeroshutterlag"
+    ],
+    "it_empty": [
+      "blacklevel",
+      "customrowsize",
+      "setting_horizont_description",
+      "setting_zsl_description",
+      "unknown_raw_add_manual_stuff"
+    ],
+    "it_coverage": 56.3
+  },
+  "colors_defined": 23,
+  "dimens_defined": 42
+}

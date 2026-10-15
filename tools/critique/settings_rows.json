@@ -1,0 +1,497 @@
+{
+ "getVideoGroup": {
+  "rows": [
+   {
+    "key": "VIDEO_PROFILES",
+    "header": "setting_videoprofile_header",
+    "type": "Text"
+   },
+   {
+    "key": "-",
+    "header": "setting_videoprofileeditor_header",
+    "type": "Custom"
+   },
+   {
+    "key": "VIDEO_HDR",
+    "header": "setting_videohdr_header",
+    "type": "Text"
+   },
+   {
+    "key": "VIDEO_STABILIZATION",
+    "header": "setting_vs_header",
+    "type": "Text"
+   },
+   {
+    "key": "VIDEO_AUDIO_SOURCE",
+    "header": "setting_videoaudiosource_header",
+    "type": "Text"
+   }
+  ],
+  "calls": []
+ },
+ "getPictureGroup": {
+  "rows": [
+   {
+    "key": "PICTURE_SIZE",
+    "header": "setting_picturesize_header",
+    "type": "Text"
+   },
+   {
+    "key": "PICTURE_FORMAT",
+    "header": "setting_pictureformat_header",
+    "type": "Text"
+   },
+   {
+    "key": "YUV_SIZE",
+    "header": "setting_yuvsize_header",
+    "type": "Text"
+   },
+   {
+    "key": "SECONDARY_SENSOR_SIZE",
+    "header": "setting_secondarypicturesize_header",
+    "type": "Text"
+   },
+   {
+    "key": "PHYSICAL_CAMERA_ID",
+    "header": "setting_physicalcamera_header",
+    "type": "Text"
+   },
+   {
+    "key": "JPEG_QUALITY",
+    "header": "setting_jpegquality_header",
+    "type": "Text"
+   },
+   {
+    "key": "MFNR",
+    "header": "setting_mfnr_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "XIAOMI_MFNR",
+    "header": "setting_xiaomimfnr_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "MTK_AOV_MODE",
+    "header": "setting_mtkaov_header",
+    "type": "Text"
+   },
+   {
+    "key": "-",
+    "header": "setting_raw_group_header",
+    "type": "Section"
+   },
+   {
+    "key": "-",
+    "header": "setting_Automation",
+    "type": "Section"
+   }
+  ],
+  "calls": [
+   "getRawGroup",
+   "getIntervalGroup",
+   "getRawGroup",
+   "getIntervalGroup"
+  ]
+ },
+ "getIntervalGroup": {
+  "rows": [
+   {
+    "key": "INTERVAL_SHUTTER_SLEEP",
+    "header": "setting_interval_header",
+    "type": "Text"
+   },
+   {
+    "key": "INTERVAL_DURATION",
+    "header": "setting_interval_duration_header",
+    "type": "Text"
+   }
+  ],
+  "calls": []
+ },
+ "getRawGroup": {
+  "rows": [
+   {
+    "key": "OPCODE",
+    "header": "setting_opcode_header",
+    "type": "Custom"
+   },
+   {
+    "key": "BAYERFORMAT",
+    "header": "setting_bayerformat_header",
+    "type": "Text"
+   },
+   {
+    "key": "MATRIX_SET",
+    "header": "setting_matrixchooser_header",
+    "type": "Text"
+   },
+   {
+    "key": "TONEMAP_SET",
+    "header": "setting_tonemapchooser_header",
+    "type": "Text"
+   },
+   {
+    "key": "FORCE_RAW_TO_DNG",
+    "header": "setting_forcerawtodng_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "USE_CUSTOM_MATRIX_ON_CAMERA_2",
+    "header": "setting_usecustomdngprofile_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "RAW_SIZE",
+    "header": "setting_rawsize_header",
+    "type": "Text"
+   }
+  ],
+  "calls": []
+ },
+ "getEtcGroup": {
+  "rows": [
+   {
+    "key": "-",
+    "header": "setting_api_header",
+    "type": "Text"
+   },
+   {
+    "key": "SD_SAVE_LOCATION",
+    "header": "setting_sdcard_header",
+    "type": "Text"
+   },
+   {
+    "key": "LOCATION_MODE",
+    "header": "setting_location_header",
+    "type": "Custom"
+   },
+   {
+    "key": "NIGHT_OVERLAY",
+    "header": "setting_nightoverlay_header",
+    "type": "Text"
+   },
+   {
+    "key": "TOUCH_TO_CAPTURE",
+    "header": "setting_touchtocapture_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "PLAY_SHUTTER_SOUND",
+    "header": "setting_playshuttersound_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "FOCUS_STACK_MERGE",
+    "header": "setting_focusstackmerge_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "-",
+    "header": "setting_savecamparams_header",
+    "type": "Custom"
+   },
+   {
+    "key": "OPEN_CAMERA_1_LEGACY",
+    "header": "setting_opencameralegacy_header",
+    "type": "Text"
+   },
+   {
+    "key": "-",
+    "header": "setting_featuredetector_header",
+    "type": "Custom"
+   },
+   {
+    "key": "-",
+    "header": "setting_dump_vendor_keys_header",
+    "type": "Custom"
+   },
+   {
+    "key": "PREVIEW_TEMPLATE",
+    "header": "setting_previewtemplate_header",
+    "type": "Text"
+   },
+   {
+    "key": "CAPTURE_TEMPLATE",
+    "header": "setting_capturetemplate_header",
+    "type": "Text"
+   },
+   {
+    "key": "HIDE_CAMERA_UI",
+    "header": "setting_disablecameraui_header",
+    "type": "Boolean"
+   }
+  ],
+  "calls": []
+ },
+ "getPreviewGroup": {
+  "rows": [
+   {
+    "key": "PREVIEW_POST_PROCESSING_MODE",
+    "header": "setting_enablerenderscript_header",
+    "type": "Text"
+   },
+   {
+    "key": "FOCUSPEAK_COLOR",
+    "header": "setting_focuspeakcolor_header",
+    "type": "Text"
+   },
+   {
+    "key": "ORIENTATION_HACK",
+    "header": "setting_orientation_header",
+    "type": "Text"
+   },
+   {
+    "key": "SWITCH_ASPECT_RATIO",
+    "header": "setting_switch_aspect_header",
+    "type": "Custom"
+   },
+   {
+    "key": "USE_GLASSCAM_AE",
+    "header": "setting_useglasscamae_header",
+    "type": "Custom"
+   },
+   {
+    "key": "MAX_ISO",
+    "header": "setting_maxiso_header",
+    "type": "Text"
+   },
+   {
+    "key": "MIN_ISO",
+    "header": "setting_miniso_header",
+    "type": "Text"
+   },
+   {
+    "key": "MIN_EXPOSURE",
+    "header": "setting_minexpotime_header",
+    "type": "Text"
+   },
+   {
+    "key": "MAX_EXPOSURE",
+    "header": "setting_maxexpotime_header",
+    "type": "Text"
+   },
+   {
+    "key": "GUIDE_LIST",
+    "header": "setting_guide_header",
+    "type": "Text"
+   },
+   {
+    "key": "HORIZONT_LVL",
+    "header": "setting_horizont_header",
+    "type": "Text"
+   },
+   {
+    "key": "ZOOM_ON_MANUALFOCUS",
+    "header": "setting_zoom_on_mf_header",
+    "type": "Boolean"
+   },
+   {
+    "key": "ZOOM_ON_MANUALFOCUS_ZOOMFACTOR",
+    "header": "setting_zoom_on_mf_factor_header",
+    "type": "Text"
+   },
+   {
+    "key": "ZOOM_ON_MANUALFOCUS_ZOOMDURATION",
+    "header": "setting_zoom_on_mf_duration_header",
+    "type": "Text"
+   },
+   {
+    "key": "FORCE_WIDE_PREVIEW",
+    "header": "setting_force_wide_preview_header",
+    "type": "Boolean"
+   }
+  ],
+  "calls": []
+ },
+ "getCameraGroup": {
+  "rows": [
+   {
+    "key": "SCENE_MODE",
+    "header": "setting_scene_header",
+    "type": "Text"
+   },
+   {
+    "key": "WHITE_BALANCE_MODE",
+    "header": "uisetting_wb_header",
+    "type": "Text"
+   },
+   {
+    "key": "COLOR_MODE",
+    "header": "setting_color_header",
+    "type": "Text"
+   },
+   {
+    "key": "COLOR_CORRECTION_MODE",
+    "header": "setting_colorcorrection_header",
+    "type": "Text"
+   },
+   {
+    "key": "TONE_MAP_MODE",
+    "header": "setting_tonemap_header",
+    "type": "Text"
+   },
+   {
+    "key": "CONTROL_MODE",
+    "header": "setting_controlmode_header",
+    "type": "Text"
+   },
+   {
+    "key": "RED_EYE",
+    "header": "setting_redeye_header",
+    "type": "Text"
+   },
+   {
+    "key": "ANTI_BANDING_MODE",
+    "header": "setting_antiflicker_header",
+    "type": "Text"
+   },
+   {
+    "key": "IMAGE_POST_PROCESSING",
+    "header": "setting_ipp_header",
+    "type": "Text"
+   },
+   {
+    "key": "LENS_SHADE",
+    "header": "setting_lensshade_header",
+    "type": "Text"
+   },
+   {
+    "key": "DENOISE",
+    "header": "setting_waveletdenoise_header",
+    "type": "Text"
+   },
+   {
+    "key": "SCENE_DETECT",
+    "header": "setting_scenedec_header",
+    "type": "Text"
+   },
+   {
+    "key": "TNR",
+    "header": "setting_temporaldenoise_header",
+    "type": "Text"
+   },
+   {
+    "key": "TNR_V",
+    "header": "setting_temporaldenoiseV_header",
+    "type": "Text"
+   },
+   {
+    "key": "PDAF",
+    "header": "setting_pdaf_header",
+    "type": "Text"
+   },
+   {
+    "key": "TRUE_POTRAIT",
+    "header": "setting_truepotrait_header",
+    "type": "Text"
+   },
+   {
+    "key": "RDI",
+    "header": "setting_rdi_header",
+    "type": "Text"
+   },
+   {
+    "key": "CHROMA_FLASH",
+    "header": "setting_chroma_header",
+    "type": "Text"
+   },
+   {
+    "key": "OPTI_ZOOM",
+    "header": "setting_optizoom_header",
+    "type": "Text"
+   },
+   {
+    "key": "RE_FOCUS",
+    "header": "setting_refocus_header",
+    "type": "Text"
+   },
+   {
+    "key": "SEE_MORE",
+    "header": "setting_seemore_header",
+    "type": "Text"
+   },
+   {
+    "key": "LENS_FILTER",
+    "header": "setting_lensfilter_header",
+    "type": "Text"
+   },
+   {
+    "key": "DIGITAL_IMAGE_STABILIZATION",
+    "header": "setting_dis_header",
+    "type": "Text"
+   },
+   {
+    "key": "MEMORY_COLOR_ENHANCEMENT",
+    "header": "setting_mce_header",
+    "type": "Text"
+   },
+   {
+    "key": "ZSL",
+    "header": "setting_zsl_header",
+    "type": "Text"
+   },
+   {
+    "key": "HDR_MODE",
+    "header": "setting_hdrmode_header",
+    "type": "Text"
+   },
+   {
+    "key": "NON_ZSL_MANUAL_MODE",
+    "header": "setting_nonzsl_header",
+    "type": "Text"
+   },
+   {
+    "key": "CDS_MODE",
+    "header": "setting_cds_header",
+    "type": "Text"
+   },
+   {
+    "key": "EDGE_MODE",
+    "header": "setting_edge_header",
+    "type": "Text"
+   },
+   {
+    "key": "HOT_PIXEL_MODE",
+    "header": "setting_hotpixel_header",
+    "type": "Text"
+   },
+   {
+    "key": "DISTORTION_CORRECTION_MODE",
+    "header": "setting_distortion_header",
+    "type": "Text"
+   },
+   {
+    "key": "FACE_DETECTOR_MODE",
+    "header": "setting_facemode_header",
+    "type": "Text"
+   },
+   {
+    "key": "OIS_MODE",
+    "header": "setting_ois_header",
+    "type": "Text"
+   },
+   {
+    "key": "DUAL_PRIMARY_CAMERA_MODE",
+    "header": "setting_dualprimarycamera_header",
+    "type": "Text"
+   },
+   {
+    "key": "EXPOSURE_MODE",
+    "header": "setting_exposuremode_header",
+    "type": "Text"
+   },
+   {
+    "key": "AE_TARGET_FPS",
+    "header": "setting_aetargetfps_header",
+    "type": "Text"
+   },
+   {
+    "key": "AE_METERING",
+    "header": "setting_aemetering_header",
+    "type": "Text"
+   }
+  ],
+  "calls": []
+ }
+}

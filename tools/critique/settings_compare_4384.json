@@ -1,0 +1,141 @@
+{
+  "glasscam": {
+    "package": "com.hazia.glasscam",
+    "entry": "swipe L->R",
+    "entry_pos": null,
+    "taps_to_settings": 1,
+    "clickable": 11,
+    "median_h_dp": 48.0,
+    "min_h_dp": 2.0,
+    "under_48": 1,
+    "search": false
+  },
+  "freedcam": {
+    "package": "troop.com.freedcam",
+    "entry": "swipe L->R",
+    "entry_pos": null,
+    "taps_to_settings": 1,
+    "clickable": 18,
+    "median_h_dp": 41.0,
+    "min_h_dp": 0.3,
+    "under_48": 16,
+    "search": true
+  },
+  "opencamera": {
+    "package": "net.sourceforge.opencamera",
+    "entry": "button",
+    "entry_pos": {
+      "x_dp": 330,
+      "y_dp": 74,
+      "screen_w_dp": 360,
+      "screen_h_dp": 804,
+      "from_right_thumb_dp": 731
+    },
+    "taps_to_settings": 1,
+    "clickable": 10,
+    "median_h_dp": 60.0,
+    "min_h_dp": 27.0,
+    "under_48": 2,
+    "search": false
+  },
+  "proshot": {
+    "package": "com.riseupgames.proshot2",
+    "entry": "button",
+    "entry_pos": {
+      "x_dp": 343,
+      "y_dp": 57,
+      "screen_w_dp": 360,
+      "screen_h_dp": 804,
+      "from_right_thumb_dp": 748
+    },
+    "taps_to_settings": 1,
+    "clickable": 10,
+    "median_h_dp": 60.0,
+    "min_h_dp": 27.0,
+    "under_48": 2,
+    "search": false
+  },
+  "manualcamerapro": {
+    "package": "com.lensesdev.manual.camera.pro",
+    "entry": "button",
+    "entry_pos": {
+      "x_dp": 325,
+      "y_dp": 700,
+      "screen_w_dp": 360,
+      "screen_h_dp": 804,
+      "from_right_thumb_dp": 110
+    },
+    "taps_to_settings": 1,
+    "clickable": 23,
+    "median_h_dp": 45.0,
+    "min_h_dp": 27.0,
+    "under_48": 13,
+    "search": false
+  },
+  "macamera": {
+    "package": "com.vayunmathur.camera",
+    "entry": "button",
+    "entry_pos": {
+      "x_dp": 38,
+      "y_dp": 730,
+      "screen_w_dp": 360,
+      "screen_h_dp": 804,
+      "from_right_thumb_dp": 330
+    },
+    "taps_to_settings": 1,
+    "clickable": 3,
+    "median_h_dp": 48.0,
+    "min_h_dp": 48.0,
+    "under_48": 0,
+    "search": true
+  },
+  "fossify": {
+    "package": "org.fossify.camera",
+    "entry": "button",
+    "entry_pos": {
+      "x_dp": 315,
+      "y_dp": 56,
+      "screen_w_dp": 360,
+      "screen_h_dp": 804,
+      "from_right_thumb_dp": 749
+    },
+    "taps_to_settings": 1,
+    "clickable": 16,
+    "median_h_dp": 56.0,
+    "min_h_dp": 45.0,
+    "under_48": 1,
+    "search": false
+  },
+  "librecamera": {
+    "package": "com.iakmds.librecamera",
+    "entry": "button",
+    "entry_pos": {
+      "x_dp": 328,
+      "y_dp": 64,
+      "screen_w_dp": 360,
+      "screen_h_dp": 804,
+      "from_right_thumb_dp": 741
+    },
+    "taps_to_settings": 1,
+    "clickable": 7,
+    "median_h_dp": 80.0,
+    "min_h_dp": 44.0,
+    "under_48": 1,
+    "search": false
+  },
+  "oneplus": {
+    "package": "com.oplus.camera",
+    "entry": "top-right quick pill, then Impostazioni",
+    "entry_pos": {
+      "x_dp": 324,
+      "y_dp": 40,
+      "from_right_thumb_dp": 765
+    },
+    "taps_to_settings": 2,
+    "clickable": 27,
+    "median_h_dp": 40.0,
+    "min_h_dp": 20.0,
+    "under_48": 19,
+    "search": false
+  }
+}
