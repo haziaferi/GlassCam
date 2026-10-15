@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- NextGen settings panel background. Translucent fill is deliberate: the live camera
+     preview stays visible behind the panel. The stroke is now a genuine hairline (~20% white)
+     instead of the old 1dp stroke that duplicated the fill colour and drew nothing, so the
+     panel edge is defined even over a bright/high-key scene. Radius raised 5dp -> 16dp for a
+     modern M3 container feel. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/nextgen_settings_scrim"/>
+    <stroke android:width="1dp" android:color="@color/nextgen_settings_outline" />
+    <corners android:radius="@dimen/nextgen_settings_corner_radius"/>
+    <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp" />
+</shape>

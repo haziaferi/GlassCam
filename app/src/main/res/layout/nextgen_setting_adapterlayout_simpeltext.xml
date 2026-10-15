@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Value-picker row (shown when a setting is tapped to choose a value). Height is
+     wrap_content with a 48dp min touch target, NOT the framework @android:dimen/app_icon_size
+     (a launcher-icon dimension that both mis-names the intent and pins a fixed height that
+     clips at large font scale). Text size comes from the shared settings type scale so it
+     matches the rest of the panel and honours font-scale. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/cameraui_settingschild_height"
+    android:paddingStart="@dimen/settings_row_padding_horizontal"
+    android:paddingEnd="@dimen/settings_row_padding_horizontal"
+    android:paddingTop="@dimen/settings_row_padding_vertical"
+    android:paddingBottom="@dimen/settings_row_padding_vertical">
+
+    <TextView
+        android:id="@+id/listviewlayout_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/settings_menu_item_header_value"
+        android:textColor="@color/nextgen_menu_right_text"
+        tools:text="Value" />
+</RelativeLayout>

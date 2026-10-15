@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Replaces the old app-wide usesCleartextTraffic="true" flag.
+
+     Important limitation: Android's network-security-config domain-config only
+     matches literal hostnames or literal IP addresses - it does not support CIDR
+     ranges (e.g. "192.168.0.0/16" is not valid here, it would just never match
+     anything). Since the Sony remote-camera client and the WiFi remote-camera
+     server connect to whatever local IP the user's camera/companion device
+     happens to have, which isn't known ahead of time, there's no way to scope
+     cleartext by "local network" declaratively in this file the way there would
+     be for a fixed set of known hosts.
+
+     So base-config here stays cleartext-permitted, same effective behavior as the
+     old flag - but the connection is still checked at the point it's actually
+     made: SimpleHttpClient.isAllowedHost() rejects any target that isn't a
+     private/link-local/loopback address before opening the connection. That's
+     where the real "LAN only" boundary now lives, since only the code that builds
+     the request URL knows the target ahead of time.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

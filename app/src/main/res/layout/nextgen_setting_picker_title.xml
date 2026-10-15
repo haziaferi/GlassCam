@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Value picker title row (Batch 2): names the setting being edited. A heading, not a control:
+     at least 48 dp tall like every other row (it grows with its text), not clickable, announced as a heading. -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listviewlayout_textview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="48dp"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/settings_row_padding_horizontal"
+    android:paddingEnd="@dimen/settings_row_padding_horizontal"
+    android:paddingTop="8dp"
+    android:paddingBottom="2dp"
+    android:clickable="false"
+    android:focusable="false"
+    android:accessibilityHeading="true"
+    android:textColor="@color/nextgen_menu_right_text"
+    android:textSize="@dimen/settings_menu_item_header"
+    android:textStyle="bold" />

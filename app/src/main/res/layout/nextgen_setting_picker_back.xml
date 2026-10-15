@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Value picker Back chip (Batch 2): outlined pill in the secondary colour so it reads as
+     navigation, not as one of the values. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/cameraui_settingschild_height"
+    android:paddingStart="@dimen/settings_row_padding_horizontal"
+    android:paddingEnd="@dimen/settings_row_padding_horizontal"
+    android:paddingTop="@dimen/settings_row_padding_vertical"
+    android:paddingBottom="@dimen/settings_row_padding_vertical">
+    <TextView
+        android:id="@+id/listviewlayout_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:background="@drawable/nextgen_back_chip"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:textColor="@color/nextgen_menu_secondary_text"
+        android:textSize="@dimen/settings_menu_item_header_value" />
+</FrameLayout>

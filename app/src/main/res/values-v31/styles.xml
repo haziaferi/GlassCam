@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- API 31+ only: brands the platform's automatic splash screen (shown on cold start,
+         derived from the app's adaptive icon) with the icon's own dark background instead
+         of the default white, so the launch icon isn't shown on a mismatched background. -->
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+        <item name="android:windowSplashScreenBackground">@color/ic_launcher_background</item>
+        <!-- Mirror of the base FullscreenTheme cutout mode; see values/styles.xml. -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+
+</resources>

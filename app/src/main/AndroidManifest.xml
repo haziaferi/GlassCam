@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:installLocation="auto">
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!-- Storage access is via SAF (ACTION_OPEN_DOCUMENT_TREE) only. No legacy storage
+         permission is requested: it would be a no-op under targetSdk 36 scoped storage
+         anyway, and minSdk 30 means every supported device already enforces it. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- used on huawei p9/10 and for new devices? -->
+    <uses-permission android:name="android.permission.HW_CAMCFG_SERVICE" />
+    <uses-permission android:name="com.huawei.camera.permission.PRIVATE" />
+    <uses-permission android:name="huawei.android.permission.HW_SIGNATURE_OR_SYSTEM" />
+    <!-- used on huawei p9/10 and for new devices? -->
+
+    <!-- used by sony xperia zX devices? -->
+    <uses-permission android:name="com.sonyericsson.permission.CAMERA_EXTENDED" />
+    <!-- used by sony xperia zX devices? -->
+
+    <!-- used on oneplus5 -->
+    <uses-permission
+        android:name="com.oneplus.camera.CAMERA_SERVICE" />
+    <uses-permission
+        android:name="com.oneplus.camera.PICTURE_PROCESS_SERVICE" />
+    <!-- used on oneplus5 -->
+
+
+    <!-- only for system apps
+    <uses-permission android:name="android.permission.WRITE_MEDIA_STORAGE" /> -->
+
+
+
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.sensor.compass" android:required="false"/>
+    <uses-feature android:name="android.hardware.microphone" android:required="false"/>
+    <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
+
+    <application
+        android:name="glasscam.GlassCamApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:supportsRtl="false"
+        android:theme="@style/FullscreenTheme"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config">
+
+        <!-- Every activity in this app is locked to a single orientation (GlassGallery since
+             4.3.91, owner's decision; see the individual activities below): it is a camera UI, not a resizable
+             or rotatable layout. Since compileSdk/targetSdk 36, Android's large screen
+             compatibility framework treats a fixed-orientation, non-resizable app as a
+             letterboxing case and shows a system compat-mode button plus a one-time
+             "education overlay" tooltip pointing at it - that tooltip is the glitching
+             blink reported over the app on first launch, with a dismiss button that was
+             hard to hit. A previous attempt at this fix set
+             PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY to "true", but per Android's
+             own docs that value OPTS OUT of the Android 16 behavior that ignores these
+             restrictions - i.e. it keeps the old letterboxing/compat-button/tooltip
+             machinery ACTIVE, which is backwards and is why the tooltip kept appearing.
+             The property must be "false" (opt IN to restrictions being ignored) to
+             actually remove the compat button and its tooltip. Paired with the aspect
+             ratio override property below (which removes the app from the device's
+             aspect-ratio override settings entirely), this eliminates both the button
+             and the tooltip that blinks over it. This is separate from, and does not
+             touch, HelpFragment's own in-app swipe onboarding. -->
+        <property
+            android:name="android.window.PROPERTY_COMPAT_ALLOW_USER_ASPECT_RATIO_OVERRIDE"
+            android:value="false" />
+        <property
+            android:name="android.window.PROPERTY_COMPAT_ALLOW_RESTRICTED_RESIZABILITY"
+            android:value="false" />
+
+        <activity
+            android:name="glasscam.cam.ActivityGlassCamMain"
+            android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|touchscreen|layoutDirection"
+            android:screenOrientation="landscape"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="glasscam.cam.ActivityGlassCamMainSecure"
+            android:label="@string/app_name"
+            android:icon="@mipmap/ic_launcher"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|touchscreen|layoutDirection"
+            android:screenOrientation="landscape"
+            android:clearTaskOnLaunch="true"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            android:excludeFromRecents="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE_SECURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- IMAGE_CAPTURE for other apps (Batch 3, 2026-09-16): re-enabled on the SAF/MediaStore
+             path; the theme and cutout handling match the main camera activity. -->
+        <activity
+            android:name="glasscam.cam.ActivityGlassCamShare"
+            android:label="@string/app_name"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|touchscreen|layoutDirection"
+            android:screenOrientation="landscape"
+            android:icon="@mipmap/ic_launcher"
+            android:exported="true"
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
+            <intent-filter>
+                <action android:name="android.media.action.IMAGE_CAPTURE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.media.action.STILL_IMAGE_CAMERA" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="glasscam.viewer.ActivityGlassCamViewer"
+            android:label="GlassGallery"
+            android:screenOrientation="landscape"
+            android:taskAffinity="com.hazia.glasscam.viewer.GridViewActivity"
+            android:icon="@mipmap/ic_launcher"
+            android:exported="true"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|touchscreen|layoutDirection">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.hazia.glasscam.viewer.GridViewActivity" />
+            </intent-filter>
+        </activity>
+
+        <!-- The three activities below are only ever launched in-app via an explicit
+             Intent from GridViewFragmentModelView / the settings menu, so none of them
+             need to be reachable by other apps: exported="false" for all three. The old
+             MAIN intent-filter on DngConvertingActivity had no benefit and only widened
+             the attack surface.
+             All three are also locked to landscape, matching every other screen in the
+             app (GlassGallery since 4.3.91). DngConvertingActivity and DngStackActivity
+             used to be portrait-locked, which forced a jarring rotation when opened from
+             the landscape gallery grid; their layouts (dngconvertingfragment.xml,
+             dngstackactivity.xml) use wrap_content/match_parent throughout, so the
+             landscape lock needed no layout changes. -->
+
+        <activity
+            android:name="glasscam.viewer.dngconvert.DngConvertingActivity"
+            android:label="@string/title_dng_converter"
+            android:theme="@style/FormTheme"
+            android:screenOrientation="landscape"
+            android:exported="false" />
+
+        <activity
+            android:name="glasscam.viewer.stack.DngStackActivity"
+            android:label="@string/title_dng_stack"
+            android:theme="@style/FormTheme"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+
+        <activity
+            android:name="glasscam.cam.ui.videoprofileeditor.views.VideoProfileEditorActivity"
+            android:label="@string/title_video_profile_editor"
+            android:theme="@style/FormTheme"
+            android:exported="false"
+            android:screenOrientation="landscape" />
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+</manifest>

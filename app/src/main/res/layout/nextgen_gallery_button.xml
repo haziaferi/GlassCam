@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Gallery cell for the shutter column (NextGenGalleryButton). A rounded 44dp thumbnail of the
+     newest capture with a hairline outline; the picture glyph stands in until the first capture. -->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageView_gallery_thumb"
+        android:layout_width="@dimen/nextgen_gallery_thumb_size"
+        android:layout_height="@dimen/nextgen_gallery_thumb_size"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:visibility="gone"
+        app:shapeAppearanceOverlay="@style/NextGenThumbShape"
+        app:strokeColor="@color/nextgen_settings_outline"
+        app:strokeWidth="1dp" />
+
+    <TextView
+        android:id="@+id/textView_gallery_glyph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:alpha="0.7"
+        android:text="@string/font_image"
+        android:textColor="@color/nextgen_menu_right_text"
+        android:textSize="31sp"
+        android:shadowColor="@color/black_overlay"
+        android:shadowRadius="3"
+        app:fontFamily="@font/glasscam" />
+</merge>

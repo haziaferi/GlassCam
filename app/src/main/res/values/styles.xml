@@ -1,0 +1,54 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+        <!-- Let the fullscreen camera preview extend into a display cutout on the short edges
+             (which become left/right in this landscape-locked app) instead of being letterboxed
+             away from it. The left-anchored settings panel then insets itself off the cutout in
+             code (NextGenCameraSettingFragment) so its tabs/first column are never occluded. -->
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+
+    <!-- Form screens (video profile editor, DNG converter, DNG stack): dark, fullscreen, lime accent. -->
+    <style name="FormTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/nextgen_form_background</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:textColorPrimary">@color/nextgen_menu_right_text</item>
+        <item name="android:textColorSecondary">@color/nextgen_menu_secondary_text</item>
+    </style>
+
+    <style name="PopupStyle" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!-- NextGen settings tab labels: sentence case (not the default all-caps), sized to match
+         the panel type scale. -->
+    <style name="NextGenSettingsTabText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+
+
+    <!-- Rounded thumbnail in the shutter column's gallery cell (Batch 2). -->
+    <style name="NextGenThumbShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/nextgen_gallery_thumb_radius</item>
+    </style>
+</resources>

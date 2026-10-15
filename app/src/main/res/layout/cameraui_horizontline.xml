@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Horizon level overlay (Batch 2, 2026-09-16): one LevelBarView centred on the preview replaces
+     the arc gauge, rotated line and pitch arrows. Width follows horizon_gauge_width so the
+     sw600dp bucket still scales it. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <glasscam.cam.ui.cameraui.LevelBarView
+        android:id="@+id/levelbar"
+        android:layout_width="@dimen/horizon_gauge_width"
+        android:layout_height="@dimen/horizon_gauge_width"
+        android:layout_centerInParent="true" />
+</RelativeLayout>

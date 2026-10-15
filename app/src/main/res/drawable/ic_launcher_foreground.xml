@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GlassCam rosette mark: seven aperture blades within a containment ring, scaled
+     from the master rosette-icon.svg (100x100 local space, ring r=37) down by 0.85 so
+     the ring's outer edge (r≈32.1dp) sits inside Android's 66dp/33dp-radius adaptive-icon
+     safe zone, unlike the source SVG which was only sized for the web maskable spec's
+     more generous 80%-diameter safe zone. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- containment ring -->
+    <path
+        android:pathData="M85.45,54 A31.45,31.45 0 1,0 22.55,54 A31.45,31.45 0 1,0 85.45,54"
+        android:strokeColor="#b8962e"
+        android:strokeWidth="1.36"
+        android:fillColor="#00000000" />
+
+    <!-- seven aperture blades -->
+    <group android:pivotX="54" android:pivotY="54" android:rotation="0">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+    <group android:pivotX="54" android:pivotY="54" android:rotation="51.43">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+    <group android:pivotX="54" android:pivotY="54" android:rotation="102.86">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+    <group android:pivotX="54" android:pivotY="54" android:rotation="154.29">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+    <group android:pivotX="54" android:pivotY="54" android:rotation="205.71">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+    <group android:pivotX="54" android:pivotY="54" android:rotation="257.14">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+    <group android:pivotX="54" android:pivotY="54" android:rotation="308.57">
+        <path
+            android:pathData="M54,54 L69.3,45.5 L71.85,57.4 L60.8,65.9 Z"
+            android:strokeColor="#b8962e"
+            android:strokeWidth="1.87"
+            android:strokeLineJoin="round"
+            android:fillColor="#00000000" />
+    </group>
+
+    <!-- cardinal register dots -->
+    <path
+        android:pathData="M55.615,22.55 A1.615,1.615 0 1,0 52.385,22.55 A1.615,1.615 0 1,0 55.615,22.55"
+        android:fillColor="#b8962e" />
+    <path
+        android:pathData="M55.615,85.45 A1.615,1.615 0 1,0 52.385,85.45 A1.615,1.615 0 1,0 55.615,85.45"
+        android:fillColor="#b8962e" />
+    <path
+        android:pathData="M24.165,54 A1.615,1.615 0 1,0 20.935,54 A1.615,1.615 0 1,0 24.165,54"
+        android:fillColor="#b8962e" />
+    <path
+        android:pathData="M87.065,54 A1.615,1.615 0 1,0 83.835,54 A1.615,1.615 0 1,0 87.065,54"
+        android:fillColor="#b8962e" />
+</vector>

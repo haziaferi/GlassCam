@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data></data>
+
+    <!-- Settings panel, rebuilt 2026-09-16 by the owner's decision: full width and height over
+         the scrimmed live preview, one list of every setting in two columns with sticky section
+         headers and a jump-chip row, search on top. The five-tab strip is gone - on this phone
+         it held 3 / 9 / ~20 / ~10 / 4 rows, so most tabs were mostly blank, and the panel sat on
+         the far side from the shutter thumb. The panel insets itself off the display cutout and
+         the system bars in code (NextGenCameraSettingFragment). -->
+    <FrameLayout
+        android:id="@+id/setting_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/nextgen_settings_scrim">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- search on top; the jump chips sit in their own row at the bottom, nearest the
+                 shutter thumb (the settings-panel optimizer run, 2026-09-16) -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp">
+
+                <EditText
+                    android:id="@+id/settings_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@null"
+                    android:paddingStart="@dimen/settings_row_padding_horizontal"
+                    android:paddingEnd="48dp"
+                    android:hint="@string/settings_search_hint"
+                    android:textColor="@color/nextgen_menu_right_text"
+                    android:textColorHint="@color/nextgen_menu_secondary_text"
+                    android:textSize="@dimen/settings_menu_item_header"
+                    android:inputType="text|textNoSuggestions"
+                    android:imeOptions="actionSearch|flagNoExtractUi|flagNoFullscreen"
+                    android:maxLines="1"
+                    android:importantForAutofill="no" />
+
+                <TextView
+                    android:id="@+id/settings_search_clear"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="end"
+                    android:gravity="center"
+                    android:text="@string/settings_search_clear_glyph"
+                    android:contentDescription="@string/settings_search_clear"
+                    android:textColor="@color/nextgen_menu_right_text"
+                    android:textSize="@dimen/settings_menu_item_header"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/nextgen_settings_outline" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <!-- the single page fragment goes here -->
+                <FrameLayout
+                    android:id="@+id/setting_fragment_holder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!-- sticky section label: pinned over the list top, text follows the scroll -->
+                <TextView
+                    android:id="@+id/settings_sticky_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/nextgen_settings_sticky"
+                    android:paddingStart="@dimen/settings_row_padding_horizontal"
+                    android:paddingEnd="@dimen/settings_row_padding_horizontal"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:letterSpacing="0.08"
+                    android:textAllCaps="true"
+                    android:textColor="@color/nextgen_menu_secondary_text"
+                    android:textSize="@dimen/settings_menu_item_description"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/nextgen_settings_outline" />
+
+            <HorizontalScrollView
+                android:id="@+id/settings_chips_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:scrollbars="none"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:id="@+id/settings_chips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|end"
+                    android:paddingEnd="4dp"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+        </LinearLayout>
+    </FrameLayout>
+
+</layout>

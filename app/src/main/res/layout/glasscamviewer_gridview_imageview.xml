@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="gridimageviewmodel"
+            type="glasscam.viewer.gridview.models.GridImageViewModel" />
+    </data>
+<FrameLayout
+    android:layout_width="@dimen/image_thumbnail_size" android:layout_height="@dimen/image_thumbnail_size">
+
+    <ImageView
+        android:id="@+id/gridimageviewholder"
+        setGridModelToView="@{gridimageviewmodel}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp" />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@{gridimageviewmodel.filending}"
+            android:textAllCaps="true"
+            android:id="@+id/filetypetextbox"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:textColor="#ffffff"
+            android:shadowColor="#000000"
+            android:shadowRadius="10"
+            android:singleLine="false" />
+
+    <TextView
+        android:id="@+id/foldertextbox"
+        setTextToTextbox="@{gridimageviewmodel.foldername}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="2dp"
+        android:background="@android:color/background_dark"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ffffff"
+        android:visibility="visible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView_sd"
+        android:layout_gravity="right|top"
+        android:background="@drawable/sd"
+        setVisibility="@{gridimageviewmodel.externalSD}"/>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/checkBox_gridviewimage"
+        android:background="@drawable/cust_cb_unsel"
+        android:layout_margin="2dp"
+        setChecked="@{gridimageviewmodel.checked}"
+        setVisibility="@{gridimageviewmodel.checkVisible}"
+        />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar_gridimageview"
+        android:layout_gravity="center"
+        setVisibility="@{gridimageviewmodel.progressBarVisible}"/>
+
+</FrameLayout>
+</layout>

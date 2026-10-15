@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Tablet / large-screen / unfolded-foldable breakpoint (smallest width >= 600dp).
+         The horizon gauge stayed a fixed 250dp on every screen size before this override,
+         so it looked disproportionately small on larger displays. This scales it up
+         instead of leaving it pinned to the phone-sized value. -->
+    <dimen name="horizon_gauge_width">320dp</dimen>
+
+    <!-- Same 1.28x ratio as horizon_gauge_width above (320/250), applied to all
+         four waveform-overlay dimens together so the overlay's size and its
+         offset from the histogram sibling grow in the same proportion instead
+         of drifting apart. This is a mechanical scale-up of the phone-tuned
+         base values in values/dimens.xml, not a fresh visual pass on a tablet;
+         still worth a UI dev spot-checking this breakpoint against the real
+         histogram position before shipping, per the original audit note. -->
+    <dimen name="cameraui_waveform_width">371dp</dimen>
+    <dimen name="cameraui_waveform_height">154dp</dimen>
+    <dimen name="cameraui_waveform_margin_left">-101dp</dimen>
+    <dimen name="cameraui_waveform_margin_top">211dp</dimen>
+
+    <!-- Settings panel sizing on large screens (smallest width >= 600dp). The phone-tuned
+         text/row sizes looked disproportionately small inside the 900dp-max panel on an
+         unfolded foldable or tablet; scale them ~1.25x (same spirit as the horizon-gauge
+         override above). Because the NextGen rows now reference these named dimens, this
+         single override set rescales the whole Settings screen with no layout changes. -->
+    <dimen name="settings_menu_item_header">20sp</dimen>
+    <dimen name="settings_menu_item_header_value">18sp</dimen>
+    <dimen name="settings_menu_item_description">15sp</dimen>
+    <dimen name="cameraui_settingschild_height">56dp</dimen>
+</resources>

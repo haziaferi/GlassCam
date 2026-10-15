@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="menuBackgColor">#46ffffff</color>
+    <color name="menuTextColor">#ffffff</color>
+    <color name="uiSettingsTextColor">#ffffff</color>
+    <color name="uiSettingsBackground">#bd000000</color>
+    <!-- Batch 2 (2026-09-16): the stock template indigo/pink is gone; AppCompat widgets that
+         fall back to the theme (switches, edit-text underlines, buttons in the form screens) now
+         use the app's own dark ground and lime accent. -->
+    <color name="colorPrimary">#FF121212</color>
+    <color name="colorPrimaryDark">#FF000000</color>
+    <color name="colorAccent">#64DD17</color>
+    <color name="nextgen_form_background">#FF121212</color>
+
+    <color name="black_overlay">#66000000</color>
+    <!-- curve-view button states (Batch 2): scrim at rest, lime-tinted when active -->
+    <color name="button_notclicked">#B3000000</color>
+    <color name="button_clicked">#8064DD17</color>
+
+
+    <color name="nextgen_menu_right_text">#FFFFFFFF</color>
+    <color name="manual_button_active">#64DD17</color>
+
+    <!-- NextGen Settings panel design tokens.
+         Grounded in Material 3 role semantics (onSurface / onSurfaceVariant / outlineVariant)
+         but kept translucent so the live camera preview stays visible behind the panel.
+         The accent reuses the app's existing "active control" lime (manual_button_active),
+         so the Settings screen reads as the same app as the manual-control strip beside it. -->
+    <color name="nextgen_menu_secondary_text">#99FFFFFF</color>   <!-- supporting/description + unselected tab (~60% white) -->
+    <color name="nextgen_setting_value">#64DD17</color>          <!-- current value = "active", matches manual_button_active -->
+    <color name="nextgen_settings_scrim">#B3000000</color>       <!-- panel fill (~70% black, preview visible behind) -->
+    <color name="nextgen_settings_outline">#33FFFFFF</color>     <!-- hairline panel edge (~20% white) -->
+    <color name="nextgen_settings_sticky">#E6121212</color>      <!-- pinned section label over the list -->
+    <color name="nextgen_settings_ripple">#4064DD17</color>      <!-- accent-tinted press ripple -->
+    <color name="nextgen_switch_thumb_off">#B0B0B0</color>       <!-- neutral switch thumb when off -->
+    <color name="nextgen_switch_track_off">#80FFFFFF</color>     <!-- neutral switch track when off -->
+    <color name="nextgen_rec">#FFFF3B30</color>                 <!-- recording pill (Batch 2) -->
+</resources>

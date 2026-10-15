@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RecyclerView + GridLayoutManager (span count computed in code from measured width, see
+     NextGenSettingDummyFragment), not GridView: GridView's auto_fit + variable-height children +
+     an adapter that returns pre-built views instead of properly recycling convertView is a
+     well-documented combination for items rendering in the wrong cell or doubled up in one cell.
+     The empty label shows only when a search filter leaves the page without rows. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/nextgen_itemholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="6dp"
+        android:paddingBottom="8dp" />
+
+    <TextView
+        android:id="@+id/nextgen_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/settings_row_padding_horizontal"
+        android:paddingEnd="@dimen/settings_row_padding_horizontal"
+        android:paddingTop="20dp"
+        android:textColor="@color/nextgen_menu_secondary_text"
+        android:textSize="@dimen/settings_menu_item_header_value"
+        android:visibility="gone" />
+</FrameLayout>

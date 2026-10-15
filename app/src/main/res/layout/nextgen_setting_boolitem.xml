@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="parameter"
+            type="glasscam.settings.mode.BooleanSettingModeInterface" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/nextgen_settings_row_min_height"
+        android:paddingStart="@dimen/settings_row_padding_horizontal"
+        android:paddingEnd="@dimen/settings_row_padding_horizontal"
+        android:paddingTop="@dimen/settings_row_padding_vertical"
+        android:paddingBottom="@dimen/settings_row_padding_vertical">
+
+        <LinearLayout
+            android:id="@+id/row_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Label: primary emphasis, matches nextgen_setting_item.xml. -->
+            <TextView
+                android:id="@+id/textView_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/nextgen_menu_right_text"
+                android:textSize="@dimen/settings_menu_item_header"
+                android:textStyle="bold" />
+
+            <!-- Lime-tinted toggle (not the stock AppCompat pink) so boolean settings speak the
+                 app's "active control" colour language. -->
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:checked="@{parameter.get()}"
+                android:thumbTint="@color/nextgen_switch_thumb"
+                android:trackTint="@color/nextgen_switch_track" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/row_holder"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/nextgen_menu_secondary_text"
+            android:textSize="@dimen/settings_menu_item_description" />
+
+    </RelativeLayout>
+</layout>

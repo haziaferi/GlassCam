@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 4.3.91 (owner, 2026-09-28): the value scale opens beside the shutter column, on the thumb's side,
+     as Manual Camera Pro, MA Camera and Libre place theirs (critique walk frames 85, 91, 95). It sat in
+     the left letterbox band from Batch 2, 712 dp from the right thumb; here it is ~138 dp. The end
+     margin clears the two 56dp column cells plus an 8dp gap. The AF-bracket Near/Far view sits to its
+     left. -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="@dimen/nextgen_value_scale_margin_end"
+        android:layout_marginRight="@dimen/nextgen_value_scale_margin_end"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/roundcorners">
+
+        <glasscam.cam.ui.themenextgen.view.NextGenRotatingSeekbar
+            android:id="@+id/seekbar"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+    </FrameLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/halfroundtopcorners"
+        android:overScrollMode="never"
+        android:padding="1dp"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="false">
+
+        <LinearLayout
+            android:id="@+id/manualItemsHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <glasscam.cam.ui.cameraui.AfBracketSettingsView
+        android:id="@+id/manualFragment_afbsettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_toStartOf="@+id/frameLayout"
+        android:layout_toLeftOf="@+id/frameLayout" />
+
+
+
+</RelativeLayout>

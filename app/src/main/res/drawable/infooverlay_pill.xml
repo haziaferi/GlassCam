@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 4.3.91: the info overlay row is 48dp tall so the format chip is a 48dp target (T7), but the pill
+     is drawn only over its top 32dp, as before; the transparent strip below the other labels is not
+     clickable, so taps there reach the preview. An InsetDrawable reports its insets as padding, and a
+     view adopts its background's padding: the row sets paddingTop/Bottom="0dp" explicitly, or it
+     grows by the inset and the pill is drawn 48dp tall (seen on the 6T, 2026-09-28). -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/roundcorners"
+    android:insetBottom="16dp" />

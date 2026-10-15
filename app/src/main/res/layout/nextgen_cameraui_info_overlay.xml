@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="infoOverlayModel"
+            type="glasscam.cam.ui.infooverlay.model.InfoOverlayModel" />
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/cameraui_shuttericon_size"
+        android:background="@drawable/infooverlay_pill"
+        android:orientation="horizontal"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:paddingRight="10dp">
+
+        <!-- Batch 2: REC pill, bound to the model's recording flag; the only other cue was a 10sp
+             timer inside the shutter. -->
+        <TextView
+            android:id="@+id/textView_rec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="3dp"
+            android:text="@string/overlay_rec"
+            android:textColor="@color/nextgen_rec"
+            android:textStyle="bold"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="@{infoOverlayModel.recording ? View.VISIBLE : View.GONE}" />
+        <TextView
+            android:id="@+id/textView_gps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:text="@{infoOverlayModel.gps}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="visible"
+            app:fontFamily="@font/glasscam" />
+
+        <TextView
+            android:id="@+id/textView_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:text="@{infoOverlayModel.time}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="visible"
+            tools:text="12:00:00" />
+
+        <TextView
+            android:id="@+id/textView_format"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:text="@{infoOverlayModel.format}"
+            android:clickable="true"
+            android:focusable="true"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:gravity="center"
+            android:paddingRight="8dp"
+            android:paddingBottom="16dp"
+            android:contentDescription="@string/overlay_format_cycle"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="visible"
+            tools:text="Jpeg" />
+
+        <TextView
+            android:id="@+id/textView_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:text="@{infoOverlayModel.size}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="visible"
+            tools:text="4000x3000" />
+
+        <TextView
+            android:id="@+id/textView_storage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:text="@{infoOverlayModel.storageSpace}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="visible"
+            tools:text="3825 left" />
+
+        <TextView
+            android:id="@+id/textView_battery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:text="@{infoOverlayModel.batteryLvl}"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="visible"
+            tools:text="98%" />
+
+        <TextView
+            android:id="@+id/textView_dngsupported"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView_buildmodel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView_appversion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/cameraui_infooverlay_textmargin"
+            android:elevation="2dp"
+            android:paddingLeft="5dp"
+            android:shadowColor="#000000"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/cameraui_infooverlay_textsize"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</layout>

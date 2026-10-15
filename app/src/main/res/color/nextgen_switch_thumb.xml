@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Switch thumb tint for the NextGen settings toggles: lime accent when on, neutral grey
+     when off, so boolean settings match the app's "active control" language instead of the
+     stock AppCompat pink. minSdk 30 supports state colors. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/manual_button_active" />
+    <item android:color="@color/nextgen_switch_thumb_off" />
+</selector>

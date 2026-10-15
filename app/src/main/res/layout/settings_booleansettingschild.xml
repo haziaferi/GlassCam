@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Backing layout for the GlassCam-AE boolean child (SettingsChild_GlassCamAe), which is shown
+     inline among the NextGen settings rows. Restyled to match nextgen_setting_boolitem.xml so it
+     no longer renders as a bold-green, differently-sized outlier next to its plain-white
+     neighbours: shared type scale, lime-tinted switch, secondary-colour description, and a
+     description height of wrap_content (it was 0dp+weight inside a wrap_content parent, which
+     collapses the description to zero height). -->
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="parameter"
+            type="glasscam.settings.mode.BooleanSettingModeInterface" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/cameraui_settingschild_height"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/settings_row_padding_horizontal"
+        android:paddingEnd="@dimen/settings_row_padding_horizontal"
+        android:paddingTop="@dimen/settings_row_padding_vertical"
+        android:paddingBottom="@dimen/settings_row_padding_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/nextgen_menu_right_text"
+                android:textSize="@dimen/settings_menu_item_header"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text=""
+                android:checked="@{parameter.get()}"
+                android:thumbTint="@color/nextgen_switch_thumb"
+                android:trackTint="@color/nextgen_switch_track" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/nextgen_menu_secondary_text"
+            android:textSize="@dimen/settings_menu_item_description" />
+
+    </LinearLayout>
+</layout>

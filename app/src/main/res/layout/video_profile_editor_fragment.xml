@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="videoProfileModelView"
+            type="glasscam.cam.ui.videoprofileeditor.modelview.VideoProfileEditorModelView" />
+    </data>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/nextgen_form_background"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:text="@string/title_video_profile_editor"
+        android:textColor="@color/nextgen_menu_right_text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView5" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_profile"
+                    android:id="@+id/textView15"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.profileModel.txt}"
+                    android:id="@+id/button_Profile"
+                    android:onClick="@{()->videoProfileModelView.profileModel.onClick()}"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_profile_name"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editText_ProfileName"
+                    android:layout_weight="1"
+                    android:text="@{videoProfileModelView.currentProfile.ProfileName}"
+                    android:inputType="textNoSuggestions" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vpe_width"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:id="@+id/editText_Profilewidth"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="@{String.valueOf(videoProfileModelView.currentProfile.videoFrameWidth)}"
+                    android:inputType="numberSigned" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vpe_height"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:id="@+id/editText_Profileheight"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:text="@{String.valueOf(videoProfileModelView.currentProfile.videoFrameHeight)}"
+                    android:inputType="numberSigned" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_audio_capture"
+                    android:id="@+id/textView22"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switchAudio"
+                    android:setChecked="@{videoProfileModelView.currentProfile.isAudioActive}"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_audio_bitrate"
+                    android:id="@+id/textView16"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:ems="10"
+                    android:id="@+id/editText_audioBitrate"
+                    android:text="@{String.valueOf(videoProfileModelView.currentProfile.audioBitRate)}"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_audio_samplerate"
+                    android:id="@+id/textView17"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:ems="10"
+                    android:id="@+id/editText_audioSampleRate"
+                    android:text="@{String.valueOf(videoProfileModelView.currentProfile.audioSampleRate)}"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_video_bitrate"
+                    android:id="@+id/textView18"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:ems="10"
+                    android:id="@+id/editText_videoBitrate"
+                    android:text="@{String.valueOf(videoProfileModelView.currentProfile.videoBitRate)}"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_video_framerate"
+                    android:id="@+id/textView19"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:ems="10"
+                    android:id="@+id/editText_videoframerate"
+                    android:text="@{String.valueOf(videoProfileModelView.currentProfile.videoFrameRate)}"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewrecsize"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/vpe_max_size"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:id="@+id/editText_recordsize"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    convertByteToMb="@{videoProfileModelView.currentProfile.maxRecordingSize}"
+                    android:inputType="numberSigned" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_max_time"
+                    android:id="@+id/textView20"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned"
+                    android:ems="10"
+                    android:id="@+id/editText_recordtime"
+                    convertFromMStoMin="@{videoProfileModelView.currentProfile.duration}"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_record_mode"
+                    android:id="@+id/textView23"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.recordModel.txt}"
+                    android:onClick="@{()->videoProfileModelView.recordModel.onClick()}"
+                    android:id="@+id/button_recordMode"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_video_codec"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.videoCodecModel.txt}"
+                    android:onClick="@{()->videoProfileModelView.videoCodecModel.onClick()}"
+                    android:id="@+id/button_videoCodec"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                setVisibility="@{videoProfileModelView.encoderModel.visibility}">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_encoder"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.encoderModel.txt}"
+                    android:onClick="@{()->videoProfileModelView.encoderModel.onClick()}"
+                    android:id="@+id/button_videoEnCoder"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                setVisibility="@{videoProfileModelView.profileLevelModel.visibility}">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_profile_level"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.profileLevelModel.txt}"
+                    android:onClick="@{()->videoProfileModelView.profileLevelModel.onClick()}"
+                    android:id="@+id/button_profileLevel"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_audio_codec"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.audioCodecModel.txt}"
+                    android:onClick="@{()->videoProfileModelView.audioCodecModel.onClick()}"
+                    android:id="@+id/button_audioCodec"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                setVisibility="@{videoProfileModelView.hdrModes.visibility}">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_hdr"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.hdrModes.txt}"
+                    android:onClick="@{()->videoProfileModelView.hdrModes.onClick()}"
+                    android:id="@+id/videoHDR"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/vpe_opcode"
+                    android:layout_weight="1"
+                    android:textColor="@color/nextgen_menu_secondary_text" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{videoProfileModelView.opcodeModel.txt}"
+                    android:onClick="@{()->videoProfileModelView.opcodeModel.onClick()}"
+                    android:id="@+id/button_opcode"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vpe_save"
+                    android:id="@+id/button_Save_profile"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vpe_remove"
+                    android:id="@+id/button_delete_profile"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+</layout>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp">
+
+    <data></data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/framelyout_facedrawer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/framelayout_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true">
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/guideHolder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal"></LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/horHolder"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal" />
+
+
+        <glasscam.views.FocusSelector
+            android:id="@+id/imageView_Crosshair"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/imageView_meteringarea"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@drawable/exposure_metering"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/info_overlay"
+            layout="@layout/nextgen_cameraui_info_overlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+
+        <TextView
+            android:id="@+id/textView_usermessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/cameraui_settings_margin_left"
+            android:layout_marginRight="@dimen/cameraui_shuttericon_size"
+            android:background="@color/menuBackgColor"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@android:color/black"
+            android:visibility="gone" />
+
+        <FrameLayout
+            android:id="@+id/histoviewholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:layout_height="60dp"
+            tools:layout_width="120dp">
+            <glasscam.cam.histogram.MyHistogram
+                android:id="@+id/hisotview"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/uiSettingsBackground"
+                android:visibility="gone"
+                tools:layout_height="60dp"
+                tools:layout_width="120dp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/histoviewholdercamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/histoviewholder"
+            tools:layout_height="60dp"
+            tools:layout_width="120dp">
+
+            <glasscam.cam.histogram.MyHistogram
+                android:id="@+id/hisotviewcamera"
+                android:layout_width="120dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/uiSettingsBackground"
+                android:visibility="gone"
+                tools:layout_height="60dp"
+                tools:layout_width="120dp" />
+        </FrameLayout>
+
+
+
+        <ImageView
+            android:id="@+id/imageView_waveform"
+            android:layout_width="@dimen/cameraui_waveform_width"
+            android:layout_height="@dimen/cameraui_waveform_height"
+            android:layout_marginLeft="@dimen/cameraui_waveform_margin_left"
+            android:layout_marginTop="@dimen/cameraui_waveform_margin_top"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:rotation="270"
+            android:scaleType="fitXY"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <LinearLayout
+            android:id="@+id/right_top_holder"
+            android:layout_width="@dimen/nextgen_cameraui_textswitch"
+            android:layout_height="match_parent"
+            android:layout_below="@id/shutter_button"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:layout_toLeftOf="@id/right_ui_items_bottom"
+            android:background="@color/black_overlay"
+            android:gravity="top"
+            android:orientation="vertical"
+            tools:layout_height="match_parent"
+            tools:layout_width="@dimen/nextgen_cameraui_textswitch" />
+
+        <LinearLayout
+            android:id="@+id/linearlayout_previewpostprocessingmodes"
+            android:layout_width="@dimen/nextgen_cameraui_textswitch"
+            android:layout_height="match_parent"
+            android:layout_above="@id/shutter_button"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentBottom="false"
+            android:layout_toLeftOf="@id/left_ui_holder"
+            android:background="@color/black_overlay"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            tools:layout_height="match_parent"
+            tools:layout_width="@dimen/nextgen_cameraui_textswitch" />
+
+        <!-- Batch 2: the shutter is centred over the two 56dp cell columns beside it
+             ((2*56 - 72) / 2 = 20dp), so the grid reads as one object around it. It stays
+             vertically centred with two cell rows above and two below (the optimizer's runner-up
+             arrangement; its winner needed three rows below, which clip on a 360dp screen). -->
+        <glasscam.views.shutter.ShutterButton
+            android:id="@+id/shutter_button"
+            android:layout_width="@dimen/nextgen_shutterbutton_size"
+            android:layout_height="@dimen/nextgen_shutterbutton_size"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:id="@+id/right_ui_items_bottom"
+            android:layout_width="@dimen/nextgen_cameraui_textswitch"
+            android:layout_height="match_parent"
+            android:layout_below="@id/shutter_button"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:background="@color/black_overlay"
+            android:gravity="top"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/left_ui_holder"
+            android:layout_width="@dimen/nextgen_cameraui_textswitch"
+            android:layout_height="match_parent"
+            android:layout_above="@id/shutter_button"
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentRight="true"
+            android:background="@color/black_overlay"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <!-- Batch 3 (2026-09-16): a visible way into the settings. The drawer was reachable only by
+             the left-to-right swipe the help overlay teaches; every reference app has a gear. It
+             sits in the otherwise empty bottom-left of the letterbox band, 56x48dp like the
+             column cells. -->
+        <TextView
+            android:id="@+id/button_settings"
+            android:layout_width="@dimen/nextgen_cameraui_textswitch"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="@string/settings_open"
+            android:text="@string/settings_gear_glyph"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="26sp"
+            android:shadowColor="@color/black_overlay"
+            android:shadowRadius="3" />
+        <FrameLayout
+            android:id="@+id/manualModesHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true" />
+
+
+        <FrameLayout
+            android:id="@+id/cameraui_values_fragment_holder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="26dp"
+            android:layout_toLeftOf="@id/shutter_button" />
+
+        <glasscam.views.CurveViewControl
+            android:id="@+id/curveView"
+            android:layout_width="@dimen/curveViewWidth"
+            android:layout_height="@dimen/curveViewHeight"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="false"
+            android:layout_marginBottom="20dp"
+            android:layout_toLeftOf="@id/shutter_button"
+            android:background="@color/uiSettingsBackground" />
+
+        <FrameLayout
+            android:id="@+id/helpfragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Timelapse frame-rate stepper (SettingsChildMenuTimeLapseFrames). Before the 2026-09-16 critique
+     this row was a bare "+  -  30.0 fps" with no label at all. It carries the same header/
+     description pair as nextgen_setting_item.xml; the 48 dp -/+ targets and the lime value sit on
+     the header line (compact form chosen by the settings-panel optimizer run: the tall form was
+     the one cell that left a gap beside its neighbour in the two-column list). -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/nextgen_settings_row_min_height"
+    android:paddingStart="@dimen/settings_row_padding_horizontal"
+    android:paddingEnd="@dimen/settings_row_padding_horizontal"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:text="@string/setting_timelapseframes_header"
+            android:textColor="@color/nextgen_menu_right_text"
+            android:textSize="@dimen/settings_menu_item_header"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/button_minus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/tap_min"
+            android:contentDescription="@string/setting_timelapseframes_decrease"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/editText_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="72dp"
+            android:gravity="center"
+            android:textColor="@color/nextgen_setting_value"
+            android:textSize="@dimen/settings_menu_item_header_value" />
+
+        <Button
+            android:id="@+id/button_plus"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/tap_plus"
+            android:contentDescription="@string/setting_timelapseframes_increase"
+            android:text="" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/setting_timelapseframes_description"
+        android:textColor="@color/nextgen_menu_secondary_text"
+        android:textSize="@dimen/settings_menu_item_description" />
+</LinearLayout>

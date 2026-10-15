@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cameraui_shuttericon_size">90dp</dimen>
+    <dimen name="cameraui_settings_margin_left">55dp</dimen>
+
+    <dimen name="cameraui_infooverlay_textsize">10sp</dimen>
+    <dimen name="cameraui_shutter_timer_textsize">12sp</dimen>   <!-- recording timer on the shutter (Batch 2) -->
+    <dimen name="cameraui_infooverlay_textmargin">3dp</dimen>
+    <dimen name="cameraui_focusselector_width">80dp</dimen>
+
+    <dimen name="cameraui_settingschild_width">50dp</dimen>
+    <dimen name="cameraui_settingschild_height">48dp</dimen>
+    <dimen name="horizon_gauge_width">250dp</dimen>
+    <dimen name="menu_margin">3dp</dimen>
+
+    <!-- Waveform overlay (imageView_waveform in cameraui_fragment.xml and
+         nextgen_cameraui_fragment.xml). Rotated 270 degrees and offset with a
+         negative left margin so it sits directly under the histogram sibling
+         (id/hisotview). Width, height, and both margins are pulled out here as
+         a group, not just the width, because a sw600dp override scales them
+         together by the same factor; see values-sw600dp/dimens.xml. Changing
+         only the size while leaving the margins fixed would slide the overlay
+         out of alignment with the histogram on larger screens; scaling all four
+         by the same ratio keeps its position relative to the histogram the way
+         it was tuned here. -->
+    <dimen name="cameraui_waveform_width">290dp</dimen>
+    <dimen name="cameraui_waveform_height">120dp</dimen>
+    <dimen name="cameraui_waveform_margin_left">-79dp</dimen>
+    <dimen name="cameraui_waveform_margin_top">165dp</dimen>
+
+    <dimen name="image_thumbnails_size">90dp</dimen>
+
+    <dimen name="cameraui_manual_fragment_rotatingseekbar_width">72dp</dimen>
+    <dimen name="cameraui_manualbuttonholder_margin_left">55dp</dimen>
+    <dimen name="cameraui_manualbuttonholder_height">50dp</dimen>
+
+    <dimen name="image_thumbnail_size">130dp</dimen>
+    <dimen name="image_thumbnail_size_grid">130dp</dimen>
+    <dimen name="glasscamviewer_screenslide_topBarItemMargine">10dp</dimen>
+    <dimen name="glasscamviewer_screenslide_exifInfoHeight">20dp</dimen>
+    <dimen name="glasscamviewer_screenslide_exifInfoItemMargine">4dp</dimen>
+    <dimen name="glasscamviewer_topbar_height">48dp</dimen>   <!-- Batch 2: viewer buttons were 40dp -->
+    <dimen name="glasscamviewer_screenslide_histogram_width">260dp</dimen>
+    <dimen name="glasscamviewer_screenslide_histogram_height">100dp</dimen>
+    <dimen name="app_icon_size">48dp</dimen>   <!-- Batch 2: gallery bar buttons were 30dp -->
+
+
+    <!-- Settings row text sizes. Authored in sp (NOT dp) so they honour the system font-scale
+         accessibility setting - dp text stays pinned and does not grow, which fails low-vision
+         users. These are the single source of truth for every NextGen settings row; the
+         values-sw600dp bucket scales them up for tablets/foldables. -->
+    <dimen name="settings_menu_item_description">12sp</dimen>
+    <dimen name="settings_menu_item_header_value">14sp</dimen>
+    <dimen name="settings_menu_item_header">16sp</dimen>
+
+    <!-- NextGen settings panel styling tokens -->
+    <dimen name="nextgen_settings_corner_radius">16dp</dimen>
+    <dimen name="settings_row_padding_horizontal">12dp</dimen>
+    <dimen name="settings_row_padding_vertical">8dp</dimen>
+    <!-- every settings row is at least this tall (header + two description lines), so the
+         two-column grid has no gap beside a shorter neighbour (optimizer run 2026-09-16) -->
+    <dimen name="nextgen_settings_row_min_height">76dp</dimen>
+    <dimen name="curveViewWidth">300dp</dimen>
+    <dimen name="curveViewHeight">300dp</dimen>
+    <!-- 48dp, the T7 floor (fresh-eyes 2026-09-28: was 30dp, nine curve-view buttons under it) -->
+    <dimen name="curveViewButtonHeight">48dp</dimen>
+
+    <!-- Shutter-column cell and shutter size (Batch 2, 2026-09-16, optimizer #1648): 56dp cells so
+         every glyph is a compliant target (they were 30x29dp in a 40dp column), 72dp shutter. -->
+    <dimen name="nextgen_cameraui_textswitch">56dp</dimen>
+    <!-- value scale beside the column (4.3.91): two nextgen_cameraui_textswitch cells + an 8dp gap -->
+    <dimen name="nextgen_value_scale_margin_end">120dp</dimen>
+    <dimen name="nextgen_shutterbutton_size">72dp</dimen>
+    <dimen name="nextgen_gallery_thumb_size">44dp</dimen>
+    <dimen name="nextgen_gallery_thumb_radius">8dp</dimen>
+</resources>

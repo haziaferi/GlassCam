@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Switch track tint for the NextGen settings toggles. Semi-transparent so it reads on the
+     translucent panel; lime when on, neutral white when off. android:alpha on a color-state
+     item requires API 23+ (minSdk is 30). -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true" android:color="@color/manual_button_active" android:alpha="0.5" />
+    <item android:color="@color/nextgen_switch_track_off" />
+</selector>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Section label inside a settings tab (Batch 2, 2026-09-16). The seven-tab strip did not fit the
+     phone panel, so Raw and Interval became sections of the Picture tab; this row is the divider
+     between them: a hairline in the outline colour, then a small tracked uppercase label in the
+     secondary text colour. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/settings_row_padding_horizontal"
+    android:paddingEnd="@dimen/settings_row_padding_horizontal"
+    android:paddingTop="16dp"
+    android:paddingBottom="4dp">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/nextgen_settings_outline" />
+
+    <TextView
+        android:id="@+id/textView_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:letterSpacing="0.08"
+        android:textAllCaps="true"
+        android:textColor="@color/nextgen_menu_secondary_text"
+        android:textSize="@dimen/settings_menu_item_description"
+        android:textStyle="bold" />
+</LinearLayout>
