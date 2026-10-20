@@ -50,19 +50,14 @@ public class NextGenSettingItemAdapterTools
         {
             ParameterInterface p = null;
             AbstractSettingMode s = null;
-            if (conf.getHeader() == R.string.setting_dump_vendor_keys_header) {
-                if (cameraApiManager.getCamera() instanceof Camera2)
+            if (conf.getHeader() == R.string.setting_savecaminfo_header) {
+                // one row for both APIs (owner, purpose map 2026-10-20): Camera2 dumps the vendor keys,
+                // Camera1 saves the driver's parameter string; any other camera has nothing to save
+                if (cameraApiManager.getCamera() instanceof Camera2 || settingsManager.getCamApi().equals(SettingsManager.API_1))
                     validList.add(conf);
             }
             else if (conf.getHeader() == R.string.setting_api_header)
                 validList.add(conf);
-            else if (conf.getHeader() == R.string.setting_savecamparams_header) {
-                // Camera1 only: SaveCameraParametersClick casts to the Camera1 CameraHolder. With the
-                // API test inside the else-if condition, Camera2 fell through to the key == null branch
-                // below and got a row that threw ClassCastException on tap (fresh-eyes 2026-09-28)
-                if (settingsManager.getCamApi().equals(SettingsManager.API_1))
-                    validList.add(conf);
-            }
             else if (conf.getKey() == SettingKeys.USE_GLASSCAM_AE || conf.getKey() == SettingKeys.MAX_ISO || conf.getKey() == SettingKeys.MIN_ISO || conf.getKey() == SettingKeys.MAX_EXPOSURE || conf.getKey() == SettingKeys.MIN_EXPOSURE)
             {
                 if(settingsManager.getGlobal(SettingKeys.PREVIEW_POST_PROCESSING_MODE) != null)
@@ -128,12 +123,13 @@ public class NextGenSettingItemAdapterTools
         if (key.getHeader() == R.string.setting_sdcard_header) {
             ((SDModeParameter)cameraApiManager.getCamera().getParameterHandler().get(SettingKeys.SD_SAVE_LOCATION)).setContext(context);
         }
-        if (key.getHeader() == R.string.setting_savecamparams_header)
-            return NextGenSettingButton.getInstance(context,key.getHeader(),key.getDescription(), new SaveCameraParametersClick(cameraApiManager,settingsManager,context));
+        if (key.getHeader() == R.string.setting_savecaminfo_header)
+            return NextGenSettingButton.getInstance(context, key.getHeader(), key.getDescription(),
+                    cameraApiManager.getCamera() instanceof Camera2
+                            ? new Camera2VendorButtonClick((Camera2) cameraApiManager.getCamera())
+                            : new SaveCameraParametersClick(cameraApiManager, settingsManager, context));
         if (key.getHeader() == R.string.setting_featuredetector_header)
             return NextGenSettingButton.getInstance(context,R.string.setting_featuredetector_header,R.string.setting_featuredetector_description, new RunFeatureDetectorClick());
-        if (key.getHeader() == R.string.setting_dump_vendor_keys_header && cameraApiManager.getCamera() instanceof Camera2)
-            return NextGenSettingButton.getInstance(context,R.string.setting_dump_vendor_keys_header,R.string.setting_dump_vendor_keys_description, new Camera2VendorButtonClick((Camera2) cameraApiManager.getCamera()));
         if (key.getHeader() == R.string.setting_api_header)
             return NextGenSettingItem.getInstance(context,R.string.setting_api_header,R.string.setting_api_description,new ApiParameter(settingsManager,cameraApiManager));
 

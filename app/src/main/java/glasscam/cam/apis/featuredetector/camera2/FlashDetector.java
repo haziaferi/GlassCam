@@ -26,6 +26,17 @@ public class FlashDetector extends BaseParameter2Detector {
             settingsManager.get(SettingKeys.FLASH_MODE).setIsSupported(flashavail);
             if (flashavail) {
                 String[] lookupar = GlassCamApplication.getContext().getResources().getStringArray(R.array.flashextModes);
+                // red-eye pre-flash moved here from the Auto Exposure Mode row (owner, purpose map 2026-10-20)
+                int[] aeModes = characteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_MODES);
+                boolean redEye = false;
+                if (aeModes != null)
+                    for (int m : aeModes)
+                        redEye |= m == CameraCharacteristics.CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE;
+                if (redEye) {
+                    String[] withRedEye = java.util.Arrays.copyOf(lookupar, lookupar.length + 1);
+                    withRedEye[lookupar.length] = GlassCamApplication.getStringFromRessources(R.string.font_flash_redeye);
+                    lookupar = withRedEye;
+                }
                 settingsManager.get(SettingKeys.FLASH_MODE).setValues(lookupar);
                 settingsManager.get(SettingKeys.FLASH_MODE).set(GlassCamApplication.getStringFromRessources(R.string.font_flash_off));
             }

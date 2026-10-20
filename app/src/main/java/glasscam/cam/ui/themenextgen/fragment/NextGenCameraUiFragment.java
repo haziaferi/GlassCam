@@ -210,7 +210,9 @@ public class NextGenCameraUiFragment extends Fragment implements
             addUiTextSwitchWithValue(aboveLeft, (AbstractParameter) parameterHandler.get(SettingKeys.CAMERA_SWITCH),GlassCamApplication.getStringFromRessources(R.string.font_camera), onNextGenButtonClick);
             addUiTextSwitchWithValue(aboveLeft, (AbstractParameter) parameterHandler.get(SettingKeys.SELF_TIMER),GlassCamApplication.getStringFromRessources(R.string.font_exposuretime),onNextGenButtonClick);
 
-            if (parameterHandler.get(SettingKeys.HISTOGRAM) != null)
+            // one histogram button (owner, purpose map 2026-10-20): the hardware histogram where the
+            // phone has one, the app's own (OpenGL preview only) where it does not
+            if (parameterHandler.get(SettingKeys.HISTOGRAM) != null && parameterHandler.get(SettingKeys.HISTOGRAM_STATS_QCOM) == null)
                 addUiTextSwitch(aboveRight, (BooleanSettingModeInterface) parameterHandler.get(SettingKeys.HISTOGRAM), GlassCamApplication.getStringFromRessources(R.string.font_flash_histogram));
             if (parameterHandler.get(SettingKeys.FOCUSPEAK) != null)
                 addUiTextSwitch(aboveRight, (BooleanSettingModeInterface) parameterHandler.get(SettingKeys.FOCUSPEAK), GlassCamApplication.getStringFromRessources(R.string.font_focuspeak_on));

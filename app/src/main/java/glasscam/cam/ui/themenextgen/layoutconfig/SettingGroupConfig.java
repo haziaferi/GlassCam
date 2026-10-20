@@ -27,11 +27,9 @@ public class SettingGroupConfig
         group.add(new SettingItemConfig(SettingKeys.PICTURE_SIZE, R.string.setting_picturesize_header, R.string.setting_picturesize_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.PICTURE_FORMAT, R.string.setting_pictureformat_header, R.string.setting_pictureformat_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.YUV_SIZE, R.string.setting_yuvsize_header, R.string.setting_yuvsize_description,false, SettingItemConfig.ViewType.Text));
-        group.add(new SettingItemConfig(SettingKeys.SECONDARY_SENSOR_SIZE, R.string.setting_secondarypicturesize_header, R.string.setting_secondarypicturesize_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.PHYSICAL_CAMERA_ID, R.string.setting_physicalcamera_header, R.string.setting_physicalcamera_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.JPEG_QUALITY, R.string.setting_jpegquality_header, R.string.setting_jpegquality_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.MFNR, R.string.setting_mfnr_header,R.string.setting_mfnr_description,false, SettingItemConfig.ViewType.Boolean));
-        group.add(new SettingItemConfig(SettingKeys.XIAOMI_MFNR, R.string.setting_xiaomimfnr_header,R.string.setting_mfnr_description,false, SettingItemConfig.ViewType.Boolean));
         group.add(new SettingItemConfig(SettingKeys.MTK_AOV_MODE, R.string.setting_mtkaov_header,R.string.setting_mtkaov_description,false, SettingItemConfig.ViewType.Text));
         // Batch 2 (2026-09-16): the Raw and Interval tabs were merged here as sections so the tab
         // strip held five tabs on a phone. Batch 4 removed the tabs (one list, GROUP_ALL); Raw and
@@ -74,10 +72,9 @@ public class SettingGroupConfig
         group.add(new SettingItemConfig(SettingKeys.TOUCH_TO_CAPTURE,R.string.setting_touchtocapture_header, R.string.setting_touchtocapture_description,true, SettingItemConfig.ViewType.Boolean));
         group.add(new SettingItemConfig(SettingKeys.PLAY_SHUTTER_SOUND,R.string.setting_playshuttersound_header, R.string.setting_playshuttersound_description,true, SettingItemConfig.ViewType.Boolean));
         group.add(new SettingItemConfig(SettingKeys.FOCUS_STACK_MERGE,R.string.setting_focusstackmerge_header, R.string.setting_focusstackmerge_description,true, SettingItemConfig.ViewType.Boolean));
-        group.add(new SettingItemConfig(null,R.string.setting_savecamparams_header,R.string.setting_savecamparams_description,true, SettingItemConfig.ViewType.Custom));
+        group.add(new SettingItemConfig(null,R.string.setting_savecaminfo_header,R.string.setting_savecaminfo_description,true, SettingItemConfig.ViewType.Custom));
         group.add(new SettingItemConfig(SettingKeys.OPEN_CAMERA_1_LEGACY,R.string.setting_opencameralegacy_header, R.string.setting_opencameralegacy_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(null,R.string.setting_featuredetector_header,R.string.setting_featuredetector_description,false, SettingItemConfig.ViewType.Custom));
-        group.add(new SettingItemConfig(null, R.string.setting_dump_vendor_keys_header,R.string.setting_dump_vendor_keys_description,true, SettingItemConfig.ViewType.Custom));
         // Theme picker removed: the `themes` array has exactly one entry (NextGen), so the row was
         // a no-op dead control - re-selecting the only value just re-applied the active theme. The
         // SettingKeys.THEME key and ThemeMode parameter remain for a future full theme-system
@@ -116,7 +113,6 @@ public class SettingGroupConfig
         group.add(new SettingItemConfig(SettingKeys.SCENE_MODE, R.string.setting_scene_header,R.string.setting_scene_description ,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.WHITE_BALANCE_MODE, R.string.uisetting_wb_header,R.string.setting_wb_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.COLOR_MODE, R.string.setting_color_header, R.string.setting_color_description,false, SettingItemConfig.ViewType.Text));
-        group.add(new SettingItemConfig(SettingKeys.COLOR_CORRECTION_MODE, R.string.setting_colorcorrection_header, R.string.setting_colorcorrection_description,false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.TONE_MAP_MODE, R.string.setting_tonemap_header, R.string.setting_tonemap_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.CONTROL_MODE, R.string.setting_controlmode_header, R.string.setting_controlmode_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.RED_EYE, R.string.setting_redeye_header, R.string.setting_redeye_description, false, SettingItemConfig.ViewType.Text));
@@ -124,7 +120,6 @@ public class SettingGroupConfig
         group.add(new SettingItemConfig(SettingKeys.IMAGE_POST_PROCESSING, R.string.setting_ipp_header, R.string.setting_ipp_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.LENS_SHADE, R.string.setting_lensshade_header, R.string.setting_lensshade_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.DENOISE, R.string.setting_waveletdenoise_header, R.string.setting_waveletdenoise_description, false, SettingItemConfig.ViewType.Text));
-        group.add(new SettingItemConfig(SettingKeys.SCENE_DETECT, R.string.setting_scenedec_header, R.string.setting_scenedec_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.TNR, R.string.setting_temporaldenoise_header, R.string.setting_temporaldenoise_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.TNR_V, R.string.setting_temporaldenoiseV_header, R.string.setting_temporaldenoiseV_description, false, SettingItemConfig.ViewType.Text));
         group.add(new SettingItemConfig(SettingKeys.PDAF, R.string.setting_pdaf_header, R.string.setting_pdaf_description, false, SettingItemConfig.ViewType.Text));

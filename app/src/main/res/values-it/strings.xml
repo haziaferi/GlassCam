@@ -62,13 +62,11 @@
     <string name="dngstack_no_dng">Seleziona i file DNG da unire</string>
     <string name="storage_glasscam_folder_failed">Nulla è stato salvato: impossibile creare la cartella GlassCam nella memoria scelta. Scegli di nuovo la cartella in Posizione memoria.</string>
     <string name="setting_color_header">Effetto colore:</string>
-    <string name="setting_colorcorrection_description">Cambiare in manuale o automatico</string>
-    <string name="setting_colorcorrection_header">Temperatura di colore correlata (CCT):</string>
     <string name="setting_controlmode_description">Controlla le funzioni principali della fotocamera, disabilitare per un controllo manuale</string>
     <string name="setting_controlmode_header">Controllo fotocamera:</string>
     <string name="setting_dis_description">Sposta l\'immagine per contrastare il movimento</string>
     <string name="setting_dis_header">Stabilizzazione digitale:</string>
-    <string name="setting_edge_header">Vignettatura:</string>
+    <string name="setting_edge_header">Nitidezza dei bordi (fotocamera):</string>
     <string name="setting_glasscam_">Impostazioni GlassCam</string>
     <string name="setting_guide_header">Griglia:</string>
     <string name="setting_guide_description">Guide di composizione</string>
@@ -105,11 +103,8 @@
     <string name="setting_picturesize_header">Dimensione:</string>
     <string name="setting_redeye_description">Emette una luce temporanea prima del flash</string>
     <string name="setting_redeye_header">Riduzione occhi rossi:</string>
-    <string name="setting_savecamparams_header">Salva parametri fotocamera</string>
     <string name="setting_scene_description">Seleziona la scena che corrisponde all\'attuale scenario</string>
     <string name="setting_scene_header">Scena:</string>
-    <string name="setting_scenedec_description">Cambia modalità scena automatica</string>
-    <string name="setting_scenedec_header">Rilevamento scena:</string>
         <string name="setting_sdcard_header">Posizione memoria:</string>
     <string name="setting_temporaldenoise_description">Riduzione rumore per i video, non usarlo con wavelet!</string>
     <string name="setting_temporaldenoise_header">Riduzione rumore temporanea:</string>
@@ -215,4 +210,9 @@
     <string name="audio_source_label_voice_recognition">Riconoscimento vocale</string>
     <string name="audio_source_label_voice_communication">Comunicazione vocale</string>
     <string name="audio_source_label_unprocessed">Non elaborata</string>
+    <string name="setting_mfnr_description">Riduzione del rumore multi-fotogramma, quella del telefono (Qualcomm o Xiaomi)</string>
+    <string name="setting_edge_description">La nitidezza dei bordi applicata dalla fotocamera: off, veloce o alta qualità. Nitidezza nella barra manuale ne regola l\'intensità, sui telefoni che la offrono.</string>
+    <string name="setting_savecaminfo_header">Salva info fotocamera</string>
+    <string name="setting_savecaminfo_description">Scrive in un file di testo i parametri (Camera1) o le chiavi del produttore (Camera2) di questa fotocamera, per le segnalazioni di errori</string>
+    <string name="key_capture_started">Scatto in corso</string>
 </resources>

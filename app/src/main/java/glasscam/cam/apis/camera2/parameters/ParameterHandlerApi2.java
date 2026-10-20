@@ -194,7 +194,8 @@ public class ParameterHandlerApi2 extends AbstractParameterHandler<Camera2>
         if (settingsManager.get(SettingKeys.MFNR).isSupported())
             add(SettingKeys.MFNR, new MFNR(cameraUiWrapper));
         if (settingsManager.get(SettingKeys.XIAOMI_MFNR).isSupported())
-            add(SettingKeys.XIAOMI_MFNR, new XiaomiMfnr(cameraUiWrapper));
+            // one MFNR row (owner, purpose map 2026-10-20): Xiaomi's key stands in where Qualcomm's is missing
+            add(settingsManager.get(SettingKeys.MFNR).isSupported() ? SettingKeys.XIAOMI_MFNR : SettingKeys.MFNR, new XiaomiMfnr(cameraUiWrapper));
 
         if (settingsManager.get(SettingKeys.COLOR_CORRECTION_MODE).isSupported() ) {
             try {

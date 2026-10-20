@@ -1,6 +1,6 @@
 {
  "title": "Purpose map",
- "intro": "GlassCam's screens, capture modes, camera-screen controls, gallery buttons and settings, by what they are for. Drafted 2026-10-20 to find redundancy: the six purposes (set E6) were scored against eight reference camera apps (coverage, exclusivity, balance, GlassCam fit, potential improvement) and chosen by the owner after a mock-up; the granularity (G4) lists every control, and settings rows by section except the rows in a redundancy-candidate pair. `refs` names the reference apps that do the same job; `overlaps` names the map entries it is a redundancy candidate with.",
+ "intro": "GlassCam's screens, capture modes, camera-screen controls, gallery buttons and settings, by what they are for. Drafted 2026-10-20 to find redundancy: the six purposes (set E6) were scored against eight reference camera apps (coverage, exclusivity, balance, GlassCam fit, potential improvement) and chosen by the owner after a mock-up; the granularity (G4) lists every control, and settings rows by section except the rows in a redundancy-candidate pair. `refs` names the reference apps that do the same job; `overlaps` names the map entries it is a redundancy candidate with. 4.3.95 built the owner's decisions on the candidates (docs/purpose/findings-2026-10-20.md): one histogram button, flash set on the Flash toggle only, one MFNR row, one Save camera info row, edge sharpening explained; three rows that could never show were removed.",
  "purposes": [
   {
    "id": "P1",
@@ -409,7 +409,7 @@
     "column:HISTOGRAM"
    ],
    "where": "camera screen, shutter column",
-   "does": "Shows a live histogram of brightness on the preview.",
+   "does": "Shows a live histogram of brightness on the preview. Since 4.3.95 shown only on phones without the hardware histogram.",
    "api": "app",
    "refs": [
     "freedcam",
@@ -417,9 +417,7 @@
     "opencamera",
     "proshot"
    ],
-   "overlaps": [
-    "column:HISTOGRAM_STATS_QCOM"
-   ]
+   "overlaps": []
   },
   {
    "id": "column:FOCUSPEAK",
@@ -463,12 +461,10 @@
     "column:HISTOGRAM_STATS_QCOM"
    ],
    "where": "camera screen, shutter column",
-   "does": "Shows a histogram computed by the camera hardware itself.",
+   "does": "Shows a histogram computed by the camera hardware itself. Since 4.3.95 the only histogram button on phones that have it.",
    "api": "camera2",
    "refs": [],
-   "overlaps": [
-    "column:HISTOGRAM"
-   ]
+   "overlaps": []
   },
   {
    "id": "column:TONE_CURVE_PARAMETER",
@@ -558,7 +554,7 @@
     "column:FLASH_MODE"
    ],
    "where": "camera screen, shutter column",
-   "does": "Sets the flash: off, on, auto or torch.",
+   "does": "Sets the flash: off, auto, always, torch, and auto with red-eye pre-flash. Since 4.3.95 the only place to set flash.",
    "api": "both",
    "refs": [
     "fossify",
@@ -569,9 +565,7 @@
     "opencamera",
     "proshot"
    ],
-   "overlaps": [
-    "setting:EXPOSURE_MODE"
-   ]
+   "overlaps": []
   },
   {
    "id": "strip:M_ZOOM",
@@ -715,7 +709,6 @@
     "proshot"
    ],
    "overlaps": [
-    "setting:COLOR_CORRECTION_MODE",
     "setting:WHITE_BALANCE_MODE"
    ]
   },
@@ -956,7 +949,7 @@
     "setting:MFNR"
    ],
    "where": "settings > Picture",
-   "does": "Merges several frames to reduce noise (multi-frame noise reduction).",
+   "does": "Merges several frames to reduce noise (multi-frame noise reduction). One row since 4.3.95: Xiaomi's key stands in where Qualcomm's is missing.",
    "api": "camera2",
    "refs": [
     "freedcam",
@@ -965,26 +958,7 @@
    ],
    "overlaps": [
     "setting:DENOISE",
-    "setting:TNR",
-    "setting:XIAOMI_MFNR"
-   ]
-  },
-  {
-   "id": "setting:XIAOMI_MFNR",
-   "name": "Xiaomi MNFR",
-   "purpose": "P4",
-   "code": [
-    "setting:XIAOMI_MFNR"
-   ],
-   "where": "settings > Picture",
-   "does": "Xiaomi's multi-frame noise reduction.",
-   "api": "camera2",
-   "refs": [
-    "freedcam"
-   ],
-   "overlaps": [
-    "setting:DENOISE",
-    "setting:MFNR"
+    "setting:TNR"
    ]
   },
   {
@@ -1093,38 +1067,19 @@
    ]
   },
   {
-   "id": "setting:@setting_savecamparams_header",
-   "name": "Save Camera Parameters",
+   "id": "setting:@setting_savecaminfo_header",
+   "name": "Save camera info",
    "purpose": "P6",
    "code": [
-    "setting:@setting_savecamparams_header"
+    "setting:@setting_savecaminfo_header"
    ],
    "where": "settings > Etc",
-   "does": "Saves the camera's parameters to a file for debugging.",
-   "api": "app",
+   "does": "Writes this camera's parameters (Camera1) or vendor keys (Camera2) to a text file, for bug reports. One row for both APIs since 4.3.95 (was Save Camera Parameters + Dump vendor keys).",
+   "api": "both",
    "refs": [
     "freedcam"
    ],
-   "overlaps": [
-    "setting:@setting_dump_vendor_keys_header"
-   ]
-  },
-  {
-   "id": "setting:@setting_dump_vendor_keys_header",
-   "name": "Dump vendor keys",
-   "purpose": "P6",
-   "code": [
-    "setting:@setting_dump_vendor_keys_header"
-   ],
-   "where": "settings > Etc",
-   "does": "Dumps the phone's vendor camera keys to a file for debugging.",
-   "api": "app",
-   "refs": [
-    "freedcam"
-   ],
-   "overlaps": [
-    "setting:@setting_savecamparams_header"
-   ]
+   "overlaps": []
   },
   {
    "id": "setting:SWITCH_ASPECT_RATIO",
@@ -1217,23 +1172,6 @@
    ]
   },
   {
-   "id": "setting:COLOR_CORRECTION_MODE",
-   "name": "Correlated Color Temperature",
-   "purpose": "P3",
-   "code": [
-    "setting:COLOR_CORRECTION_MODE"
-   ],
-   "where": "settings > Camera",
-   "does": "Sets how the camera corrects colour (auto, manual transform matrix).",
-   "api": "camera2",
-   "refs": [
-    "freedcam"
-   ],
-   "overlaps": [
-    "strip:M_WHITEBALANCE"
-   ]
-  },
-  {
    "id": "setting:TONE_MAP_MODE",
    "name": "Tonemap",
    "purpose": "P3",
@@ -1304,8 +1242,7 @@
    "overlaps": [
     "setting:CDS_MODE",
     "setting:MFNR",
-    "setting:TNR",
-    "setting:XIAOMI_MFNR"
+    "setting:TNR"
    ]
   },
   {
@@ -1403,7 +1340,7 @@
   },
   {
    "id": "setting:EDGE_MODE",
-   "name": "Edge Mode",
+   "name": "Edge sharpening (camera)",
    "purpose": "P3",
    "code": [
     "setting:EDGE_MODE"
@@ -1466,13 +1403,12 @@
     "setting:EXPOSURE_MODE"
    ],
    "where": "settings > Camera",
-   "does": "Sets the automatic exposure mode (on, off, with flash...).",
+   "does": "Turns the camera's automatic exposure on or off (its flash variants moved to the Flash toggle in 4.3.95).",
    "api": "both",
    "refs": [
     "freedcam"
    ],
    "overlaps": [
-    "column:FLASH_MODE",
     "setting:AE_METERING",
     "setting:CONTROL_MODE",
     "setting:RED_EYE",
@@ -1564,7 +1500,6 @@
     "setting:ANTI_BANDING_MODE",
     "setting:IMAGE_POST_PROCESSING",
     "setting:LENS_SHADE",
-    "setting:SCENE_DETECT",
     "setting:TNR_V",
     "setting:PDAF",
     "setting:TRUE_POTRAIT",
@@ -1630,7 +1565,6 @@
    "purpose": "P3",
    "code": [
     "setting:PICTURE_FORMAT",
-    "setting:SECONDARY_SENSOR_SIZE",
     "setting:JPEG_QUALITY",
     "setting:MTK_AOV_MODE"
    ],
