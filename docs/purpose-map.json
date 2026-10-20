@@ -1,0 +1,1715 @@
+{
+ "title": "Purpose map",
+ "intro": "GlassCam's screens, capture modes, camera-screen controls, gallery buttons and settings, by what they are for. Drafted 2026-10-20 to find redundancy: the six purposes (set E6) were scored against eight reference camera apps (coverage, exclusivity, balance, GlassCam fit, potential improvement) and chosen by the owner after a mock-up; the granularity (G4) lists every control, and settings rows by section except the rows in a redundancy-candidate pair. `refs` names the reference apps that do the same job; `overlaps` names the map entries it is a redundancy candidate with.",
+ "purposes": [
+  {
+   "id": "P1",
+   "name": "Frame and shoot",
+   "job": "see the scene, pick the lens and the mode, and take the picture"
+  },
+  {
+   "id": "P2",
+   "name": "Control exposure and focus",
+   "job": "get brightness and sharpness right - by hand, or by steering the automatics - and see whether they are right"
+  },
+  {
+   "id": "P3",
+   "name": "Shape the image",
+   "job": "colour, processing, and the file that comes out"
+  },
+  {
+   "id": "P4",
+   "name": "Sequences and video",
+   "job": "many frames for one result, frames over time, and video with its sound"
+  },
+  {
+   "id": "P5",
+   "name": "Review and keep",
+   "job": "look at what was taken, keep it where I want it, and what the file says about it"
+  },
+  {
+   "id": "P6",
+   "name": "Make it work on this phone",
+   "job": "the camera API, phone-specific workarounds, and how the app itself behaves"
+  }
+ ],
+ "screens": [
+  {
+   "id": "activity:ActivityGlassCamMain",
+   "name": "Camera screen",
+   "purpose": "P1",
+   "code": [
+    "activity:ActivityGlassCamMain"
+   ],
+   "where": "screen",
+   "does": "The main camera screen: live preview, shutter, controls and settings.",
+   "api": "app",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "activity:ActivityGlassCamMainSecure",
+   "name": "Camera from the lock screen",
+   "purpose": "P1",
+   "code": [
+    "activity:ActivityGlassCamMainSecure"
+   ],
+   "where": "screen",
+   "does": "Opens the camera from the lock screen without unlocking the phone.",
+   "api": "app",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "macamera",
+    "oneplus",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "activity:ActivityGlassCamShare",
+   "name": "Take a photo for another app",
+   "purpose": "P1",
+   "code": [
+    "activity:ActivityGlassCamShare"
+   ],
+   "where": "screen",
+   "does": "Lets another app ask GlassCam to take a photo and hands the result back.",
+   "api": "app",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "activity:ActivityGlassCamViewer",
+   "name": "GlassGallery",
+   "purpose": "P5",
+   "code": [
+    "activity:ActivityGlassCamViewer"
+   ],
+   "where": "screen",
+   "does": "Gallery to browse, view and delete the photos and videos taken.",
+   "api": "app",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "activity:DngConvertingActivity",
+   "name": "Raw to DNG converter",
+   "purpose": "P5",
+   "code": [
+    "activity:DngConvertingActivity"
+   ],
+   "where": "screen",
+   "does": "Converts raw files into DNG files the person can edit.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:FORCE_RAW_TO_DNG"
+   ]
+  },
+  {
+   "id": "activity:DngStackActivity",
+   "name": "DNG stacker",
+   "purpose": "P4",
+   "code": [
+    "activity:DngStackActivity"
+   ],
+   "where": "screen",
+   "does": "Merges several DNG frames into one stacked DNG.",
+   "api": "app",
+   "refs": [
+    "macamera",
+    "oneplus",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "activity:VideoProfileEditorActivity",
+   "name": "Video profile editor",
+   "purpose": "P4",
+   "code": [
+    "activity:VideoProfileEditorActivity"
+   ],
+   "where": "screen",
+   "does": "Screen to create and edit custom video profiles (resolution, fps, bitrate, codec).",
+   "api": "app",
+   "refs": [
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "module:PictureModuleApi2",
+   "name": "Photo mode",
+   "purpose": "P1",
+   "code": [
+    "module:PictureModuleApi2"
+   ],
+   "where": "capture mode",
+   "does": "Normal photo mode.",
+   "api": "camera2",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "module:VideoModuleApi2",
+   "name": "Video mode",
+   "purpose": "P1",
+   "code": [
+    "module:VideoModuleApi2"
+   ],
+   "where": "capture mode",
+   "does": "Video recording mode.",
+   "api": "camera2",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "module:IntervalApi2",
+   "name": "Interval mode",
+   "purpose": "P4",
+   "code": [
+    "module:IntervalApi2"
+   ],
+   "where": "capture mode",
+   "does": "Interval/timelapse mode: takes a photo every set number of seconds.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "module:AeBracketApi2",
+   "name": "Exposure bracketing mode",
+   "purpose": "P4",
+   "code": [
+    "module:AeBracketApi2"
+   ],
+   "where": "capture mode",
+   "does": "Exposure bracketing mode: several shots at different exposures in one press.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "module:HuaweiAeBracketApi2",
+   "name": "Exposure bracketing mode (Huawei)",
+   "purpose": "P4",
+   "code": [
+    "module:HuaweiAeBracketApi2"
+   ],
+   "where": "capture mode",
+   "does": "Exposure bracketing mode using Huawei's own bracketing support.",
+   "api": "camera2",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "module:AfBracketApi2",
+   "name": "Focus bracketing mode",
+   "purpose": "P4",
+   "code": [
+    "module:AfBracketApi2"
+   ],
+   "where": "capture mode",
+   "does": "Focus bracketing mode: several shots at different focus distances, for focus stacking.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "module:PictureModuleMTK",
+   "name": "Photo mode (MediaTek)",
+   "purpose": "P1",
+   "code": [
+    "module:PictureModuleMTK"
+   ],
+   "where": "capture mode",
+   "does": "Photo mode for MediaTek phones, including their raw capture path.",
+   "api": "camera1",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "module:PictureModule",
+   "name": "Photo mode",
+   "purpose": "P1",
+   "code": [
+    "module:PictureModule"
+   ],
+   "where": "capture mode",
+   "does": "Normal photo mode on the older camera API.",
+   "api": "camera1",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "module:IntervalModuleCamera1",
+   "name": "Interval mode",
+   "purpose": "P4",
+   "code": [
+    "module:IntervalModuleCamera1"
+   ],
+   "where": "capture mode",
+   "does": "Interval/timelapse mode on the older camera API.",
+   "api": "camera1",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "module:VideoModuleG3",
+   "name": "Video mode (LG)",
+   "purpose": "P1",
+   "code": [
+    "module:VideoModuleG3"
+   ],
+   "where": "capture mode",
+   "does": "Video mode for LG phones using LG's own recorder.",
+   "api": "camera1",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "module:VideoModule",
+   "name": "Video mode",
+   "purpose": "P1",
+   "code": [
+    "module:VideoModule"
+   ],
+   "where": "capture mode",
+   "does": "Video recording mode on the older camera API.",
+   "api": "camera1",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "module:BracketModule",
+   "name": "Exposure bracketing mode",
+   "purpose": "P4",
+   "code": [
+    "module:BracketModule"
+   ],
+   "where": "capture mode",
+   "does": "Exposure bracketing mode on the older camera API.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "column:CAMERA_SWITCH",
+   "name": "Camera switch",
+   "purpose": "P1",
+   "code": [
+    "column:CAMERA_SWITCH"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Switches between the back and front camera (and other cameras).",
+   "api": "app",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:DUAL_PRIMARY_CAMERA_MODE",
+    "setting:PHYSICAL_CAMERA_ID"
+   ]
+  },
+  {
+   "id": "column:SELF_TIMER",
+   "name": "Self-timer",
+   "purpose": "P1",
+   "code": [
+    "column:SELF_TIMER"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Sets a countdown before the photo is taken.",
+   "api": "app",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "strip:M_EXPOSURE_TIME"
+   ]
+  },
+  {
+   "id": "column:HISTOGRAM",
+   "name": "Histogram",
+   "purpose": "P2",
+   "code": [
+    "column:HISTOGRAM"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Shows a live histogram of brightness on the preview.",
+   "api": "app",
+   "refs": [
+    "freedcam",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "column:HISTOGRAM_STATS_QCOM"
+   ]
+  },
+  {
+   "id": "column:FOCUSPEAK",
+   "name": "Focus peaking",
+   "purpose": "P2",
+   "code": [
+    "column:FOCUSPEAK"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Highlights the sharp parts of the preview (focus peaking).",
+   "api": "app",
+   "refs": [
+    "freedcam",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "column:CLIPPING",
+   "name": "Clipping (zebras)",
+   "purpose": "P2",
+   "code": [
+    "column:CLIPPING"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Marks over- and under-exposed areas on the preview (zebras).",
+   "api": "app",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "column:HISTOGRAM_STATS_QCOM",
+   "name": "Histogram (camera hardware)",
+   "purpose": "P2",
+   "code": [
+    "column:HISTOGRAM_STATS_QCOM"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Shows a histogram computed by the camera hardware itself.",
+   "api": "camera2",
+   "refs": [],
+   "overlaps": [
+    "column:HISTOGRAM"
+   ]
+  },
+  {
+   "id": "column:TONE_CURVE_PARAMETER",
+   "name": "Tone curve",
+   "purpose": "P3",
+   "code": [
+    "column:TONE_CURVE_PARAMETER"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Opens a tone curve to shape contrast and brightness of the image.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:TONEMAP_SET",
+    "setting:TONE_MAP_MODE",
+    "strip:M_CONTRAST"
+   ]
+  },
+  {
+   "id": "column:FOCUS_MODE",
+   "name": "Focus mode",
+   "purpose": "P2",
+   "code": [
+    "column:FOCUS_MODE"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Chooses the focus mode (auto, continuous, macro, manual, ...).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "opencamera"
+   ],
+   "overlaps": [
+    "strip:M_FOCUS"
+   ]
+  },
+  {
+   "id": "column:MODULE",
+   "name": "Capture mode switch",
+   "purpose": "P1",
+   "code": [
+    "column:MODULE"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Switches capture mode (photo, video, interval, bracketing...).",
+   "api": "both",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "column:EXPOSURE_LOCK",
+   "name": "Exposure lock (AEL)",
+   "purpose": "P2",
+   "code": [
+    "column:EXPOSURE_LOCK"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Locks the automatic exposure so it stops changing.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "column:FLASH_MODE",
+   "name": "Flash",
+   "purpose": "P2",
+   "code": [
+    "column:FLASH_MODE"
+   ],
+   "where": "camera screen, shutter column",
+   "does": "Sets the flash: off, on, auto or torch.",
+   "api": "both",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:EXPOSURE_MODE"
+   ]
+  },
+  {
+   "id": "strip:M_ZOOM",
+   "name": "Zoom",
+   "purpose": "P1",
+   "code": [
+    "strip:M_ZOOM"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Zooms in and out.",
+   "api": "both",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_FOCUS",
+   "name": "Manual focus",
+   "purpose": "P2",
+   "code": [
+    "strip:M_FOCUS"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets focus distance by hand.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "column:FOCUS_MODE"
+   ]
+  },
+  {
+   "id": "strip:M_MANUAL_ISO",
+   "name": "ISO",
+   "purpose": "P2",
+   "code": [
+    "strip:M_MANUAL_ISO"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets ISO (sensor sensitivity) by hand.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:EXPOSURE_MODE"
+   ]
+  },
+  {
+   "id": "strip:M_EXPOSURE_TIME",
+   "name": "Shutter speed",
+   "purpose": "P2",
+   "code": [
+    "strip:M_EXPOSURE_TIME"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets shutter speed by hand.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "column:SELF_TIMER"
+   ]
+  },
+  {
+   "id": "strip:M_EXPOSURE_COMPENSATION",
+   "name": "Exposure compensation (EV)",
+   "purpose": "P2",
+   "code": [
+    "strip:M_EXPOSURE_COMPENSATION"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Makes the automatic exposure brighter or darker (EV).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_APERTURE",
+   "name": "Aperture",
+   "purpose": "P2",
+   "code": [
+    "strip:M_APERTURE"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets the lens aperture on phones with a variable aperture.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_WHITEBALANCE",
+   "name": "White balance (Kelvin)",
+   "purpose": "P3",
+   "code": [
+    "strip:M_WHITEBALANCE"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets white balance colour temperature by hand (Kelvin).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:COLOR_CORRECTION_MODE",
+    "setting:WHITE_BALANCE_MODE"
+   ]
+  },
+  {
+   "id": "strip:M_BURST",
+   "name": "Burst",
+   "purpose": "P4",
+   "code": [
+    "strip:M_BURST"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets how many photos one shutter press takes (burst).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_CONTRAST",
+   "name": "Contrast",
+   "purpose": "P3",
+   "code": [
+    "strip:M_CONTRAST"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets image contrast.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "column:TONE_CURVE_PARAMETER"
+   ]
+  },
+  {
+   "id": "strip:M_Brightness",
+   "name": "Brightness",
+   "purpose": "P3",
+   "code": [
+    "strip:M_Brightness"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets image brightness.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_SATURATION",
+   "name": "Saturation",
+   "purpose": "P3",
+   "code": [
+    "strip:M_SATURATION"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets colour saturation.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "oneplus"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_SHARPNESS",
+   "name": "Sharpness",
+   "purpose": "P3",
+   "code": [
+    "strip:M_SHARPNESS"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets image sharpening.",
+   "api": "both",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:EDGE_MODE"
+   ]
+  },
+  {
+   "id": "strip:M_ZEBRA_HIGH",
+   "name": "Zebra high level",
+   "purpose": "P2",
+   "code": [
+    "strip:M_ZEBRA_HIGH"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets the brightness level above which zebras mark highlights as clipped.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "strip:M_ZEBRA_LOW",
+   "name": "Zebra low level",
+   "purpose": "P2",
+   "code": [
+    "strip:M_ZEBRA_LOW"
+   ],
+   "where": "camera screen, manual strip",
+   "does": "Sets the brightness level below which zebras mark shadows as clipped.",
+   "api": "app",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "setting:TIMELAPSE_FRAMES",
+   "name": "setting:TIMELAPSE_FRAMES",
+   "purpose": "P4",
+   "code": [
+    "setting:TIMELAPSE_FRAMES"
+   ],
+   "where": "settings > Video",
+   "does": "Sets the playback frame rate of the assembled timelapse video.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:INTERVAL_SHUTTER_SLEEP"
+   ]
+  },
+  {
+   "id": "setting:VIDEO_HDR",
+   "name": "Video HDR",
+   "purpose": "P4",
+   "code": [
+    "setting:VIDEO_HDR"
+   ],
+   "where": "settings > Video",
+   "does": "Turns on HDR video recording.",
+   "api": "camera1",
+   "refs": [
+    "freedcam",
+    "oneplus"
+   ],
+   "overlaps": [
+    "setting:HDR_MODE"
+   ]
+  },
+  {
+   "id": "setting:VIDEO_STABILIZATION",
+   "name": "Video Stabilization",
+   "purpose": "P4",
+   "code": [
+    "setting:VIDEO_STABILIZATION"
+   ],
+   "where": "settings > Video",
+   "does": "Turns video stabilisation on or off.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:DIGITAL_IMAGE_STABILIZATION",
+    "setting:OIS_MODE"
+   ]
+  },
+  {
+   "id": "setting:PICTURE_SIZE",
+   "name": "Size",
+   "purpose": "P3",
+   "code": [
+    "setting:PICTURE_SIZE"
+   ],
+   "where": "settings > Picture",
+   "does": "Sets the photo resolution.",
+   "api": "both",
+   "refs": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:RAW_SIZE",
+    "setting:YUV_SIZE"
+   ]
+  },
+  {
+   "id": "setting:YUV_SIZE",
+   "name": "YUV size",
+   "purpose": "P3",
+   "code": [
+    "setting:YUV_SIZE"
+   ],
+   "where": "settings > Picture",
+   "does": "Sets the size of the YUV image stream used for capture.",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:PICTURE_SIZE",
+    "setting:RAW_SIZE"
+   ]
+  },
+  {
+   "id": "setting:PHYSICAL_CAMERA_ID",
+   "name": "Physical Camera",
+   "purpose": "P1",
+   "code": [
+    "setting:PHYSICAL_CAMERA_ID"
+   ],
+   "where": "settings > Picture",
+   "does": "Pins capture to one physical lens instead of letting the phone switch automatically.",
+   "api": "camera2",
+   "refs": [
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "column:CAMERA_SWITCH",
+    "setting:DUAL_PRIMARY_CAMERA_MODE"
+   ]
+  },
+  {
+   "id": "setting:MFNR",
+   "name": "MNFR",
+   "purpose": "P4",
+   "code": [
+    "setting:MFNR"
+   ],
+   "where": "settings > Picture",
+   "does": "Merges several frames to reduce noise (multi-frame noise reduction).",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "oneplus",
+    "opencamera"
+   ],
+   "overlaps": [
+    "setting:DENOISE",
+    "setting:TNR",
+    "setting:XIAOMI_MFNR"
+   ]
+  },
+  {
+   "id": "setting:XIAOMI_MFNR",
+   "name": "Xiaomi MNFR",
+   "purpose": "P4",
+   "code": [
+    "setting:XIAOMI_MFNR"
+   ],
+   "where": "settings > Picture",
+   "does": "Xiaomi's multi-frame noise reduction.",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:DENOISE",
+    "setting:MFNR"
+   ]
+  },
+  {
+   "id": "setting:INTERVAL_SHUTTER_SLEEP",
+   "name": "Shutter fire interval",
+   "purpose": "P4",
+   "code": [
+    "setting:INTERVAL_SHUTTER_SLEEP"
+   ],
+   "where": "settings > Interval",
+   "does": "Sets the time between shots in interval mode.",
+   "api": "app",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": [
+    "setting:TIMELAPSE_FRAMES"
+   ]
+  },
+  {
+   "id": "setting:MATRIX_SET",
+   "name": "CustomMatrix",
+   "purpose": "P3",
+   "code": [
+    "setting:MATRIX_SET"
+   ],
+   "where": "settings > Raw",
+   "does": "Picks a custom colour matrix (DNG profile) for raw files.",
+   "api": "both",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2"
+   ]
+  },
+  {
+   "id": "setting:TONEMAP_SET",
+   "name": "ToneMapProfile",
+   "purpose": "P3",
+   "code": [
+    "setting:TONEMAP_SET"
+   ],
+   "where": "settings > Raw",
+   "does": "Picks the tone curve profile written into DNG files.",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "column:TONE_CURVE_PARAMETER",
+    "setting:TONE_MAP_MODE"
+   ]
+  },
+  {
+   "id": "setting:FORCE_RAW_TO_DNG",
+   "name": "Use GlassCam DngConverter",
+   "purpose": "P3",
+   "code": [
+    "setting:FORCE_RAW_TO_DNG"
+   ],
+   "where": "settings > Raw",
+   "does": "Uses GlassCam's own DNG converter for 16-bit raw.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "activity:DngConvertingActivity"
+   ]
+  },
+  {
+   "id": "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2",
+   "name": "Use custom DNG profile",
+   "purpose": "P3",
+   "code": [
+    "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2"
+   ],
+   "where": "settings > Raw",
+   "does": "Uses the chosen custom DNG colour profile under Camera2.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:MATRIX_SET"
+   ]
+  },
+  {
+   "id": "setting:RAW_SIZE",
+   "name": "Raw size",
+   "purpose": "P3",
+   "code": [
+    "setting:RAW_SIZE"
+   ],
+   "where": "settings > Raw",
+   "does": "Sets the raw image resolution.",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:PICTURE_SIZE",
+    "setting:YUV_SIZE"
+   ]
+  },
+  {
+   "id": "setting:@setting_savecamparams_header",
+   "name": "Save Camera Parameters",
+   "purpose": "P6",
+   "code": [
+    "setting:@setting_savecamparams_header"
+   ],
+   "where": "settings > Etc",
+   "does": "Saves the camera's parameters to a file for debugging.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:@setting_dump_vendor_keys_header"
+   ]
+  },
+  {
+   "id": "setting:@setting_dump_vendor_keys_header",
+   "name": "Dump vendor keys",
+   "purpose": "P6",
+   "code": [
+    "setting:@setting_dump_vendor_keys_header"
+   ],
+   "where": "settings > Etc",
+   "does": "Dumps the phone's vendor camera keys to a file for debugging.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:@setting_savecamparams_header"
+   ]
+  },
+  {
+   "id": "setting:SWITCH_ASPECT_RATIO",
+   "name": "Swap preview width and height",
+   "purpose": "P6",
+   "code": [
+    "setting:SWITCH_ASPECT_RATIO"
+   ],
+   "where": "settings > Preview",
+   "does": "Swaps preview width and height when the preview looks stretched.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:FORCE_WIDE_PREVIEW"
+   ]
+  },
+  {
+   "id": "setting:FORCE_WIDE_PREVIEW",
+   "name": "Force Wide Preview",
+   "purpose": "P6",
+   "code": [
+    "setting:FORCE_WIDE_PREVIEW"
+   ],
+   "where": "settings > Preview",
+   "does": "Uses the widest available preview size.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": [
+    "setting:SWITCH_ASPECT_RATIO"
+   ]
+  },
+  {
+   "id": "setting:SCENE_MODE",
+   "name": "Scene",
+   "purpose": "P2",
+   "code": [
+    "setting:SCENE_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Picks a scene preset (night, sports, portrait...).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": [
+    "setting:HDR_MODE"
+   ]
+  },
+  {
+   "id": "setting:WHITE_BALANCE_MODE",
+   "name": "WB",
+   "purpose": "P3",
+   "code": [
+    "setting:WHITE_BALANCE_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Picks a white balance preset (auto, daylight, cloudy...).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": [
+    "strip:M_WHITEBALANCE"
+   ]
+  },
+  {
+   "id": "setting:COLOR_MODE",
+   "name": "Color Effect",
+   "purpose": "P3",
+   "code": [
+    "setting:COLOR_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Applies a colour effect (mono, sepia, negative...).",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "oneplus",
+    "opencamera"
+   ],
+   "overlaps": [
+    "setting:LENS_FILTER"
+   ]
+  },
+  {
+   "id": "setting:COLOR_CORRECTION_MODE",
+   "name": "Correlated Color Temperature",
+   "purpose": "P3",
+   "code": [
+    "setting:COLOR_CORRECTION_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Sets how the camera corrects colour (auto, manual transform matrix).",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "strip:M_WHITEBALANCE"
+   ]
+  },
+  {
+   "id": "setting:TONE_MAP_MODE",
+   "name": "Tonemap",
+   "purpose": "P3",
+   "code": [
+    "setting:TONE_MAP_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Sets how the camera maps tones (contrast curve mode).",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "column:TONE_CURVE_PARAMETER",
+    "setting:TONEMAP_SET"
+   ]
+  },
+  {
+   "id": "setting:CONTROL_MODE",
+   "name": "Camera Control",
+   "purpose": "P2",
+   "code": [
+    "setting:CONTROL_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Turns the camera's automatic controls (exposure, focus, white balance) on or off.",
+   "api": "camera2",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:EXPOSURE_MODE"
+   ]
+  },
+  {
+   "id": "setting:RED_EYE",
+   "name": "Red-Eye Reduction",
+   "purpose": "P2",
+   "code": [
+    "setting:RED_EYE"
+   ],
+   "where": "settings > Camera",
+   "does": "Fires a pre-flash to reduce red eye.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:EXPOSURE_MODE"
+   ]
+  },
+  {
+   "id": "setting:DENOISE",
+   "name": "Noise reduction",
+   "purpose": "P3",
+   "code": [
+    "setting:DENOISE"
+   ],
+   "where": "settings > Camera",
+   "does": "Sets noise reduction for photos.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:CDS_MODE",
+    "setting:MFNR",
+    "setting:TNR",
+    "setting:XIAOMI_MFNR"
+   ]
+  },
+  {
+   "id": "setting:TNR",
+   "name": "Temporal Denoise",
+   "purpose": "P3",
+   "code": [
+    "setting:TNR"
+   ],
+   "where": "settings > Camera",
+   "does": "Multi-frame temporal noise reduction for photos.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:CDS_MODE",
+    "setting:DENOISE",
+    "setting:MFNR"
+   ]
+  },
+  {
+   "id": "setting:LENS_FILTER",
+   "name": "Virtual Lens Filter",
+   "purpose": "P3",
+   "code": [
+    "setting:LENS_FILTER"
+   ],
+   "where": "settings > Camera",
+   "does": "Applies a virtual lens filter effect.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:COLOR_MODE"
+   ]
+  },
+  {
+   "id": "setting:DIGITAL_IMAGE_STABILIZATION",
+   "name": "Digital Image Stabilization",
+   "purpose": "P1",
+   "code": [
+    "setting:DIGITAL_IMAGE_STABILIZATION"
+   ],
+   "where": "settings > Camera",
+   "does": "Electronic image stabilisation.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:OIS_MODE",
+    "setting:VIDEO_STABILIZATION"
+   ]
+  },
+  {
+   "id": "setting:HDR_MODE",
+   "name": "HDR Mode",
+   "purpose": "P4",
+   "code": [
+    "setting:HDR_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Turns the camera's built-in HDR on or off.",
+   "api": "camera1",
+   "refs": [
+    "freedcam",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:SCENE_MODE",
+    "setting:VIDEO_HDR"
+   ]
+  },
+  {
+   "id": "setting:CDS_MODE",
+   "name": "Correlated double sampling",
+   "purpose": "P3",
+   "code": [
+    "setting:CDS_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Correlated double sampling: reads the sensor twice to reduce noise.",
+   "api": "camera1",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "setting:DENOISE",
+    "setting:TNR"
+   ]
+  },
+  {
+   "id": "setting:EDGE_MODE",
+   "name": "Edge Mode",
+   "purpose": "P3",
+   "code": [
+    "setting:EDGE_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Sets edge enhancement (sharpening).",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "overlaps": [
+    "strip:M_SHARPNESS"
+   ]
+  },
+  {
+   "id": "setting:OIS_MODE",
+   "name": "Optical Image Stabilisation",
+   "purpose": "P1",
+   "code": [
+    "setting:OIS_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Turns optical image stabilisation on or off.",
+   "api": "both",
+   "refs": [
+    "freedcam",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:DIGITAL_IMAGE_STABILIZATION",
+    "setting:VIDEO_STABILIZATION"
+   ]
+  },
+  {
+   "id": "setting:DUAL_PRIMARY_CAMERA_MODE",
+   "name": "Dual Camera",
+   "purpose": "P1",
+   "code": [
+    "setting:DUAL_PRIMARY_CAMERA_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Chooses which sensor(s) of a dual camera to use.",
+   "api": "both",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "column:CAMERA_SWITCH",
+    "setting:PHYSICAL_CAMERA_ID"
+   ]
+  },
+  {
+   "id": "setting:EXPOSURE_MODE",
+   "name": "Auto Exposure Mode",
+   "purpose": "P2",
+   "code": [
+    "setting:EXPOSURE_MODE"
+   ],
+   "where": "settings > Camera",
+   "does": "Sets the automatic exposure mode (on, off, with flash...).",
+   "api": "both",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": [
+    "column:FLASH_MODE",
+    "setting:AE_METERING",
+    "setting:CONTROL_MODE",
+    "setting:RED_EYE",
+    "strip:M_MANUAL_ISO"
+   ]
+  },
+  {
+   "id": "setting:AE_METERING",
+   "name": "AE Meter Area",
+   "purpose": "P2",
+   "code": [
+    "setting:AE_METERING"
+   ],
+   "where": "settings > Camera",
+   "does": "Chooses the area used to measure exposure.",
+   "api": "camera2",
+   "refs": [
+    "freedcam",
+    "proshot"
+   ],
+   "overlaps": [
+    "setting:EXPOSURE_MODE"
+   ]
+  },
+  {
+   "id": "viewer:button_info",
+   "name": "Photo info (EXIF)",
+   "purpose": "P5",
+   "code": [
+    "viewer:button_info"
+   ],
+   "where": "gallery viewer",
+   "does": "Shows the photo's details (EXIF information).",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "viewer:button_closeView",
+   "name": "Back to the grid",
+   "purpose": "P5",
+   "code": [
+    "viewer:button_closeView"
+   ],
+   "where": "gallery viewer",
+   "does": "Closes the full-screen view and returns to the gallery.",
+   "api": "app",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "viewer:button_play",
+   "name": "Play video",
+   "purpose": "P5",
+   "code": [
+    "viewer:button_play"
+   ],
+   "where": "gallery viewer",
+   "does": "Plays the selected video.",
+   "api": "app",
+   "refs": [
+    "freedcam"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "viewer:button_delete",
+   "name": "Delete",
+   "purpose": "P5",
+   "code": [
+    "viewer:button_delete"
+   ],
+   "where": "gallery viewer",
+   "does": "Deletes the shown file.",
+   "api": "app",
+   "refs": [
+    "freedcam",
+    "opencamera"
+   ],
+   "overlaps": []
+  },
+  {
+   "id": "section:Camera",
+   "name": "Camera settings (the other rows)",
+   "purpose": "P3",
+   "code": [
+    "setting:ANTI_BANDING_MODE",
+    "setting:IMAGE_POST_PROCESSING",
+    "setting:LENS_SHADE",
+    "setting:SCENE_DETECT",
+    "setting:TNR_V",
+    "setting:PDAF",
+    "setting:TRUE_POTRAIT",
+    "setting:RDI",
+    "setting:CHROMA_FLASH",
+    "setting:OPTI_ZOOM",
+    "setting:RE_FOCUS",
+    "setting:SEE_MORE",
+    "setting:MEMORY_COLOR_ENHANCEMENT",
+    "setting:ZSL",
+    "setting:NON_ZSL_MANUAL_MODE",
+    "setting:HOT_PIXEL_MODE",
+    "setting:DISTORTION_CORRECTION_MODE",
+    "setting:FACE_DETECTOR_MODE",
+    "setting:AE_TARGET_FPS"
+   ],
+   "where": "settings > Camera",
+   "does": "Anti Flicker; Image Post Processing; Lens shade; SceneDetection; Temporal Video Denoise; PDAF Control; True Portrait; RDI; Chroma Flash; Optizoom; Refocus; StillMore; Memory Color Enhancement; Zero Shutter Lag; ManualControl(ZSL= OFF); Hot Pixel Correction; Distortion Correction; Face Detection; AE Frame Range",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "section:Etc",
+   "name": "Etc settings (the other rows)",
+   "purpose": "P6",
+   "code": [
+    "setting:@setting_api_header",
+    "setting:SD_SAVE_LOCATION",
+    "setting:LOCATION_MODE",
+    "setting:NIGHT_OVERLAY",
+    "setting:TOUCH_TO_CAPTURE",
+    "setting:PLAY_SHUTTER_SOUND",
+    "setting:FOCUS_STACK_MERGE",
+    "setting:OPEN_CAMERA_1_LEGACY",
+    "setting:@setting_featuredetector_header",
+    "setting:PREVIEW_TEMPLATE",
+    "setting:CAPTURE_TEMPLATE",
+    "setting:HIDE_CAMERA_UI"
+   ],
+   "where": "settings > Etc",
+   "does": "API; Storage Location; Geo-Tag Location; Night overlay; Touch to Capture; Play Shutter Sound; Merge AF bracket into a focus stack; Open Camera in LegacyMode; Run feature detector; Preview Template; Capture Template; Hide camera UI",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "section:Interval",
+   "name": "Interval settings (the other rows)",
+   "purpose": "P4",
+   "code": [
+    "setting:INTERVAL_DURATION"
+   ],
+   "where": "settings > Interval",
+   "does": "Interval duration",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "section:Picture",
+   "name": "Picture settings (the other rows)",
+   "purpose": "P3",
+   "code": [
+    "setting:PICTURE_FORMAT",
+    "setting:SECONDARY_SENSOR_SIZE",
+    "setting:JPEG_QUALITY",
+    "setting:MTK_AOV_MODE"
+   ],
+   "where": "settings > Picture",
+   "does": "Picture Format; Secondary Size; JPEG Quality; AoV Mode",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "section:Preview",
+   "name": "Preview settings (the other rows)",
+   "purpose": "P2",
+   "code": [
+    "setting:PREVIEW_POST_PROCESSING_MODE",
+    "setting:FOCUSPEAK_COLOR",
+    "setting:ORIENTATION_HACK",
+    "setting:USE_GLASSCAM_AE",
+    "setting:MAX_ISO",
+    "setting:MIN_ISO",
+    "setting:MIN_EXPOSURE",
+    "setting:MAX_EXPOSURE",
+    "setting:GUIDE_LIST",
+    "setting:HORIZONT_LVL",
+    "setting:ZOOM_ON_MANUALFOCUS",
+    "setting:ZOOM_ON_MANUALFOCUS_ZOOMFACTOR",
+    "setting:ZOOM_ON_MANUALFOCUS_ZOOMDURATION"
+   ],
+   "where": "settings > Preview",
+   "does": "Preview PostProcessing; Focus-peak colour; Orientation Correction; GlassCam AE; Max Iso; Min Iso; Min ExposureTime; Max ExposureTime; Grid; Image Level; Auto-zoom on manual focus; Zoom factor; Zoom duration",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "section:Raw",
+   "name": "Raw settings (the other rows)",
+   "purpose": "P3",
+   "code": [
+    "setting:OPCODE",
+    "setting:BAYERFORMAT"
+   ],
+   "where": "settings > Raw",
+   "does": "Raw Flat Field; Bayer Format",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  },
+  {
+   "id": "section:Video",
+   "name": "Video settings (the other rows)",
+   "purpose": "P4",
+   "code": [
+    "setting:VIDEO_PROFILES",
+    "setting:@setting_videoprofileeditor_header",
+    "setting:VIDEO_AUDIO_SOURCE"
+   ],
+   "where": "settings > Video",
+   "does": "Video Profile; Video Profile Editor; Audio source",
+   "api": "mixed",
+   "refs": [],
+   "overlaps": []
+  }
+ ],
+ "parts": [
+  "fragment:DngConvertingFragment",
+  "fragment:EmptyFragment",
+  "fragment:GridViewFragment",
+  "fragment:HelpFragment",
+  "fragment:HorizontLineFragment",
+  "fragment:ImageFragment",
+  "fragment:ManualFragment",
+  "fragment:NextGenCameraSettingFragment",
+  "fragment:NextGenCameraUiFragment",
+  "fragment:NextGenHorizontalValuesFragment",
+  "fragment:NextGenMainFragment",
+  "fragment:NextGenManualsFragment",
+  "fragment:NextGenSettingDummyFragment",
+  "fragment:ScreenSlideFragment",
+  "fragment:VideoProfileEditorFragment"
+ ]
+}

@@ -1,0 +1,556 @@
+{
+  "app": "Libre Camera",
+  "package": "com.iakmds.librecamera",
+  "basis": "source tree at commit 3dc8501242bc8951d98ef293cb683324fa58e4ca (default branch, 2026-10-02; pubspec version 2.0.2+17) + docs https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/README.md and fastlane en-US store listing",
+  "sources": [
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/README.md",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/fastlane/metadata/android/en-US/full_description.txt",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/l10n/app_en.arb",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/onboarding_page.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/capture_control.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/flash.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/timer.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/resolution.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/exposure.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/focus.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/format.dart",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/android/app/src/main/AndroidManifest.xml",
+    "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/android/app/src/main/kotlin/com/iakmds/librecamera/MainActivity.kt"
+  ],
+  "features": [
+    {
+      "name": "Take picture",
+      "what": "Shutter button in picture mode",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/capture_control.dart",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same"
+    },
+    {
+      "name": "Start / stop recording video",
+      "what": "Shutter becomes record/stop in video mode",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/capture_control.dart",
+      "facets": [
+        "trigger",
+        "video"
+      ],
+      "glasscam": "module:VideoModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "Pause / resume video",
+      "what": "Pauses and resumes an ongoing recording",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/capture_control.dart",
+      "facets": [
+        "video"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no pause/resume while recording"
+    },
+    {
+      "name": "Picture mode",
+      "what": "Still capture mode",
+      "where": "mode",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "mode"
+      ],
+      "glasscam": "module:PictureModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "Video recording mode",
+      "what": "Video capture mode (with or without audio)",
+      "where": "mode",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "mode",
+        "video"
+      ],
+      "glasscam": "module:VideoModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "Switch to picture / video recording mode",
+      "what": "Top-bar icon toggling between picture and video mode",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "mode"
+      ],
+      "glasscam": "column:MODULE",
+      "match": "same"
+    },
+    {
+      "name": "Flip to front / rear camera",
+      "what": "Switches between rear and front camera (works while recording, per README roadmap 1.7.0)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/capture_control.dart",
+      "facets": [
+        "lens"
+      ],
+      "glasscam": "column:CAMERA_SWITCH",
+      "match": "partial",
+      "match_note": "switching cameras during a recording not supported/verified; switch restarts the camera"
+    },
+    {
+      "name": "Flashlight",
+      "what": "Cycles flash: photo Off > On at capture > Auto > Always on (torch); video Off <> torch; rear camera only",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/flash.dart",
+      "facets": [
+        "exposure_auto"
+      ],
+      "glasscam": "column:FLASH_MODE",
+      "match": "same"
+    },
+    {
+      "name": "Timer",
+      "what": "Photo capture delay: Off, 1, 2, 3, 5, 10, 15, 30 s, with on-screen countdown",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/timer.dart",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "column:SELF_TIMER",
+      "match": "same"
+    },
+    {
+      "name": "Resolution",
+      "what": "Top-bar dropdown of presets: LOW ~240p, MEDIUM ~480p, HIGH ~720p, VERY HIGH ~1080p, ULTRA HIGH ~2160p, MAX",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/resolution.dart",
+      "facets": [
+        "output",
+        "video"
+      ],
+      "glasscam": "setting:PICTURE_SIZE",
+      "match": "same",
+      "match_note": "video via setting:VIDEO_PROFILES"
+    },
+    {
+      "name": "Settings button",
+      "what": "Opens the settings page from the camera top bar",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "fragment:NextGenCameraSettingFragment",
+      "match": "same"
+    },
+    {
+      "name": "Open captured picture or video",
+      "what": "Thumbnail of the last capture; tap opens it in an external viewer/gallery (no built-in gallery)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "review"
+      ],
+      "glasscam": "activity:ActivityGlassCamViewer",
+      "match": "same",
+      "match_note": "gallery button opens GlassCam's own viewer"
+    },
+    {
+      "name": "Tap to focus / expose",
+      "what": "Tap on the viewfinder sets focus point and exposure point; a circle marks the spot",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "focus",
+        "exposure_auto"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "touch on the preview sets focus and metering area (FocusImageHandler); no census entry"
+    },
+    {
+      "name": "Pinch to zoom",
+      "what": "Two-finger zoom on the preview; briefly reveals the zoom slider",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "strip:M_ZOOM",
+      "match": "partial",
+      "match_note": "zoom only through the manual-strip slider; no gesture zoom on the preview"
+    },
+    {
+      "name": "Zoom slider",
+      "what": "On-screen zoom slider with a Reset button (shown permanently if enabled in settings)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "strip:M_ZOOM",
+      "match": "same"
+    },
+    {
+      "name": "Exposure slider",
+      "what": "Manual exposure compensation slider with reset to default exposure (when enabled)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/exposure.dart",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+      "match": "same"
+    },
+    {
+      "name": "Exposure mode",
+      "what": "Mode-row control: AUTO EXPOSURE or LOCKED EXPOSURE (when mode row enabled)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/exposure.dart",
+      "facets": [
+        "exposure_auto"
+      ],
+      "glasscam": "column:EXPOSURE_LOCK",
+      "match": "same"
+    },
+    {
+      "name": "Focus mode",
+      "what": "Mode-row control: AUTO FOCUS or LOCKED FOCUS (when mode row enabled)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/focus.dart",
+      "facets": [
+        "focus"
+      ],
+      "glasscam": "column:FOCUS_MODE",
+      "match": "same"
+    },
+    {
+      "name": "Landscape layout / rotating controls",
+      "what": "Controls rotate and relayout for landscape (unless orientation is locked)",
+      "where": "camera screen",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/camera_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "landscape layout only; controls do not rotate or relayout"
+    },
+    {
+      "name": "Language",
+      "what": "Choose app language or System language",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no in-app language choice; follows the system"
+    },
+    {
+      "name": "Theme",
+      "what": "System, Light, Dark or Black (AMOLED) theme",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no light/dark or colour theme choice (only the red night overlay)"
+    },
+    {
+      "name": "Maximum screen brightness",
+      "what": "Sets device screen brightness to maximum while in the app",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no screen-brightness control"
+    },
+    {
+      "name": "Left-handed mode",
+      "what": "Swaps the position of camera controls in landscape",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no left-handed layout"
+    },
+    {
+      "name": "Enable focus and exposure mode row",
+      "what": "Shows a bottom row for switching focus and exposure modes",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app",
+        "focus"
+      ],
+      "glasscam": "fragment:NextGenCameraUiFragment",
+      "match": "partial",
+      "match_note": "focus/AE controls are always in the column; only all-or-nothing Hide camera UI"
+    },
+    {
+      "name": "Enable zoom slider",
+      "what": "Keeps the zoom slider permanently visible",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app",
+        "compose"
+      ],
+      "glasscam": "strip:M_ZOOM",
+      "match": "partial",
+      "match_note": "zoom strip is shown when selected in the manual area; no always-visible option"
+    },
+    {
+      "name": "Enable exposure slider",
+      "what": "Shows the manual exposure slider",
+      "where": "settings:App settings",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app",
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+      "match": "partial",
+      "match_note": "EV strip shown when selected in the manual area; no visibility setting"
+    },
+    {
+      "name": "Resolution",
+      "what": "Same resolution preset dropdown as on the camera screen",
+      "where": "settings:Camera behaviour",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:PICTURE_SIZE",
+      "match": "same"
+    },
+    {
+      "name": "Capture at volume press",
+      "what": "Volume buttons take a picture or start/stop video",
+      "where": "settings:Camera behaviour",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "volume keys step the active manual control; only the camera key / headset hook fire the shutter (KeyPressedController, no census entry)"
+    },
+    {
+      "name": "Enable shutter sound",
+      "what": "Plays shutter / start-recording sound",
+      "where": "settings:Camera behaviour",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "setting:PLAY_SHUTTER_SOUND",
+      "match": "same"
+    },
+    {
+      "name": "Start with front camera",
+      "what": "Always open with the front camera",
+      "where": "settings:Camera behaviour",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "lens",
+        "app"
+      ],
+      "glasscam": "column:CAMERA_SWITCH",
+      "match": "partial",
+      "match_note": "reopens with the last-used camera (SettingsManager.GetCurrentCamera); no fixed startup camera"
+    },
+    {
+      "name": "Video frame rate",
+      "what": "24, 25, 30, 60 or 120 fps (high rates device/resolution dependent)",
+      "where": "settings:Camera behaviour",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "video"
+      ],
+      "glasscam": "setting:VIDEO_PROFILES",
+      "match": "same"
+    },
+    {
+      "name": "Disable audio",
+      "what": "Record video without sound",
+      "where": "settings:Camera behaviour",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "audio"
+      ],
+      "glasscam": "activity:VideoProfileEditorActivity",
+      "match": "partial",
+      "match_note": "audio on/off is stored per video profile in the profile editor; no quick switch"
+    },
+    {
+      "name": "Flip photos on front camera",
+      "what": "Horizontally flip selfies on save",
+      "where": "settings:Saving",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "processing"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no option to mirror front-camera photos"
+    },
+    {
+      "name": "Save EXIF data",
+      "what": "Keep EXIF metadata (model, GPS, etc.); off by default for privacy",
+      "where": "settings:Saving",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "metadata"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "EXIF is always written; only geotagging can be turned off"
+    },
+    {
+      "name": "Save path",
+      "what": "Choose the folder captures are saved to",
+      "where": "settings:Saving",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "manage"
+      ],
+      "glasscam": "setting:SD_SAVE_LOCATION",
+      "match": "same"
+    },
+    {
+      "name": "Enable compression",
+      "what": "Re-compress saved images to save storage",
+      "where": "settings:Saving",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:JPEG_QUALITY",
+      "match": "same"
+    },
+    {
+      "name": "Image compression quality",
+      "what": "Slider 10-100 (shown when compression enabled)",
+      "where": "settings:Saving",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:JPEG_QUALITY",
+      "match": "same"
+    },
+    {
+      "name": "Image compression format",
+      "what": "JPEG/JPG, PNG, WebP or HEIC (shown when compression enabled)",
+      "where": "settings:Saving",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/widgets/format.dart",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:PICTURE_FORMAT",
+      "match": "partial",
+      "match_note": "JPEG and RAW/DNG only; no PNG, WebP or HEIC"
+    },
+    {
+      "name": "Use Material You",
+      "what": "Material You (M3) design vs old Material design",
+      "where": "settings:More",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no light/dark or colour theme choice (only the red night overlay)"
+    },
+    {
+      "name": "Lock auto orientation",
+      "what": "Lock capture/UI to portrait regardless of auto-rotate (restart required)",
+      "where": "settings:More",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "always locked to landscape; no choice"
+    },
+    {
+      "name": "Onboarding screen",
+      "what": "Re-opens the initial onboarding flow",
+      "where": "settings:More",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "fragment:HelpFragment",
+      "match": "partial",
+      "match_note": "help overlay only; no onboarding flow"
+    },
+    {
+      "name": "About",
+      "what": "Version, GPLv3 licence, open-source licences, GitHub link",
+      "where": "settings:More",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/settings_page.dart",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no About screen in the census"
+    },
+    {
+      "name": "Onboarding: welcome, permissions, save path",
+      "what": "First-run pages: welcome, grant camera and storage permission, choose save path",
+      "where": "other",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/lib/src/pages/onboarding_page.dart",
+      "facets": [
+        "app",
+        "manage"
+      ],
+      "glasscam": "fragment:HelpFragment",
+      "match": "partial",
+      "match_note": "help overlay only; no first-run onboarding or save-path step"
+    },
+    {
+      "name": "Quick Settings tile",
+      "what": "QS tile that launches the camera from the notification shade",
+      "where": "other",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/android/app/src/main/kotlin/com/iakmds/librecamera/MainActivity.kt",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no Quick Settings tile"
+    },
+    {
+      "name": "Camera intents (declared)",
+      "what": "Manifest registers IMAGE_CAPTURE(_SECURE), STILL_IMAGE_CAMERA(_SECURE), VIDEO_CAMERA, VIDEO_CAPTURE so it can be picked as the camera app; no Dart code found that returns a result/EXTRA_OUTPUT to the caller",
+      "where": "other",
+      "source": "https://github.com/iakmds/librecamera/blob/3dc8501242bc8951d98ef293cb683324fa58e4ca/android/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamShare",
+      "match": "partial",
+      "match_note": "IMAGE_CAPTURE(_SECURE) and STILL_IMAGE_CAMERA(_SECURE) handled (and results returned); VIDEO_CAMERA / VIDEO_CAPTURE not"
+    }
+  ],
+  "notes": "No home-screen widget and no built-in gallery. A QR scanner exists only as commented-out code (roadmap item), not as a feature. Repo README/About still link github.com/iakdis/librecamera; the clone was made from github.com/iakmds/librecamera as given."
+}

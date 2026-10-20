@@ -1,0 +1,26 @@
+{
+ "about": "Atomic jobs a camera-app feature can do. Every feature (GlassCam's and each reference app's) is tagged with 1 or 2 of these. A purpose set is a grouping of facets, so purpose sets are scored without re-tagging.",
+ "facets": {
+  "compose":        "frame the shot: zoom, grid, level/horizon, aspect ratio, overlays that help composition",
+  "lens":           "choose the camera/lens: front/back switch, physical or secondary sensor, wide/tele",
+  "trigger":        "take the shot: shutter, self-timer, touch/volume-key capture, shutter sound, remote",
+  "mode":           "pick a capture mode: photo, video, portrait, night, panorama, pro... (the mode switcher itself)",
+  "exposure_manual":"set exposure by hand: ISO, shutter speed, aperture, EV compensation",
+  "exposure_auto":  "steer automatic exposure: AE lock, metering, AE mode, ISO/shutter limits, anti-banding, scene modes, flash",
+  "exposure_feedback": "see whether exposure is right: histogram, zebras/clipping, exposure readouts",
+  "focus":          "control or assist focus: focus modes, manual focus, tap to focus, peaking, magnify-on-focus, PDAF",
+  "colour":         "white balance and colour: WB modes/Kelvin, colour effects, saturation, colour correction",
+  "processing":     "how the image is processed: noise reduction, sharpening, edge, contrast/brightness, tone curve/mapping, lens shading, distortion, hot pixel, HDR/dynamic processing",
+  "output":         "what file comes out: format (JPEG/RAW/DNG/HEIF), size/resolution, quality, DNG profile/matrix/opcodes, bit depth",
+  "multishot":      "several frames for one result: burst, exposure/focus bracketing, focus stacking, HDR merge, night stacking, MFNR",
+  "time":           "capture over time: interval/timelapse, long sequences, duration",
+  "video":          "video recording settings: profile/resolution/fps/bitrate, codec, video HDR, slow motion, video stabilisation",
+  "audio":          "sound for video: audio source, levels, mic choice",
+  "stabilise":      "image stabilisation for stills: OIS, EIS/DIS",
+  "review":         "look at what was taken: gallery, viewer, info/EXIF panel, play video",
+  "manage":         "keep and move files: storage location, naming, delete, share, convert (e.g. RAW to DNG), export",
+  "metadata":       "what is written into the file besides pixels: location/GPS, EXIF fields, copyright",
+  "device":         "make the app work on this phone: camera API choice, feature detection, capture templates, vendor/legacy toggles, orientation fixes, debug dumps",
+  "app":            "how the app itself behaves or looks: theme, UI hiding, help overlay, preview rendering mode, night overlay, update checks, language"
+ }
+}

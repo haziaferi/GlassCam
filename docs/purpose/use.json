@@ -1,0 +1,12 @@
+{
+ "about": "Owner's 'how often would you use it', 2026-10-20, asked only for the entries of the redundancy candidates the OnePlus 6T actually shows. often=2, sometimes=1, never=0.",
+ "column:HISTOGRAM": 1,
+ "column:HISTOGRAM_STATS_QCOM": 1,
+ "column:FLASH_MODE": 1,
+ "setting:EXPOSURE_MODE": 2,
+ "strip:M_MANUAL_ISO": 2,
+ "column:FOCUS_MODE": 2,
+ "strip:M_FOCUS": 2,
+ "setting:EDGE_MODE": 1,
+ "strip:M_SHARPNESS": 1
+}

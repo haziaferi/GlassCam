@@ -1,0 +1,954 @@
+{
+ "app": "OnePlus Camera",
+ "package": "com.oneplus.camera",
+ "basis": "OnePlus's own stock camera, made by OnePlus (OnePlus Technology (Shenzhen) Co., Ltd.). Each 'what' starts with the phones it applies to: [both], [6T] or [9 Pro]. Sources: OnePlus official user manuals (the 9 Pro manual describes the OxygenOS 11 camera; the 6T manual was written for its launch software, OxygenOS 9), OnePlus official spec pages, the OxygenOS 11 release notes for the 6/6T, and, as a last resort, reviews (GSMArena, Photography Blog, Guiding Tech), each marked '(review)' in 'what'. OxygenOS 11 for the 6T's camera is documented only as 'Updated the camera UI and optimized some of the function paths' (XDA changelog). So the 6T entries describe the feature set from the 6T manual, spec page and launch review, and its OxygenOS 11 layout and labels may match the 9 Pro's: not verified. The local dump set_oneplus.xml/png is the first camera screen of a phone with 0.6x/1x/3.3x lenses (the 9 Pro), but its labels ('Dazzle AI Color', the 'ALTRO' more-modes tab, Italian UI) do not appear in any OxygenOS 11 source found. It looks like a later OxygenOS camera build, and its entries are tagged '[9 Pro, local dump, later build]'. The dump also shows no settings list, only the viewfinder. Not reachable: no official OnePlus page lists the OxygenOS 11 camera Settings menu item by item, so that list comes from a review (Photography Blog). The OnePlus community forum and Play listing were not used: com.oneplus.camera is preinstalled, not a public Play listing. Settings group names (General/Photo/Video/Pro mode/Portrait) are assigned by this inventory: no source gives the OxygenOS 11 menu's own group headings.",
+ "sources": [
+  "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+  "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+  "https://www.oneplus.com/ie/9-pro/specs",
+  "https://www.oneplus.com/global/6t/specs",
+  "https://www.xda-developers.com/oneplus-6-6t-stable-android-11-oxygenos-11-update/",
+  "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+  "https://www.gsmarena.com/oneplus_9_pro-review-2241p5.php",
+  "https://m.gsmarena.com/oneplus_6t-review-1843p6.php",
+  "https://www.guidingtech.com/best-oneplus9-oneplus9pro-camera-tips-tricks/",
+  "tools/critique/screenshots/set_oneplus.xml",
+  "tools/critique/screenshots/set_oneplus.png"
+ ],
+ "features": [
+  {
+   "name": "Photo",
+   "what": "[both] Default point-and-shoot still mode",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "module:PictureModuleApi2",
+   "match": "same"
+  },
+  {
+   "name": "Video",
+   "what": "[both] Standard video recording (9 Pro: 8K30, 4K30/60/120, 1080p30/60; 6T: 4K30/60, 1080p30/60, 720p30)",
+   "where": "mode",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "mode",
+    "video"
+   ],
+   "glasscam": "module:VideoModuleApi2",
+   "match": "same",
+   "match_note": "Resolutions/fps depend on what Camera2 exposes to third-party apps"
+  },
+  {
+   "name": "Portrait",
+   "what": "[both] Depth-effect (background blur) photos on the rear and front cameras; 9 Pro on-screen guidance to move closer or farther",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "mode",
+    "processing"
+   ],
+   "glasscam": "setting:TRUE_POTRAIT",
+   "match": "partial",
+   "match_note": "Vendor True Portrait only: Camera1-only Qualcomm vendor setting; not shown under Camera2"
+  },
+  {
+   "name": "Studio Lighting",
+   "what": "[6T] Portrait lighting effect that tones shadows and highlights on the subject's face; the 9 Pro manual mentions a 'professional portrait lighting effect' in Portrait",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "processing",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No portrait lighting effect"
+  },
+  {
+   "name": "Nightscape",
+   "what": "[both] Low-light mode that blends short exposures for night scenes (6T launch name 'Night Mode')",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "mode",
+    "multishot"
+   ],
+   "glasscam": "activity:DngStackActivity",
+   "match": "partial",
+   "match_note": "No night mode; frames can be shot as DNG and stacked afterwards by hand"
+  },
+  {
+   "name": "Nightscape tripod mode",
+   "what": "[9 Pro] Tripod icon in Nightscape: 8-30 s exposure with an automatic self-timer (review)",
+   "where": "camera screen",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "multishot",
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_TIME",
+   "match": "partial",
+   "match_note": "Manual long exposure plus self-timer, without frame stacking"
+  },
+  {
+   "name": "Starburst",
+   "what": "[9 Pro] Nightscape variant that renders point lights as starbursts (review)",
+   "where": "mode",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "processing",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No starburst rendering"
+  },
+  {
+   "name": "Pro",
+   "what": "[both] Manual photo mode, Hasselblad-styled UI on the 9 Pro (labelled 'Pro'); main lens only on the 9 Pro (review)",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "mode",
+    "exposure_manual"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "same",
+   "match_note": "Manual strip is always on the camera screen; all lenses"
+  },
+  {
+   "name": "ISO",
+   "what": "[both] Manual ISO in Pro (6T: 100-3200 (review))",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_MANUAL_ISO",
+   "match": "same"
+  },
+  {
+   "name": "White balance",
+   "what": "[both] Manual white balance by colour temperature in Pro",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "strip:M_WHITEBALANCE",
+   "match": "same"
+  },
+  {
+   "name": "Shutter speed",
+   "what": "[both] Manual exposure time in Pro (6T: 1/8000 s to 30 s (review))",
+   "where": "mode",
+   "source": "https://m.gsmarena.com/oneplus_6t-review-1843p6.php",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_TIME",
+   "match": "same"
+  },
+  {
+   "name": "Focus (manual)",
+   "what": "[both] Manual focus in Pro",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "strip:M_FOCUS",
+   "match": "same"
+  },
+  {
+   "name": "Exposure compensation",
+   "what": "[both] EV adjustment in Pro (6T: \u00b12 EV in 1/3 or 1/2 steps (review))",
+   "where": "mode",
+   "source": "https://m.gsmarena.com/oneplus_6t-review-1843p6.php",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+   "match": "same"
+  },
+  {
+   "name": "Pro control style",
+   "what": "[6T] Rotating adjustment wheel per setting; [9 Pro] vertical swipe bars (review)",
+   "where": "mode",
+   "source": "https://www.gsmarena.com/oneplus_9_pro-review-2241p5.php",
+   "facets": [
+    "app",
+    "exposure_manual"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "same",
+   "match_note": "Strip of values per control"
+  },
+  {
+   "name": "A (auto reset)",
+   "what": "[9 Pro] Button that returns all Pro settings to automatic (review)",
+   "where": "mode",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "exposure_manual",
+    "app"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "partial",
+   "match_note": "Each strip can go back to Auto on its own; no one-tap reset of all"
+  },
+  {
+   "name": "Pro custom presets",
+   "what": "[6T] Save two custom sets of Pro parameters (review)",
+   "where": "mode",
+   "source": "https://m.gsmarena.com/oneplus_6t-review-1843p6.php",
+   "facets": [
+    "exposure_manual",
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No saved sets of manual parameters"
+  },
+  {
+   "name": "Histogram",
+   "what": "[both] Live histogram in Pro to judge exposure (6T manual; 9 Pro review says it is optional)",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:HISTOGRAM",
+   "match": "same",
+   "match_note": "Needs Preview PostProcessing on"
+  },
+  {
+   "name": "Reference line (level)",
+   "what": "[6T] Gyroscope horizon line in Pro that turns green when level",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "same"
+  },
+  {
+   "name": "Focus Peaking",
+   "what": "[9 Pro] Highlights in-focus edges for manual focus in Pro",
+   "where": "mode",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUSPEAK",
+   "match": "same",
+   "match_note": "Needs Preview PostProcessing on"
+  },
+  {
+   "name": "RAW",
+   "what": "[both] DNG capture alongside JPEG in Pro; 9 Pro shoots 12-bit RAW",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "same"
+  },
+  {
+   "name": "JPEG resolution in Pro",
+   "what": "[9 Pro] Standard or high-resolution JPEG in Pro (review)",
+   "where": "mode",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "same"
+  },
+  {
+   "name": "Panorama",
+   "what": "[both] Wide images made by panning while holding the shutter, which can be stopped early",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "mode",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No panorama"
+  },
+  {
+   "name": "Time-lapse",
+   "what": "[both] Accelerated video; 9 Pro: 1080p/4K at 30 fps, speed 5x-120x (review), works on all three lenses; front camera too",
+   "where": "mode",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "time",
+    "video"
+   ],
+   "glasscam": "module:IntervalApi2",
+   "match": "partial",
+   "match_note": "Interval stills (and a timelapse profile/frame rate); no speed factor choice, not one-step video"
+  },
+  {
+   "name": "Hyperlapse",
+   "what": "[9 Pro] Stabilised moving time-lapse option inside Time-lapse",
+   "where": "mode",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "time",
+    "stabilise"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No stabilised moving time-lapse"
+  },
+  {
+   "name": "Slow motion",
+   "what": "[both] Super slow motion, 1080p at 240 fps and 720p at 480 fps; 6T lets you choose the length and timing of the slow segment",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "partial",
+   "match_note": "Only through a high-speed video profile where the phone lists one; no slow segment choice"
+  },
+  {
+   "name": "Tilt-shift",
+   "what": "[9 Pro] Miniature effect; adjust the width, position and blur of the in-focus band",
+   "where": "mode",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "processing",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No miniature/tilt-shift effect"
+  },
+  {
+   "name": "Mode selection",
+   "what": "[both] Swipe left/right between modes, or swipe up (9 Pro) / tap the arrow (6T) for the full mode list",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "column:MODULE",
+   "match": "same"
+  },
+  {
+   "name": "Timer",
+   "what": "[both] Self-timer (9 Pro: 3/5/10 s (review))",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "column:SELF_TIMER",
+   "match": "same"
+  },
+  {
+   "name": "Flash",
+   "what": "[both] On/off/auto flash; video uses on/off (torch)",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "same",
+   "match_note": "Includes torch"
+  },
+  {
+   "name": "Super macro",
+   "what": "[9 Pro] Close-up photos from about 3-4 cm using the ultra-wide lens",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "lens",
+    "focus"
+   ],
+   "glasscam": "setting:PHYSICAL_CAMERA_ID",
+   "match": "partial",
+   "match_note": "Ultra-wide can be pinned in settings and macro focus chosen, with no one-tap macro"
+  },
+  {
+   "name": "Aspect ratio",
+   "what": "[both] 4:3 / 1:1 / full screen (9 Pro manual)",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "compose",
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "partial",
+   "match_note": "Aspect follows the chosen picture size; no aspect toggle on the camera screen"
+  },
+  {
+   "name": "High-Res",
+   "what": "[9 Pro] Full 48 MP capture instead of binned 12 MP (review)",
+   "where": "camera screen",
+   "source": "https://www.guidingtech.com/best-oneplus9-oneplus9pro-camera-tips-tricks/",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "partial",
+   "match_note": "Full 48 MP only if the phone exposes that size to third-party apps"
+  },
+  {
+   "name": "HQ",
+   "what": "[6T] High-quality multi-frame processing (spec list)",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/global/6t/specs",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:MFNR",
+   "match": "partial",
+   "match_note": "Qualcomm vendor key under Camera2; only on phones that expose it"
+  },
+  {
+   "name": "HDR",
+   "what": "[both] HDR stills; 6T: Auto HDR default, toggle moved into settings (review); 9 Pro: 'UltraShot HDR'",
+   "where": "settings:Photo",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:HDR_MODE",
+   "match": "partial",
+   "match_note": "Built-in HDR is Camera1-only; under Camera2 only exposure bracketing without merge"
+  },
+  {
+   "name": "More",
+   "what": "[both] Top-bar overflow for further toggles and the settings entry",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenCameraSettingFragment",
+   "match": "same"
+  },
+  {
+   "name": "Zoom",
+   "what": "[both] Tap or drag the zoom control (9 Pro: 0.6x/1x/3.3x lens buttons, up to 30x digital; 6T: 1x/2x, up to 8x)",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "compose",
+    "lens"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "same",
+   "match_note": "Zoom strip; lens presets are a separate item"
+  },
+  {
+   "name": "Filter",
+   "what": "[both] Colour filters for photo and video (9 Pro: incl. monochrome-sensor B&W (review))",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:COLOR_MODE",
+   "match": "same",
+   "match_note": "Colour effects incl. mono"
+  },
+  {
+   "name": "Switch camera",
+   "what": "[both] Toggles between the front and rear cameras",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "column:CAMERA_SWITCH",
+   "match": "same"
+  },
+  {
+   "name": "Google Lens",
+   "what": "[9 Pro] Opens Google Lens from the viewfinder",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "Not a photography job"
+  },
+  {
+   "name": "Photo button (tap / long-press)",
+   "what": "[both] Tap to shoot; on the 9 Pro a long-press records video (quick video, slide to zoom) or bursts, depending on the setting",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "trigger",
+    "multishot"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "Tap shutter is the same; long-press does not start video or burst"
+  },
+  {
+   "name": "Smart Scene Recognition",
+   "what": "[both] Detects the scene and adjusts brightness, contrast and saturation (6T: 'Intelligent Scene Recognition / AI Scene Detection')",
+   "where": "settings:Photo",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "exposure_auto",
+    "processing"
+   ],
+   "glasscam": "setting:SCENE_DETECT",
+   "match": "partial",
+   "match_note": "Camera1-only Qualcomm vendor setting; not shown under Camera2"
+  },
+  {
+   "name": "Auto macro",
+   "what": "[9 Pro] Switches to Super macro automatically when a subject is close (review)",
+   "where": "settings:Photo",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "lens",
+    "focus"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No automatic switch to macro"
+  },
+  {
+   "name": "Cat/Dog Face Focus",
+   "what": "[9 Pro] Autofocus detects pet faces",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:FACE_DETECTOR_MODE",
+   "match": "partial",
+   "match_note": "Human face detection only (Camera2); no pet faces"
+  },
+  {
+   "name": "Focus Tracking",
+   "what": "[9 Pro] Keeps focus on a tapped, moving subject",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No subject tracking AF"
+  },
+  {
+   "name": "Super stable",
+   "what": "[9 Pro] Extra-stabilised 1080p video cropped from the ultra-wide lens",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "video",
+    "stabilise"
+   ],
+   "glasscam": "setting:VIDEO_STABILIZATION",
+   "match": "partial",
+   "match_note": "Plain stabilisation toggle; no cropped ultra-wide super-stable mode"
+  },
+  {
+   "name": "Video nightscape",
+   "what": "[9 Pro] Low-light video toggle (1080p, main camera)",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "video",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No low-light video mode"
+  },
+  {
+   "name": "Video portrait",
+   "what": "[9 Pro] Background-blur video toggle (1080p)",
+   "where": "camera screen",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "video",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No background-blur video"
+  },
+  {
+   "name": "Video HDR",
+   "what": "[9 Pro] HDR video (listed in specs; GSMArena reports no HDR10 recording (review))",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_HDR",
+   "match": "partial",
+   "match_note": "Camera1 only - not shown under Camera2"
+  },
+  {
+   "name": "Video resolution / frame rate",
+   "what": "[both] Pick the resolution and fps in the video viewfinder; some options are unavailable at certain combinations",
+   "where": "camera screen",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "same"
+  },
+  {
+   "name": "Video codec (H.264 / H.265)",
+   "what": "[9 Pro] Choose the encoder; HEVC encoding was added in OxygenOS 11 per the 7/7T notes (review for the 9 Pro)",
+   "where": "settings:Video",
+   "source": "https://www.gsmarena.com/oneplus_9_pro-review-2241p5.php",
+   "facets": [
+    "video",
+    "output"
+   ],
+   "glasscam": "activity:VideoProfileEditorActivity",
+   "match": "partial",
+   "match_note": "Codec is chosen inside a custom video profile in the editor, not a single settings row"
+  },
+  {
+   "name": "Video stabilization (EIS/OIS)",
+   "what": "[both] Always-on stabilization at 30/60 fps, not user-switchable (review)",
+   "where": "other",
+   "source": "https://m.gsmarena.com/oneplus_6t-review-1843p6.php",
+   "facets": [
+    "video",
+    "stabilise"
+   ],
+   "glasscam": "setting:VIDEO_STABILIZATION",
+   "match": "same",
+   "match_note": "GlassCam lets it be switched"
+  },
+  {
+   "name": "Long-press shutter to record video",
+   "what": "[9 Pro] Setting that makes a long-press record video instead of a burst (review)",
+   "where": "settings:Photo",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No long-press-to-record option"
+  },
+  {
+   "name": "Video mode settings",
+   "what": "[9 Pro] Per-mode settings sub-page for video (review)",
+   "where": "settings:Video",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "app",
+    "video"
+   ],
+   "glasscam": "fragment:NextGenSettingDummyFragment",
+   "match": "partial",
+   "match_note": "One settings list with section jump chips, not per-mode sub-pages"
+  },
+  {
+   "name": "Pro mode settings",
+   "what": "[9 Pro] Per-mode settings sub-page for Pro, e.g. histogram, peaking, RAW (review)",
+   "where": "settings:Pro mode",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenSettingDummyFragment",
+   "match": "partial",
+   "match_note": "One settings list with section jump chips, not per-mode sub-pages"
+  },
+  {
+   "name": "Grid",
+   "what": "[both] Composition grid styles",
+   "where": "settings:General",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "same"
+  },
+  {
+   "name": "Location",
+   "what": "[both] Geotag photos (turn location data on or off)",
+   "where": "settings:General",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": "setting:LOCATION_MODE",
+   "match": "same"
+  },
+  {
+   "name": "Shot on OnePlus watermark",
+   "what": "[6T] Adds a 'Shot on OnePlus' watermark; on the 9 Pro an OnePlus+Hasselblad watermark is reported in search snippets of an Android Central guide, but the page body could not be read",
+   "where": "settings:General",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "metadata",
+    "output"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No watermark"
+  },
+  {
+   "name": "Shutter sound",
+   "what": "[9 Pro] Turn the shutter sound on or off (review)",
+   "where": "settings:General",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "setting:PLAY_SHUTTER_SOUND",
+   "match": "same"
+  },
+  {
+   "name": "Custom modes",
+   "what": "[9 Pro] Drag to reorder or hide modes in the mode ribbon (review)",
+   "where": "settings:General",
+   "source": "https://www.guidingtech.com/best-oneplus9-oneplus9pro-camera-tips-tricks/",
+   "facets": [
+    "app",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "Mode list cannot be reordered or hidden"
+  },
+  {
+   "name": "Default mode at startup",
+   "what": "[9 Pro] Choose which mode the camera opens in (review)",
+   "where": "settings:General",
+   "source": "https://www.photographyblog.com/reviews/oneplus_9_pro_review",
+   "facets": [
+    "app",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No startup-mode choice"
+  },
+  {
+   "name": "Save original (Portrait)",
+   "what": "[6T] Also save the photo without the portrait effect",
+   "where": "other",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "output",
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No portrait effect to keep an original of"
+  },
+  {
+   "name": "Smile Capture",
+   "what": "[6T] Front camera shoots automatically when a smile is detected",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/global/6t/specs",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No smile-triggered capture"
+  },
+  {
+   "name": "Screen Flash",
+   "what": "[both] Display lights up as a front-camera flash",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "exposure_auto",
+    "lens"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No front screen flash"
+  },
+  {
+   "name": "Face Retouching",
+   "what": "[both] Beauty smoothing on front-camera shots",
+   "where": "camera screen",
+   "source": "https://www.oneplus.com/ie/9-pro/specs",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No beauty smoothing"
+  },
+  {
+   "name": "Gallery thumbnail / quick share",
+   "what": "[both] Tap to open the latest photo in Gallery; 9 Pro: long-press for quick share",
+   "where": "gallery",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "review",
+    "manage"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "partial",
+   "match_note": "Gallery button opens the viewer and the viewer can share, but no long-press quick share"
+  },
+  {
+   "name": "Gallery app (Photos / Collections / Explore)",
+   "what": "[both] Timeline, albums and recently deleted; 9 Pro Explore auto-sorts by people/places/things and makes Story videos",
+   "where": "gallery",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "review",
+    "manage"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "partial",
+   "match_note": "Plain grid and full-screen viewer; no albums, recently deleted or auto-sorting"
+  },
+  {
+   "name": "Photo editor",
+   "what": "[both] Crop, resize and filters for photos in Gallery",
+   "where": "gallery",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "manage",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No photo editor"
+  },
+  {
+   "name": "Video Editor",
+   "what": "[both] Trim, filters and background music for videos in Gallery",
+   "where": "gallery",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_6T_User_Manual_EN.pdf",
+   "facets": [
+    "manage",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No video editor"
+  },
+  {
+   "name": "Double press power button to open camera",
+   "what": "[9 Pro] System gesture that launches the camera (system Settings)",
+   "where": "other",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMainSecure",
+   "match": "partial",
+   "match_note": "Registers the still-camera intents the gesture fires, so it opens GlassCam only if set as default camera"
+  },
+  {
+   "name": "Quick gestures (draw O/V/S/M/W)",
+   "what": "[9 Pro] Screen-off gestures that can open the camera, open the front camera or record a video (system Settings)",
+   "where": "other",
+   "source": "https://service.oneplus.com/content/dam/support/user-manuals/common/OnePlus_9_Pro_User_Manual_EN.pdf",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No screen-off gesture launch"
+  },
+  {
+   "name": "Dazzle AI Color",
+   "what": "[9 Pro, local dump, later build] Top-bar AI colour-enhancement toggle (shown Off)",
+   "where": "camera screen",
+   "source": "tools/critique/screenshots/set_oneplus.xml",
+   "facets": [
+    "colour",
+    "processing"
+   ],
+   "glasscam": "strip:M_SATURATION",
+   "match": "partial",
+   "match_note": "Manual saturation (Qualcomm vendor key under Camera2), not automatic AI colour"
+  },
+  {
+   "name": "Pop Up the Effect Menu",
+   "what": "[9 Pro, local dump, later build] Viewfinder button opening the effects (portrait/beauty) menu",
+   "where": "camera screen",
+   "source": "tools/critique/screenshots/set_oneplus.xml",
+   "facets": [
+    "mode",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No portrait/beauty effects menu"
+  },
+  {
+   "name": "Filtri (Filters)",
+   "what": "[9 Pro, local dump, later build] Viewfinder filters button",
+   "where": "camera screen",
+   "source": "tools/critique/screenshots/set_oneplus.xml",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:COLOR_MODE",
+   "match": "same"
+  },
+  {
+   "name": "SubSet",
+   "what": "[9 Pro, local dump, later build] Top-bar control labelled 'SubSetOff' in accessibility, drawn as a focus-frame icon; purpose not documented in any source found",
+   "where": "camera screen",
+   "source": "tools/critique/screenshots/set_oneplus.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "Purpose undocumented; nothing to match"
+  },
+  {
+   "name": "Mode ribbon NOTTE / VIDEO / FOTO / RITRATTO / ALTRO",
+   "what": "[9 Pro, local dump, later build] Night, Video, Photo, Portrait, with remaining modes under 'More' (Altro)",
+   "where": "camera screen",
+   "source": "tools/critique/screenshots/set_oneplus.png",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "column:MODULE",
+   "match": "same"
+  },
+  {
+   "name": "Zoom Seek Bar (0.6 / 1x / 3.3)",
+   "what": "[9 Pro, local dump, later build] Lens and zoom presets above the mode ribbon",
+   "where": "camera screen",
+   "source": "tools/critique/screenshots/set_oneplus.xml",
+   "facets": [
+    "compose",
+    "lens"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "partial",
+   "match_note": "Zoom strip without lens preset buttons"
+  }
+ ]
+}

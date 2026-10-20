@@ -1,0 +1,2353 @@
+[
+ {
+  "id": "activity:ActivityGlassCamMain",
+  "kind": "activity",
+  "label": "ActivityGlassCamMain",
+  "label_it": "",
+  "facets": [
+   "mode"
+  ],
+  "does": "The main camera screen: live preview, shutter, controls and settings.",
+  "visible": true,
+  "notes": "Host screen for all capture modes; tagged mode as the place modes are chosen"
+ },
+ {
+  "id": "activity:ActivityGlassCamMainSecure",
+  "kind": "activity",
+  "label": "ActivityGlassCamMainSecure",
+  "label_it": "",
+  "facets": [
+   "trigger"
+  ],
+  "does": "Opens the camera from the lock screen without unlocking the phone.",
+  "visible": true,
+  "notes": "Secure (lock-screen) launch of the main camera"
+ },
+ {
+  "id": "activity:ActivityGlassCamShare",
+  "kind": "activity",
+  "label": "ActivityGlassCamShare",
+  "label_it": "",
+  "facets": [
+   "trigger"
+  ],
+  "does": "Lets another app ask GlassCam to take a photo and hands the result back.",
+  "visible": true,
+  "notes": "Answers ACTION_IMAGE_CAPTURE (SPEC I1)"
+ },
+ {
+  "id": "activity:ActivityGlassCamViewer",
+  "kind": "activity",
+  "label": "ActivityGlassCamViewer",
+  "label_it": "",
+  "facets": [
+   "review",
+   "manage"
+  ],
+  "does": "Gallery to browse, view and delete the photos and videos taken.",
+  "visible": true
+ },
+ {
+  "id": "activity:DngConvertingActivity",
+  "kind": "activity",
+  "label": "DngConvertingActivity",
+  "label_it": "",
+  "facets": [
+   "manage",
+   "output"
+  ],
+  "does": "Converts raw files into DNG files the person can edit.",
+  "visible": true
+ },
+ {
+  "id": "activity:DngStackActivity",
+  "kind": "activity",
+  "label": "DngStackActivity",
+  "label_it": "",
+  "facets": [
+   "multishot"
+  ],
+  "does": "Merges several DNG frames into one stacked DNG.",
+  "visible": true,
+  "notes": "SPEC ST5: refuses SAF/MediaStore holders"
+ },
+ {
+  "id": "activity:VideoProfileEditorActivity",
+  "kind": "activity",
+  "label": "VideoProfileEditorActivity",
+  "label_it": "",
+  "facets": [
+   "video"
+  ],
+  "does": "Screen to create and edit custom video profiles (resolution, fps, bitrate, codec).",
+  "visible": true
+ },
+ {
+  "id": "module:PictureModuleApi2",
+  "kind": "module",
+  "label": "PictureModuleApi2",
+  "label_it": "",
+  "api": "camera2",
+  "facets": [
+   "mode"
+  ],
+  "does": "Normal photo mode.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "module:VideoModuleApi2",
+  "kind": "module",
+  "label": "VideoModuleApi2",
+  "label_it": "",
+  "api": "camera2",
+  "facets": [
+   "mode",
+   "video"
+  ],
+  "does": "Video recording mode.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "module:IntervalApi2",
+  "kind": "module",
+  "label": "IntervalApi2",
+  "label_it": "",
+  "api": "camera2",
+  "facets": [
+   "time",
+   "mode"
+  ],
+  "does": "Interval/timelapse mode: takes a photo every set number of seconds.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "module:AeBracketApi2",
+  "kind": "module",
+  "label": "AeBracketApi2",
+  "label_it": "",
+  "api": "camera2",
+  "facets": [
+   "multishot",
+   "mode"
+  ],
+  "does": "Exposure bracketing mode: several shots at different exposures in one press.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "module:HuaweiAeBracketApi2",
+  "kind": "module",
+  "label": "HuaweiAeBracketApi2",
+  "label_it": "",
+  "api": "camera2",
+  "facets": [
+   "multishot",
+   "mode"
+  ],
+  "does": "Exposure bracketing mode using Huawei's own bracketing support.",
+  "visible": true,
+  "notes": "Huawei only; Camera2"
+ },
+ {
+  "id": "module:AfBracketApi2",
+  "kind": "module",
+  "label": "AfBracketApi2",
+  "label_it": "",
+  "api": "camera2",
+  "facets": [
+   "multishot",
+   "mode"
+  ],
+  "does": "Focus bracketing mode: several shots at different focus distances, for focus stacking.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "module:PictureModuleMTK",
+  "kind": "module",
+  "label": "PictureModuleMTK",
+  "label_it": "",
+  "api": "camera1",
+  "facets": [
+   "mode",
+   "device"
+  ],
+  "does": "Photo mode for MediaTek phones, including their raw capture path.",
+  "visible": true,
+  "notes": "Camera1, MediaTek devices only (SPEC: MTK raw path)"
+ },
+ {
+  "id": "module:PictureModule",
+  "kind": "module",
+  "label": "PictureModule",
+  "label_it": "",
+  "api": "camera1",
+  "facets": [
+   "mode"
+  ],
+  "does": "Normal photo mode on the older camera API.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "module:IntervalModuleCamera1",
+  "kind": "module",
+  "label": "IntervalModuleCamera1",
+  "label_it": "",
+  "api": "camera1",
+  "facets": [
+   "time",
+   "mode"
+  ],
+  "does": "Interval/timelapse mode on the older camera API.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "module:VideoModuleG3",
+  "kind": "module",
+  "label": "VideoModuleG3",
+  "label_it": "",
+  "api": "camera1",
+  "facets": [
+   "mode",
+   "video"
+  ],
+  "does": "Video mode for LG phones using LG's own recorder.",
+  "visible": true,
+  "notes": "Camera1, LG (G3-era) devices only"
+ },
+ {
+  "id": "module:VideoModule",
+  "kind": "module",
+  "label": "VideoModule",
+  "label_it": "",
+  "api": "camera1",
+  "facets": [
+   "mode",
+   "video"
+  ],
+  "does": "Video recording mode on the older camera API.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "module:BracketModule",
+  "kind": "module",
+  "label": "BracketModule",
+  "label_it": "",
+  "api": "camera1",
+  "facets": [
+   "multishot",
+   "mode"
+  ],
+  "does": "Exposure bracketing mode on the older camera API.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "column:CAMERA_SWITCH",
+  "kind": "column",
+  "label": "camera_switch",
+  "label_it": "",
+  "key": "CAMERA_SWITCH",
+  "writes": "app setting",
+  "api": "app",
+  "facets": [
+   "lens"
+  ],
+  "does": "Switches between the back and front camera (and other cameras).",
+  "visible": true
+ },
+ {
+  "id": "column:SELF_TIMER",
+  "kind": "column",
+  "label": "self_timer",
+  "label_it": "",
+  "key": "SELF_TIMER",
+  "writes": "app setting",
+  "api": "app",
+  "facets": [
+   "trigger"
+  ],
+  "does": "Sets a countdown before the photo is taken.",
+  "visible": true
+ },
+ {
+  "id": "column:HISTOGRAM",
+  "kind": "column",
+  "label": "histogram",
+  "label_it": "",
+  "key": "HISTOGRAM",
+  "writes": "app setting",
+  "api": "app",
+  "facets": [
+   "exposure_feedback"
+  ],
+  "does": "Shows a live histogram of brightness on the preview.",
+  "visible": true,
+  "notes": "Needs Preview PostProcessing on"
+ },
+ {
+  "id": "column:FOCUSPEAK",
+  "kind": "column",
+  "label": "focuspeak",
+  "label_it": "",
+  "key": "FOCUSPEAK",
+  "writes": "app setting",
+  "api": "app",
+  "facets": [
+   "focus"
+  ],
+  "does": "Highlights the sharp parts of the preview (focus peaking).",
+  "visible": true,
+  "notes": "Needs Preview PostProcessing on"
+ },
+ {
+  "id": "column:CLIPPING",
+  "kind": "column",
+  "label": "clipping",
+  "label_it": "",
+  "key": "CLIPPING",
+  "writes": "app setting",
+  "api": "app",
+  "facets": [
+   "exposure_feedback"
+  ],
+  "does": "Marks over- and under-exposed areas on the preview (zebras).",
+  "visible": true
+ },
+ {
+  "id": "column:HISTOGRAM_STATS_QCOM",
+  "kind": "column",
+  "label": "histogram_stats_qcom",
+  "label_it": "",
+  "key": "HISTOGRAM_STATS_QCOM",
+  "writes": "class HistogramQcom",
+  "api": "camera2",
+  "facets": [
+   "exposure_feedback"
+  ],
+  "does": "Shows a histogram computed by the camera hardware itself.",
+  "visible": true,
+  "notes": "Qualcomm vendor statistics; Camera2 only; duplicates HISTOGRAM's job via a different source"
+ },
+ {
+  "id": "column:TONE_CURVE_PARAMETER",
+  "kind": "column",
+  "label": "tone_curve_parameter",
+  "label_it": "",
+  "key": "TONE_CURVE_PARAMETER",
+  "writes": "manualToneMapCurveApi2.toneCurveParameter",
+  "api": "camera2",
+  "facets": [
+   "processing"
+  ],
+  "does": "Opens a tone curve to shape contrast and brightness of the image.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "column:FOCUS_MODE",
+  "kind": "column",
+  "label": "focus_mode",
+  "label_it": "",
+  "key": "FOCUS_MODE",
+  "writes": "CaptureRequest.CONTROL_AF_MODE",
+  "api": "both",
+  "facets": [
+   "focus"
+  ],
+  "does": "Chooses the focus mode (auto, continuous, macro, manual, ...).",
+  "visible": true
+ },
+ {
+  "id": "column:MODULE",
+  "kind": "column",
+  "label": "module",
+  "label_it": "",
+  "key": "MODULE",
+  "writes": "class ModuleParameters",
+  "api": "both",
+  "facets": [
+   "mode"
+  ],
+  "does": "Switches capture mode (photo, video, interval, bracketing...).",
+  "visible": true
+ },
+ {
+  "id": "column:EXPOSURE_LOCK",
+  "kind": "column",
+  "label": "exposure_lock",
+  "label_it": "",
+  "key": "EXPOSURE_LOCK",
+  "writes": "CaptureRequest.CONTROL_AE_LOCK",
+  "api": "both",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Locks the automatic exposure so it stops changing.",
+  "visible": true
+ },
+ {
+  "id": "column:FLASH_MODE",
+  "kind": "column",
+  "label": "flash_mode",
+  "label_it": "",
+  "key": "FLASH_MODE",
+  "writes": "CaptureRequest.CONTROL_AE_MODE, CaptureRequest.FLASH_MODE",
+  "api": "both",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the flash: off, on, auto or torch.",
+  "visible": true
+ },
+ {
+  "id": "strip:M_ZOOM",
+  "kind": "strip",
+  "label": "zoom",
+  "label_it": "",
+  "key": "M_ZOOM",
+  "writes": "CaptureRequest.SCALER_CROP_REGION",
+  "api": "both",
+  "glyph": "font_zoom_plus",
+  "facets": [
+   "compose"
+  ],
+  "does": "Zooms in and out.",
+  "visible": true
+ },
+ {
+  "id": "strip:M_FOCUS",
+  "kind": "strip",
+  "label": "focus",
+  "label_it": "",
+  "key": "M_FOCUS",
+  "writes": "CaptureRequest.CONTROL_AF_MODE, CaptureRequest.CONTROL_AF_TRIGGER, CaptureRequest.LENS_FOCUS_DISTANCE",
+  "api": "both",
+  "glyph": "font_manual_focus",
+  "facets": [
+   "focus"
+  ],
+  "does": "Sets focus distance by hand.",
+  "visible": true
+ },
+ {
+  "id": "strip:M_MANUAL_ISO",
+  "kind": "strip",
+  "label": "manual_iso",
+  "label_it": "",
+  "key": "M_MANUAL_ISO",
+  "writes": "aeManagerCamera2.getIso()",
+  "api": "both",
+  "glyph": "font_iso",
+  "facets": [
+   "exposure_manual"
+  ],
+  "does": "Sets ISO (sensor sensitivity) by hand.",
+  "visible": true
+ },
+ {
+  "id": "strip:M_EXPOSURE_TIME",
+  "kind": "strip",
+  "label": "exposure_time",
+  "label_it": "",
+  "key": "M_EXPOSURE_TIME",
+  "writes": "aeManagerCamera2.getExposureTime()",
+  "api": "both",
+  "glyph": "font_exposuretime",
+  "facets": [
+   "exposure_manual"
+  ],
+  "does": "Sets shutter speed by hand.",
+  "visible": true
+ },
+ {
+  "id": "strip:M_EXPOSURE_COMPENSATION",
+  "kind": "strip",
+  "label": "exposure_compensation",
+  "label_it": "",
+  "key": "M_EXPOSURE_COMPENSATION",
+  "writes": "aeManagerCamera2.getExposureCompensation()",
+  "api": "both",
+  "glyph": "font_ev",
+  "facets": [
+   "exposure_manual"
+  ],
+  "does": "Makes the automatic exposure brighter or darker (EV).",
+  "visible": true
+ },
+ {
+  "id": "strip:M_APERTURE",
+  "kind": "strip",
+  "label": "aperture",
+  "label_it": "",
+  "key": "M_APERTURE",
+  "writes": "CaptureRequest.LENS_APERTURE",
+  "api": "camera2",
+  "glyph": "font_aperture",
+  "facets": [
+   "exposure_manual"
+  ],
+  "does": "Sets the lens aperture on phones with a variable aperture.",
+  "visible": true,
+  "notes": "Camera2; only phones with variable aperture"
+ },
+ {
+  "id": "strip:M_WHITEBALANCE",
+  "kind": "strip",
+  "label": "whitebalance",
+  "label_it": "",
+  "key": "M_WHITEBALANCE",
+  "writes": "CaptureRequest.COLOR_CORRECTION_GAINS, CaptureRequestHuawei.HUAWEI_SENSOR_WB_VALUE",
+  "api": "both",
+  "glyph": "font_wb",
+  "facets": [
+   "colour"
+  ],
+  "does": "Sets white balance colour temperature by hand (Kelvin).",
+  "visible": true
+ },
+ {
+  "id": "strip:M_BURST",
+  "kind": "strip",
+  "label": "burst",
+  "label_it": "",
+  "key": "M_BURST",
+  "writes": "class BurstApi2",
+  "api": "both",
+  "glyph": "font_burst",
+  "facets": [
+   "multishot"
+  ],
+  "does": "Sets how many photos one shutter press takes (burst).",
+  "visible": true
+ },
+ {
+  "id": "strip:M_CONTRAST",
+  "kind": "strip",
+  "label": "contrast",
+  "label_it": "",
+  "key": "M_CONTRAST",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "glyph": "font_contrast",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets image contrast.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "strip:M_Brightness",
+  "kind": "strip",
+  "label": "brightness",
+  "label_it": "",
+  "key": "M_Brightness",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "glyph": "font_brightness",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets image brightness.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "strip:M_SATURATION",
+  "kind": "strip",
+  "label": "saturation",
+  "label_it": "",
+  "key": "M_SATURATION",
+  "writes": "CaptureRequestQcom.saturation",
+  "api": "both",
+  "glyph": "font_saturation",
+  "facets": [
+   "colour"
+  ],
+  "does": "Sets colour saturation.",
+  "visible": true,
+  "notes": "Qualcomm vendor key under Camera2"
+ },
+ {
+  "id": "strip:M_SHARPNESS",
+  "kind": "strip",
+  "label": "sharpness",
+  "label_it": "",
+  "key": "M_SHARPNESS",
+  "writes": "CaptureRequestQcom.sharpness",
+  "api": "both",
+  "glyph": "font_sharpness",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets image sharpening.",
+  "visible": true,
+  "notes": "Qualcomm vendor key under Camera2"
+ },
+ {
+  "id": "strip:M_ZEBRA_HIGH",
+  "kind": "strip",
+  "label": "zebra_high",
+  "label_it": "",
+  "key": "M_ZEBRA_HIGH",
+  "writes": "app setting",
+  "api": "app",
+  "glyph": "font_clipping",
+  "facets": [
+   "exposure_feedback"
+  ],
+  "does": "Sets the brightness level above which zebras mark highlights as clipped.",
+  "visible": true,
+  "notes": "Tunes CLIPPING"
+ },
+ {
+  "id": "strip:M_ZEBRA_LOW",
+  "kind": "strip",
+  "label": "zebra_low",
+  "label_it": "",
+  "key": "M_ZEBRA_LOW",
+  "writes": "app setting",
+  "api": "app",
+  "glyph": "font_clipping",
+  "facets": [
+   "exposure_feedback"
+  ],
+  "does": "Sets the brightness level below which zebras mark shadows as clipped.",
+  "visible": true,
+  "notes": "Tunes CLIPPING"
+ },
+ {
+  "id": "setting:VIDEO_PROFILES",
+  "kind": "setting",
+  "label": "Video Profile:",
+  "label_it": "Profilo video:",
+  "key": "VIDEO_PROFILES",
+  "writes": "class VideoProfilesApi2",
+  "api": "both",
+  "section": "Video",
+  "view": "Text",
+  "facets": [
+   "video"
+  ],
+  "does": "Picks the video profile: resolution, frame rate, bitrate, codec.",
+  "visible": true
+ },
+ {
+  "id": "setting:TIMELAPSE_FRAMES",
+  "kind": "setting",
+  "label": "",
+  "label_it": "",
+  "key": "TIMELAPSE_FRAMES",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Video",
+  "view": "Custom",
+  "facets": [
+   "time",
+   "video"
+  ],
+  "does": "Sets the playback frame rate of the assembled timelapse video.",
+  "visible": true,
+  "notes": "Label empty in census; header string is 'Timelapse frame rate'"
+ },
+ {
+  "id": "setting:@setting_videoprofileeditor_header",
+  "kind": "setting",
+  "label": "Video Profile Editor",
+  "label_it": "Editor di profili video",
+  "section": "Video",
+  "view": "Custom",
+  "facets": [
+   "video"
+  ],
+  "does": "Opens the editor to create custom video profiles.",
+  "visible": true,
+  "notes": "Entry point to VideoProfileEditorActivity"
+ },
+ {
+  "id": "setting:VIDEO_HDR",
+  "kind": "setting",
+  "label": "Video HDR:",
+  "label_it": "Video HDR:",
+  "key": "VIDEO_HDR",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Video",
+  "view": "Text",
+  "facets": [
+   "video"
+  ],
+  "does": "Turns on HDR video recording.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "setting:VIDEO_STABILIZATION",
+  "kind": "setting",
+  "label": "Video Stabilization:",
+  "label_it": "Stabilizzazione video:",
+  "key": "VIDEO_STABILIZATION",
+  "writes": "CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE",
+  "api": "both",
+  "section": "Video",
+  "view": "Text",
+  "facets": [
+   "video"
+  ],
+  "does": "Turns video stabilisation on or off.",
+  "visible": true
+ },
+ {
+  "id": "setting:VIDEO_AUDIO_SOURCE",
+  "kind": "setting",
+  "label": "Audio source:",
+  "label_it": "Sorgente audio:",
+  "key": "VIDEO_AUDIO_SOURCE",
+  "writes": "class VideoAudioSourceMode",
+  "api": "both",
+  "section": "Video",
+  "view": "Text",
+  "facets": [
+   "audio"
+  ],
+  "does": "Chooses which microphone records the sound for video.",
+  "visible": true
+ },
+ {
+  "id": "setting:PICTURE_SIZE",
+  "kind": "setting",
+  "label": "Size:",
+  "label_it": "Dimensione:",
+  "key": "PICTURE_SIZE",
+  "writes": "class PictureSizeModeApi2",
+  "api": "both",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "output"
+  ],
+  "does": "Sets the photo resolution.",
+  "visible": true
+ },
+ {
+  "id": "setting:PICTURE_FORMAT",
+  "kind": "setting",
+  "label": "Picture Format:",
+  "label_it": "",
+  "key": "PICTURE_FORMAT",
+  "writes": "class PictureFormatParameterApi2",
+  "api": "both",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "output"
+  ],
+  "does": "Chooses the file type: JPEG, RAW/DNG, or both.",
+  "visible": true
+ },
+ {
+  "id": "setting:YUV_SIZE",
+  "kind": "setting",
+  "label": "YUV size:",
+  "label_it": "",
+  "key": "YUV_SIZE",
+  "writes": "class YuvSizeModeApi2",
+  "api": "camera2",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "output"
+  ],
+  "does": "Sets the size of the YUV image stream used for capture.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:SECONDARY_SENSOR_SIZE",
+  "kind": "setting",
+  "label": "Secondary Size:",
+  "label_it": "",
+  "key": "SECONDARY_SENSOR_SIZE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "output",
+   "lens"
+  ],
+  "does": "Sets the picture size from the second sensor on dual-camera phones.",
+  "visible": true,
+  "notes": "Used with Huawei dual-sensor mode (DualCameraModeHuaweiApi2) and raw output selection"
+ },
+ {
+  "id": "setting:PHYSICAL_CAMERA_ID",
+  "kind": "setting",
+  "label": "Physical Camera:",
+  "label_it": "",
+  "key": "PHYSICAL_CAMERA_ID",
+  "writes": "class PhysicalCameraModeApi2",
+  "api": "camera2",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "lens"
+  ],
+  "does": "Pins capture to one physical lens instead of letting the phone switch automatically.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:JPEG_QUALITY",
+  "kind": "setting",
+  "label": "JPEG Quality:",
+  "label_it": "Qualità JPEG:",
+  "key": "JPEG_QUALITY",
+  "writes": "CaptureRequest.JPEG_QUALITY",
+  "api": "both",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "output"
+  ],
+  "does": "Sets JPEG compression quality.",
+  "visible": true
+ },
+ {
+  "id": "setting:MFNR",
+  "kind": "setting",
+  "label": "MNFR",
+  "label_it": "",
+  "key": "MFNR",
+  "writes": "CaptureRequest.NOISE_REDUCTION_MODE, CaptureRequestQcom.MFNR",
+  "api": "camera2",
+  "section": "Picture",
+  "view": "Boolean",
+  "facets": [
+   "multishot",
+   "processing"
+  ],
+  "does": "Merges several frames to reduce noise (multi-frame noise reduction).",
+  "visible": true,
+  "notes": "Camera2 vendor key (Qualcomm)"
+ },
+ {
+  "id": "setting:XIAOMI_MFNR",
+  "kind": "setting",
+  "label": "Xiaomi MNFR",
+  "label_it": "",
+  "key": "XIAOMI_MFNR",
+  "writes": "CaptureRequest.NOISE_REDUCTION_MODE, CaptureRequestDump.xiaomi_mfnr_enabled",
+  "api": "camera2",
+  "section": "Picture",
+  "view": "Boolean",
+  "facets": [
+   "multishot",
+   "processing"
+  ],
+  "does": "Xiaomi's multi-frame noise reduction.",
+  "visible": true,
+  "notes": "Xiaomi only; Camera2 vendor key; same job as MFNR"
+ },
+ {
+  "id": "setting:MTK_AOV_MODE",
+  "kind": "setting",
+  "label": "AoV Mode:",
+  "label_it": "",
+  "key": "MTK_AOV_MODE",
+  "writes": "CaptureRequestMtk.com_mediatek_aovservicefeature_aovMode",
+  "api": "camera2",
+  "section": "Picture",
+  "view": "Text",
+  "facets": [
+   "device"
+  ],
+  "does": "Turns MediaTek's AOV vendor mode on or off.",
+  "visible": true,
+  "notes": "MediaTek vendor key; Camera2; description says 'All on Video', key is aovservicefeature (likely Always-On Vision) - purpose unclear"
+ },
+ {
+  "id": "setting:INTERVAL_SHUTTER_SLEEP",
+  "kind": "setting",
+  "label": "Shutter fire interval:",
+  "label_it": "",
+  "key": "INTERVAL_SHUTTER_SLEEP",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Interval",
+  "view": "Text",
+  "facets": [
+   "time"
+  ],
+  "does": "Sets the time between shots in interval mode.",
+  "visible": true
+ },
+ {
+  "id": "setting:INTERVAL_DURATION",
+  "kind": "setting",
+  "label": "Interval duration:",
+  "label_it": "Durata fino alla fine dell'intervallo",
+  "key": "INTERVAL_DURATION",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Interval",
+  "view": "Text",
+  "facets": [
+   "time"
+  ],
+  "does": "Sets how long the interval capture keeps running.",
+  "visible": true
+ },
+ {
+  "id": "setting:OPCODE",
+  "kind": "setting",
+  "label": "Raw Flat Field",
+  "label_it": "",
+  "key": "OPCODE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Raw",
+  "view": "Custom",
+  "facets": [
+   "output"
+  ],
+  "does": "Downloads flat-field correction data to embed in DNG files.",
+  "visible": true,
+  "notes": "DNG opcodes"
+ },
+ {
+  "id": "setting:BAYERFORMAT",
+  "kind": "setting",
+  "label": "Bayer Format:",
+  "label_it": "Formato Bayer:",
+  "key": "BAYERFORMAT",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Raw",
+  "view": "Text",
+  "facets": [
+   "output",
+   "device"
+  ],
+  "does": "Sets the sensor's raw colour pattern used when writing DNGs.",
+  "visible": true,
+  "notes": "Fix for devices reporting wrong Bayer order"
+ },
+ {
+  "id": "setting:MATRIX_SET",
+  "kind": "setting",
+  "label": "CustomMatrix:",
+  "label_it": "Matrice personalizzata:",
+  "key": "MATRIX_SET",
+  "writes": "class MatrixChooserParameter",
+  "api": "both",
+  "section": "Raw",
+  "view": "Text",
+  "facets": [
+   "output",
+   "colour"
+  ],
+  "does": "Picks a custom colour matrix (DNG profile) for raw files.",
+  "visible": true
+ },
+ {
+  "id": "setting:TONEMAP_SET",
+  "kind": "setting",
+  "label": "ToneMapProfile:",
+  "label_it": "",
+  "key": "TONEMAP_SET",
+  "writes": "class ToneMapChooser",
+  "api": "camera2",
+  "section": "Raw",
+  "view": "Text",
+  "facets": [
+   "output"
+  ],
+  "does": "Picks the tone curve profile written into DNG files.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:FORCE_RAW_TO_DNG",
+  "kind": "setting",
+  "label": "Use GlassCam DngConverter",
+  "label_it": "",
+  "key": "FORCE_RAW_TO_DNG",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Raw",
+  "view": "Boolean",
+  "facets": [
+   "output"
+  ],
+  "does": "Uses GlassCam's own DNG converter for 16-bit raw.",
+  "visible": true
+ },
+ {
+  "id": "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2",
+  "kind": "setting",
+  "label": "Use custom DNG profile",
+  "label_it": "",
+  "key": "USE_CUSTOM_MATRIX_ON_CAMERA_2",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Raw",
+  "view": "Boolean",
+  "facets": [
+   "output",
+   "colour"
+  ],
+  "does": "Uses the chosen custom DNG colour profile under Camera2.",
+  "visible": true,
+  "notes": "Companion switch to MATRIX_SET"
+ },
+ {
+  "id": "setting:RAW_SIZE",
+  "kind": "setting",
+  "label": "Raw size:",
+  "label_it": "",
+  "key": "RAW_SIZE",
+  "writes": "class RawSizeModeApi2",
+  "api": "camera2",
+  "section": "Raw",
+  "view": "Text",
+  "facets": [
+   "output"
+  ],
+  "does": "Sets the raw image resolution.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:@setting_api_header",
+  "kind": "setting",
+  "label": "API:",
+  "label_it": "API:",
+  "section": "Etc",
+  "view": "Text",
+  "facets": [
+   "device"
+  ],
+  "does": "Chooses which Android camera API the app uses (Camera1 or Camera2).",
+  "visible": true
+ },
+ {
+  "id": "setting:SD_SAVE_LOCATION",
+  "kind": "setting",
+  "label": "Storage Location:",
+  "label_it": "Posizione memoria:",
+  "key": "SD_SAVE_LOCATION",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Text",
+  "facets": [
+   "manage"
+  ],
+  "does": "Chooses where photos and videos are saved.",
+  "visible": true
+ },
+ {
+  "id": "setting:LOCATION_MODE",
+  "kind": "setting",
+  "label": "Geo-Tag Location",
+  "label_it": "Località GPS:",
+  "key": "LOCATION_MODE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Custom",
+  "facets": [
+   "metadata"
+  ],
+  "does": "Adds GPS location to photos (geotagging).",
+  "visible": true
+ },
+ {
+  "id": "setting:NIGHT_OVERLAY",
+  "kind": "setting",
+  "label": "Night overlay:",
+  "label_it": "Maschera notturna:",
+  "key": "NIGHT_OVERLAY",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Text",
+  "facets": [
+   "app"
+  ],
+  "does": "Puts a red overlay over the screen for night use.",
+  "visible": true
+ },
+ {
+  "id": "setting:TOUCH_TO_CAPTURE",
+  "kind": "setting",
+  "label": "Touch to Capture",
+  "label_it": "",
+  "key": "TOUCH_TO_CAPTURE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Boolean",
+  "facets": [
+   "trigger"
+  ],
+  "does": "Takes a photo when the preview is touched.",
+  "visible": true
+ },
+ {
+  "id": "setting:PLAY_SHUTTER_SOUND",
+  "kind": "setting",
+  "label": "Play Shutter Sound",
+  "label_it": "Suono dell'otturatore",
+  "key": "PLAY_SHUTTER_SOUND",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Boolean",
+  "facets": [
+   "trigger"
+  ],
+  "does": "Plays a sound when a photo is taken.",
+  "visible": true
+ },
+ {
+  "id": "setting:FOCUS_STACK_MERGE",
+  "kind": "setting",
+  "label": "Merge AF bracket into a focus stack",
+  "label_it": "Unisci il bracketing AF in una pila di fuoco",
+  "key": "FOCUS_STACK_MERGE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Boolean",
+  "facets": [
+   "multishot"
+  ],
+  "does": "Merges a focus bracket into one focus-stacked JPEG after capture.",
+  "visible": true,
+  "notes": "Applies to AfBracketApi2"
+ },
+ {
+  "id": "setting:@setting_savecamparams_header",
+  "kind": "setting",
+  "label": "Save Camera Parameters",
+  "label_it": "Salva parametri fotocamera",
+  "section": "Etc",
+  "view": "Custom",
+  "facets": [
+   "device"
+  ],
+  "does": "Saves the camera's parameters to a file for debugging.",
+  "visible": true,
+  "notes": "Debug dump"
+ },
+ {
+  "id": "setting:OPEN_CAMERA_1_LEGACY",
+  "kind": "setting",
+  "label": "Open Camera in LegacyMode:",
+  "label_it": "",
+  "key": "OPEN_CAMERA_1_LEGACY",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Etc",
+  "view": "Text",
+  "facets": [
+   "device"
+  ],
+  "does": "Opens the camera in legacy mode for phones that need it.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "setting:@setting_featuredetector_header",
+  "kind": "setting",
+  "label": "Run feature detector",
+  "label_it": "",
+  "section": "Etc",
+  "view": "Custom",
+  "facets": [
+   "device"
+  ],
+  "does": "Re-runs detection of what this phone's camera supports.",
+  "visible": true
+ },
+ {
+  "id": "setting:@setting_dump_vendor_keys_header",
+  "kind": "setting",
+  "label": "Dump vendor keys",
+  "label_it": "",
+  "section": "Etc",
+  "view": "Custom",
+  "facets": [
+   "device"
+  ],
+  "does": "Dumps the phone's vendor camera keys to a file for debugging.",
+  "visible": true,
+  "notes": "Debug dump"
+ },
+ {
+  "id": "setting:PREVIEW_TEMPLATE",
+  "kind": "setting",
+  "label": "Preview Template:",
+  "label_it": "",
+  "key": "PREVIEW_TEMPLATE",
+  "writes": "class TemplateModeApi2",
+  "api": "camera2",
+  "section": "Etc",
+  "view": "Text",
+  "facets": [
+   "device"
+  ],
+  "does": "Chooses the capture template used for the live preview.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:CAPTURE_TEMPLATE",
+  "kind": "setting",
+  "label": "Capture Template:",
+  "label_it": "",
+  "key": "CAPTURE_TEMPLATE",
+  "writes": "class TemplateModeApi2",
+  "api": "camera2",
+  "section": "Etc",
+  "view": "Text",
+  "facets": [
+   "device"
+  ],
+  "does": "Chooses the capture template used when taking the photo.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:HIDE_CAMERA_UI",
+  "kind": "setting",
+  "label": "Hide camera UI",
+  "label_it": "",
+  "key": "HIDE_CAMERA_UI",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Etc",
+  "view": "Boolean",
+  "facets": [
+   "app"
+  ],
+  "does": "Hides all camera controls on screen.",
+  "visible": true,
+  "notes": "Needs app restart"
+ },
+ {
+  "id": "setting:PREVIEW_POST_PROCESSING_MODE",
+  "kind": "setting",
+  "label": "Preview PostProcessing:",
+  "label_it": "",
+  "key": "PREVIEW_POST_PROCESSING_MODE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "app"
+  ],
+  "does": "Turns on preview processing needed for focus peaking and the live histogram.",
+  "visible": true,
+  "notes": "Enabler for FOCUSPEAK / HISTOGRAM"
+ },
+ {
+  "id": "setting:FOCUSPEAK_COLOR",
+  "kind": "setting",
+  "label": "Focus-peak colour:",
+  "label_it": "",
+  "key": "FOCUSPEAK_COLOR",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "focus"
+  ],
+  "does": "Chooses the colour used to highlight sharp areas.",
+  "visible": true,
+  "notes": "Tunes FOCUSPEAK"
+ },
+ {
+  "id": "setting:ORIENTATION_HACK",
+  "kind": "setting",
+  "label": "Orientation Correction:",
+  "label_it": "Correzione orientamento:",
+  "key": "ORIENTATION_HACK",
+  "writes": "class OrientationHackParameter",
+  "api": "both",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "device"
+  ],
+  "does": "Rotates the image 180 degrees for phones whose camera is mounted upside down.",
+  "visible": true
+ },
+ {
+  "id": "setting:SWITCH_ASPECT_RATIO",
+  "kind": "setting",
+  "label": "Swap preview width and height",
+  "label_it": "",
+  "key": "SWITCH_ASPECT_RATIO",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Custom",
+  "facets": [
+   "device",
+   "app"
+  ],
+  "does": "Swaps preview width and height when the preview looks stretched.",
+  "visible": true,
+  "notes": "Preview fix, not a picture aspect ratio"
+ },
+ {
+  "id": "setting:USE_GLASSCAM_AE",
+  "kind": "setting",
+  "label": "GlassCam AE",
+  "label_it": "",
+  "key": "USE_GLASSCAM_AE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Custom",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Uses GlassCam's own automatic exposure instead of the phone's.",
+  "visible": true
+ },
+ {
+  "id": "setting:MAX_ISO",
+  "kind": "setting",
+  "label": "Max Iso:",
+  "label_it": "",
+  "key": "MAX_ISO",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the highest ISO GlassCam's auto exposure may use.",
+  "visible": true,
+  "notes": "Applies with USE_GLASSCAM_AE"
+ },
+ {
+  "id": "setting:MIN_ISO",
+  "kind": "setting",
+  "label": "Min Iso:",
+  "label_it": "",
+  "key": "MIN_ISO",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the lowest ISO GlassCam's auto exposure may use.",
+  "visible": true,
+  "notes": "Applies with USE_GLASSCAM_AE"
+ },
+ {
+  "id": "setting:MIN_EXPOSURE",
+  "kind": "setting",
+  "label": "Min ExposureTime:",
+  "label_it": "",
+  "key": "MIN_EXPOSURE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the fastest shutter speed GlassCam's auto exposure may use.",
+  "visible": true,
+  "notes": "Applies with USE_GLASSCAM_AE"
+ },
+ {
+  "id": "setting:MAX_EXPOSURE",
+  "kind": "setting",
+  "label": "Max ExposureTime:",
+  "label_it": "",
+  "key": "MAX_EXPOSURE",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the slowest shutter speed GlassCam's auto exposure may use.",
+  "visible": true,
+  "notes": "Applies with USE_GLASSCAM_AE"
+ },
+ {
+  "id": "setting:GUIDE_LIST",
+  "kind": "setting",
+  "label": "Grid:",
+  "label_it": "Griglia:",
+  "key": "GUIDE_LIST",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "compose"
+  ],
+  "does": "Overlays a composition grid on the preview.",
+  "visible": true
+ },
+ {
+  "id": "setting:HORIZONT_LVL",
+  "kind": "setting",
+  "label": "Image Level:",
+  "label_it": "Livello immagine:",
+  "key": "HORIZONT_LVL",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "compose"
+  ],
+  "does": "Shows a level to keep the picture straight.",
+  "visible": true
+ },
+ {
+  "id": "setting:ZOOM_ON_MANUALFOCUS",
+  "kind": "setting",
+  "label": "Auto-zoom on manual focus",
+  "label_it": "",
+  "key": "ZOOM_ON_MANUALFOCUS",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Boolean",
+  "facets": [
+   "focus"
+  ],
+  "does": "Magnifies the preview while focusing by hand.",
+  "visible": true
+ },
+ {
+  "id": "setting:ZOOM_ON_MANUALFOCUS_ZOOMFACTOR",
+  "kind": "setting",
+  "label": "Zoom factor:",
+  "label_it": "",
+  "key": "ZOOM_ON_MANUALFOCUS_ZOOMFACTOR",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "focus"
+  ],
+  "does": "Sets how much the preview magnifies while focusing by hand.",
+  "visible": true,
+  "notes": "Tunes ZOOM_ON_MANUALFOCUS"
+ },
+ {
+  "id": "setting:ZOOM_ON_MANUALFOCUS_ZOOMDURATION",
+  "kind": "setting",
+  "label": "Zoom duration:",
+  "label_it": "",
+  "key": "ZOOM_ON_MANUALFOCUS_ZOOMDURATION",
+  "writes": "app setting",
+  "api": "app",
+  "section": "Preview",
+  "view": "Text",
+  "facets": [
+   "focus"
+  ],
+  "does": "Sets how long the focus magnification stays on.",
+  "visible": true,
+  "notes": "Tunes ZOOM_ON_MANUALFOCUS"
+ },
+ {
+  "id": "setting:FORCE_WIDE_PREVIEW",
+  "kind": "setting",
+  "label": "Force Wide Preview",
+  "label_it": "",
+  "key": "FORCE_WIDE_PREVIEW",
+  "writes": "class ForceWidePreview",
+  "api": "camera2",
+  "section": "Preview",
+  "view": "Boolean",
+  "facets": [
+   "app",
+   "compose"
+  ],
+  "does": "Uses the widest available preview size.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:SCENE_MODE",
+  "kind": "setting",
+  "label": "Scene:",
+  "label_it": "Scena:",
+  "key": "SCENE_MODE",
+  "writes": "CaptureRequest.CONTROL_SCENE_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Picks a scene preset (night, sports, portrait...).",
+  "visible": true
+ },
+ {
+  "id": "setting:WHITE_BALANCE_MODE",
+  "kind": "setting",
+  "label": "WB:",
+  "label_it": "WB",
+  "key": "WHITE_BALANCE_MODE",
+  "writes": "CaptureRequest.CONTROL_AWB_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "colour"
+  ],
+  "does": "Picks a white balance preset (auto, daylight, cloudy...).",
+  "visible": true
+ },
+ {
+  "id": "setting:COLOR_MODE",
+  "kind": "setting",
+  "label": "Color Effect:",
+  "label_it": "Effetto colore:",
+  "key": "COLOR_MODE",
+  "writes": "CaptureRequest.CONTROL_EFFECT_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "colour"
+  ],
+  "does": "Applies a colour effect (mono, sepia, negative...).",
+  "visible": true
+ },
+ {
+  "id": "setting:COLOR_CORRECTION_MODE",
+  "kind": "setting",
+  "label": "Correlated Color Temperature:",
+  "label_it": "Temperatura di colore correlata (CCT):",
+  "key": "COLOR_CORRECTION_MODE",
+  "writes": "CaptureRequest.COLOR_CORRECTION_GAINS, CaptureRequest.COLOR_CORRECTION_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "colour"
+  ],
+  "does": "Sets how the camera corrects colour (auto, manual transform matrix).",
+  "visible": true,
+  "notes": "Writes CaptureRequest.COLOR_CORRECTION_MODE via WbHandler despite census 'app setting'"
+ },
+ {
+  "id": "setting:TONE_MAP_MODE",
+  "kind": "setting",
+  "label": "Tonemap:",
+  "label_it": "",
+  "key": "TONE_MAP_MODE",
+  "writes": "CaptureRequest.TONEMAP_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets how the camera maps tones (contrast curve mode).",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:CONTROL_MODE",
+  "kind": "setting",
+  "label": "Camera Control:",
+  "label_it": "Controllo fotocamera:",
+  "key": "CONTROL_MODE",
+  "writes": "CaptureRequest.CONTROL_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Turns the camera's automatic controls (exposure, focus, white balance) on or off.",
+  "visible": true,
+  "notes": "Camera2; 'off' gives full manual"
+ },
+ {
+  "id": "setting:RED_EYE",
+  "kind": "setting",
+  "label": "Red-Eye Reduction:",
+  "label_it": "Riduzione occhi rossi:",
+  "key": "RED_EYE",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Fires a pre-flash to reduce red eye.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "setting:ANTI_BANDING_MODE",
+  "kind": "setting",
+  "label": "Anti Flicker:",
+  "label_it": "Anti-sfarfallio:",
+  "key": "ANTI_BANDING_MODE",
+  "writes": "CaptureRequest.CONTROL_AE_ANTIBANDING_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Reduces flicker bands from artificial lights (50/60 Hz).",
+  "visible": true
+ },
+ {
+  "id": "setting:IMAGE_POST_PROCESSING",
+  "kind": "setting",
+  "label": "Image Post Processing:",
+  "label_it": "Postelaborazione dell'immagine:",
+  "key": "IMAGE_POST_PROCESSING",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets the quality of the camera's image post-processing.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:LENS_SHADE",
+  "kind": "setting",
+  "label": "Lens shade:",
+  "label_it": "Paraluce:",
+  "key": "LENS_SHADE",
+  "writes": "CaptureRequest.SHADING_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Corrects darker corners (vignetting).",
+  "visible": true
+ },
+ {
+  "id": "setting:DENOISE",
+  "kind": "setting",
+  "label": "Noise reduction:",
+  "label_it": "Riduzione rumore:",
+  "key": "DENOISE",
+  "writes": "CaptureRequest.NOISE_REDUCTION_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets noise reduction for photos.",
+  "visible": true
+ },
+ {
+  "id": "setting:SCENE_DETECT",
+  "kind": "setting",
+  "label": "SceneDetection:",
+  "label_it": "Rilevamento scena:",
+  "key": "SCENE_DETECT",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Lets the camera pick the scene mode automatically.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:TNR",
+  "kind": "setting",
+  "label": "Temporal Denoise:",
+  "label_it": "Riduzione rumore temporanea:",
+  "key": "TNR",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Multi-frame temporal noise reduction for photos.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:TNR_V",
+  "kind": "setting",
+  "label": "Temporal Video Denoise:",
+  "label_it": "",
+  "key": "TNR_V",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "video",
+   "processing"
+  ],
+  "does": "Multi-frame temporal noise reduction for video.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:PDAF",
+  "kind": "setting",
+  "label": "PDAF Control:",
+  "label_it": "",
+  "key": "PDAF",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "focus"
+  ],
+  "does": "Turns phase-detection autofocus on or off.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:TRUE_POTRAIT",
+  "kind": "setting",
+  "label": "True Portrait:",
+  "label_it": "",
+  "key": "TRUE_POTRAIT",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "mode"
+  ],
+  "does": "Vendor portrait (background blur) effect.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2; description string is 'Description pending'"
+ },
+ {
+  "id": "setting:RDI",
+  "kind": "setting",
+  "label": "RDI:",
+  "label_it": "",
+  "key": "RDI",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "output",
+   "device"
+  ],
+  "does": "Raw dump interface for zero-lag raw capture.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:CHROMA_FLASH",
+  "kind": "setting",
+  "label": "Chroma Flash:",
+  "label_it": "",
+  "key": "CHROMA_FLASH",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "multishot"
+  ],
+  "does": "Combines flash and no-flash frames for better flash photos.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:OPTI_ZOOM",
+  "kind": "setting",
+  "label": "Optizoom:",
+  "label_it": "",
+  "key": "OPTI_ZOOM",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "compose",
+   "multishot"
+  ],
+  "does": "Vendor enhanced digital zoom.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2; description says 'Auto track zoom object'"
+ },
+ {
+  "id": "setting:RE_FOCUS",
+  "kind": "setting",
+  "label": "Refocus:",
+  "label_it": "",
+  "key": "RE_FOCUS",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "focus",
+   "multishot"
+  ],
+  "does": "Vendor refocus: lets focus be changed after the shot.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:SEE_MORE",
+  "kind": "setting",
+  "label": "StillMore:",
+  "label_it": "",
+  "key": "SEE_MORE",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Vendor local tone mapping to bring out shadows and highlights.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:LENS_FILTER",
+  "kind": "setting",
+  "label": "Virtual Lens Filter:",
+  "label_it": "Filtro ottica virtuale",
+  "key": "LENS_FILTER",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "colour"
+  ],
+  "does": "Applies a virtual lens filter effect.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:DIGITAL_IMAGE_STABILIZATION",
+  "kind": "setting",
+  "label": "Digital Image Stabilization:",
+  "label_it": "Stabilizzazione digitale:",
+  "key": "DIGITAL_IMAGE_STABILIZATION",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "stabilise"
+  ],
+  "does": "Electronic image stabilisation.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "setting:MEMORY_COLOR_ENHANCEMENT",
+  "kind": "setting",
+  "label": "Memory Color Enhancement:",
+  "label_it": "Miglioramento memoria colore:",
+  "key": "MEMORY_COLOR_ENHANCEMENT",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "colour"
+  ],
+  "does": "Boosts colours, like a vibrance control.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:ZSL",
+  "kind": "setting",
+  "label": "Zero Shutter Lag:",
+  "label_it": "",
+  "key": "ZSL",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "trigger"
+  ],
+  "does": "Zero shutter lag: buffers frames so the photo is taken instantly.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2; must be off for raw"
+ },
+ {
+  "id": "setting:HDR_MODE",
+  "kind": "setting",
+  "label": "HDR Mode:",
+  "label_it": "",
+  "key": "HDR_MODE",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "multishot",
+   "processing"
+  ],
+  "does": "Turns the camera's built-in HDR on or off.",
+  "visible": true,
+  "notes": "Camera1 only - not shown under Camera2"
+ },
+ {
+  "id": "setting:NON_ZSL_MANUAL_MODE",
+  "kind": "setting",
+  "label": "ManualControl(ZSL= OFF):",
+  "label_it": "Controllo Manuale (ZSL off)",
+  "key": "NON_ZSL_MANUAL_MODE",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "device",
+   "exposure_manual"
+  ],
+  "does": "Enables manual controls when zero shutter lag is off.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:CDS_MODE",
+  "kind": "setting",
+  "label": "Correlated double sampling:",
+  "label_it": "Doppio campionamento correlato",
+  "key": "CDS_MODE",
+  "writes": "Camera1 parameter",
+  "api": "camera1",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Correlated double sampling: reads the sensor twice to reduce noise.",
+  "visible": true,
+  "notes": "Camera1 only; Qualcomm vendor parameter - not shown under Camera2"
+ },
+ {
+  "id": "setting:EDGE_MODE",
+  "kind": "setting",
+  "label": "Edge Mode:",
+  "label_it": "Vignettatura:",
+  "key": "EDGE_MODE",
+  "writes": "CaptureRequest.EDGE_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets edge enhancement (sharpening).",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:HOT_PIXEL_MODE",
+  "kind": "setting",
+  "label": "Hot Pixel Correction:",
+  "label_it": "Correzione Hot Pixel:",
+  "key": "HOT_PIXEL_MODE",
+  "writes": "CaptureRequest.HOT_PIXEL_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Sets hot-pixel correction.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:DISTORTION_CORRECTION_MODE",
+  "kind": "setting",
+  "label": "Distortion Correction:",
+  "label_it": "",
+  "key": "DISTORTION_CORRECTION_MODE",
+  "writes": "CaptureRequest.DISTORTION_CORRECTION_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "processing"
+  ],
+  "does": "Corrects lens distortion.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:FACE_DETECTOR_MODE",
+  "kind": "setting",
+  "label": "Face Detection:",
+  "label_it": "",
+  "key": "FACE_DETECTOR_MODE",
+  "writes": "CaptureRequest.STATISTICS_FACE_DETECT_MODE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "focus",
+   "exposure_auto"
+  ],
+  "does": "Turns face detection on or off.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:OIS_MODE",
+  "kind": "setting",
+  "label": "Optical Image Stabilisation:",
+  "label_it": "Stabilizzazione ottica:",
+  "key": "OIS_MODE",
+  "writes": "CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "stabilise"
+  ],
+  "does": "Turns optical image stabilisation on or off.",
+  "visible": true
+ },
+ {
+  "id": "setting:DUAL_PRIMARY_CAMERA_MODE",
+  "kind": "setting",
+  "label": "Dual Camera:",
+  "label_it": "",
+  "key": "DUAL_PRIMARY_CAMERA_MODE",
+  "writes": "CaptureRequestHuawei.HUAWEI_DUAL_SENSOR_MODE",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "lens"
+  ],
+  "does": "Chooses which sensor(s) of a dual camera to use.",
+  "visible": true,
+  "notes": "Huawei only (HUAWEI_DUAL_SENSOR_MODE)"
+ },
+ {
+  "id": "setting:EXPOSURE_MODE",
+  "kind": "setting",
+  "label": "Auto Exposure Mode:",
+  "label_it": "",
+  "key": "EXPOSURE_MODE",
+  "writes": "CaptureRequest.CONTROL_AE_EXPOSURE_COMPENSATION, CaptureRequest.CONTROL_POST_RAW_SENSITIVITY_BOOST, CaptureRequest.FLASH_MODE, CaptureRequest.SENSOR_EXPOSURE_TIME, CaptureRequest.SENSOR_SENSITIVITY",
+  "api": "both",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the automatic exposure mode (on, off, with flash...).",
+  "visible": true
+ },
+ {
+  "id": "setting:AE_TARGET_FPS",
+  "kind": "setting",
+  "label": "AE Frame Range:",
+  "label_it": "",
+  "key": "AE_TARGET_FPS",
+  "writes": "CaptureRequest.CONTROL_AE_TARGET_FPS_RANGE",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Sets the frame rate range the auto exposure may use.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "setting:AE_METERING",
+  "kind": "setting",
+  "label": "AE Meter Area:",
+  "label_it": "",
+  "key": "AE_METERING",
+  "writes": "class MeteringMode",
+  "api": "camera2",
+  "section": "Camera",
+  "view": "Text",
+  "facets": [
+   "exposure_auto"
+  ],
+  "does": "Chooses the area used to measure exposure.",
+  "visible": true,
+  "notes": "Camera2 only"
+ },
+ {
+  "id": "viewer:button_info",
+  "kind": "viewer",
+  "label": "info",
+  "label_it": "",
+  "facets": [
+   "review",
+   "metadata"
+  ],
+  "does": "Shows the photo's details (EXIF information).",
+  "visible": true
+ },
+ {
+  "id": "viewer:button_closeView",
+  "kind": "viewer",
+  "label": "closeView",
+  "label_it": "",
+  "facets": [
+   "review"
+  ],
+  "does": "Closes the full-screen view and returns to the gallery.",
+  "visible": true
+ },
+ {
+  "id": "viewer:button_play",
+  "kind": "viewer",
+  "label": "play",
+  "label_it": "",
+  "facets": [
+   "review"
+  ],
+  "does": "Plays the selected video.",
+  "visible": true
+ },
+ {
+  "id": "viewer:button_delete",
+  "kind": "viewer",
+  "label": "delete",
+  "label_it": "",
+  "facets": [
+   "manage"
+  ],
+  "does": "Deletes the shown file.",
+  "visible": true
+ },
+ {
+  "id": "fragment:EmptyFragment",
+  "kind": "fragment",
+  "label": "EmptyFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "Empty placeholder screen part with no function.",
+  "visible": false,
+  "notes": "Internal holder"
+ },
+ {
+  "id": "fragment:HorizontLineFragment",
+  "kind": "fragment",
+  "label": "HorizontLineFragment",
+  "label_it": "",
+  "facets": [
+   "compose"
+  ],
+  "does": "The level line drawn over the preview.",
+  "visible": false,
+  "notes": "Part of the camera screen; shown by HORIZONT_LVL"
+ },
+ {
+  "id": "fragment:ManualFragment",
+  "kind": "fragment",
+  "label": "ManualFragment",
+  "label_it": "",
+  "facets": [
+   "exposure_manual"
+  ],
+  "does": "Holder for the manual controls area.",
+  "visible": false,
+  "notes": "Part of the camera screen"
+ },
+ {
+  "id": "fragment:NextGenMainFragment",
+  "kind": "fragment",
+  "label": "NextGenMainFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "Holds the camera screen and the settings pages.",
+  "visible": false,
+  "notes": "Container"
+ },
+ {
+  "id": "fragment:HelpFragment",
+  "kind": "fragment",
+  "label": "HelpFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "Help overlay explaining the controls.",
+  "visible": false,
+  "notes": "Part of the camera screen"
+ },
+ {
+  "id": "fragment:NextGenCameraSettingFragment",
+  "kind": "fragment",
+  "label": "NextGenCameraSettingFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "The settings list screen part.",
+  "visible": false,
+  "notes": "Container for setting rows"
+ },
+ {
+  "id": "fragment:NextGenCameraUiFragment",
+  "kind": "fragment",
+  "label": "NextGenCameraUiFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "The camera controls layer over the preview.",
+  "visible": false,
+  "notes": "Container"
+ },
+ {
+  "id": "fragment:NextGenHorizontalValuesFragment",
+  "kind": "fragment",
+  "label": "NextGenHorizontalValuesFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "Pop-up row of values to pick for a control.",
+  "visible": false,
+  "notes": "Part of the camera screen"
+ },
+ {
+  "id": "fragment:NextGenManualsFragment",
+  "kind": "fragment",
+  "label": "NextGenManualsFragment",
+  "label_it": "",
+  "facets": [
+   "exposure_manual"
+  ],
+  "does": "The manual-strip area (ISO, shutter, focus...).",
+  "visible": false,
+  "notes": "Container of strip:* controls"
+ },
+ {
+  "id": "fragment:NextGenSettingDummyFragment",
+  "kind": "fragment",
+  "label": "NextGenSettingDummyFragment",
+  "label_it": "",
+  "facets": [
+   "app"
+  ],
+  "does": "Holds the one list of all settings rows.",
+  "visible": false,
+  "notes": "Container (SPEC D2 GROUP_ALL)"
+ },
+ {
+  "id": "fragment:VideoProfileEditorFragment",
+  "kind": "fragment",
+  "label": "VideoProfileEditorFragment",
+  "label_it": "",
+  "facets": [
+   "video"
+  ],
+  "does": "The content of the video profile editor.",
+  "visible": false,
+  "notes": "Part of VideoProfileEditorActivity"
+ },
+ {
+  "id": "fragment:DngConvertingFragment",
+  "kind": "fragment",
+  "label": "DngConvertingFragment",
+  "label_it": "",
+  "facets": [
+   "manage",
+   "output"
+  ],
+  "does": "The content of the raw-to-DNG converter.",
+  "visible": false,
+  "notes": "Part of DngConvertingActivity"
+ },
+ {
+  "id": "fragment:GridViewFragment",
+  "kind": "fragment",
+  "label": "GridViewFragment",
+  "label_it": "",
+  "facets": [
+   "review"
+  ],
+  "does": "The thumbnail grid of the gallery.",
+  "visible": false,
+  "notes": "Part of ActivityGlassCamViewer"
+ },
+ {
+  "id": "fragment:ImageFragment",
+  "kind": "fragment",
+  "label": "ImageFragment",
+  "label_it": "",
+  "facets": [
+   "review"
+  ],
+  "does": "Shows one photo full screen in the gallery.",
+  "visible": false,
+  "notes": "Part of ActivityGlassCamViewer"
+ },
+ {
+  "id": "fragment:ScreenSlideFragment",
+  "kind": "fragment",
+  "label": "ScreenSlideFragment",
+  "label_it": "",
+  "facets": [
+   "review"
+  ],
+  "does": "Swipes between photos in full screen.",
+  "visible": false,
+  "notes": "Part of ActivityGlassCamViewer"
+ }
+]

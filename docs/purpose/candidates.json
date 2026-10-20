@@ -1,0 +1,1130 @@
+[
+ {
+  "a": "column:HISTOGRAM",
+  "b": "column:HISTOGRAM_STATS_QCOM",
+  "a_name": "Histogram",
+  "b_name": "Histogram (camera hardware)",
+  "same_job": 2,
+  "same_param": 0,
+  "precedent": 8,
+  "reach_gap": 0,
+  "confusion": 1,
+  "why": "same_job: Two camera-screen toggles that both show a live brightness histogram (one computed from the preview, one from Qualcomm h",
+  "refs": {
+   "column:HISTOGRAM": [
+    "freedcam",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "column:HISTOGRAM_STATS_QCOM": []
+  },
+  "reach": {
+   "column:HISTOGRAM": 1,
+   "column:HISTOGRAM_STATS_QCOM": 1
+  },
+  "rarely_used": 1,
+  "use": {
+   "column:HISTOGRAM": 1,
+   "column:HISTOGRAM_STATS_QCOM": 1
+  },
+  "live_layer": 1,
+  "layer": 1
+ },
+ {
+  "a": "column:FLASH_MODE",
+  "b": "setting:EXPOSURE_MODE",
+  "a_name": "Flash",
+  "b_name": "Auto Exposure Mode",
+  "same_job": 2,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 18,
+  "confusion": 0,
+  "why": "same_job: On Camera2 both pick a flash behaviour: FLASH_MODE writes CONTROL_AE_MODE ON_AUTO_FLASH/ON_ALWAYS_FLASH, and the Auto Ex",
+  "refs": {
+   "column:FLASH_MODE": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:EXPOSURE_MODE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "column:FLASH_MODE": 1,
+   "setting:EXPOSURE_MODE": 19
+  },
+  "rarely_used": 1,
+  "use": {
+   "column:FLASH_MODE": 1,
+   "setting:EXPOSURE_MODE": 2
+  },
+  "live_layer": 1,
+  "layer": 1
+ },
+ {
+  "a": "setting:DENOISE",
+  "b": "setting:XIAOMI_MFNR",
+  "a_name": "Noise reduction",
+  "b_name": "Xiaomi MNFR",
+  "same_job": 2,
+  "same_param": 1,
+  "precedent": 7,
+  "reach_gap": 10,
+  "confusion": 0,
+  "why": "same parameter: CaptureRequest.NOISE_REDUCTION_MODE",
+  "refs": {
+   "setting:DENOISE": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:XIAOMI_MFNR": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:DENOISE": 14,
+   "setting:XIAOMI_MFNR": 4
+  },
+  "layer": 1
+ },
+ {
+  "a": "setting:EXPOSURE_MODE",
+  "b": "strip:M_MANUAL_ISO",
+  "a_name": "Auto Exposure Mode",
+  "b_name": "ISO",
+  "same_job": 2,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 18,
+  "confusion": 0,
+  "why": "same_job: Both switch exposure between auto and manual: setting ISO off 'auto' sets EXPOSURE_MODE to off (manual), setting ISO bac",
+  "refs": {
+   "setting:EXPOSURE_MODE": [
+    "freedcam"
+   ],
+   "strip:M_MANUAL_ISO": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:EXPOSURE_MODE": 19,
+   "strip:M_MANUAL_ISO": 1
+  },
+  "rarely_used": 0,
+  "use": {
+   "setting:EXPOSURE_MODE": 2,
+   "strip:M_MANUAL_ISO": 2
+  },
+  "live_layer": 2,
+  "layer": 1
+ },
+ {
+  "a": "setting:COLOR_CORRECTION_MODE",
+  "b": "strip:M_WHITEBALANCE",
+  "a_name": "Correlated Color Temperature",
+  "b_name": "White balance (Kelvin)",
+  "same_job": 0,
+  "same_param": 1,
+  "precedent": 7,
+  "reach_gap": 12,
+  "confusion": 1,
+  "why": "same parameter: CaptureRequest.COLOR_CORRECTION_GAINS",
+  "refs": {
+   "setting:COLOR_CORRECTION_MODE": [
+    "freedcam"
+   ],
+   "strip:M_WHITEBALANCE": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:COLOR_CORRECTION_MODE": 13,
+   "strip:M_WHITEBALANCE": 1
+  },
+  "layer": 1
+ },
+ {
+  "a": "setting:HDR_MODE",
+  "b": "setting:VIDEO_HDR",
+  "a_name": "HDR Mode",
+  "b_name": "Video HDR",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 6,
+  "reach_gap": 15,
+  "confusion": 1,
+  "why": "confusable: 'HDR Mode:' and 'Video HDR:' both Camera1 HDR switches; one rewrites the photo scene mode, the other is a video paramete",
+  "refs": {
+   "setting:HDR_MODE": [
+    "freedcam",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:VIDEO_HDR": [
+    "freedcam",
+    "oneplus"
+   ]
+  },
+  "reach": {
+   "setting:HDR_MODE": 17,
+   "setting:VIDEO_HDR": 2
+  },
+  "layer": 1
+ },
+ {
+  "a": "setting:MFNR",
+  "b": "setting:XIAOMI_MFNR",
+  "a_name": "MNFR",
+  "b_name": "Xiaomi MNFR",
+  "same_job": 2,
+  "same_param": 1,
+  "precedent": 7,
+  "reach_gap": 0,
+  "confusion": 0,
+  "why": "same parameter: CaptureRequest.NOISE_REDUCTION_MODE",
+  "refs": {
+   "setting:MFNR": [
+    "freedcam",
+    "oneplus",
+    "opencamera"
+   ],
+   "setting:XIAOMI_MFNR": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:MFNR": 4,
+   "setting:XIAOMI_MFNR": 4
+  },
+  "layer": 2
+ },
+ {
+  "a": "setting:HDR_MODE",
+  "b": "setting:SCENE_MODE",
+  "a_name": "HDR Mode",
+  "b_name": "Scene",
+  "same_job": 2,
+  "same_param": 0,
+  "precedent": 6,
+  "reach_gap": 5,
+  "confusion": 0,
+  "why": "same_job: On Camera1, HDR Mode works by writing the scene-mode parameter (auto / asd), so it and the Scene row set the same camera",
+  "refs": {
+   "setting:HDR_MODE": [
+    "freedcam",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:SCENE_MODE": [
+    "freedcam",
+    "opencamera"
+   ]
+  },
+  "reach": {
+   "setting:HDR_MODE": 17,
+   "setting:SCENE_MODE": 12
+  },
+  "layer": 2
+ },
+ {
+  "a": "setting:DENOISE",
+  "b": "setting:MFNR",
+  "a_name": "Noise reduction",
+  "b_name": "MNFR",
+  "same_job": 2,
+  "same_param": 1,
+  "precedent": 5,
+  "reach_gap": 10,
+  "confusion": 0,
+  "why": "same parameter: CaptureRequest.NOISE_REDUCTION_MODE",
+  "refs": {
+   "setting:DENOISE": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:MFNR": [
+    "freedcam",
+    "oneplus",
+    "opencamera"
+   ]
+  },
+  "reach": {
+   "setting:DENOISE": 14,
+   "setting:MFNR": 4
+  },
+  "layer": 2
+ },
+ {
+  "a": "column:CAMERA_SWITCH",
+  "b": "setting:DUAL_PRIMARY_CAMERA_MODE",
+  "a_name": "Camera switch",
+  "b_name": "Dual Camera",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 18,
+  "confusion": 0,
+  "why": "same_job: All choose which lens/sensor takes the picture: camera id switch, pinning a physical lens of a logical camera, and Huawe",
+  "refs": {
+   "column:CAMERA_SWITCH": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:DUAL_PRIMARY_CAMERA_MODE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "column:CAMERA_SWITCH": 1,
+   "setting:DUAL_PRIMARY_CAMERA_MODE": 19
+  },
+  "layer": 2
+ },
+ {
+  "a": "column:TONE_CURVE_PARAMETER",
+  "b": "setting:TONE_MAP_MODE",
+  "a_name": "Tone curve",
+  "b_name": "Tonemap",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 12,
+  "confusion": 1,
+  "why": "confusable: 'ToneMapProfile:', 'Tonemap:' and tone curve all read as 'tone curve' but one is a DNG-embedded profile, one the camera'",
+  "refs": {
+   "column:TONE_CURVE_PARAMETER": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:TONE_MAP_MODE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "column:TONE_CURVE_PARAMETER": 1,
+   "setting:TONE_MAP_MODE": 13
+  },
+  "layer": 2
+ },
+ {
+  "a": "setting:@setting_dump_vendor_keys_header",
+  "b": "setting:@setting_savecamparams_header",
+  "a_name": "Dump vendor keys",
+  "b_name": "Save Camera Parameters",
+  "same_job": 2,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 0,
+  "confusion": 0,
+  "why": "same_job: Both write the camera's capability/parameter list to a file for debugging; Save Camera Parameters is Camera1-only and Du",
+  "refs": {
+   "setting:@setting_dump_vendor_keys_header": [
+    "freedcam"
+   ],
+   "setting:@setting_savecamparams_header": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:@setting_dump_vendor_keys_header": 8,
+   "setting:@setting_savecamparams_header": 8
+  },
+  "layer": 3
+ },
+ {
+  "a": "column:FOCUS_MODE",
+  "b": "strip:M_FOCUS",
+  "a_name": "Focus mode",
+  "b_name": "Manual focus",
+  "same_job": 2,
+  "same_param": 1,
+  "precedent": 4,
+  "reach_gap": 0,
+  "confusion": 0,
+  "why": "same parameter: CaptureRequest.CONTROL_AF_MODE",
+  "refs": {
+   "column:FOCUS_MODE": [
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "opencamera"
+   ],
+   "strip:M_FOCUS": [
+    "freedcam",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "column:FOCUS_MODE": 1,
+   "strip:M_FOCUS": 1
+  },
+  "rarely_used": 0,
+  "use": {
+   "column:FOCUS_MODE": 2,
+   "strip:M_FOCUS": 2
+  },
+  "live_layer": 1,
+  "layer": 3
+ },
+ {
+  "a": "setting:EDGE_MODE",
+  "b": "strip:M_SHARPNESS",
+  "a_name": "Edge Mode",
+  "b_name": "Sharpness",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 17,
+  "confusion": 0,
+  "why": "same_job: Both control sharpening under Camera2 on Qualcomm phones: the strip writes the Qcom sharpness vendor key, Edge Mode writ",
+  "refs": {
+   "setting:EDGE_MODE": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "strip:M_SHARPNESS": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:EDGE_MODE": 18,
+   "strip:M_SHARPNESS": 1
+  },
+  "rarely_used": 1,
+  "use": {
+   "setting:EDGE_MODE": 1,
+   "strip:M_SHARPNESS": 1
+  },
+  "live_layer": 2,
+  "layer": 3
+ },
+ {
+  "a": "setting:TONEMAP_SET",
+  "b": "setting:TONE_MAP_MODE",
+  "a_name": "ToneMapProfile",
+  "b_name": "Tonemap",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 7,
+  "confusion": 1,
+  "why": "confusable: 'ToneMapProfile:', 'Tonemap:' and tone curve all read as 'tone curve' but one is a DNG-embedded profile, one the camera'",
+  "refs": {
+   "setting:TONEMAP_SET": [
+    "freedcam"
+   ],
+   "setting:TONE_MAP_MODE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:TONEMAP_SET": 6,
+   "setting:TONE_MAP_MODE": 13
+  },
+  "layer": 3
+ },
+ {
+  "a": "setting:DIGITAL_IMAGE_STABILIZATION",
+  "b": "setting:VIDEO_STABILIZATION",
+  "a_name": "Digital Image Stabilization",
+  "b_name": "Video Stabilization",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 15,
+  "confusion": 0,
+  "why": "same_job: Three stabilisation switches on Camera1 ('dis', 'video-stabilization', OIS); a person wanting a steadier picture cannot ",
+  "refs": {
+   "setting:DIGITAL_IMAGE_STABILIZATION": [
+    "freedcam"
+   ],
+   "setting:VIDEO_STABILIZATION": [
+    "freedcam",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:DIGITAL_IMAGE_STABILIZATION": 17,
+   "setting:VIDEO_STABILIZATION": 2
+  },
+  "layer": 4
+ },
+ {
+  "a": "setting:DUAL_PRIMARY_CAMERA_MODE",
+  "b": "setting:PHYSICAL_CAMERA_ID",
+  "a_name": "Dual Camera",
+  "b_name": "Physical Camera",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 15,
+  "confusion": 0,
+  "why": "same_job: All choose which lens/sensor takes the picture: camera id switch, pinning a physical lens of a logical camera, and Huawe",
+  "refs": {
+   "setting:DUAL_PRIMARY_CAMERA_MODE": [
+    "freedcam"
+   ],
+   "setting:PHYSICAL_CAMERA_ID": [
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:DUAL_PRIMARY_CAMERA_MODE": 19,
+   "setting:PHYSICAL_CAMERA_ID": 4
+  },
+  "layer": 4
+ },
+ {
+  "a": "setting:OIS_MODE",
+  "b": "setting:VIDEO_STABILIZATION",
+  "a_name": "Optical Image Stabilisation",
+  "b_name": "Video Stabilization",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 6,
+  "reach_gap": 17,
+  "confusion": 0,
+  "why": "same_job: Three stabilisation switches on Camera1 ('dis', 'video-stabilization', OIS); a person wanting a steadier picture cannot ",
+  "refs": {
+   "setting:OIS_MODE": [
+    "freedcam",
+    "proshot"
+   ],
+   "setting:VIDEO_STABILIZATION": [
+    "freedcam",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:OIS_MODE": 19,
+   "setting:VIDEO_STABILIZATION": 2
+  },
+  "layer": 4
+ },
+ {
+  "a": "activity:DngConvertingActivity",
+  "b": "setting:FORCE_RAW_TO_DNG",
+  "a_name": "Raw to DNG converter",
+  "b_name": "Use GlassCam DngConverter",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 5,
+  "confusion": 1,
+  "why": "confusable: 'Use GlassCam DngConverter' reads like the DNG converter screen, but it is a capture-time switch for 16-bit RAW_SENSOR, ",
+  "refs": {
+   "activity:DngConvertingActivity": [
+    "freedcam"
+   ],
+   "setting:FORCE_RAW_TO_DNG": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "activity:DngConvertingActivity": 1,
+   "setting:FORCE_RAW_TO_DNG": 6
+  },
+  "layer": 4
+ },
+ {
+  "a": "column:TONE_CURVE_PARAMETER",
+  "b": "setting:TONEMAP_SET",
+  "a_name": "Tone curve",
+  "b_name": "ToneMapProfile",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 5,
+  "confusion": 1,
+  "why": "confusable: 'ToneMapProfile:', 'Tonemap:' and tone curve all read as 'tone curve' but one is a DNG-embedded profile, one the camera'",
+  "refs": {
+   "column:TONE_CURVE_PARAMETER": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:TONEMAP_SET": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "column:TONE_CURVE_PARAMETER": 1,
+   "setting:TONEMAP_SET": 6
+  },
+  "layer": 4
+ },
+ {
+  "a": "setting:MFNR",
+  "b": "setting:TNR",
+  "a_name": "MNFR",
+  "b_name": "Temporal Denoise",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 11,
+  "confusion": 0,
+  "why": "same_job: Camera1 and Camera2 versions of multi-frame noise reduction: descriptions 'Multi Frame 3D Noise Reduction' vs 'Multifram",
+  "refs": {
+   "setting:MFNR": [
+    "freedcam",
+    "oneplus",
+    "opencamera"
+   ],
+   "setting:TNR": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:MFNR": 4,
+   "setting:TNR": 15
+  },
+  "layer": 5
+ },
+ {
+  "a": "setting:FORCE_WIDE_PREVIEW",
+  "b": "setting:SWITCH_ASPECT_RATIO",
+  "a_name": "Force Wide Preview",
+  "b_name": "Swap preview width and height",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 2,
+  "confusion": 1,
+  "why": "confusable: Both change the preview's shape ('Swap preview width and height' vs 'Force Wide Preview'); one swaps dimensions, the oth",
+  "refs": {
+   "setting:FORCE_WIDE_PREVIEW": [
+    "freedcam",
+    "opencamera"
+   ],
+   "setting:SWITCH_ASPECT_RATIO": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:FORCE_WIDE_PREVIEW": 12,
+   "setting:SWITCH_ASPECT_RATIO": 10
+  },
+  "layer": 5
+ },
+ {
+  "a": "setting:CONTROL_MODE",
+  "b": "setting:EXPOSURE_MODE",
+  "a_name": "Camera Control",
+  "b_name": "Auto Exposure Mode",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 6,
+  "confusion": 0,
+  "why": "same_job: Both turn the camera's auto exposure off for manual shooting: EXPOSURE_MODE off = CONTROL_AE_MODE off; CONTROL_MODE off ",
+  "refs": {
+   "setting:CONTROL_MODE": [
+    "freedcam"
+   ],
+   "setting:EXPOSURE_MODE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:CONTROL_MODE": 13,
+   "setting:EXPOSURE_MODE": 19
+  },
+  "layer": 6
+ },
+ {
+  "a": "setting:EXPOSURE_MODE",
+  "b": "setting:RED_EYE",
+  "a_name": "Auto Exposure Mode",
+  "b_name": "Red-Eye Reduction",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 6,
+  "confusion": 0,
+  "why": "same_job: Red-eye pre-flash: a dedicated Camera1 row, and the Camera2 Auto Exposure Mode value 'red-eye flash'.",
+  "refs": {
+   "setting:EXPOSURE_MODE": [
+    "freedcam"
+   ],
+   "setting:RED_EYE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:EXPOSURE_MODE": 19,
+   "setting:RED_EYE": 13
+  },
+  "layer": 6
+ },
+ {
+  "a": "setting:WHITE_BALANCE_MODE",
+  "b": "strip:M_WHITEBALANCE",
+  "a_name": "WB",
+  "b_name": "White balance (Kelvin)",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 6,
+  "reach_gap": 11,
+  "confusion": 0,
+  "why": "same_job: Both set white balance (preset vs Kelvin); the Kelvin strip is only visible when the WB row is set to off, so one gates ",
+  "refs": {
+   "setting:WHITE_BALANCE_MODE": [
+    "freedcam",
+    "opencamera"
+   ],
+   "strip:M_WHITEBALANCE": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:WHITE_BALANCE_MODE": 12,
+   "strip:M_WHITEBALANCE": 1
+  },
+  "layer": 6
+ },
+ {
+  "a": "setting:MATRIX_SET",
+  "b": "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2",
+  "a_name": "CustomMatrix",
+  "b_name": "Use custom DNG profile",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 1,
+  "confusion": 1,
+  "why": "confusable: 'CustomMatrix:' and 'Use custom DNG profile' sound like a list and its on-switch, but the switch loads a per-size dngpro",
+  "refs": {
+   "setting:MATRIX_SET": [
+    "freedcam"
+   ],
+   "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:MATRIX_SET": 5,
+   "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2": 6
+  },
+  "layer": 6
+ },
+ {
+  "a": "setting:CDS_MODE",
+  "b": "setting:DENOISE",
+  "a_name": "Correlated double sampling",
+  "b_name": "Noise reduction",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 4,
+  "confusion": 0,
+  "why": "same_job: Three Camera1 photo noise-reduction switches; TNR's description is 'Multi Frame 3D Noise Reduction' and DENOISE uses the",
+  "refs": {
+   "setting:CDS_MODE": [
+    "freedcam"
+   ],
+   "setting:DENOISE": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:CDS_MODE": 18,
+   "setting:DENOISE": 14
+  },
+  "layer": 7
+ },
+ {
+  "a": "column:SELF_TIMER",
+  "b": "strip:M_EXPOSURE_TIME",
+  "a_name": "Self-timer",
+  "b_name": "Shutter speed",
+  "same_job": 0,
+  "same_param": 0,
+  "precedent": 2,
+  "reach_gap": 0,
+  "confusion": 1,
+  "why": "confusable: The self-timer column toggle and the shutter-speed strip use the same icon glyph (font_exposuretime).",
+  "refs": {
+   "column:SELF_TIMER": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "strip:M_EXPOSURE_TIME": [
+    "freedcam",
+    "macamera",
+    "manualcamerapro",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "column:SELF_TIMER": 1,
+   "strip:M_EXPOSURE_TIME": 1
+  },
+  "layer": 7
+ },
+ {
+  "a": "setting:CDS_MODE",
+  "b": "setting:TNR",
+  "a_name": "Correlated double sampling",
+  "b_name": "Temporal Denoise",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 3,
+  "confusion": 0,
+  "why": "same_job: Three Camera1 photo noise-reduction switches; TNR's description is 'Multi Frame 3D Noise Reduction' and DENOISE uses the",
+  "refs": {
+   "setting:CDS_MODE": [
+    "freedcam"
+   ],
+   "setting:TNR": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:CDS_MODE": 18,
+   "setting:TNR": 15
+  },
+  "layer": 8
+ },
+ {
+  "a": "setting:COLOR_MODE",
+  "b": "setting:LENS_FILTER",
+  "a_name": "Color Effect",
+  "b_name": "Virtual Lens Filter",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 3,
+  "confusion": 0,
+  "why": "same_job: Both apply a colour effect to the image on Camera1 (effect mode vs ZTE 'color-filter-type').",
+  "refs": {
+   "setting:COLOR_MODE": [
+    "freedcam",
+    "oneplus",
+    "opencamera"
+   ],
+   "setting:LENS_FILTER": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:COLOR_MODE": 13,
+   "setting:LENS_FILTER": 16
+  },
+  "layer": 8
+ },
+ {
+  "a": "setting:INTERVAL_SHUTTER_SLEEP",
+  "b": "setting:TIMELAPSE_FRAMES",
+  "a_name": "Shutter fire interval",
+  "b_name": "Sets the playback frame rate of the assembled timelapse video",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 3,
+  "confusion": 0,
+  "why": "same_job: Both set how often a frame is captured for a timelapse: TIMELAPSE_FRAMES is MediaRecorder.setCaptureRate for timelapse v",
+  "refs": {
+   "setting:INTERVAL_SHUTTER_SLEEP": [
+    "freedcam",
+    "opencamera"
+   ],
+   "setting:TIMELAPSE_FRAMES": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:INTERVAL_SHUTTER_SLEEP": 5,
+   "setting:TIMELAPSE_FRAMES": 2
+  },
+  "layer": 8
+ },
+ {
+  "a": "setting:PICTURE_SIZE",
+  "b": "setting:RAW_SIZE",
+  "a_name": "Size",
+  "b_name": "Raw size",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 3,
+  "confusion": 0,
+  "why": "same_job: Each sets the photo resolution, for JPEG, RAW and YUV output respectively; which one matters depends on Picture Format.",
+  "refs": {
+   "setting:PICTURE_SIZE": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:RAW_SIZE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:PICTURE_SIZE": 3,
+   "setting:RAW_SIZE": 6
+  },
+  "layer": 8
+ },
+ {
+  "a": "setting:RAW_SIZE",
+  "b": "setting:YUV_SIZE",
+  "a_name": "Raw size",
+  "b_name": "YUV size",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 3,
+  "confusion": 0,
+  "why": "same_job: Each sets the photo resolution, for JPEG, RAW and YUV output respectively; which one matters depends on Picture Format.",
+  "refs": {
+   "setting:RAW_SIZE": [
+    "freedcam"
+   ],
+   "setting:YUV_SIZE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:RAW_SIZE": 6,
+   "setting:YUV_SIZE": 3
+  },
+  "layer": 8
+ },
+ {
+  "a": "setting:DIGITAL_IMAGE_STABILIZATION",
+  "b": "setting:OIS_MODE",
+  "a_name": "Digital Image Stabilization",
+  "b_name": "Optical Image Stabilisation",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 2,
+  "confusion": 0,
+  "why": "same_job: Three stabilisation switches on Camera1 ('dis', 'video-stabilization', OIS); a person wanting a steadier picture cannot ",
+  "refs": {
+   "setting:DIGITAL_IMAGE_STABILIZATION": [
+    "freedcam"
+   ],
+   "setting:OIS_MODE": [
+    "freedcam",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "setting:DIGITAL_IMAGE_STABILIZATION": 17,
+   "setting:OIS_MODE": 19
+  },
+  "layer": 9
+ },
+ {
+  "a": "column:CAMERA_SWITCH",
+  "b": "setting:PHYSICAL_CAMERA_ID",
+  "a_name": "Camera switch",
+  "b_name": "Physical Camera",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 5,
+  "reach_gap": 3,
+  "confusion": 0,
+  "why": "same_job: All choose which lens/sensor takes the picture: camera id switch, pinning a physical lens of a logical camera, and Huawe",
+  "refs": {
+   "column:CAMERA_SWITCH": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:PHYSICAL_CAMERA_ID": [
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ]
+  },
+  "reach": {
+   "column:CAMERA_SWITCH": 1,
+   "setting:PHYSICAL_CAMERA_ID": 4
+  },
+  "layer": 9
+ },
+ {
+  "a": "setting:DENOISE",
+  "b": "setting:TNR",
+  "a_name": "Noise reduction",
+  "b_name": "Temporal Denoise",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 1,
+  "confusion": 0,
+  "why": "same_job: Three Camera1 photo noise-reduction switches; TNR's description is 'Multi Frame 3D Noise Reduction' and DENOISE uses the",
+  "refs": {
+   "setting:DENOISE": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:TNR": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:DENOISE": 14,
+   "setting:TNR": 15
+  },
+  "layer": 10
+ },
+ {
+  "a": "column:TONE_CURVE_PARAMETER",
+  "b": "strip:M_CONTRAST",
+  "a_name": "Tone curve",
+  "b_name": "Contrast",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 0,
+  "confusion": 0,
+  "why": "same_job: Contrast control: a Camera1 strip value vs the Camera2 tone curve (the Camera2 contrast/brightness strips were folded in",
+  "refs": {
+   "column:TONE_CURVE_PARAMETER": [
+    "freedcam",
+    "macamera",
+    "opencamera",
+    "proshot"
+   ],
+   "strip:M_CONTRAST": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "column:TONE_CURVE_PARAMETER": 1,
+   "strip:M_CONTRAST": 1
+  },
+  "layer": 11
+ },
+ {
+  "a": "setting:AE_METERING",
+  "b": "setting:EXPOSURE_MODE",
+  "a_name": "AE Meter Area",
+  "b_name": "Auto Exposure Mode",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 0,
+  "confusion": 0,
+  "why": "same_job: On Camera1, EXPOSURE_MODE falls back to metering keys (sony-metering-mode, exposure-meter, metering-mode), which is AE_M",
+  "refs": {
+   "setting:AE_METERING": [
+    "freedcam",
+    "proshot"
+   ],
+   "setting:EXPOSURE_MODE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:AE_METERING": 19,
+   "setting:EXPOSURE_MODE": 19
+  },
+  "layer": 11
+ },
+ {
+  "a": "setting:PICTURE_SIZE",
+  "b": "setting:YUV_SIZE",
+  "a_name": "Size",
+  "b_name": "YUV size",
+  "same_job": 1,
+  "same_param": 0,
+  "precedent": 7,
+  "reach_gap": 0,
+  "confusion": 0,
+  "why": "same_job: Each sets the photo resolution, for JPEG, RAW and YUV output respectively; which one matters depends on Picture Format.",
+  "refs": {
+   "setting:PICTURE_SIZE": [
+    "fossify",
+    "freedcam",
+    "librecamera",
+    "macamera",
+    "oneplus",
+    "opencamera",
+    "proshot"
+   ],
+   "setting:YUV_SIZE": [
+    "freedcam"
+   ]
+  },
+  "reach": {
+   "setting:PICTURE_SIZE": 3,
+   "setting:YUV_SIZE": 3
+  },
+  "layer": 11
+ }
+]

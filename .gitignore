@@ -47,3 +47,7 @@ _fresh-eyes-*/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# purpose-map analysis: generated outputs (tools/purpose/score.py, mockup.py)
+docs/purpose/scores.json
+docs/purpose/mockup_*.html

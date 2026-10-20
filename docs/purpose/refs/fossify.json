@@ -1,0 +1,448 @@
+{
+  "app": "Fossify Camera",
+  "package": "org.fossify.camera",
+  "basis": "source tree at commit 571631acf538689731a0549d326cd36fab98974e (main, 2026-10-20; VERSION_NAME 1.5.0, versionCode 11) + docs https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/README.md and fastlane en-US store listing",
+  "sources": [
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/README.md",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/fastlane/metadata/android/en-US/full_description.txt",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/CHANGELOG.md",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/values/strings.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_main.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/layout_top.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/layout_flash.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/layout_timer.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/MainActivity.kt",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/implementations/CameraXPreview.kt",
+    "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/menu/menu.xml"
+  ],
+  "features": [
+    {
+      "name": "Shutter",
+      "what": "Takes a photo in Photo mode; starts/stops recording in Video mode (animated record icon)",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_main.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same"
+    },
+    {
+      "name": "Photo / Video tabs",
+      "what": "Tab strip to switch between photo and video capture; also switchable by swiping left/right on the tab strip",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/MainActivity.kt",
+      "facets": [
+        "mode"
+      ],
+      "glasscam": "column:MODULE",
+      "match": "same"
+    },
+    {
+      "name": "Photo mode",
+      "what": "Still capture mode",
+      "where": "mode",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_main.xml",
+      "facets": [
+        "mode"
+      ],
+      "glasscam": "module:PictureModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "Video mode",
+      "what": "Video recording mode with audio (microphone optional)",
+      "where": "mode",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_main.xml",
+      "facets": [
+        "mode",
+        "video"
+      ],
+      "glasscam": "module:VideoModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "Recording timer",
+      "what": "Shows elapsed time while a video is recording",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_main.xml",
+      "facets": [
+        "video"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "elapsed time drawn inside the shutter button (ShutterAnimationHandler); no census entry"
+    },
+    {
+      "name": "Toggle front/back camera",
+      "what": "Switches between rear and front camera",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_main.xml",
+      "facets": [
+        "lens"
+      ],
+      "glasscam": "column:CAMERA_SWITCH",
+      "match": "same"
+    },
+    {
+      "name": "View last captured media",
+      "what": "Thumbnail of the last photo/video; tap opens it in an external viewer/gallery app (no built-in gallery)",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/MainActivity.kt",
+      "facets": [
+        "review"
+      ],
+      "glasscam": "activity:ActivityGlassCamViewer",
+      "match": "same",
+      "match_note": "gallery button thumbnail opens GlassCam's own viewer"
+    },
+    {
+      "name": "Flash mode",
+      "what": "Top-bar button opening a picker: Off, Auto, On, Always on (torch)",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/layout_flash.xml",
+      "facets": [
+        "exposure_auto"
+      ],
+      "glasscam": "column:FLASH_MODE",
+      "match": "same"
+    },
+    {
+      "name": "Timer mode",
+      "what": "Self-timer picker: Off, 3 s, 5 s, 10 s; countdown shown on screen with beeps, cancellable by tapping the shutter",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/layout_timer.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "column:SELF_TIMER",
+      "match": "same"
+    },
+    {
+      "name": "Change resolution",
+      "what": "Top-bar picker for the active camera's sizes: photo aspect presets (1:1, 4:3, 16:9, full screen) or video quality (SD, HD, FHD, UHD)",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/MainActivity.kt",
+      "facets": [
+        "output",
+        "video"
+      ],
+      "glasscam": "setting:PICTURE_SIZE",
+      "match": "same",
+      "match_note": "video quality via setting:VIDEO_PROFILES"
+    },
+    {
+      "name": "Settings button",
+      "what": "Opens the settings screen from the camera top bar",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/layout_top.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "fragment:NextGenCameraSettingFragment",
+      "match": "same"
+    },
+    {
+      "name": "Tap to focus",
+      "what": "Single tap on the preview sets focus and exposure point; a focus circle is drawn",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/implementations/CameraXPreview.kt",
+      "facets": [
+        "focus",
+        "exposure_auto"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "touch on the preview sets focus and metering area (FocusImageHandler); no census entry"
+    },
+    {
+      "name": "Pinch to zoom",
+      "what": "Two-finger pinch on the preview changes zoom ratio within the camera's range",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/helpers/PinchToZoomOnScaleGestureListener.kt",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "strip:M_ZOOM",
+      "match": "partial",
+      "match_note": "zoom only through the manual-strip slider; no gesture zoom on the preview"
+    },
+    {
+      "name": "Icon rotation with device orientation",
+      "what": "UI is portrait-locked but control icons rotate to match how the phone is held",
+      "where": "camera screen",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/MainActivity.kt",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "GlassCam's UI is locked to landscape; controls do not rotate"
+    },
+    {
+      "name": "Hardware camera button",
+      "what": "Device camera key triggers the shutter",
+      "where": "other",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/receivers/HardwareShutterReceiver.kt",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "camera key and headset hook start capture (KeyPressedController); no census entry"
+    },
+    {
+      "name": "Show on lock screen",
+      "what": "Camera can open over the lock screen (secure capture intents)",
+      "where": "other",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMainSecure",
+      "match": "same"
+    },
+    {
+      "name": "Customize colors",
+      "what": "Fossify theme/colour customization screen (text, background, primary colour, app icon colour)",
+      "where": "settings:Color customization",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no light/dark or colour theme choice (only the red night overlay)"
+    },
+    {
+      "name": "App launcher icon colour",
+      "what": "Choice of launcher icon colour (19 colour variants via activity aliases), set through Customize colors",
+      "where": "settings:Color customization",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no launcher icon choice"
+    },
+    {
+      "name": "Use English language",
+      "what": "Forces English UI regardless of system language (shown on some systems)",
+      "where": "settings:General",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no in-app language choice; follows the system"
+    },
+    {
+      "name": "Language",
+      "what": "Opens per-app language selection",
+      "where": "settings:General",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no in-app language choice; follows the system"
+    },
+    {
+      "name": "Shutter sound",
+      "what": "Toggle shutter/recording sound",
+      "where": "settings:Camera",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "setting:PLAY_SHUTTER_SOUND",
+      "match": "same"
+    },
+    {
+      "name": "Use volume buttons as shutter",
+      "what": "Volume up/down act as the shutter",
+      "where": "settings:Camera",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "volume keys step the active manual control; only the camera key / headset hook fire the shutter (KeyPressedController, no census entry)"
+    },
+    {
+      "name": "Max screen brightness in preview",
+      "what": "Raises screen brightness to maximum while the camera preview is open",
+      "where": "settings:Camera",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no screen-brightness control"
+    },
+    {
+      "name": "Save photo exif metadata",
+      "what": "Toggle whether EXIF metadata is written to photos",
+      "where": "settings:Saving",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+      "facets": [
+        "metadata"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "EXIF is always written; only geotagging can be turned off"
+    },
+    {
+      "name": "Save photo and video location",
+      "what": "Geotag photos and videos (requests location permission)",
+      "where": "settings:Saving",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+      "facets": [
+        "metadata"
+      ],
+      "glasscam": "setting:LOCATION_MODE",
+      "match": "partial",
+      "match_note": "geotag documented for photos only; video location not confirmed"
+    },
+    {
+      "name": "Flip front camera photos horizontally",
+      "what": "Mirror (un-mirror) selfies on save",
+      "where": "settings:Saving",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/layout/activity_settings.xml",
+      "facets": [
+        "processing"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no option to mirror front-camera photos"
+    },
+    {
+      "name": "Save photos and videos to",
+      "what": "Folder picker for the save location (internal or SD card via SAF)",
+      "where": "settings:Saving",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+      "facets": [
+        "manage"
+      ],
+      "glasscam": "setting:SD_SAVE_LOCATION",
+      "match": "same"
+    },
+    {
+      "name": "Photo compression quality",
+      "what": "JPEG quality from 50% to 100% in 5% steps",
+      "where": "settings:Saving",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:JPEG_QUALITY",
+      "match": "same"
+    },
+    {
+      "name": "Capture mode",
+      "what": "Choose Maximize quality or Minimize latency for photo capture",
+      "where": "settings:Saving",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/kotlin/org/fossify/camera/activities/SettingsActivity.kt",
+      "facets": [
+        "processing",
+        "trigger"
+      ],
+      "glasscam": "setting:CAPTURE_TEMPLATE",
+      "match": "partial",
+      "match_note": "quality-vs-speed set piecemeal (capture template, noise reduction, edge modes); no single switch; ZSL is Camera1-only"
+    },
+    {
+      "name": "About / FAQ",
+      "what": "About screen with app info and FAQ (e.g. which compression quality to choose)",
+      "where": "settings:menu",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/menu/menu.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "fragment:HelpFragment",
+      "match": "partial",
+      "match_note": "help overlay explains controls; no About/FAQ screen"
+    },
+    {
+      "name": "More Fossify apps",
+      "what": "Overflow menu link to other Fossify apps",
+      "where": "settings:menu",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/res/menu/menu.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no links to other apps"
+    },
+    {
+      "name": "Custom fonts",
+      "what": "Support for custom fonts (CHANGELOG 1.5.0; the picker lives in the Fossify Commons library, not in this repo, so its exact location is unverified)",
+      "where": "settings:Color customization",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/CHANGELOG.md",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no font choice"
+    },
+    {
+      "name": "Image capture intent",
+      "what": "Other apps can request a photo (IMAGE_CAPTURE / _SECURE, honours EXTRA_OUTPUT); mode tabs hidden",
+      "where": "other",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamShare",
+      "match": "same"
+    },
+    {
+      "name": "Video capture intent",
+      "what": "Other apps can request a video (VIDEO_CAPTURE)",
+      "where": "other",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "trigger",
+        "video"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "VIDEO_CAPTURE is not handled; other apps cannot ask GlassCam for a video"
+    },
+    {
+      "name": "Still / video camera launch intents",
+      "what": "Responds to STILL_IMAGE_CAMERA(_SECURE) and VIDEO_CAMERA (e.g. double-press power, lock-screen shortcut)",
+      "where": "other",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamShare",
+      "match": "partial",
+      "match_note": "STILL_IMAGE_CAMERA(_SECURE) handled; VIDEO_CAMERA not"
+    },
+    {
+      "name": "App preferences intent",
+      "what": "Settings reachable from the system app-info screen (APPLICATION_PREFERENCES)",
+      "where": "other",
+      "source": "https://github.com/FossifyOrg/Camera/blob/571631acf538689731a0549d326cd36fab98974e/app/src/main/AndroidManifest.xml",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no APPLICATION_PREFERENCES entry"
+    }
+  ],
+  "notes": "No widgets or quick-settings tiles. No built-in gallery: the thumbnail hands off to an external viewer. strings.xml still defines 'Show a photo preview after capturing', 'Focus before capture', 'Keep the setting buttons visible', 'Always open the app with the Back camera' and 'Turn flash off at startup', but none appears in activity_settings.xml or SettingsActivity.kt at this commit, so they are not listed as features."
+}
