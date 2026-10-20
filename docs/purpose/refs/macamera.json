@@ -1,0 +1,661 @@
+{
+ "app": "MA Camera (launcher label: \"Camera\")",
+ "package": "com.vayunmathur.camera",
+ "basis": "Developer: Vayun Mathur (GPL-3.0, part of the 'Modern Apps' monorepo). No Google Play listing could be found (play.google.com/store/apps/details?id=com.vayunmathur.camera returns 404; searches surface only IzzyOnDroid and F-Droid), so the app was identified through those stores and the local settings dump, whose labels ('Video codec', 'AV1 \u2014 Most efficient', 'Location', 'Save location in photo metadata') match this app's strings.xml exactly. The features come from the listing text (metadata_data/camera.md) and the app's source at commit 81d4eec (2026-10-19): UI composables, the strings.xml labels and the manifest. Labels are the app's own English strings. The local dump shows an older or device-limited settings screen with only two sections, because the codec section appears only when more than one encoder exists. Note: this is a general-purpose camera with a few manual controls (exposure time, ISO, EV), not a dedicated pro app: it has no manual focus, manual white balance, RAW, histogram or focus peaking (searched the source and found none). Source URLs below point at the default branch; the inventory was read at 81d4eec.",
+ "sources": [
+  "https://apt.izzysoft.de/fdroid/index/apk/com.vayunmathur.camera?repo=main",
+  "https://f-droid.org/packages/com.vayunmathur.camera/",
+  "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/metadata_data/camera.md",
+  "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/AGENTS.md",
+  "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/res/values/strings.xml",
+  "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/AndroidManifest.xml",
+  "https://github.com/vayun-mathur/Modern-Apps/tree/HEAD/camera/src/main/java/com/vayunmathur/camera",
+  "tools/critique/screenshots/set_macamera.xml",
+  "tools/critique/screenshots/set_macamera.png"
+ ],
+ "features": [
+  {
+   "name": "Photo",
+   "what": "Default still mode with auto exposure; also used for Motion Photo and the manual exposure-time and ISO bars",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraModeBars.kt",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "module:PictureModuleApi2",
+   "match": "same"
+  },
+  {
+   "name": "Portrait",
+   "what": "Background-blur stills using on-device segmentation (MediaPipe selfie and MODNet matting)",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/metadata_data/camera.md",
+   "facets": [
+    "mode",
+    "processing"
+   ],
+   "glasscam": "setting:TRUE_POTRAIT",
+   "match": "partial",
+   "match_note": "Vendor True Portrait only: Camera1-only Qualcomm vendor setting; not shown under Camera2; no segmentation blur"
+  },
+  {
+   "name": "Pano",
+   "what": "Horizontal panorama: guide dots lead the sweep, and a native Rust engine stitches the result",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/PanoramaEngine.kt",
+   "facets": [
+    "mode",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No panorama capture or stitching"
+  },
+  {
+   "name": "Sphere",
+   "what": "Full 360\u00b0 photo sphere (equirectangular) captured on a guide-dot grid, with panorama XMP metadata written",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/PanoramaEngine.kt",
+   "facets": [
+    "mode",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No 360 photo sphere"
+  },
+  {
+   "name": "Video",
+   "what": "Normal video recording with audio at the highest fps and quality available (no resolution or fps picker)",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraVideoSession.kt",
+   "facets": [
+    "mode",
+    "video"
+   ],
+   "glasscam": "module:VideoModuleApi2",
+   "match": "same"
+  },
+  {
+   "name": "Slo-Mo",
+   "what": "High-frame-rate (HFR) slow-motion video; back camera only; the mode shows only when the device supports true HFR",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraSloMoSession.kt",
+   "facets": [
+    "video",
+    "mode"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "partial",
+   "match_note": "Only through a high-speed video profile where the phone lists one; no dedicated slow-motion mode or slowed playback"
+  },
+  {
+   "name": "Cinematic",
+   "what": "Video with the device's preferred video stabilization turned on, with audio",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraVideoSession.kt",
+   "facets": [
+    "video",
+    "stabilise"
+   ],
+   "glasscam": "setting:VIDEO_STABILIZATION",
+   "match": "same",
+   "match_note": "Stabilisation toggle in normal video mode"
+  },
+  {
+   "name": "Timelapse",
+   "what": "Records normally, then remuxes the clip at a fixed 8x speed-up (no interval choice); no audio",
+   "where": "mode",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraVideoRecording.kt",
+   "facets": [
+    "time",
+    "video"
+   ],
+   "glasscam": "module:IntervalApi2",
+   "match": "partial",
+   "match_note": "Interval stills (and a timelapse profile/frame rate), not a sped-up video clip in one step"
+  },
+  {
+   "name": "Night (auto night)",
+   "what": "In a dark scene a Night pill appears and the vendor NIGHT extension or a native burst-alignment night capture is used; tap the pill to turn night off for that scene",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPreviewOverlays.kt",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": "activity:DngStackActivity",
+   "match": "partial",
+   "match_note": "No automatic night mode; frames can be shot as DNG and stacked afterwards by hand"
+  },
+  {
+   "name": "Night strength readout (Night N%)",
+   "what": "Shows the live strength of the vendor night processing while night is active",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/res/values/strings.xml",
+   "facets": [
+    "exposure_feedback",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No night processing to report on"
+  },
+  {
+   "name": "Motion Photo",
+   "what": "Plain 4:3 Photo captures automatically save a Motion Photo (a short clip of the moments before the shot is embedded in the JPEG)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraPhotoCapture.kt",
+   "facets": [
+    "output",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No Motion Photo (pre-shot clip embedded in JPEG)"
+  },
+  {
+   "name": "Ultra HDR JPEG",
+   "what": "Photos keep the Ultra HDR gain map where the device produces one",
+   "where": "other",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraPhotoCapture.kt",
+   "facets": [
+    "output",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No Ultra HDR gain-map JPEG"
+  },
+  {
+   "name": "Flash (On / Off / Auto)",
+   "what": "Cycles the flash mode for stills; hidden on lenses with no flash unit",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraTopBar.kt",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "same"
+  },
+  {
+   "name": "Torch",
+   "what": "Keeps the LED on continuously in video modes",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraTopBar.kt",
+   "facets": [
+    "exposure_auto",
+    "video"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "same",
+   "match_note": "Torch is one of the flash modes"
+  },
+  {
+   "name": "Grid",
+   "what": "Turns a composition grid overlay on or off",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraOverlays.kt",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "same"
+  },
+  {
+   "name": "Level",
+   "what": "Horizon indicator that rotates with device roll and turns green within \u00b11.5\u00b0; photo modes",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraOverlays.kt",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "same"
+  },
+  {
+   "name": "Aspect Ratio",
+   "what": "Cycles the still crop through 16:9, 4:3, 3:2 and 1:1 (Photo and Portrait only)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraViewModelTypes.kt",
+   "facets": [
+    "compose",
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "partial",
+   "match_note": "Aspect follows the chosen picture size; no crop cycling on the camera screen"
+  },
+  {
+   "name": "Timer",
+   "what": "Cycles the self-timer through off, 3 s, 5 s and 10 s, with an on-screen countdown",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/util/CameraViewModelTypes.kt",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "column:SELF_TIMER",
+   "match": "same"
+  },
+  {
+   "name": "Mic mute",
+   "what": "Mutes or unmutes audio for video recordings (video modes)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraTopBar.kt",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": "activity:VideoProfileEditorActivity",
+   "match": "partial",
+   "match_note": "Audio can be switched off per custom video profile in the editor; no quick mute on the camera screen"
+  },
+  {
+   "name": "Brightness",
+   "what": "Exposure-compensation slider, applied in Photo and Portrait",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraSettingsBars.kt",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+   "match": "same"
+  },
+  {
+   "name": "Shadows",
+   "what": "Slider that lifts or deepens shadows, baked into saved stills (Photo and Portrait)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraSettingsBars.kt",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "column:TONE_CURVE_PARAMETER",
+   "match": "partial",
+   "match_note": "Shadows are shaped through a full tone curve (Camera2), not a one-slider lift"
+  },
+  {
+   "name": "Warmth",
+   "what": "Colour-temperature (warm/cool) slider, baked into saved stills (Photo and Portrait)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraSettingsBars.kt",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "strip:M_WHITEBALANCE",
+   "match": "same",
+   "match_note": "Kelvin white balance does the warm/cool job"
+  },
+  {
+   "name": "Exposure time",
+   "what": "Manual shutter-speed bar with stops (Auto plus fixed times), Photo mode only",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraSettingsBars.kt",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_TIME",
+   "match": "same"
+  },
+  {
+   "name": "ISO",
+   "what": "Manual ISO bar (Auto or a sensitivity stop; shows N/A when unsupported), Photo mode only",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraSettingsBars.kt",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_MANUAL_ISO",
+   "match": "same"
+  },
+  {
+   "name": "Blur",
+   "what": "Portrait background-blur strength slider",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/res/values/strings.xml",
+   "facets": [
+    "processing",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No adjustable background blur"
+  },
+  {
+   "name": "Camera lens (UW / 1x / Tele / Mono / Front)",
+   "what": "Picks a physical lens, each pill showing its focal length; hidden when only one lens exists",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/LensBar.kt",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "column:CAMERA_SWITCH",
+   "match": "partial",
+   "match_note": "Cycles camera ids without focal-length pills; a physical lens behind a logical camera needs the Physical Camera setting"
+  },
+  {
+   "name": "Zoom bar",
+   "what": "Preset zoom levels with the live ratio inserted between them",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraSettingsBars.kt",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "same"
+  },
+  {
+   "name": "Pinch to zoom",
+   "what": "Zooms the viewfinder with a two-finger pinch",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPreviewBox.kt",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "partial",
+   "match_note": "Zoom by strip only; no pinch gesture on the preview"
+  },
+  {
+   "name": "Tap to focus",
+   "what": "Focuses and meters on the tapped point",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPreviewBox.kt",
+   "facets": [
+    "focus",
+    "exposure_auto"
+   ],
+   "glasscam": "column:FOCUS_MODE",
+   "match": "same",
+   "match_note": "Tap on preview focuses (and meters with AE Meter Area) in auto-focus modes; no census entry of its own"
+  },
+  {
+   "name": "AE/AF LOCK",
+   "what": "Long-press on the preview locks focus and exposure on that point, with an indicator pill",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPreviewBox.kt",
+   "facets": [
+    "exposure_auto",
+    "focus"
+   ],
+   "glasscam": "column:EXPOSURE_LOCK",
+   "match": "partial",
+   "match_note": "Exposure lock button only; no long-press joint AE/AF lock on a point"
+  },
+  {
+   "name": "Shutter / Burst",
+   "what": "Tap to capture; hold for a burst with a 'Burst N' counter",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraShutterRow.kt",
+   "facets": [
+    "trigger",
+    "multishot"
+   ],
+   "glasscam": "strip:M_BURST",
+   "match": "partial",
+   "match_note": "Shutter is the same; burst is a preset count on the strip, not hold-to-burst"
+  },
+  {
+   "name": "Pause / resume recording",
+   "what": "Pauses and resumes a video or cinematic recording (replaces the gallery thumbnail while recording)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraShutterRow.kt",
+   "facets": [
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No pause/resume while recording"
+  },
+  {
+   "name": "Video snapshot",
+   "what": "Takes a still while recording, where the device supports it",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraShutterRow.kt",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No still capture during recording"
+  },
+  {
+   "name": "Flip camera",
+   "what": "Switches between the front and back cameras (not in Slo-Mo)",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraShutterRow.kt",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "column:CAMERA_SWITCH",
+   "match": "same"
+  },
+  {
+   "name": "Volume-key shutter",
+   "what": "Hardware volume keys fire the shutter while the camera screen is in front (Esc/space on desktop keyboards)",
+   "where": "other",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/MainActivity.kt",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "partial",
+   "match_note": "Camera and headset keys fire the shutter; volume keys step the active manual value instead; no census entry"
+  },
+  {
+   "name": "QR Code scanning",
+   "what": "Detects QR/barcodes in the viewfinder and offers Open URL / Copy / Cancel; shows 'QR scanning paused' when the night session blocks it",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraOverlays.kt",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "Not a photography job; no QR scanning"
+  },
+  {
+   "name": "Add eSIM",
+   "what": "When a scanned QR is an eSIM activation code, hands it to the system eSIM installer",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraOverlays.kt",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "Not a photography job"
+  },
+  {
+   "name": "Passkey QR",
+   "what": "FIDO passkey (hybrid sign-in) QR codes open in the system handler",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraOverlays.kt",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "Not a photography job"
+  },
+  {
+   "name": "Panorama guide / Processing panorama\u2026",
+   "what": "On-screen guide dots for Pano/Sphere sweeps, then a stitching progress screen",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPanoramaOverlay.kt",
+   "facets": [
+    "compose",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No panorama guide or stitching"
+  },
+  {
+   "name": "Gallery",
+   "what": "Thumbnail of the last capture opens it in the system gallery, or the gallery collection if it is gone",
+   "where": "gallery",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraBottomControls.kt",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "same",
+   "match_note": "Gallery button opens GlassCam's own viewer"
+  },
+  {
+   "name": "Settings (gear)",
+   "what": "Opens the settings page from the bottom controls",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraBottomControls.kt",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenCameraSettingFragment",
+   "match": "same"
+  },
+  {
+   "name": "Video codec",
+   "what": "Picks H.264/AVC (Most compatible), H.265/HEVC (More efficient) or AV1 (Most efficient); shown only when more than one encoder exists",
+   "where": "settings:Video codec",
+   "source": "tools/critique/screenshots/set_macamera.xml",
+   "facets": [
+    "video",
+    "output"
+   ],
+   "glasscam": "activity:VideoProfileEditorActivity",
+   "match": "partial",
+   "match_note": "Codec is chosen inside a custom video profile in the editor, not a single settings row"
+  },
+  {
+   "name": "Audio input source",
+   "what": "Mic source for video: Camcorder (default), Microphone, Voice (noise/echo cancel) or Unprocessed (raw)",
+   "where": "settings:Audio input source",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/SettingsPage.kt",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": "setting:VIDEO_AUDIO_SOURCE",
+   "match": "same",
+   "match_note": "Unprocessed source is commented out"
+  },
+  {
+   "name": "Selfie mirroring",
+   "what": "Mirrors the front-camera preview and saved selfies",
+   "where": "settings:Selfie mirroring",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/SettingsPage.kt",
+   "facets": [
+    "output",
+    "lens"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No selfie mirroring option"
+  },
+  {
+   "name": "Noise reduction",
+   "what": "Toggles noise reduction in photos and video (off keeps raw detail)",
+   "where": "settings:Noise reduction",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPostProcessingSettings.kt",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:DENOISE",
+   "match": "same"
+  },
+  {
+   "name": "Edge sharpening",
+   "what": "Toggles edge sharpening in photos and video (off gives a natural look)",
+   "where": "settings:Edge sharpening",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPostProcessingSettings.kt",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:EDGE_MODE",
+   "match": "same",
+   "match_note": "Camera2 edge mode"
+  },
+  {
+   "name": "Motion photo length",
+   "what": "Chooses how many seconds of pre-shot video a Motion Photo keeps",
+   "where": "settings:Motion photo length",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraPostProcessingSettings.kt",
+   "facets": [
+    "output",
+    "time"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No Motion Photo"
+  },
+  {
+   "name": "Location",
+   "what": "'Save location in photo metadata': writes GPS into EXIF",
+   "where": "settings:Location",
+   "source": "tools/critique/screenshots/set_macamera.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": "setting:LOCATION_MODE",
+   "match": "same"
+  },
+  {
+   "name": "Save location",
+   "what": "Default DCIM/Camera, Choose folder (system folder picker) or Reset to default",
+   "where": "settings:Save location",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/SettingsPage.kt",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "setting:SD_SAVE_LOCATION",
+   "match": "same"
+  },
+  {
+   "name": "System camera / capture for other apps",
+   "what": "Handles other apps' 'take a photo' / 'record video' requests and the still-camera intents",
+   "where": "other",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger",
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamShare",
+   "match": "partial",
+   "match_note": "Answers image-capture requests only; no video-capture intent"
+  },
+  {
+   "name": "Lockscreen camera",
+   "what": "Opens over the lock screen (secure still-camera intent, show-when-locked)",
+   "where": "other",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMainSecure",
+   "match": "same"
+  },
+  {
+   "name": "Wide-window layout",
+   "what": "On tablets and foldables the shutter and mode controls sit side by side below the preview",
+   "where": "camera screen",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/camera/src/main/java/com/vayunmathur/camera/ui/CameraBottomControls.kt",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "No tablet/foldable side-by-side layout"
+  },
+  {
+   "name": "100% offline",
+   "what": "No internet permission; all processing is on the device",
+   "where": "other",
+   "source": "https://github.com/vayun-mathur/Modern-Apps/blob/HEAD/metadata_data/camera.md",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "partial",
+   "match_note": "Processing is on-device, but the app holds INTERNET permission (flat-field data download)"
+  }
+ ]
+}

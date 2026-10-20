@@ -1,0 +1,207 @@
+{
+ "about": "Candidate purpose sets. Each purpose is a group of facets (facets.json); facets in 'outside' belong to no purpose (they are listed as 'not a purpose of its own', like Emivita's Getting around).",
+ "sets": {
+  "A7": {
+   "name": "Seven jobs",
+   "purposes": {
+    "Frame and shoot": [
+     "compose",
+     "lens",
+     "trigger",
+     "mode"
+    ],
+    "Get the exposure right": [
+     "exposure_manual",
+     "exposure_auto",
+     "exposure_feedback"
+    ],
+    "Get it sharp": [
+     "focus",
+     "stabilise"
+    ],
+    "Shape the image": [
+     "colour",
+     "processing",
+     "output"
+    ],
+    "Many frames, over time": [
+     "multishot",
+     "time"
+    ],
+    "Record video": [
+     "video",
+     "audio"
+    ],
+    "Review and keep": [
+     "review",
+     "manage",
+     "metadata"
+    ]
+   },
+   "outside": [
+    "device",
+    "app"
+   ]
+  },
+  "B5": {
+   "name": "Five jobs",
+   "purposes": {
+    "Frame and shoot": [
+     "compose",
+     "lens",
+     "trigger",
+     "mode",
+     "stabilise"
+    ],
+    "Control exposure and focus": [
+     "exposure_manual",
+     "exposure_auto",
+     "exposure_feedback",
+     "focus"
+    ],
+    "Shape the image": [
+     "colour",
+     "processing",
+     "output"
+    ],
+    "Sequences and video": [
+     "multishot",
+     "time",
+     "video",
+     "audio"
+    ],
+    "Review and keep": [
+     "review",
+     "manage",
+     "metadata"
+    ]
+   },
+   "outside": [
+    "device",
+    "app"
+   ]
+  },
+  "C6": {
+   "name": "Six jobs, the file on its own",
+   "purposes": {
+    "Frame and shoot": [
+     "compose",
+     "lens",
+     "trigger",
+     "mode"
+    ],
+    "Exposed and sharp": [
+     "exposure_manual",
+     "exposure_auto",
+     "exposure_feedback",
+     "focus",
+     "stabilise"
+    ],
+    "Colour and processing": [
+     "colour",
+     "processing"
+    ],
+    "What file comes out": [
+     "output",
+     "metadata"
+    ],
+    "In time and in motion": [
+     "multishot",
+     "time",
+     "video",
+     "audio"
+    ],
+    "Review and keep": [
+     "review",
+     "manage"
+    ]
+   },
+   "outside": [
+    "device",
+    "app"
+   ]
+  },
+  "D8": {
+   "name": "Seven jobs + keeping it working",
+   "purposes": {
+    "Frame and shoot": [
+     "compose",
+     "lens",
+     "trigger",
+     "mode"
+    ],
+    "Get the exposure right": [
+     "exposure_manual",
+     "exposure_auto",
+     "exposure_feedback"
+    ],
+    "Get it sharp": [
+     "focus",
+     "stabilise"
+    ],
+    "Shape the image": [
+     "colour",
+     "processing",
+     "output"
+    ],
+    "Many frames, over time": [
+     "multishot",
+     "time"
+    ],
+    "Record video": [
+     "video",
+     "audio"
+    ],
+    "Review and keep": [
+     "review",
+     "manage",
+     "metadata"
+    ],
+    "Make it work on this phone": [
+     "device",
+     "app"
+    ]
+   },
+   "outside": []
+  },
+  "E6": {
+   "name": "Five jobs + keeping it working",
+   "purposes": {
+    "Frame and shoot": [
+     "compose",
+     "lens",
+     "trigger",
+     "mode",
+     "stabilise"
+    ],
+    "Control exposure and focus": [
+     "exposure_manual",
+     "exposure_auto",
+     "exposure_feedback",
+     "focus"
+    ],
+    "Shape the image": [
+     "colour",
+     "processing",
+     "output"
+    ],
+    "Sequences and video": [
+     "multishot",
+     "time",
+     "video",
+     "audio"
+    ],
+    "Review and keep": [
+     "review",
+     "manage",
+     "metadata"
+    ],
+    "Make it work on this phone": [
+     "device",
+     "app"
+    ]
+   },
+   "outside": []
+  }
+ }
+}

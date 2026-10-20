@@ -1,0 +1,2196 @@
+{
+ "app": "FreeDcam",
+ "package": "troop.com.freedcam",
+ "basis": "source tree at master commit 4ce7b6169cbac526df84f2653bc1ecf96abc3d0a (2026-06-18, versionName 4.3.82) + docs https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/README.md",
+ "sources": [
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/README.md",
+  "https://github.com/KillerInk/FreeDcam",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/values/strings.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/values/arrays.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/AndroidManifest.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/KeyPressedController.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/CameraUiSlidePagerAdapter.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera2/ModuleHandlerApi2.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera1/ModuleHandler.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_gridviewfragment.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_screenslide_fragment.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/dngconvertingfragment.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/dngstackactivity.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/viewer/gridview/enums/RequestModes.java",
+  "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/infooverlay/model/InfoOverlayModel.java"
+ ],
+ "features": [
+  {
+   "name": "Shutter button",
+   "what": "Take a photo / start-stop recording / start-stop interval or bracket capture for the active module",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/cameraui_fragment.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "shutter on the main camera screen; no own census entry"
+  },
+  {
+   "name": "Tap to focus (focus area)",
+   "what": "Touch preview to set the focus area",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/views/FocusSelector.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "tap-to-focus via FocusImageHandler; no own census entry"
+  },
+  {
+   "name": "Exposure metering area",
+   "what": "Separate draggable spot to set the exposure metering area",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/views/ExposureSelector.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:AE_METERING",
+   "match": "same",
+   "match_note": "draggable metering spot (FocusImageHandler imageView_meteringarea)"
+  },
+  {
+   "name": "Face rectangles",
+   "what": "Draws detected faces on the preview",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/views/FaceRectDrawer.java",
+   "facets": [
+    "focus",
+    "exposure_auto"
+   ],
+   "glasscam": "setting:FACE_DETECTOR_MODE",
+   "match": "same",
+   "match_note": "face rectangles drawn in framelyout_facedrawer"
+  },
+  {
+   "name": "Crosshair",
+   "what": "Centre crosshair indicator on the preview",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/cameraui_fragment.xml",
+   "facets": [
+    "focus",
+    "compose"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "imageView_Crosshair focus indicator; no own census entry"
+  },
+  {
+   "name": "Info overlay",
+   "what": "Shows battery level, free storage, time, picture size, GPS status and picture format",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/infooverlay/model/InfoOverlayModel.java",
+   "facets": [
+    "app",
+    "exposure_feedback"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "info overlay (SPEC C6): GPS, time, format, size, storage, battery"
+  },
+  {
+   "name": "User messages",
+   "what": "Temporary on-screen text messages",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/cameraui_fragment.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "textView_usermessage; no own census entry"
+  },
+  {
+   "name": "Histogram (live)",
+   "what": "Live luminance/RGB histogram on preview",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:HISTOGRAM",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Waveform",
+   "what": "Live waveform monitor drawn from the preview",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/cameraui_fragment.xml",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:HISTOGRAM",
+   "match": "same",
+   "match_note": "waveform view shown with the histogram toggle (HistogramController); no own census entry"
+  },
+  {
+   "name": "Clipping / zebra overlay",
+   "what": "Toggle highlighting of over/under-exposed areas",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:CLIPPING",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focus peaking",
+   "what": "Toggle highlighting of in-focus edges",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUSPEAK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Image level (horizon line)",
+   "what": "Dual-axis level showing tilt and roll",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/HorizontLineFragment.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "partial",
+   "match_note": "GlassCam's level is a single bar with one signed angle (SPEC C7), not dual-axis"
+  },
+  {
+   "name": "Compass",
+   "what": "Compass drawn on the level overlay",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CompassDrawer.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "CompassDrawer class is in the tree but never instantiated"
+  },
+  {
+   "name": "Composition grid overlay",
+   "what": "Selected composition guide drawn over the preview",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/guide/GuideHandler.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Swipe pages",
+   "what": "Swipe between settings page, camera UI, a clean (UI-hidden) preview page and the last-picture viewer",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/CameraUiSlidePagerAdapter.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenMainFragment",
+   "match": "partial",
+   "match_note": "3 pages (settings, camera UI, last picture); no separate clean-preview page - HIDE_CAMERA_UI swaps the camera page for an empty one"
+  },
+  {
+   "name": "Last-picture screen slide",
+   "what": "Swipe from the camera to review recent captures",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/CameraUiSlidePagerAdapter.java",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "fragment:ScreenSlideFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Help overlay",
+   "what": "First-run help screen explaining the UI",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/HelpFragment.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:HelpFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "New version notice",
+   "what": "Shows that a newer GitHub release is available",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/cameraui_fragment.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "removed in GlassCam: update checker hard-off, 'Check for new updates' row dropped (SPEC.md §5 D10; §1 T2 'no update checker')"
+  },
+  {
+   "name": "Horizontal values picker",
+   "what": "Strip of values that opens when a quick-setting or manual is tapped",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/HorizontalValuesFragment.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenHorizontalValuesFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "White balance mode",
+   "what": "Pick auto/preset white balance modes",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:WHITE_BALANCE_MODE",
+   "match": "partial",
+   "match_note": "in the settings drawer only, not a camera-screen quick control"
+  },
+  {
+   "name": "ISO mode",
+   "what": "Pick auto or a fixed ISO value",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_MANUAL_ISO",
+   "match": "same",
+   "match_note": "ISO strip item includes auto"
+  },
+  {
+   "name": "Flash mode",
+   "what": "Off, auto, on, torch, red-eye",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "same",
+   "match_note": "red-eye only under Camera1"
+  },
+  {
+   "name": "Focus mode",
+   "what": "Auto, continuous picture/video, macro, infinity, EDOF, manual",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUS_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Exposure (AE) mode",
+   "what": "Choose the auto-exposure algorithm / AE mode",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:EXPOSURE_MODE",
+   "match": "partial",
+   "match_note": "in the settings drawer only, not a camera-screen quick control"
+  },
+  {
+   "name": "HDR mode",
+   "what": "Device HDR capture mode where supported",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:HDR_MODE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Night mode",
+   "what": "Device night capture mode (vendor) where supported",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "NIGHT_MODE (ZTE, Camera1) parameter is still in code but no GlassCam column or settings row exposes it"
+  },
+  {
+   "name": "Picture format",
+   "what": "Jpeg, DNG 10/12/16-bit, Bayer, Jpg+DNG, YUV",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "same",
+   "match_note": "format chip on the info overlay cycles it (SPEC C6)"
+  },
+  {
+   "name": "Module switch",
+   "what": "Switch capture module: Picture, Video, Interval, Ae-Bracket, Af-Bracket",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "column:MODULE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Self timer",
+   "what": "Delay before capture",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "column:SELF_TIMER",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "AE lock",
+   "what": "Lock auto exposure",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:EXPOSURE_LOCK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Camera switch",
+   "what": "Cycle between available cameras (front/back/aux)",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "column:CAMERA_SWITCH",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Histogram toggle",
+   "what": "Show/hide live histogram",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:HISTOGRAM",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Clipping toggle",
+   "what": "Show/hide clipping highlights",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:CLIPPING",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focus peak toggle",
+   "what": "Show/hide focus peaking",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUSPEAK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Exit",
+   "what": "Close the app",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/CameraUiFragment.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "no exit control; the BACK key moves the task to the back (SPEC C13)"
+  },
+  {
+   "name": "Zoom",
+   "what": "Manual zoom slider",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Manual focus",
+   "what": "Focus distance dial, optional auto zoom-in while focusing",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "strip:M_FOCUS",
+   "match": "same",
+   "match_note": "auto zoom-in via ZOOM_ON_MANUALFOCUS"
+  },
+  {
+   "name": "Manual ISO",
+   "what": "ISO dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_MANUAL_ISO",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Shutter / exposure time",
+   "what": "Exposure time dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_TIME",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Aperture / F-number",
+   "what": "Aperture dial on devices with variable aperture",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_APERTURE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Exposure compensation",
+   "what": "EV compensation dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Manual white balance (CCT)",
+   "what": "Colour temperature dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "strip:M_WHITEBALANCE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Burst count",
+   "what": "Number of images per shutter press",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": "strip:M_BURST",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Contrast",
+   "what": "Contrast dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "strip:M_CONTRAST",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Brightness",
+   "what": "Brightness dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "strip:M_Brightness",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Saturation",
+   "what": "Saturation dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "strip:M_SATURATION",
+   "match": "partial",
+   "match_note": "Qualcomm vendor key under Camera2 - other phones lack it"
+  },
+  {
+   "name": "Sharpness",
+   "what": "Sharpness dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "strip:M_SHARPNESS",
+   "match": "partial",
+   "match_note": "Qualcomm vendor key under Camera2 - other phones lack it"
+  },
+  {
+   "name": "FX (effect)",
+   "what": "Vendor effect intensity dial",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "not on GlassCam's manual strip (ManualGroupConfig); only the unused classic ManualFragment adds M_FX"
+  },
+  {
+   "name": "Program shift",
+   "what": "Shift exposure program pairs",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "exposure_manual",
+    "exposure_auto"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "not on GlassCam's manual strip (ManualGroupConfig); only the unused classic ManualFragment adds M_PROGRAM_SHIFT"
+  },
+  {
+   "name": "Tone curve: black/shadows/midtones/highlights/white",
+   "what": "Per-point sliders for the Camera2 tone curve",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "column:TONE_CURVE_PARAMETER",
+   "match": "partial",
+   "match_note": "curve is shaped in the curve editor; no per-point sliders; Camera2 only"
+  },
+  {
+   "name": "Tone curve editor",
+   "what": "Draw a custom tone curve (RGB or per-channel) applied to capture",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "column:TONE_CURVE_PARAMETER",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Zebra high / Zebra low",
+   "what": "Thresholds for the clipping overlay",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "strip:M_ZEBRA_HIGH",
+   "match": "same",
+   "match_note": "with strip:M_ZEBRA_LOW"
+  },
+  {
+   "name": "Manuals panel toggle",
+   "what": "Show or hide the manual controls row",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/cameraui/ManualFragment.java",
+   "facets": [
+    "app",
+    "exposure_manual"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "same",
+   "match_note": "SHOWMANUALSETTINGS toggle"
+  },
+  {
+   "name": "AF-bracket near/far range",
+   "what": "Set near and far focus limits for focus bracketing",
+   "where": "camera screen",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/cameraui_afbracketsettings.xml",
+   "facets": [
+    "multishot",
+    "focus"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "same",
+   "match_note": "Near/Far view beside the value scale (SPEC C5)"
+  },
+  {
+   "name": "Picture",
+   "what": "Standard still capture (JPEG/RAW/DNG)",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera2/ModuleHandlerApi2.java",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "module:PictureModuleApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video",
+   "what": "Video recording using the selected video profile",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera2/ModuleHandlerApi2.java",
+   "facets": [
+    "mode",
+    "video"
+   ],
+   "glasscam": "module:VideoModuleApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Interval",
+   "what": "Intervalometer: shoot at a set interval for a set duration (time-lapse stills)",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera2/ModuleHandlerApi2.java",
+   "facets": [
+    "time",
+    "mode"
+   ],
+   "glasscam": "module:IntervalApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Ae-Bracket",
+   "what": "Exposure bracketing series (Camera2; Huawei variant)",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera2/ModuleHandlerApi2.java",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "same",
+   "match_note": "Huawei variant: module:HuaweiAeBracketApi2"
+  },
+  {
+   "name": "Af-Bracket",
+   "what": "Focus bracketing series between near/far limits",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera2/ModuleHandlerApi2.java",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Bracketing (Camera1)",
+   "what": "Exposure bracketing / HDR series on Camera1 devices",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/apis/camera1/ModuleHandler.java",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": "module:BracketModule",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2 (module:AeBracketApi2 does the job under Camera2)"
+  },
+  {
+   "name": "Time-lapse video",
+   "what": "Video profile in timelapse mode with frame setting",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/utils/VideoMediaProfile.java",
+   "facets": [
+    "time",
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "same",
+   "match_note": "timelapse profile + setting:TIMELAPSE_FRAMES"
+  },
+  {
+   "name": "High-speed / slow-motion video",
+   "what": "Highspeed and SlowMO video profile modes",
+   "where": "mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/utils/VideoMediaProfile.java",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "same",
+   "match_note": "Highspeed/SlowMO profiles (VideoModuleApi2 high-speed session)"
+  },
+  {
+   "name": "Video Profile",
+   "what": "Choose the media profile (resolution/fps/bitrate) for recording",
+   "where": "settings:Video Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Timelapse frames",
+   "what": "Frames per second for timelapse profiles",
+   "where": "settings:Video Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "time",
+    "video"
+   ],
+   "glasscam": "setting:TIMELAPSE_FRAMES",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video Profile Editor",
+   "what": "Create/edit custom video profiles",
+   "where": "settings:Video Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "activity:VideoProfileEditorActivity",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video HDR",
+   "what": "Enable HDR video",
+   "where": "settings:Video Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_HDR",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Video Stabilization",
+   "what": "Enable video stabilization",
+   "where": "settings:Video Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_STABILIZATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "AudioSource",
+   "what": "Audio source for recording (default, mic, camcorder, voice, unprocessed)",
+   "where": "settings:Video Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": "setting:VIDEO_AUDIO_SOURCE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Size",
+   "what": "Picture size",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Picture Format",
+   "what": "Picture format to capture (NextGen theme)",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Yuv Size",
+   "what": "Size of YUV captures",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:YUV_SIZE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Secondary Size",
+   "what": "Secondary sensor picture size",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output",
+    "lens"
+   ],
+   "glasscam": "setting:SECONDARY_SENSOR_SIZE",
+   "match": "partial",
+   "match_note": "Huawei dual-sensor phones only"
+  },
+  {
+   "name": "JPEG Quality",
+   "what": "JPEG quality in %",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:JPEG_QUALITY",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "MFNR",
+   "what": "Multi-frame 3D noise reduction",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:MFNR",
+   "match": "partial",
+   "match_note": "Qualcomm vendor key under Camera2 - other phones lack it"
+  },
+  {
+   "name": "Xiaomi MFNR",
+   "what": "Xiaomi multi-frame noise reduction",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:XIAOMI_MFNR",
+   "match": "partial",
+   "match_note": "Xiaomi vendor key only"
+  },
+  {
+   "name": "AoV Mode",
+   "what": "MediaTek All-on-Video mode",
+   "where": "settings:Picture Mode",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:MTK_AOV_MODE",
+   "match": "partial",
+   "match_note": "MediaTek vendor key only"
+  },
+  {
+   "name": "Shutter Fire Interval",
+   "what": "Time between interval shots",
+   "where": "settings:Interval Mode Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "time"
+   ],
+   "glasscam": "setting:INTERVAL_SHUTTER_SLEEP",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Duration till interval ends",
+   "what": "Total duration of an interval run",
+   "where": "settings:Interval Mode Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "time"
+   ],
+   "glasscam": "setting:INTERVAL_DURATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Raw Flat Field (OpCode)",
+   "what": "Download DNG opcode for flat-field correction",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:OPCODE",
+   "match": "partial",
+   "match_note": "row kept, but GlassCam is local-first (SPEC T2) and the device database's opcode URLs are never fetched (SPEC D10)"
+  },
+  {
+   "name": "Bayer Format",
+   "what": "Sensor raw format to encode as DNG",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output",
+    "device"
+   ],
+   "glasscam": "setting:BAYERFORMAT",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "CustomMatrix",
+   "what": "Choose a custom DNG colour matrix",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output",
+    "colour"
+   ],
+   "glasscam": "setting:MATRIX_SET",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "ToneMapProfile",
+   "what": "Tone-map curve embedded in the DNG",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:TONEMAP_SET",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Use FreeDcam DngConverter",
+   "what": "Use FreeDcam's own DNG writer for 16-bit RAW",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:FORCE_RAW_TO_DNG",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Use custom DNG profile",
+   "what": "Apply a custom dngprofile.xml if present",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output",
+    "colour"
+   ],
+   "glasscam": "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Raw Size",
+   "what": "Size of the RAW capture",
+   "where": "settings:Raw Stuff",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:RAW_SIZE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "API",
+   "what": "Choose Camera1 or Camera2 API",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:@setting_api_header",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Storage Location",
+   "what": "Save to internal storage or SD card",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "setting:SD_SAVE_LOCATION",
+   "match": "same",
+   "match_note": "MediaStore or a picked SAF tree (SPEC ST1/ST2)"
+  },
+  {
+   "name": "Geo-Tag Location",
+   "what": "Geotag images",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": "setting:LOCATION_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Grid",
+   "what": "Composition guide overlay (rule of thirds, golden ratio/spiral/triangle, diagonals, group POV, square crops, centre marks)",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Image Level",
+   "what": "Dual-axis level overlay",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "partial",
+   "match_note": "single-bar level, one signed angle (SPEC C7), not dual-axis"
+  },
+  {
+   "name": "NightOverlay",
+   "what": "Red night-vision overlay over the UI",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "setting:NIGHT_OVERLAY",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Touch to Capture",
+   "what": "Tapping the preview takes a picture",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "setting:TOUCH_TO_CAPTURE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Play Shutter Sound",
+   "what": "Play a sound on capture",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "setting:PLAY_SHUTTER_SOUND",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Save Camera Parameters",
+   "what": "Dump current camera parameters to a file",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:@setting_savecamparams_header",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Open Camera in LegacyMode",
+   "what": "Camera1 legacy open mode for problem devices",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:OPEN_CAMERA_1_LEGACY",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Theme",
+   "what": "Choose UI theme: Default or NextGen",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "removed in GlassCam: classic themesample theme deleted (SPEC.md §9; MIGRATION_NOTES 'Correction (post-Stage 4) - classic-theme deletion'); Theme row dropped (SettingGroupConfig)"
+  },
+  {
+   "name": "Preview Template",
+   "what": "Camera2 request template used for preview (NextGen theme)",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:PREVIEW_TEMPLATE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Capture Template",
+   "what": "Camera2 request template used for capture (NextGen theme)",
+   "where": "settings:Freedcam Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:CAPTURE_TEMPLATE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Run FeatureDetector",
+   "what": "Re-detect what the camera supports",
+   "where": "settings:Freedcam Settings / Etc",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:@setting_featuredetector_header",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Check for new updates",
+   "what": "Check GitHub for a new version (GitHub builds)",
+   "where": "settings:Freedcam Settings / Etc",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "removed in GlassCam: update checker hard-off, 'Check for new updates' row dropped (SPEC.md §5 D10; §1 T2 'no update checker')"
+  },
+  {
+   "name": "Disable Camera ui",
+   "what": "Hide all camera UI items",
+   "where": "settings:Freedcam Settings / Etc",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "setting:HIDE_CAMERA_UI",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Dump vendor keys",
+   "what": "Export Camera2 vendor keys (Camera2)",
+   "where": "settings:Freedcam Settings / Etc",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:@setting_dump_vendor_keys_header",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Preview PostProcessing",
+   "what": "Enable OpenGL/RenderScript preview processing needed for focus peak and live histogram",
+   "where": "settings:Preview",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "setting:PREVIEW_POST_PROCESSING_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focuspeak Color",
+   "what": "Colour of focus peaking highlights",
+   "where": "settings:Preview",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:FOCUSPEAK_COLOR",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Orientation Correction",
+   "what": "Rotate the camera 180 degrees",
+   "where": "settings:Preview",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:ORIENTATION_HACK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Switch width and height",
+   "what": "Swap preview aspect ratio",
+   "where": "settings:Preview",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device",
+    "app"
+   ],
+   "glasscam": "setting:SWITCH_ASPECT_RATIO",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Force Wide Preview",
+   "what": "Use the widest available preview size (NextGen theme)",
+   "where": "settings:Preview",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java",
+   "facets": [
+    "app",
+    "compose"
+   ],
+   "glasscam": "setting:FORCE_WIDE_PREVIEW",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Freedcam AE",
+   "what": "Use FreeDcam's own auto-exposure (OpenGL preview)",
+   "where": "settings:Preview / Custom AE",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:USE_GLASSCAM_AE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Max Iso",
+   "what": "Highest ISO custom AE may use",
+   "where": "settings:Preview / Custom AE",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:MAX_ISO",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Min Iso",
+   "what": "Lowest ISO custom AE may use",
+   "where": "settings:Preview / Custom AE",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:MIN_ISO",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Min ExposureTime",
+   "what": "Shortest exposure custom AE may use",
+   "where": "settings:Preview / Custom AE",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:MIN_EXPOSURE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Max ExposureTime",
+   "what": "Longest exposure custom AE may use",
+   "where": "settings:Preview / Custom AE",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:MAX_EXPOSURE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Scene",
+   "what": "Scene mode (action, portrait, night, sports, HDR, barcode...)",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:SCENE_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Color Effect",
+   "what": "Colour effect (mono, negative, sepia, solarize, posterize...)",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:COLOR_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Correlated Color Temperature",
+   "what": "Colour correction mode: auto/manual/transform matrix",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:COLOR_CORRECTION_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Tonemap",
+   "what": "Camera2 tonemap mode",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:TONE_MAP_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Camera Control",
+   "what": "Camera2 control mode; off for full manual",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto",
+    "exposure_manual"
+   ],
+   "glasscam": "setting:CONTROL_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Red-Eye Reduction",
+   "what": "Pre-flash before main flash",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:RED_EYE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Anti Flicker",
+   "what": "Reduce flicker from artificial light (50/60 Hz)",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:ANTI_BANDING_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Image Post Processing",
+   "what": "Quality of post-processing",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:IMAGE_POST_PROCESSING",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Lens shade",
+   "what": "Reduce vignetting at edges",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:LENS_SHADE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "SceneDetection",
+   "what": "Automatic scene mode changer",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:SCENE_DETECT",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Wavelet Denoise",
+   "what": "JPEG post-process noise filter",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:DENOISE",
+   "match": "same",
+   "match_note": "row renamed from 'wavelet' to 'Noise reduction' in 4.3.94; drives Camera2 noise reduction too"
+  },
+  {
+   "name": "Temporal Denoise",
+   "what": "Multi-frame 3D noise reduction",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing",
+    "multishot"
+   ],
+   "glasscam": "setting:TNR",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Temporal Video Denoise",
+   "what": "Multi-frame video noise reduction",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "video",
+    "processing"
+   ],
+   "glasscam": "setting:TNR_V",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "PDAF Control",
+   "what": "Control phase-detection autofocus",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:PDAF",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "True Portrait",
+   "what": "Vendor portrait mode",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "mode",
+    "processing"
+   ],
+   "glasscam": "setting:TRUE_POTRAIT",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "RDI",
+   "what": "Raw dump interface for zero-lag raws",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "output",
+    "device"
+   ],
+   "glasscam": "setting:RDI",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Chroma Flash",
+   "what": "Multi-frame flash image",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "multishot",
+    "exposure_auto"
+   ],
+   "glasscam": "setting:CHROMA_FLASH",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Optizoom",
+   "what": "Auto-track zoom object",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:OPTI_ZOOM",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Refocus",
+   "what": "Faux depth-of-field",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus",
+    "multishot"
+   ],
+   "glasscam": "setting:RE_FOCUS",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "StillMore",
+   "what": "Local tone mapping (LTM)",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:SEE_MORE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Virtual Lens Filter",
+   "what": "Apply lens filter effect",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:LENS_FILTER",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Digital Image Stabilization",
+   "what": "Electronic image stabilisation",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "stabilise"
+   ],
+   "glasscam": "setting:DIGITAL_IMAGE_STABILIZATION",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Memory Color Enhancement",
+   "what": "Vibrance-like colour boost",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:MEMORY_COLOR_ENHANCEMENT",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Zero Shutter Lag",
+   "what": "Buffer frames for instant capture",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "setting:ZSL",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "ManualControl (ZSL off)",
+   "what": "Enable manual control when ZSL is off",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "device",
+    "exposure_manual"
+   ],
+   "glasscam": "setting:NON_ZSL_MANUAL_MODE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Correlated double sampling",
+   "what": "Sensor double-readout noise reduction",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:CDS_MODE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm"
+  },
+  {
+   "name": "Edge Mode",
+   "what": "Edge enhancement/sharpening mode",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:EDGE_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Hot Pixel Correction",
+   "what": "Hot pixel correction mode",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:HOT_PIXEL_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Distortion Correction",
+   "what": "Lens distortion correction mode",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:DISTORTION_CORRECTION_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Face Detection",
+   "what": "Face detection mode",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus",
+    "exposure_auto"
+   ],
+   "glasscam": "setting:FACE_DETECTOR_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Optical Image Stabilisation",
+   "what": "OIS on/off",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "stabilise"
+   ],
+   "glasscam": "setting:OIS_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Dual Camera",
+   "what": "Choose colour, mono or dual sensor",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "setting:DUAL_PRIMARY_CAMERA_MODE",
+   "match": "partial",
+   "match_note": "Huawei dual-sensor phones only"
+  },
+  {
+   "name": "AE Frame Range",
+   "what": "FPS range auto-exposure may use",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:AE_TARGET_FPS",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "HDR Mode (settings)",
+   "what": "HDR mode entry in settings list (NextGen theme)",
+   "where": "settings:... Settings",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:HDR_MODE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2"
+  },
+  {
+   "name": "Auto Zoom on ManualFocus",
+   "what": "Zoom in automatically while using manual focus",
+   "where": "settings:... Settings / Manual Focus",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:ZOOM_ON_MANUALFOCUS",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Zoom Factor",
+   "what": "Zoom factor applied during manual focus",
+   "where": "settings:... Settings / Manual Focus",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:ZOOM_ON_MANUALFOCUS_ZOOMFACTOR",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Zoom Duration",
+   "what": "Time before the manual-focus zoom resets",
+   "where": "settings:... Settings / Manual Focus",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/themesample/settings/SettingsMenuItemFactory.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:ZOOM_ON_MANUALFOCUS_ZOOMDURATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Profile name / width / height",
+   "what": "Name and resolution of a custom video profile",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Audio capture + audio bitrate/sample rate/codec",
+   "what": "Audio settings of a profile",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "audio",
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video bitrate / frame rate",
+   "what": "Encoding bitrate and fps of a profile",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Max record size / max record time",
+   "what": "Split/stop limits in MB and minutes",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video",
+    "time"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Record mode",
+   "what": "Normal, Highspeed, Timelapse or SlowMO",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video codec / encoder / profile-level",
+   "what": "Choose video codec, encoder and profile/level",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "HLG/PQ",
+   "what": "HDR video transfer (HLG or PQ)",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": "HDR row (hdrModes) in the editor"
+  },
+  {
+   "name": "Save / Remove profile",
+   "what": "Store or delete a custom profile",
+   "where": "settings:Video Profile Editor",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/video_profile_editor_fragment.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "FreeDviewer gallery (grid)",
+   "what": "Separate launcher entry and in-app grid browser of captures",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "review",
+    "manage"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "same",
+   "match_note": "opened from the gallery cell (SPEC C3), not a separate launcher entry"
+  },
+  {
+   "name": "File type filter",
+   "what": "Filter grid by file type (e.g. JPG, DNG, MP4)",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_gridviewfragment.xml",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "fragment:GridViewFragment",
+   "match": "same",
+   "match_note": "button_filetype in the grid bar; no own census entry"
+  },
+  {
+   "name": "Multi-select",
+   "what": "Select several files in the grid",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/viewer/gridview/enums/RequestModes.java",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "fragment:GridViewFragment",
+   "match": "same",
+   "match_note": "selection mode (FilesSelectedModel); no own census entry"
+  },
+  {
+   "name": "Delete files",
+   "what": "Delete selected files",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/viewer/gridview/enums/RequestModes.java",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Raw to DNG",
+   "what": "Convert selected raw/bayer files to DNG",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/viewer/gridview/enums/RequestModes.java",
+   "facets": [
+    "manage",
+    "output"
+   ],
+   "glasscam": "activity:DngConvertingActivity",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Stack (JPEG)",
+   "what": "Stack selected JPEGs into one image",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/viewer/gridview/enums/RequestModes.java",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "removed in GlassCam: gallery menu is 'Delete file / Raw to DNG' only (SPEC.md §6 G1; ButtonOptionsModel)"
+  },
+  {
+   "name": "DngStack",
+   "what": "Stack selected DNGs into a merged DNG (noise reduction)",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/dngstackactivity.xml",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "removed in GlassCam: DngStackActivity is out of the gallery menu (ButtonOptionsModel) and refuses SAF/MediaStore files (SPEC.md §3 ST5, §11 item 4)"
+  },
+  {
+   "name": "Image viewer (screen slide)",
+   "what": "Swipe through full-screen images",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_screenslide_fragment.xml",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "fragment:ScreenSlideFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Exif info panel",
+   "what": "Shows filename, size, ISO, shutter, focal length, f-number",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_screenslide_fragment.xml",
+   "facets": [
+    "review",
+    "metadata"
+   ],
+   "glasscam": "viewer:button_info",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Viewer histogram",
+   "what": "Histogram of the displayed image",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_screenslide_fragment.xml",
+   "facets": [
+    "exposure_feedback",
+    "review"
+   ],
+   "glasscam": "fragment:ScreenSlideFragment",
+   "match": "same",
+   "match_note": "screenslide_histogram in the viewer; no own census entry"
+  },
+  {
+   "name": "Play video",
+   "what": "Open a video in a player",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_screenslide_fragment.xml",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "viewer:button_play",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Delete (viewer)",
+   "what": "Delete the displayed file",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/freedviewer_screenslide_fragment.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "viewer:button_delete",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Open with / share via app",
+   "what": "Choose an external app for the file",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/viewer/screenslide",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "GlassGallery has no share/open-with action (no ACTION_SEND/chooser in the viewer code)"
+  },
+  {
+   "name": "DNG converter tool",
+   "what": "Convert raw with width/height/black/white level, colour matrix, tonemap, colour pattern, output format, fake GPS; save profile",
+   "where": "gallery",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/res/layout/dngconvertingfragment.xml",
+   "facets": [
+    "manage",
+    "output"
+   ],
+   "glasscam": "activity:DngConvertingActivity",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Image capture intent",
+   "what": "Serve other apps requesting a photo (IMAGE_CAPTURE, STILL_IMAGE_CAMERA)",
+   "where": "other",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamShare",
+   "match": "same",
+   "match_note": "callers must name the package (SPEC I2) - same platform limit as upstream"
+  },
+  {
+   "name": "Secure camera (lockscreen)",
+   "what": "Launch over the lockscreen (IMAGE_CAPTURE_SECURE, STILL_IMAGE_CAMERA_SECURE)",
+   "where": "other",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMainSecure",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Volume keys adjust manual",
+   "what": "Volume up/down step the active manual value",
+   "where": "other",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/KeyPressedController.java",
+   "facets": [
+    "exposure_manual",
+    "trigger"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "same",
+   "match_note": "KeyPressedController steps the selected strip item"
+  },
+  {
+   "name": "Hardware camera / headset key shutter",
+   "what": "Camera, headset-hook, 3D-mode keys trigger capture; short headset press cycles manual",
+   "where": "other",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/app/src/main/java/freed/cam/ui/KeyPressedController.java",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "KeyPressedController fires the shutter only on a held headset key; camera/3D keys never reach startWork(); a short headset press cycles the manual"
+  },
+  {
+   "name": "Hidden OEM settings",
+   "what": "README documents vendor dialer codes for hidden camera settings",
+   "where": "other",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/README.md",
+   "facets": [
+    "device"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "removed in GlassCam: upstream README retired, README now describes GlassCam (SPEC.md §9)"
+  },
+  {
+   "name": "Custom colour matrix / tonemap profiles",
+   "what": "User-created DNG matrix and tonemap profile files",
+   "where": "other",
+   "source": "https://github.com/KillerInk/FreeDcam/blob/4ce7b6169cbac526df84f2653bc1ecf96abc3d0a/README.md",
+   "facets": [
+    "output",
+    "colour"
+   ],
+   "glasscam": "setting:MATRIX_SET",
+   "match": "same",
+   "match_note": "with setting:TONEMAP_SET"
+  }
+ ]
+}

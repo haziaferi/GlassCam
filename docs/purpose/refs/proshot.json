@@ -1,0 +1,941 @@
+{
+  "app": "ProShot",
+  "package": "com.riseupgames.proshot2",
+  "basis": "docs https://www.riseupgames.com/proshot/android (official Android Guide) + Google Play listing (updated May 13, 2026; What's new) + https://www.riseupgames.com/proshot feature list, as of 2026-10-20. Developer: Rise Up Games (Play listing). Features the official site marks iOS-only (ProRAW, Portrait mode, Live Photo, Monochrome mode, configurable MAX ISO/MAX shutter, compass and altimeter) are excluded.",
+  "sources": [
+    "https://www.riseupgames.com/proshot/android",
+    "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+    "https://www.riseupgames.com/proshot"
+  ],
+  "features": [
+    {
+      "name": "Tap focus/exposure point",
+      "what": "Tap the viewfinder to set the focus and exposure point; drag the box to move it; tap the box to reset",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "focus",
+        "exposure_auto"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "touch on the preview sets focus and metering area (FocusImageHandler); no census entry; separate metering area marker"
+    },
+    {
+      "name": "One-finger zoom",
+      "what": "Drag one finger up or down on the viewfinder to zoom (up to 10X)",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "strip:M_ZOOM",
+      "match": "partial",
+      "match_note": "zoom only through the manual-strip slider; no gesture zoom on the preview"
+    },
+    {
+      "name": "Zoom / EV readouts",
+      "what": "Current zoom and exposure compensation values shown at the top of the viewfinder; tap a label to reset its value",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_feedback",
+        "compose"
+      ],
+      "glasscam": "fragment:NextGenManualsFragment",
+      "match": "partial",
+      "match_note": "current values shown on the manual strips; no tap-to-reset readout"
+    },
+    {
+      "name": "AE button (AE-L / spot metering)",
+      "what": "Switches metering between center-weighted, AE lock and spot; the spot AE box can be dragged anywhere",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_auto"
+      ],
+      "glasscam": "setting:AE_METERING",
+      "match": "same",
+      "match_note": "with column:EXPOSURE_LOCK; Camera2"
+    },
+    {
+      "name": "Lens selector",
+      "what": "Switches between the device's available rear lenses (multi-camera devices)",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "lens"
+      ],
+      "glasscam": "column:CAMERA_SWITCH",
+      "match": "same",
+      "match_note": "also setting:PHYSICAL_CAMERA_ID"
+    },
+    {
+      "name": "X-Mode (Vendor Extensions)",
+      "what": "Opens manufacturer modes Beauty, Bokeh, HDR or Night where supported (no manual control, zoom or RAW in these modes)",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode",
+        "multishot"
+      ],
+      "glasscam": "setting:HDR_MODE",
+      "match": "partial",
+      "match_note": "only Camera1 vendor HDR / True Portrait; no Camera2 extension modes (Night, Bokeh, Beauty)"
+    },
+    {
+      "name": "Image / Video Format button",
+      "what": "Chooses RAW or JPEG (RAW+JPEG per Play listing) for photos and H.264 or H.265 for video in the current drive mode",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "output",
+        "video"
+      ],
+      "glasscam": "setting:PICTURE_FORMAT",
+      "match": "same",
+      "match_note": "codec via the video profile editor"
+    },
+    {
+      "name": "HEIC",
+      "what": "Saves photos as HEIC on compatible devices",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "output"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no HEIC/HEIF output"
+    },
+    {
+      "name": "Preview Image",
+      "what": "Thumbnail of the most recent photo or video in the top bar; opens it",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "review"
+      ],
+      "glasscam": "activity:ActivityGlassCamViewer",
+      "match": "same"
+    },
+    {
+      "name": "Grid Overlay",
+      "what": "Toggles between grid options (4 options)",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "setting:GUIDE_LIST",
+      "match": "same"
+    },
+    {
+      "name": "Aspect Ratio",
+      "what": "Chooses 4:3, 16:9, 1:1 or C (custom ratio such as 21:9 or 5:4; press and hold C to edit) in Photo mode",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "compose",
+        "output"
+      ],
+      "glasscam": "setting:PICTURE_SIZE",
+      "match": "partial",
+      "match_note": "aspect only by picking a sensor size; no 1:1 or custom crop ratios"
+    },
+    {
+      "name": "Settings button",
+      "what": "Opens the Settings Panel",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "fragment:NextGenCameraSettingFragment",
+      "match": "same"
+    },
+    {
+      "name": "Flash",
+      "what": "Flash menu in the bottom-bar control row",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_auto"
+      ],
+      "glasscam": "column:FLASH_MODE",
+      "match": "same"
+    },
+    {
+      "name": "Video light",
+      "what": "Turns on the flash LED as a continuous light while filming",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "exposure_auto",
+        "video"
+      ],
+      "glasscam": "column:FLASH_MODE",
+      "match": "same",
+      "match_note": "torch value"
+    },
+    {
+      "name": "White Balance",
+      "what": "White balance menu (auto or manual)",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "colour"
+      ],
+      "glasscam": "strip:M_WHITEBALANCE",
+      "match": "same",
+      "match_note": "auto presets via setting:WHITE_BALANCE_MODE"
+    },
+    {
+      "name": "ISO",
+      "what": "Manual or auto ISO menu",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_MANUAL_ISO",
+      "match": "same"
+    },
+    {
+      "name": "Shutter Speed",
+      "what": "Manual or auto shutter speed menu",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_TIME",
+      "match": "same"
+    },
+    {
+      "name": "Focus",
+      "what": "Focus menu with manual focus",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "focus"
+      ],
+      "glasscam": "strip:M_FOCUS",
+      "match": "same"
+    },
+    {
+      "name": "Manual focus assist",
+      "what": "Helps judge sharpness while focusing manually",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "focus"
+      ],
+      "glasscam": "setting:ZOOM_ON_MANUALFOCUS",
+      "match": "same"
+    },
+    {
+      "name": "PEAK (Focus Peaking)",
+      "what": "Highlights in-focus edges; modes Off, On, Peak MF (only with manual focus), Peak MF-A (only while focus is changing); colour customizable",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "focus"
+      ],
+      "glasscam": "column:FOCUSPEAK",
+      "match": "partial",
+      "match_note": "on/off and colour only; no MF-only or while-focusing modes; needs Preview PostProcessing"
+    },
+    {
+      "name": "Exposure compensation slider",
+      "what": "Brightness (EV) slider at the bottom of the screen",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+      "match": "same"
+    },
+    {
+      "name": "Storage remaining indicator",
+      "what": "Shows remaining storage space",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "manage",
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "info overlay on the camera screen (InfoOverlayModelView); no census entry shows free storage"
+    },
+    {
+      "name": "Battery meter",
+      "what": "Shows battery level on the camera screen",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "info overlay on the camera screen (InfoOverlayModelView); no census entry shows battery level"
+    },
+    {
+      "name": "Front / rear camera toggle",
+      "what": "Switches between rear and selfie camera; selfie camera keeps full manual control",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "lens"
+      ],
+      "glasscam": "column:CAMERA_SWITCH",
+      "match": "same"
+    },
+    {
+      "name": "Shutter button",
+      "what": "Takes the photo or starts the capture of the current drive mode",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same"
+    },
+    {
+      "name": "Video record shortcut",
+      "what": "Starts video recording instantly from any mode",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "trigger",
+        "video"
+      ],
+      "glasscam": "column:MODULE",
+      "match": "partial",
+      "match_note": "must switch to the video module first"
+    },
+    {
+      "name": "Camera Dial",
+      "what": "DSLR-style mode dial switching Auto, Program, Manual, C1, C2",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode",
+        "exposure_auto"
+      ],
+      "glasscam": "fragment:NextGenManualsFragment",
+      "match": "partial",
+      "match_note": "each manual control is auto or set individually; no mode dial and no custom presets"
+    },
+    {
+      "name": "Drive Dial",
+      "what": "Dial switching Photo, Video, Slo-mo, Light Painting, Time-lapse",
+      "where": "camera screen",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode"
+      ],
+      "glasscam": "column:MODULE",
+      "match": "partial",
+      "match_note": "photo/video/interval/bracketing modules; slo-mo only as a video profile, no light-painting mode"
+    },
+    {
+      "name": "Auto",
+      "what": "Fully automatic exposure, no configuration needed",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_auto",
+        "mode"
+      ],
+      "glasscam": "module:PictureModuleApi2",
+      "match": "same",
+      "match_note": "starts in auto exposure"
+    },
+    {
+      "name": "Program",
+      "what": "Semi-auto: user sets ISO and white balance, app sets shutter speed",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_auto",
+        "exposure_manual"
+      ],
+      "glasscam": "setting:USE_GLASSCAM_AE",
+      "match": "partial",
+      "match_note": "ISO priority possible with GlassCam AE on (forced ISO); no named Program mode"
+    },
+    {
+      "name": "Manual",
+      "what": "User sets ISO and shutter speed",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_TIME",
+      "match": "same",
+      "match_note": "with strip:M_MANUAL_ISO"
+    },
+    {
+      "name": "Shutter priority / ISO priority",
+      "what": "Fix shutter or ISO and let the app set the other",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "exposure_auto",
+        "exposure_manual"
+      ],
+      "glasscam": "setting:USE_GLASSCAM_AE",
+      "match": "partial",
+      "match_note": "GlassCam AE keeps a forced shutter or ISO and solves the other, but only after enabling it in settings (Camera2)"
+    },
+    {
+      "name": "Custom C1 / C2",
+      "what": "Two custom modes that auto-save and recall EV, WB, ISO, shutter and focus",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode",
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no saved custom setting presets to recall"
+    },
+    {
+      "name": "Resume Settings",
+      "what": "Off / Auto (keep 10 minutes) / On: whether camera mode and settings are kept after leaving the app",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "settings and last camera/module always persist; no Off/Auto/On choice"
+    },
+    {
+      "name": "Dynamic mode switching",
+      "what": "Setting a shutter speed in Auto switches to Manual; setting it back to auto returns to Auto",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode",
+        "exposure_manual"
+      ],
+      "glasscam": "fragment:NextGenManualsFragment",
+      "match": "partial",
+      "match_note": "setting a manual value takes that control out of auto, but no visible mode change"
+    },
+    {
+      "name": "Photo",
+      "what": "Still-photo drive mode",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode"
+      ],
+      "glasscam": "module:PictureModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "EV bracketing",
+      "what": "Zero-lag exposure bracketing up to +/-3 EV (Photo menu)",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "multishot"
+      ],
+      "glasscam": "module:AeBracketApi2",
+      "match": "same",
+      "match_note": "sequential bracket; zero-lag not claimed"
+    },
+    {
+      "name": "ENHANCE (Auto Enhance)",
+      "what": "Hardware post-processing for colour and dynamic range; may enable automatic HDR (Photo menu)",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "processing"
+      ],
+      "glasscam": "setting:DENOISE",
+      "match": "partial",
+      "match_note": "processing set per stage (NR, edge, tonemap, lens shade); no one-switch enhance; auto HDR only Camera1"
+    },
+    {
+      "name": "Timer",
+      "what": "Self-timer before capture",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "column:SELF_TIMER",
+      "match": "same"
+    },
+    {
+      "name": "Video",
+      "what": "Video drive mode with full manual control; size, frame rate, bitrate, mic options, EIS",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "mode",
+        "video"
+      ],
+      "glasscam": "module:VideoModuleApi2",
+      "match": "same"
+    },
+    {
+      "name": "Video resolution up to 8K",
+      "what": "Video size up to 8K and 'beyond 4K' on compatible devices, extreme bitrate options",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "video"
+      ],
+      "glasscam": "setting:VIDEO_PROFILES",
+      "match": "same",
+      "match_note": "custom resolution/bitrate in the profile editor, device-limited"
+    },
+    {
+      "name": "Frame rate 24-240 FPS",
+      "what": "Adjustable video frame rate from 24 to 240 FPS",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "video"
+      ],
+      "glasscam": "setting:VIDEO_PROFILES",
+      "match": "same",
+      "match_note": "high-speed profiles exist"
+    },
+    {
+      "name": "EIS",
+      "what": "Electronic image stabilization for video",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "video",
+        "stabilise"
+      ],
+      "glasscam": "setting:VIDEO_STABILIZATION",
+      "match": "same"
+    },
+    {
+      "name": "LOG / FLAT colour profiles",
+      "what": "Flat video colour profiles for more dynamic range in grading",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "video",
+        "colour"
+      ],
+      "glasscam": "column:TONE_CURVE_PARAMETER",
+      "match": "partial",
+      "match_note": "a flat curve can be drawn by hand; no ready LOG/flat video profile"
+    },
+    {
+      "name": "180 degree rule",
+      "what": "Options that tie shutter speed to frame rate (180-degree shutter)",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "video",
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_TIME",
+      "match": "partial",
+      "match_note": "shutter set by hand; not tied to frame rate"
+    },
+    {
+      "name": "Mic options / Audio Routing",
+      "what": "Choose microphone source, including external mic; 'External' option forces external mic",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "audio"
+      ],
+      "glasscam": "setting:VIDEO_AUDIO_SOURCE",
+      "match": "partial",
+      "match_note": "picks MediaRecorder sources; no forced external-mic routing"
+    },
+    {
+      "name": "Audio level monitoring",
+      "what": "Shows audio levels in real time while recording",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "audio"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no audio level meter"
+    },
+    {
+      "name": "Video file size display",
+      "what": "Shows the recording's file size in real time",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "video",
+        "exposure_feedback"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "info overlay on the camera screen (InfoOverlayModelView); no census entry shows storage left / estimated time, not live file size"
+    },
+    {
+      "name": "Pause / resume recording",
+      "what": "Pause and resume a video recording into one file",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "video"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no pause/resume while recording"
+    },
+    {
+      "name": "Simultaneous audio playback",
+      "what": "Other apps' audio (e.g. Spotify) keeps playing while recording",
+      "where": "mode",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "audio"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "not implemented (no audio-focus handling found)"
+    },
+    {
+      "name": "Slo-mo",
+      "what": "High frame rate (up to 240 FPS) drive mode with video options",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "video",
+        "mode"
+      ],
+      "glasscam": "setting:VIDEO_PROFILES",
+      "match": "partial",
+      "match_note": "slow-motion only as a high-speed video profile; no dedicated mode"
+    },
+    {
+      "name": "Light Painting: Light",
+      "what": "Captures light trails",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "multishot",
+        "time"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "only a single manual long exposure; DNG stack has no lighten-blend trails"
+    },
+    {
+      "name": "Light Painting: Water",
+      "what": "Smooth flowing water, even in daylight without an ND filter",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "multishot",
+        "time"
+      ],
+      "glasscam": "activity:DngStackActivity",
+      "match": "partial",
+      "match_note": "burst DNGs can be merged after capture by hand; no live long-exposure simulation"
+    },
+    {
+      "name": "Light Painting: Stars",
+      "what": "Captures star trails at night",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "multishot",
+        "time"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no star-trail accumulation"
+    },
+    {
+      "name": "Light Painting: Bulb",
+      "what": "Simulated bulb (open-ended long exposure)",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_manual",
+        "time"
+      ],
+      "glasscam": "strip:M_EXPOSURE_TIME",
+      "match": "partial",
+      "match_note": "limited to the sensor's maximum exposure; no open-ended bulb"
+    },
+    {
+      "name": "Timelapse",
+      "what": "Set duration and interval (from 0.5 s); save frames individually (intervalometer) or as a movie up to 4K",
+      "where": "mode",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "time"
+      ],
+      "glasscam": "module:IntervalApi2",
+      "match": "same",
+      "match_note": "timelapse video via setting:TIMELAPSE_FRAMES"
+    },
+    {
+      "name": "Storage Location",
+      "what": "Choose a custom save folder",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "manage"
+      ],
+      "glasscam": "setting:SD_SAVE_LOCATION",
+      "match": "same"
+    },
+    {
+      "name": "SHARP",
+      "what": "Toggles sharpening",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "processing"
+      ],
+      "glasscam": "setting:EDGE_MODE",
+      "match": "same",
+      "match_note": "Camera2"
+    },
+    {
+      "name": "Screen Brightness",
+      "what": "Sets the screen brightness inside the app",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no screen-brightness control"
+    },
+    {
+      "name": "LEVEL (Horizon Level)",
+      "what": "On-screen horizon level (3 options)",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "setting:HORIZONT_LVL",
+      "match": "same"
+    },
+    {
+      "name": "Histogram",
+      "what": "Live histogram overlay (3 modes)",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "exposure_feedback"
+      ],
+      "glasscam": "column:HISTOGRAM",
+      "match": "same",
+      "match_note": "needs Preview PostProcessing"
+    },
+    {
+      "name": "OIS",
+      "what": "Toggles optical image stabilization",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "stabilise"
+      ],
+      "glasscam": "setting:OIS_MODE",
+      "match": "same"
+    },
+    {
+      "name": "NR (Noise Reduction)",
+      "what": "Sets noise reduction / its quality",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "processing"
+      ],
+      "glasscam": "setting:DENOISE",
+      "match": "same"
+    },
+    {
+      "name": "Tag with GPS",
+      "what": "Adds location to captures",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "metadata"
+      ],
+      "glasscam": "setting:LOCATION_MODE",
+      "match": "same"
+    },
+    {
+      "name": "Rotation Lock",
+      "what": "Locks the UI orientation",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "always landscape-locked; no toggle"
+    },
+    {
+      "name": "Hacks",
+      "what": "Workarounds for devices that hide WB/ISO/shutter/manual focus or RAW from third-party apps",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "device"
+      ],
+      "glasscam": "setting:@setting_api_header",
+      "match": "same",
+      "match_note": "API choice, vendor keys, legacy mode, Bayer/orientation fixes"
+    },
+    {
+      "name": "Theme",
+      "what": "Changes the UI theme",
+      "where": "settings:Settings Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no light/dark or colour theme choice (only the red night overlay)"
+    },
+    {
+      "name": "Accent color",
+      "what": "Customizable UI accent colour (panel not named in the sources)",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no accent colour choice"
+    },
+    {
+      "name": "JPEG quality",
+      "what": "Sets JPEG compression quality (panel not named in the sources)",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:JPEG_QUALITY",
+      "match": "same"
+    },
+    {
+      "name": "Lens Mode",
+      "what": "Chooses how lenses in a camera group are selected while zooming",
+      "where": "settings:Customize Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "lens",
+        "compose"
+      ],
+      "glasscam": "setting:PHYSICAL_CAMERA_ID",
+      "match": "same",
+      "match_note": "pin one lens or let the phone switch (Camera2)"
+    },
+    {
+      "name": "Mute shutter sound",
+      "what": "Turns off the shutter sound",
+      "where": "settings:Customize Panel",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "setting:PLAY_SHUTTER_SOUND",
+      "match": "same"
+    },
+    {
+      "name": "Startup mode",
+      "what": "Chooses the mode the app opens in",
+      "where": "settings:Customize Panel",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "mode",
+        "app"
+      ],
+      "glasscam": "column:MODULE",
+      "match": "partial",
+      "match_note": "reopens in the last-used module (SettingsManager.GetCurrentModule); no fixed startup mode"
+    },
+    {
+      "name": "Remap volume buttons",
+      "what": "Assigns the volume buttons to an action, including zoom",
+      "where": "settings:Customize Panel",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "trigger",
+        "compose"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "volume keys step the active manual control; only the camera key / headset hook fire the shutter (KeyPressedController, no census entry); mapping not configurable"
+    },
+    {
+      "name": "Filename format",
+      "what": "Customizable file names for captures",
+      "where": "settings:Customize Panel",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "manage"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "file names are fixed"
+    },
+    {
+      "name": "Shortcuts (GPS, screen brightness, camera shutter)",
+      "what": "Quick shortcuts for GPS, screen brightness, shutter and more (exact location not stated)",
+      "where": "other",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no shortcuts"
+    },
+    {
+      "name": "Gimbal zoom support",
+      "what": "Zoom can be driven from a gimbal's controls",
+      "where": "other",
+      "source": "https://play.google.com/store/apps/details?id=com.riseupgames.proshot2",
+      "facets": [
+        "compose",
+        "trigger"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no gimbal support"
+    },
+    {
+      "name": "Camera roll",
+      "what": "Built-in review of photos and videos, reached from the viewfinder, with video playback",
+      "where": "gallery",
+      "source": "https://www.riseupgames.com/proshot/android",
+      "facets": [
+        "review"
+      ],
+      "glasscam": "activity:ActivityGlassCamViewer",
+      "match": "same"
+    }
+  ]
+}

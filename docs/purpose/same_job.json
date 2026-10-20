@@ -1,0 +1,629 @@
+[
+ {
+  "ids": [
+   "setting:MFNR",
+   "setting:XIAOMI_MFNR"
+  ],
+  "type": "same_job",
+  "why": "Both switch on multi-frame noise reduction and force NOISE_REDUCTION_MODE to HIGH_QUALITY; only the vendor key differs (Qualcomm vs Xiaomi), and they share one description string.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/MFNR.java:29-36; app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/XiaomiMfnr.java:30-38; app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java:33-34 (both use R.string.setting_mfnr_description)",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:DENOISE",
+   "setting:MFNR",
+   "setting:XIAOMI_MFNR"
+  ],
+  "type": "same_job",
+  "why": "All three set Camera2 noise reduction: DENOISE writes NOISE_REDUCTION_MODE directly; MFNR/Xiaomi MFNR overwrite it to HIGH_QUALITY when on and re-apply DENOISE's value when off.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:164; app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/MFNR.java:30,34; app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/XiaomiMfnr.java:31,36",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "column:HISTOGRAM",
+   "column:HISTOGRAM_STATS_QCOM"
+  ],
+  "type": "same_job",
+  "why": "Two camera-screen toggles that both show a live brightness histogram (one computed from the preview, one from Qualcomm hardware stats); they even use the same icon glyph.",
+  "evidence": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraUiFragment.java:213-220 (both R.string.font_flash_histogram); app/src/main/java/glasscam/cam/apis/basecamera/parameters/modes/HistogramParameter.java; app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/HistogramQcom.java:25-38",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "column:FOCUS_MODE",
+   "strip:M_FOCUS"
+  ],
+  "type": "same_job",
+  "why": "Both switch between autofocus and manual focus: moving the focus strip off 0 sets FOCUS_MODE to off (CONTROL_AF_MODE_OFF), returning it to 0 restores FOCUS_MODE; both carry the same manual-focus glyph.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/manual/ManualFocus.java:77-98; app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraUiFragment.java:224 and app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/ManualGroupConfig.java:19 (both R.string.font_manual_focus)",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "column:FLASH_MODE",
+   "setting:EXPOSURE_MODE"
+  ],
+  "type": "same_job",
+  "why": "On Camera2 both pick a flash behaviour: FLASH_MODE writes CONTROL_AE_MODE ON_AUTO_FLASH/ON_ALWAYS_FLASH, and the Auto Exposure Mode row offers the same CONTROL_AE_MODE values (auto flash, always flash, red-eye flash).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/FlashMode.java:44-67; app/src/main/java/glasscam/cam/apis/camera2/parameters/ae/AeManagerCamera2.java:150-160; res/values/arrays.xml:239-245 (aemodes)",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "strip:M_MANUAL_ISO",
+   "setting:EXPOSURE_MODE"
+  ],
+  "type": "same_job",
+  "why": "Both switch exposure between auto and manual: setting ISO off 'auto' sets EXPOSURE_MODE to off (manual), setting ISO back to auto sets it to on.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ae/AeManagerCamera2.java:76-90, 158-165",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:HDR_MODE",
+   "setting:SCENE_MODE"
+  ],
+  "type": "same_job",
+  "why": "On Camera1, HDR Mode works by writing the scene-mode parameter (auto / asd), so it and the Scene row set the same camera value; Scene also offers an HDR scene.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/modes/AutoHdrMode.java:39-45, 53-69; app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:445-446",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "module:PictureModuleApi2",
+   "module:PictureModule",
+   "module:PictureModuleMTK"
+  ],
+  "type": "same_job",
+  "why": "Normal photo mode, one per camera API or vendor; only one is ever registered, so the person sees one 'photo' mode.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/ModuleHandlerApi2.java:50; app/src/main/java/glasscam/cam/apis/camera1/ModuleHandler.java:51-63",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "module:VideoModuleApi2",
+   "module:VideoModule",
+   "module:VideoModuleG3"
+  ],
+  "type": "same_job",
+  "why": "Video recording mode, one per camera API or vendor (LG); mutually exclusive at registration.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/ModuleHandlerApi2.java:52; app/src/main/java/glasscam/cam/apis/camera1/ModuleHandler.java:66-77",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "module:IntervalApi2",
+   "module:IntervalModuleCamera1"
+  ],
+  "type": "same_job",
+  "why": "Interval/timelapse photo mode for Camera2 and Camera1; both drive the same IntervalHandler.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/modules/IntervalApi2.java:46; app/src/main/java/glasscam/cam/apis/camera1/modules/IntervalModuleCamera1.java:27",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "module:AeBracketApi2",
+   "module:HuaweiAeBracketApi2",
+   "module:BracketModule"
+  ],
+  "type": "same_job",
+  "why": "Exposure bracketing; Huawei variant replaces AeBracketApi2 on HuaweiCamera2Ex, BracketModule is the Camera1 version; never shown together.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/ModuleHandlerApi2.java:56-63; app/src/main/java/glasscam/cam/apis/camera1/ModuleHandler.java:79-84",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:@setting_savecamparams_header",
+   "setting:@setting_dump_vendor_keys_header"
+  ],
+  "type": "same_job",
+  "why": "Both write the camera's capability/parameter list to a file for debugging; Save Camera Parameters is Camera1-only and Dump vendor keys is Camera2-only.",
+  "evidence": "app/src/main/java/glasscam/cam/ui/themenextgen/adapter/NextGenSettingItemAdapterTools.java:57-64, 133-134; app/src/main/java/glasscam/cam/ui/themenextgen/adapter/customclicks/SaveCameraParametersClick.java:48-56",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "strip:M_SHARPNESS",
+   "setting:EDGE_MODE"
+  ],
+  "type": "same_job",
+  "why": "Both control sharpening under Camera2 on Qualcomm phones: the strip writes the Qcom sharpness vendor key, Edge Mode writes CaptureRequest.EDGE_MODE.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/manual/ManualSharpnessQcomApi2.java:22; app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:166, 240",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:WHITE_BALANCE_MODE",
+   "strip:M_WHITEBALANCE"
+  ],
+  "type": "same_job",
+  "why": "Both set white balance (preset vs Kelvin); the Kelvin strip is only visible when the WB row is set to off, so one gates the other.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/WbHandler.java:67-87, 203, 228-231",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:EXPOSURE_MODE",
+   "setting:CONTROL_MODE"
+  ],
+  "type": "same_job",
+  "why": "Both turn the camera's auto exposure off for manual shooting: EXPOSURE_MODE off = CONTROL_AE_MODE off; CONTROL_MODE off turns off AE, AF and AWB together.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:162, 223; app/src/main/java/glasscam/cam/apis/camera2/parameters/ae/AeManagerCamera2.java:158-163; res/values strings setting_controlmode_description",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:TNR",
+   "setting:DENOISE",
+   "setting:CDS_MODE"
+  ],
+  "type": "same_job",
+  "why": "Three Camera1 photo noise-reduction switches; TNR's description is 'Multi Frame 3D Noise Reduction' and DENOISE uses the MediaTek '3dnr-mode' key when present; CDS is sensor-readout noise reduction.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/featuredetector/camera1/DenoiseDetector.java:26-47; .../TemporalNoiseReductionDetector.java:28; .../CorrelatedDoubleSamplingDetector.java:12; res strings setting_temporaldenoise_description",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:TNR",
+   "setting:MFNR"
+  ],
+  "type": "same_job",
+  "why": "Camera1 and Camera2 versions of multi-frame noise reduction: descriptions 'Multi Frame 3D Noise Reduction' vs 'Multiframe 3D NR'.",
+  "evidence": "res/values strings setting_temporaldenoise_description, setting_mfnr_description; census api camera1 vs camera2",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:DIGITAL_IMAGE_STABILIZATION",
+   "setting:VIDEO_STABILIZATION",
+   "setting:OIS_MODE"
+  ],
+  "type": "same_job",
+  "why": "Three stabilisation switches on Camera1 ('dis', 'video-stabilization', OIS); a person wanting a steadier picture cannot know which applies.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:469, 478, 502; featuredetector/camera1/DigitalImageStabDetector.java:22, VideoStabDetector.java:18",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:RED_EYE",
+   "setting:EXPOSURE_MODE"
+  ],
+  "type": "same_job",
+  "why": "Red-eye pre-flash: a dedicated Camera1 row, and the Camera2 Auto Exposure Mode value 'red-eye flash'.",
+  "evidence": "res/values/arrays.xml:244 (ae_mode_redeyefLash); app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:448",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:PICTURE_SIZE",
+   "setting:RAW_SIZE",
+   "setting:YUV_SIZE"
+  ],
+  "type": "same_job",
+  "why": "Each sets the photo resolution, for JPEG, RAW and YUV output respectively; which one matters depends on Picture Format.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/PictureSizeModeApi2.java:47-54; RawSizeModeApi2.java:22-25; YuvSizeModeApi2.java:47-51; app/src/main/java/glasscam/cam/apis/camera2/modules/helper/FindOutputHelper.java:187-205",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "column:CAMERA_SWITCH",
+   "setting:PHYSICAL_CAMERA_ID",
+   "setting:DUAL_PRIMARY_CAMERA_MODE"
+  ],
+  "type": "same_job",
+  "why": "All choose which lens/sensor takes the picture: camera id switch, pinning a physical lens of a logical camera, and Huawei dual-sensor selection (description 'Switch the Camera').",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/AbstractParameterHandler.java:87; app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/PhysicalCameraModeApi2.java:33-58; res strings setting_dualprimarycamera_description",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:TIMELAPSE_FRAMES",
+   "setting:INTERVAL_SHUTTER_SLEEP"
+  ],
+  "type": "same_job",
+  "why": "Both set how often a frame is captured for a timelapse: TIMELAPSE_FRAMES is MediaRecorder.setCaptureRate for timelapse video profiles (not playback fps as the census says), INTERVAL_SHUTTER_SLEEP is the gap between interval photos.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/record/VideoRecorder.java:308-314; app/src/main/java/glasscam/cam/apis/basecamera/modules/IntervalHandler.java:101",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "strip:M_CONTRAST",
+   "column:TONE_CURVE_PARAMETER"
+  ],
+  "type": "same_job",
+  "why": "Contrast control: a Camera1 strip value vs the Camera2 tone curve (the Camera2 contrast/brightness strips were folded into the curve and are commented out).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:245-253; app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:557",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:COLOR_MODE",
+   "setting:LENS_FILTER"
+  ],
+  "type": "same_job",
+  "why": "Both apply a colour effect to the image on Camera1 (effect mode vs ZTE 'color-filter-type').",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:412, 561; app/src/main/java/glasscam/cam/apis/camera1/parameters/modes/VirtualLensFilter.java:50-80",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:EXPOSURE_MODE",
+   "setting:AE_METERING"
+  ],
+  "type": "same_job",
+  "why": "On Camera1, EXPOSURE_MODE falls back to metering keys (sony-metering-mode, exposure-meter, metering-mode), which is AE_METERING's job on Camera2.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/featuredetector/camera1/ExposureModeDetector.java:18-31",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "strip:M_SATURATION",
+   "setting:MEMORY_COLOR_ENHANCEMENT"
+  ],
+  "type": "same_job",
+  "why": "Both make colours stronger on Camera1 (saturation value vs vendor 'vibrance' boost).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:460, 547; res strings setting_mce_description",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:HDR_MODE",
+   "setting:SCENE_DETECT"
+  ],
+  "type": "same_job",
+  "why": "HDR Mode 'auto' sets scene-mode to asd (automatic scene detection), which is what SceneDetection describes; SCENE_DETECT has no feature detector, so its row is probably never shown.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/modes/AutoHdrMode.java:66-69; SCENE_DETECT only referenced in SettingKeys.java:65, ParametersHandler.java:457, SettingGroupConfig.java:127",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:RE_FOCUS",
+   "module:AfBracketApi2"
+  ],
+  "type": "same_job",
+  "why": "Both let the person get focus right after the shot (vendor refocus vs focus bracket + merge), on different APIs.",
+  "evidence": "census does for both; app/src/main/java/glasscam/cam/apis/camera2/modules/AfBracketApi2.java:154",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:LENS_SHADE",
+   "setting:OPCODE"
+  ],
+  "type": "same_job",
+  "why": "Both correct dark corners / shading: SHADING_MODE for processed images, flat-field opcodes for DNG.",
+  "evidence": "res strings setting_lensshade_description, setting_opcode_description",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:MAX_EXPOSURE",
+   "setting:AE_TARGET_FPS"
+  ],
+  "type": "same_job",
+  "why": "Both cap how slow a shutter auto exposure may pick (GlassCam AE limit vs the phone AE's fps range).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ae/GlassCamAeManger.java:375; app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:183",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:HDR_MODE",
+   "setting:SEE_MORE"
+  ],
+  "type": "same_job",
+  "why": "Both aim to recover shadows and highlights on Camera1 (vendor HDR vs local tone mapping).",
+  "evidence": "census does; res strings setting_seemore_description 'Tonemap LTM'",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:PREVIEW_POST_PROCESSING_MODE",
+   "column:HISTOGRAM",
+   "column:FOCUSPEAK",
+   "column:CLIPPING",
+   "setting:FOCUSPEAK_COLOR"
+  ],
+  "type": "tunes",
+  "why": "Preview PostProcessing off hides the histogram, focus-peak and clipping toggles and the peak colour row.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/AbstractParameterHandler.java:127-140",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:PREVIEW_POST_PROCESSING_MODE",
+   "strip:M_ZEBRA_HIGH",
+   "strip:M_ZEBRA_LOW"
+  ],
+  "type": "tunes",
+  "why": "Zebra level strips are only visible when Preview PostProcessing is OpenGL.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/AbstractParameterHandler.java:139-146",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:PREVIEW_POST_PROCESSING_MODE",
+   "setting:USE_GLASSCAM_AE"
+  ],
+  "type": "tunes",
+  "why": "The GlassCam AE row (and its limit rows) is listed only when Preview PostProcessing is OpenGL.",
+  "evidence": "app/src/main/java/glasscam/cam/ui/themenextgen/adapter/NextGenSettingItemAdapterTools.java:66-71",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:USE_GLASSCAM_AE",
+   "setting:MAX_ISO",
+   "setting:MIN_ISO",
+   "setting:MIN_EXPOSURE",
+   "setting:MAX_EXPOSURE"
+  ],
+  "type": "tunes",
+  "why": "ISO and shutter limits read only by GlassCam's own AE manager.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ae/GlassCamAeManger.java:330-375; app/src/main/java/glasscam/cam/apis/camera2/Camera2.java:135, 186-192",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "column:CLIPPING",
+   "strip:M_ZEBRA_HIGH",
+   "strip:M_ZEBRA_LOW"
+  ],
+  "type": "tunes",
+  "why": "Zebra thresholds for the clipping overlay; same clipping glyph.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/manual/ZebraManualHighParameter.java:16; ZebraManualLowParameter.java:16; app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/ManualGroupConfig.java:30-31",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "column:FOCUSPEAK",
+   "setting:FOCUSPEAK_COLOR"
+  ],
+  "type": "tunes",
+  "why": "Chooses the colour of the focus-peak highlight.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/parameters/AbstractParameterHandler.java:98-99",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "strip:M_FOCUS",
+   "setting:ZOOM_ON_MANUALFOCUS"
+  ],
+  "type": "tunes",
+  "why": "Auto-zoom fires only when the manual focus strip is moved.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/manual/ManualFocus.java:105",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:ZOOM_ON_MANUALFOCUS",
+   "setting:ZOOM_ON_MANUALFOCUS_ZOOMFACTOR",
+   "setting:ZOOM_ON_MANUALFOCUS_ZOOMDURATION"
+  ],
+  "type": "tunes",
+  "why": "Factor and duration are read only when Auto-zoom on manual focus is on.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/manual/ManualFocus.java:105-114",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:TONE_MAP_MODE",
+   "column:TONE_CURVE_PARAMETER"
+  ],
+  "type": "tunes",
+  "why": "The tone curve control is visible only when Tonemap is CONTRAST_CURVE.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/manual/ManualToneMapCurveApi2.java:77-102; app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:255-260",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:WHITE_BALANCE_MODE",
+   "setting:COLOR_CORRECTION_MODE"
+  ],
+  "type": "tunes",
+  "why": "WB mode drives colour-correction mode (FAST for presets, TRANSFORM_MATRIX for off); COLOR_CORRECTION_MODE is never added to the Camera2 parameter handler, so its own row is not shown.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/WbHandler.java:67-87; app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:199-210 (no add for COLOR_CORRECTION_MODE)",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "module:AfBracketApi2",
+   "setting:FOCUS_STACK_MERGE"
+  ],
+  "type": "tunes",
+  "why": "Merge applies only to AF bracket captures with a JPEG-producing format.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/modules/AfBracketApi2.java:154-163",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "module:IntervalApi2",
+   "module:IntervalModuleCamera1",
+   "setting:INTERVAL_SHUTTER_SLEEP",
+   "setting:INTERVAL_DURATION"
+  ],
+  "type": "tunes",
+  "why": "Interval gap and duration are read by IntervalHandler, used only by the interval modules.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/modules/IntervalHandler.java:101-107",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:VIDEO_PROFILES",
+   "setting:TIMELAPSE_FRAMES"
+  ],
+  "type": "tunes",
+  "why": "Capture rate is applied only when the chosen video profile is a Timelapse profile.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/basecamera/record/VideoRecorder.java:308-314",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:VIDEO_PROFILES",
+   "setting:@setting_videoprofileeditor_header"
+  ],
+  "type": "tunes",
+  "why": "The editor creates/edits the profiles the Video Profile row picks from.",
+  "evidence": "app/src/main/java/glasscam/cam/ui/themenextgen/adapter/NextGenSettingItemAdapterTools.java:126-127; census notes",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:@setting_api_header",
+   "setting:OPEN_CAMERA_1_LEGACY"
+  ],
+  "type": "tunes",
+  "why": "Legacy open mode only matters when the API is Camera1.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/Camera1.java:51; app/src/main/java/glasscam/cam/apis/CameraApiManager.java:182",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:PICTURE_FORMAT",
+   "setting:PICTURE_SIZE",
+   "setting:RAW_SIZE",
+   "setting:YUV_SIZE"
+  ],
+  "type": "tunes",
+  "why": "Picture Format decides which size row takes effect (JPEG/JPEG+DNG -> Size, RAW -> Raw size, YUV -> YUV size).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/PictureSizeModeApi2.java:50-54; YuvSizeModeApi2.java:49-51",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:PICTURE_FORMAT",
+   "setting:FORCE_RAW_TO_DNG",
+   "setting:MATRIX_SET",
+   "setting:TONEMAP_SET",
+   "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2"
+  ],
+  "type": "tunes",
+  "why": "DNG converter, colour matrix, tone-map profile and custom DNG profile only affect raw/DNG output.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/modules/PictureModuleApi2.java:455-465; app/src/main/java/glasscam/cam/apis/camera2/modules/capture/RawImageCapture.java:176-179",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:EXPOSURE_MODE",
+   "strip:M_EXPOSURE_TIME",
+   "strip:M_EXPOSURE_COMPENSATION",
+   "column:FLASH_MODE"
+  ],
+  "type": "tunes",
+  "why": "AE mode off enables the shutter strip and hides EV and flash; AE on disables shutter and shows EV and flash.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ae/AeManagerCamera2.java:112-146",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:ZSL",
+   "setting:NON_ZSL_MANUAL_MODE"
+  ],
+  "type": "tunes",
+  "why": "Label says manual control applies with ZSL off; code sets them independently (no cross-check found).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:454, 499; label 'ManualControl(ZSL= OFF):'",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:TONEMAP_SET",
+   "setting:TONE_MAP_MODE",
+   "column:TONE_CURVE_PARAMETER"
+  ],
+  "type": "confusable",
+  "why": "'ToneMapProfile:', 'Tonemap:' and tone curve all read as 'tone curve' but one is a DNG-embedded profile, one the camera's TONEMAP_MODE, one a live TONEMAP_CURVE.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:253-256, 273; res strings setting_tonemapchooser_description, setting_tonemap_header",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "setting:MATRIX_SET",
+   "setting:USE_CUSTOM_MATRIX_ON_CAMERA_2"
+  ],
+  "type": "confusable",
+  "why": "'CustomMatrix:' and 'Use custom DNG profile' sound like a list and its on-switch, but the switch loads a per-size dngprofile.xml and replaces the profile built from the chosen matrix (census 'companion switch' note is wrong).",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/modules/capture/RawImageCapture.java:176-179; app/src/main/java/glasscam/cam/apis/camera2/modules/PictureModuleApi2.java:463-465",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "column:SELF_TIMER",
+   "strip:M_EXPOSURE_TIME"
+  ],
+  "type": "confusable",
+  "why": "The self-timer column toggle and the shutter-speed strip use the same icon glyph (font_exposuretime).",
+  "evidence": "app/src/main/java/glasscam/cam/ui/themenextgen/fragment/NextGenCameraUiFragment.java:211; app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/ManualGroupConfig.java:21",
+  "confidence": "high"
+ },
+ {
+  "ids": [
+   "activity:DngConvertingActivity",
+   "setting:FORCE_RAW_TO_DNG"
+  ],
+  "type": "confusable",
+  "why": "'Use GlassCam DngConverter' reads like the DNG converter screen, but it is a capture-time switch for 16-bit RAW_SENSOR, not the file converter.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/modules/PictureModuleApi2.java:455; res strings setting_forcerawtodng_header/description",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:HDR_MODE",
+   "setting:VIDEO_HDR"
+  ],
+  "type": "confusable",
+  "why": "'HDR Mode:' and 'Video HDR:' both Camera1 HDR switches; one rewrites the photo scene mode, the other is a video parameter.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera1/parameters/ParametersHandler.java:472, 486-489; app/src/main/java/glasscam/cam/apis/camera1/parameters/modes/AutoHdrMode.java:53-69",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:SWITCH_ASPECT_RATIO",
+   "setting:FORCE_WIDE_PREVIEW"
+  ],
+  "type": "confusable",
+  "why": "Both change the preview's shape ('Swap preview width and height' vs 'Force Wide Preview'); one swaps dimensions, the other picks the widest preview size.",
+  "evidence": "app/src/main/java/glasscam/cam/ui/themenextgen/layoutconfig/SettingGroupConfig.java:97, 108; app/src/main/java/glasscam/cam/apis/camera2/parameters/modes/ForceWidePreview.java:15-29",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:COLOR_CORRECTION_MODE",
+   "strip:M_WHITEBALANCE"
+  ],
+  "type": "confusable",
+  "why": "'Correlated Color Temperature:' names the Kelvin white balance, but the row is colour-correction mode (FAST/TRANSFORM_MATRIX); Kelvin is the WB strip.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/WbHandler.java:250-266; res strings setting_colorcorrection_header",
+  "confidence": "medium"
+ },
+ {
+  "ids": [
+   "setting:PICTURE_SIZE",
+   "setting:SECONDARY_SENSOR_SIZE"
+  ],
+  "type": "confusable",
+  "why": "'Size:' vs 'Secondary Size:'; the secondary row's parameter registration is commented out, so it never resolves.",
+  "evidence": "app/src/main/java/glasscam/cam/apis/camera2/parameters/ParameterHandlerApi2.java:278 (commented add)",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "setting:COLOR_CORRECTION_MODE",
+   "setting:CDS_MODE"
+  ],
+  "type": "confusable",
+  "why": "'Correlated Color Temperature:' and 'Correlated double sampling:' share a jargon prefix but do unrelated things.",
+  "evidence": "res strings setting_colorcorrection_header, setting_cds_header",
+  "confidence": "low"
+ },
+ {
+  "ids": [
+   "activity:DngStackActivity",
+   "setting:FOCUS_STACK_MERGE"
+  ],
+  "type": "confusable",
+  "why": "Both 'stack' frames: DngStack averages DNG frames into one DNG, Focus stack merge blends an AF bracket into a sharp JPEG.",
+  "evidence": "census does; app/src/main/java/glasscam/cam/apis/camera2/modules/AfBracketApi2.java:154-163",
+  "confidence": "low"
+ }
+]

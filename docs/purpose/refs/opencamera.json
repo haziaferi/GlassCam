@@ -1,0 +1,2818 @@
+{
+ "app": "Open Camera",
+ "package": "net.sourceforge.opencamera",
+ "basis": "source tree at master commit 0dd4cbe78872df2c6e4eb6cee3fb0d5637b0f52e (2026-05-27) + docs https://opencamera.org.uk/help.html",
+ "sources": [
+  "https://opencamera.org.uk/help.html",
+  "https://sourceforge.net/projects/opencamera/",
+  "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/",
+  "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+  "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+  "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+  "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/values/strings.xml"
+ ],
+ "features": [
+  {
+   "name": "Take Photo (shutter)",
+   "what": "Take a photo; long press for continuous burst (Standard/Fast Burst, Camera2)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "trigger",
+    "multishot"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "shutter on the main screen; no long-press burst - burst count is strip:M_BURST"
+  },
+  {
+   "name": "Switch to video",
+   "what": "Toggle between photo and video mode; shutter starts/stops recording",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "column:MODULE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Take photo while recording",
+   "what": "Capture a still photo during video recording",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no still capture during recording"
+  },
+  {
+   "name": "Pause video",
+   "what": "Pause and resume a video recording (Android 7+)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no pause/resume while recording"
+  },
+  {
+   "name": "Switch camera",
+   "what": "Toggle between front and back cameras",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "column:CAMERA_SWITCH",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Switch multi-camera",
+   "what": "Pick a specific physical lens (e.g. ultra-wide/telephoto), Camera2",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "setting:PHYSICAL_CAMERA_ID",
+   "match": "partial",
+   "match_note": "physical lens is pinned from a settings row, not a camera-screen button"
+  },
+  {
+   "name": "Exposure lock",
+   "what": "Lock/unlock auto exposure",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:EXPOSURE_LOCK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "White balance lock",
+   "what": "Lock/unlock auto white balance (optional icon)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no auto white balance lock; fixing a Kelvin value on strip:M_WHITEBALANCE is the workaround"
+  },
+  {
+   "name": "Exposure panel",
+   "what": "Panel with exposure compensation, ISO, manual shutter speed, manual white balance sliders",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Exposure compensation",
+   "what": "Slider to brighten or darken auto exposure",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "ISO (manual)",
+   "what": "Choose auto or a manual ISO; Camera2 adds a slider",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_MANUAL_ISO",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Shutter speed (manual exposure time)",
+   "what": "Manual exposure time slider (Camera2, manual ISO)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_EXPOSURE_TIME",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Manual white balance",
+   "what": "Colour temperature slider (Camera2)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "strip:M_WHITEBALANCE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Manual focus distance slider",
+   "what": "Slider to set focus distance when focus mode is manual (Camera2)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "strip:M_FOCUS",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focus bracketing target distance slider",
+   "what": "Sliders for source/target focus distances in focus bracketing mode",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "multishot",
+    "focus"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "same",
+   "match_note": "Near/Far view (SPEC C5)"
+  },
+  {
+   "name": "Zoom slider / pinch zoom",
+   "what": "Zoom with on-screen slider, pinch, or double-tap-drag",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "partial",
+   "match_note": "strip slider only; no pinch or double-tap-drag zoom on the preview"
+  },
+  {
+   "name": "Popup menu",
+   "what": "Quick menu for flash, focus, photo mode, resolutions, speed, timer, repeat, grid, WB, scene, color effect",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenHorizontalValuesFragment",
+   "match": "partial",
+   "match_note": "camera column + value row cover flash, focus, mode, timer; resolution, grid, WB presets, scene, colour effect are in the settings drawer"
+  },
+  {
+   "name": "Settings icon",
+   "what": "Open the Settings screen",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenCameraSettingFragment",
+   "match": "same",
+   "match_note": "gear cell (SPEC C4)"
+  },
+  {
+   "name": "Gallery thumbnail",
+   "what": "Shows the latest capture; tap opens gallery app; long press switches save folder",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "same",
+   "match_note": "live thumbnail gallery cell (SPEC C3); no long-press folder switch"
+  },
+  {
+   "name": "Cycle flash icon",
+   "what": "Optional icon cycling flash modes directly",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Face detection icon",
+   "what": "Optional icon toggling face detection",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:FACE_DETECTOR_MODE",
+   "match": "partial",
+   "match_note": "in the settings drawer only, not a camera-screen quick control"
+  },
+  {
+   "name": "Focus peaking icon",
+   "what": "Optional icon toggling focus peaking",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUSPEAK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Auto-level icon",
+   "what": "Optional icon toggling auto-level",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no auto-level"
+  },
+  {
+   "name": "Stamp photo icon",
+   "what": "Optional icon toggling date/time/GPS stamp",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Custom text stamp icon",
+   "what": "Optional icon to enter custom text stamped on photos",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Store location icon",
+   "what": "Optional icon toggling geotagging",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": "setting:LOCATION_MODE",
+   "match": "partial",
+   "match_note": "in the settings drawer only, not a camera-screen quick control"
+  },
+  {
+   "name": "RAW icon",
+   "what": "Optional icon cycling RAW modes",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "same",
+   "match_note": "format chip on the info overlay (SPEC C6)"
+  },
+  {
+   "name": "Lock orientation icon",
+   "what": "Optional icon cycling portrait/landscape orientation lock",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "app is landscape-locked (SPEC T6); no portrait/landscape choice"
+  },
+  {
+   "name": "Preview shots icon",
+   "what": "Optional icon toggling save of pre-capture preview shots",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no pre-capture preview shots"
+  },
+  {
+   "name": "Audio control (microphone) button",
+   "what": "Start listening for a loud noise to trigger photo/video",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no sound-triggered capture"
+  },
+  {
+   "name": "Cancel panorama",
+   "what": "Abort an in-progress panorama capture",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no panorama"
+  },
+  {
+   "name": "Share (after photo)",
+   "what": "Share the just-taken photo when \"pause after taking photo\" is on",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no share action anywhere in GlassCam"
+  },
+  {
+   "name": "Trash (after photo)",
+   "what": "Delete the just-taken photo when \"pause after taking photo\" is on",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "manage",
+    "review"
+   ],
+   "glasscam": "viewer:button_delete",
+   "match": "partial",
+   "match_note": "delete from the gallery; no pause-after-capture review"
+  },
+  {
+   "name": "Remote connected indicator",
+   "what": "Shows Bluetooth LE remote status, temperature and depth",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/layout/activity_main.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote support"
+  },
+  {
+   "name": "Tap to focus / meter",
+   "what": "Touch preview to focus and set exposure area there",
+   "where": "camera screen",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "focus",
+    "exposure_auto"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "tap-to-focus plus a separate metering spot (FocusImageHandler)"
+  },
+  {
+   "name": "Double-tap reset",
+   "what": "Reset focus and exposure areas",
+   "where": "camera screen",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "focus",
+    "exposure_auto"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no double-tap reset of focus/metering areas"
+  },
+  {
+   "name": "Focus indicator",
+   "what": "Circle/square showing focus state: green success, red failure",
+   "where": "camera screen",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "imageView_Crosshair focus indicator"
+  },
+  {
+   "name": "Status display",
+   "what": "On-screen battery, zoom, free storage, angle and GPS status with accuracy dot",
+   "where": "camera screen",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "info overlay has battery, storage, time, GPS (SPEC C6); angle via the level; no zoom readout"
+  },
+  {
+   "name": "Keyboard shortcuts",
+   "what": "Bluetooth/USB keyboard: popup, exposure menu, shutter, menu navigation, zoom",
+   "where": "camera screen",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no keyboard shortcuts"
+  },
+  {
+   "name": "Volume-key / selfie-stick remote",
+   "what": "Selfie sticks and remotes trigger the configured volume-key action",
+   "where": "camera screen",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "volume keys step the active manual, they do not fire the shutter; only a held headset key does"
+  },
+  {
+   "name": "Flash",
+   "what": "Off, auto, on, torch; front screen flash for front camera",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "partial",
+   "match_note": "no front-screen flash"
+  },
+  {
+   "name": "Focus mode",
+   "what": "Continuous, auto, infinity, macro, locked, manual, fixed, EDOF",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUS_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Photo mode picker",
+   "what": "Choose STD, NR, DRO, HDR, Pano, Fast Burst, Expo/Focus bracketing, X-extensions",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "column:MODULE",
+   "match": "partial",
+   "match_note": "Picture, Video, Interval, AE- and AF-bracket only; no NR, DRO, HDR, panorama or extension modes"
+  },
+  {
+   "name": "Auto-level",
+   "what": "Rotate photos so the horizon is level",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "compose",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no auto-level"
+  },
+  {
+   "name": "Aperture",
+   "what": "Change aperture on devices that support it (Camera2)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "exposure_manual"
+   ],
+   "glasscam": "strip:M_APERTURE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Camera resolution (popup)",
+   "what": "Quick photo resolution choice",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "partial",
+   "match_note": "in the settings drawer only, not a camera-screen quick control"
+  },
+  {
+   "name": "Video resolution",
+   "what": "Choose video resolution/quality",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Speed (time lapse / slow motion)",
+   "what": "Capture rate for time-lapse or slow motion video",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "video",
+    "time"
+   ],
+   "glasscam": "setting:VIDEO_PROFILES",
+   "match": "same",
+   "match_note": "Timelapse/Highspeed/SlowMO profiles"
+  },
+  {
+   "name": "Timer (popup)",
+   "what": "Quick self-timer choice",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "column:SELF_TIMER",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Repeat (popup)",
+   "what": "Quick repeat-shot count",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "multishot",
+    "time"
+   ],
+   "glasscam": "module:IntervalApi2",
+   "match": "partial",
+   "match_note": "interval mode instead of a quick repeat count; set by interval and duration"
+  },
+  {
+   "name": "Grid (popup)",
+   "what": "Quick composition grid choice",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "partial",
+   "match_note": "in the settings drawer only, not a camera-screen quick control"
+  },
+  {
+   "name": "White balance",
+   "what": "Auto and preset white balance, plus manual (Camera2)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:WHITE_BALANCE_MODE",
+   "match": "partial",
+   "match_note": "presets in the settings drawer; Kelvin on strip:M_WHITEBALANCE"
+  },
+  {
+   "name": "Scene mode",
+   "what": "Device scene modes if supported",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:SCENE_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Color effect",
+   "what": "Device colour effects (mono, sepia, negative...) if supported",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "colour"
+   ],
+   "glasscam": "setting:COLOR_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Fast burst image count",
+   "what": "Number of images per fast burst",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": "strip:M_BURST",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focus bracketing image count",
+   "what": "Number of images per focus bracket",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": "strip:M_BURST",
+   "match": "same",
+   "match_note": "AfBracketApi2 takes its frame count from M_BURST"
+  },
+  {
+   "name": "Focus bracketing add infinity",
+   "what": "Add an extra shot at infinity focus",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "multishot",
+    "focus"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "partial",
+   "match_note": "set Far to infinity by hand; no extra infinity frame"
+  },
+  {
+   "name": "Focus bracketing auto source distance",
+   "what": "Set the source focus distance automatically from the last focus",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "focus",
+    "multishot"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "partial",
+   "match_note": "Near/Far set by hand; no auto source distance"
+  },
+  {
+   "name": "NR mode",
+   "what": "Noise reduction Normal or Low Light (about 5 s burst)",
+   "where": "camera screen",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/java/net/sourceforge/opencamera/ui/PopupView.java",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:MFNR",
+   "match": "partial",
+   "match_note": "vendor MFNR (Qualcomm/Xiaomi) only; no in-app burst merge or low-light mode"
+  },
+  {
+   "name": "Standard (STD)",
+   "what": "Single photo",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "mode"
+   ],
+   "glasscam": "module:PictureModuleApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Noise Reduction (NR)",
+   "what": "Merge a burst to reduce noise; Low Light variant",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:MFNR",
+   "match": "partial",
+   "match_note": "vendor MFNR (Qualcomm/Xiaomi) only; no in-app burst merge"
+  },
+  {
+   "name": "DRO",
+   "what": "Dynamic range optimisation from a single image",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:SEE_MORE",
+   "match": "partial",
+   "match_note": "only Qualcomm local tone mapping under Camera1; no in-app DRO"
+  },
+  {
+   "name": "HDR",
+   "what": "Merge three exposures with deghosting and tonemapping",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "partial",
+   "match_note": "AE bracket captures 3 exposures but GlassCam never merges or tonemaps them; HDR_MODE is Camera1 vendor HDR"
+  },
+  {
+   "name": "Panorama",
+   "what": "Stitch photos taken while rotating the device",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no panorama"
+  },
+  {
+   "name": "Fast Burst",
+   "what": "Rapid series of photos (Camera2)",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": "strip:M_BURST",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Expo bracketing",
+   "what": "Series at different exposures for external HDR",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focus bracketing",
+   "what": "Series at different focus distances for focus stacking",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "X-Auto",
+   "what": "Camera extension: device picks algorithm (Android 12+)",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "mode",
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no camera-extension modes in GlassCam"
+  },
+  {
+   "name": "X-HDR",
+   "what": "Camera extension: vendor HDR",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "processing"
+   ],
+   "glasscam": "setting:HDR_MODE",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2 vendor HDR; no Camera2 extension"
+  },
+  {
+   "name": "X-Night",
+   "what": "Camera extension: low-light enhancement",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "multishot",
+    "mode"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no frame-stacking night mode; a manual long exposure is not the same job"
+  },
+  {
+   "name": "X-Bokeh",
+   "what": "Camera extension: background blur portrait",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "processing",
+    "mode"
+   ],
+   "glasscam": "setting:TRUE_POTRAIT",
+   "match": "partial",
+   "match_note": "Camera1 only in GlassCam - not shown under Camera2; Qualcomm vendor portrait"
+  },
+  {
+   "name": "X-Beauty",
+   "what": "Camera extension: face retouch",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no camera-extension modes in GlassCam"
+  },
+  {
+   "name": "Video mode",
+   "what": "Record video (with optional time lapse, slow motion, picture profiles)",
+   "where": "mode",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "mode",
+    "video"
+   ],
+   "glasscam": "module:VideoModuleApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Face detection",
+   "what": "Use face detection instead of focus areas",
+   "where": "settings:Camera Controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "focus",
+    "exposure_auto"
+   ],
+   "glasscam": "setting:FACE_DETECTOR_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Timer",
+   "what": "Delay before a photo is taken or video recording starts",
+   "where": "settings:Camera Controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "column:SELF_TIMER",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Repeat",
+   "what": "Take a repeated set of photos with one shutter press",
+   "where": "settings:Camera Controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "multishot",
+    "time"
+   ],
+   "glasscam": "module:IntervalApi2",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Repeat mode interval",
+   "what": "Delay between photos in repeat mode",
+   "where": "settings:Camera Controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "time"
+   ],
+   "glasscam": "setting:INTERVAL_SHUTTER_SLEEP",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Online help",
+   "what": "Open the Open Camera website",
+   "where": "settings:Misc",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:HelpFragment",
+   "match": "partial",
+   "match_note": "in-app help overlay only; no online manual"
+  },
+  {
+   "name": "Camera API",
+   "what": "Choose old Camera API or Camera2 (unlocks manual controls, RAW, etc.)",
+   "where": "settings:Misc",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "device"
+   ],
+   "glasscam": "setting:@setting_api_header",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "About",
+   "what": "App and debug information",
+   "where": "settings:Misc",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "info overlay shows app version and device model; no About screen"
+  },
+  {
+   "name": "Privacy policy",
+   "what": "Tap to display privacy policy",
+   "where": "settings:Misc",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no privacy-policy page"
+  },
+  {
+   "name": "Touch to capture",
+   "what": "Take a photo or record video just by touching or double-tapping the preview",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "setting:TOUCH_TO_CAPTURE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Pause after taking photo",
+   "what": "Pause the screen after taking a photo, with the option to share or delete the photo",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "review"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no pause after capture"
+  },
+  {
+   "name": "Shutter sound",
+   "what": "Play a sound when taking a photo",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "setting:PLAY_SHUTTER_SOUND",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Timer beep",
+   "what": "Beep when timer is counting down or for repeat mode delay",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no timer beep"
+  },
+  {
+   "name": "Voice timer countdown",
+   "what": "Speak the countdown for timer or repeat mode delay (from 60 seconds)",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no spoken countdown"
+  },
+  {
+   "name": "Volume keys",
+   "what": "Choose what the volume keys do: take photo/video, focus, zoom, exposure, auto-level, volume, or nothing",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger",
+    "exposure_manual"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "partial",
+   "match_note": "fixed: volume keys step the selected manual; no choice of shutter/zoom/focus action"
+  },
+  {
+   "name": "Audio control options",
+   "what": "Take photo/video when a noise is detected.",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no sound-triggered capture"
+  },
+  {
+   "name": "Audio control sensitivity",
+   "what": "Noise level sensitivity for audio (loud noise) option",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no sound-triggered capture"
+  },
+  {
+   "name": "Lock photo/video orientation",
+   "what": "If set, the orientation of the device will be ignored, and the orientation of the photo/video will be with respect to the specified orientation",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "landscape-locked (SPEC T6); no orientation choice"
+  },
+  {
+   "name": "Save location",
+   "what": "Folder to save the photo/video files in",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "setting:SD_SAVE_LOCATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Storage Access Framework",
+   "what": "Whether to use Storage Access Framework for saving photos and videos.",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": "setting:SD_SAVE_LOCATION",
+   "match": "same",
+   "match_note": "GlassCam is SAF/MediaStore-only (SPEC T1)"
+  },
+  {
+   "name": "Save photo prefix",
+   "what": "The prefix to use for the save filenames for photos",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no filename prefix setting"
+  },
+  {
+   "name": "Save video prefix",
+   "what": "The prefix to use for the save filenames for videos",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no filename prefix setting"
+  },
+  {
+   "name": "Time format for filename",
+   "what": "Use local time or UTC (Z) in file names",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no filename time-format setting"
+  },
+  {
+   "name": "Use milliseconds in filename",
+   "what": "If enabled, filenames will include milliseconds",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "manage"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no filename milliseconds setting"
+  },
+  {
+   "name": "Allow vibration feedback",
+   "what": "Whether to allow haptic vibration feedback, for example when adjusting some controls.",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no haptic feedback"
+  },
+  {
+   "name": "Show camera when locked",
+   "what": "If enabled, Open Camera will still show above any lockscreen (you'll still have to unlock to access Settings, Gallery etc)",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMainSecure",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Perform auto-focus on startup",
+   "what": "Whether to auto-focus when Open Camera is started.",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUS_MODE",
+   "match": "partial",
+   "match_note": "no start-up AF option; the chosen focus mode applies when the camera opens"
+  },
+  {
+   "name": "Allow long press actions",
+   "what": "Whether to allow long press actions (e.g., long press on gallery to change save location).",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no long-press actions setting"
+  },
+  {
+   "name": "Calibrate level angle",
+   "what": "This option calibrates your device's accelerometer, so the auto-level and on-screen level/angle options work correctly",
+   "where": "settings:More camera controls",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "compose",
+    "device"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no level calibration"
+  },
+  {
+   "name": "Gallery",
+   "what": "The thumbnail icon opens a gallery app installed on your device.",
+   "where": "settings:More camera controls / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_camera_controls_more.xml",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "same",
+   "match_note": "built-in GlassGallery instead of an external app"
+  },
+  {
+   "name": "UI placement",
+   "what": "Choose the layout of on-screen icons",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "fixed layout (SPEC C1); no UI placement choice"
+  },
+  {
+   "name": "Immersive mode",
+   "what": "Hide navigation bar, GUI, or everything except the preview",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "setting:HIDE_CAMERA_UI",
+   "match": "partial",
+   "match_note": "hides all camera controls (needs restart); no nav-bar-only option"
+  },
+  {
+   "name": "Show face detection icon",
+   "what": "Whether to show an on-screen icon for enabling or disabling face detection",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no on-screen face-detection toggle"
+  },
+  {
+   "name": "Show flash icon",
+   "what": "Whether to show an on-screen icon for cycling through the flash options, instead of displaying flash options on the popup menu.",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "column:FLASH_MODE",
+   "match": "partial",
+   "match_note": "fixed layout: flash cell always shown"
+  },
+  {
+   "name": "Show focus peaking icon",
+   "what": "Whether to show an on-screen icon for enabling or disabling focus peaking.",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "column:FOCUSPEAK",
+   "match": "partial",
+   "match_note": "fixed layout: peaking toggle shown when preview post-processing is on"
+  },
+  {
+   "name": "Show auto-level icon",
+   "what": "Whether to show an on-screen icon for enabling or disabling auto-level.",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no auto-level"
+  },
+  {
+   "name": "Show stamp photo icon",
+   "what": "Whether to show an on-screen icon for enabling or disabling photo stamp",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Show custom text stamp photo icon",
+   "what": "Whether to show an on-screen icon for specifying custom text to be stamped onto the photo",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Show store location data icon",
+   "what": "Whether to show an on-screen icon for enabling or disabling location data (geotagging)",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no on-screen geotag toggle"
+  },
+  {
+   "name": "Show RAW icon",
+   "what": "Whether to show an on-screen icon for cycling through the RAW modes",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "partial",
+   "match_note": "fixed layout: format chip always shown"
+  },
+  {
+   "name": "Show auto white balance lock icon",
+   "what": "Whether to show an on-screen icon for locking or unlocking auto white balance",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no auto white balance lock"
+  },
+  {
+   "name": "Show auto exposure lock icon",
+   "what": "Whether to show an on-screen icon for locking or unlocking exposure",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "column:EXPOSURE_LOCK",
+   "match": "partial",
+   "match_note": "fixed layout: AE-lock cell always shown"
+  },
+  {
+   "name": "Show lock orientation icon",
+   "what": "Whether to show an on-screen icon for cycling through locking the photo/video orientation to portrait or landscape.",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no orientation lock"
+  },
+  {
+   "name": "Show preview shots icon",
+   "what": "Whether to show an on-screen icon for enabling or disabling preview shots",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no preview shots"
+  },
+  {
+   "name": "Show zoom slider control",
+   "what": "Show the slider for zoom control",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "fragment:NextGenManualsFragment",
+   "match": "partial",
+   "match_note": "zoom lives on the manual strip, which is shown/hidden as a whole"
+  },
+  {
+   "name": "Show \"Take Photo\" icon",
+   "what": "Show the icon for taking photos and recording videos.",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app",
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "shutter always shown; no option to hide it"
+  },
+  {
+   "name": "Show on-screen messages",
+   "what": "Whether to display temporary on-screen info messages",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "messages always shown; no off switch"
+  },
+  {
+   "name": "Shows What's New dialog",
+   "what": "Whether to display information on new features and improvements when the application has updated",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no what's-new dialog"
+  },
+  {
+   "name": "Multiple cameras icon",
+   "what": "If enabled, use separate buttons to switch between front/back cameras, and to switch between multiple front/back facing cameras.",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "lens"
+   ],
+   "glasscam": "column:CAMERA_SWITCH",
+   "match": "partial",
+   "match_note": "one switch cycles every camera; physical lens is a settings row"
+  },
+  {
+   "name": "Keep display on",
+   "what": "If enabled, the screen won't switch off while the main Open Camera UI is active",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "screen always kept on (keepScreenOn in nextgen_main_fragment)"
+  },
+  {
+   "name": "Force maximum brightness",
+   "what": "Force screen display to be at maximum brightness, rather than device default",
+   "where": "settings:On screen GUI",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_gui.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no forced maximum brightness"
+  },
+  {
+   "name": "Store location data (Geotagging)",
+   "what": "Store GPS location data in the photos/videos",
+   "where": "settings:Location settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_location.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": "setting:LOCATION_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Store compass direction",
+   "what": "Store GPS compass direction in the photos, for non-RAW (JPEG/etc) images only",
+   "where": "settings:Location settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_location.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no compass direction in EXIF"
+  },
+  {
+   "name": "Store yaw, pitch and roll",
+   "what": "Store the yaw, pitch and roll of the device in the photo's Exif user comment, for non-RAW (JPEG/etc) images only",
+   "where": "settings:Location settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_location.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no yaw/pitch/roll in EXIF"
+  },
+  {
+   "name": "Require location data",
+   "what": "If location data is enabled, only take photo/video if location data is available",
+   "where": "settings:Location settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_location.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no 'require location' option"
+  },
+  {
+   "name": "Camera resolution",
+   "what": "Photo resolution",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_SIZE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Optimise focus for",
+   "what": "When taking photos, whether to optimise for latency or quality.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "focus",
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no latency/quality focus option"
+  },
+  {
+   "name": "Save preview shots",
+   "what": "When enabled, a short video will be saved alongside each photo, containing shots from the moment before the photo was taken.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no pre-capture preview shots"
+  },
+  {
+   "name": "Image quality",
+   "what": "Set the image quality of saved JPEG or WebP photo images (default value is 90%).",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:JPEG_QUALITY",
+   "match": "same",
+   "match_note": "JPEG only; no WebP"
+  },
+  {
+   "name": "Image format",
+   "what": "Select the file format used for saving photos.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "partial",
+   "match_note": "JPEG / DNG / raw / YUV; no WebP or PNG"
+  },
+  {
+   "name": "RAW",
+   "what": "Save RAW (DNG) alongside or instead of JPEG (Camera2)",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output"
+   ],
+   "glasscam": "setting:PICTURE_FORMAT",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Allow RAW for expo bracketing",
+   "what": "Whether the RAW option should also apply for expo bracketing photo mode (or for HDR mode when \"Save all images for HDR mode\" is enabled).",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output",
+    "multishot"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "same",
+   "match_note": "bracket modules capture in the chosen picture format"
+  },
+  {
+   "name": "Allow RAW for focus bracketing",
+   "what": "Whether the RAW option should also apply for focus bracketing photo mode.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output",
+    "multishot"
+   ],
+   "glasscam": "module:AfBracketApi2",
+   "match": "same",
+   "match_note": "bracket modules capture in the chosen picture format"
+  },
+  {
+   "name": "Noise Reduction original images",
+   "what": "Whether to save original images in noise reduction mode.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no in-app noise-reduction merge"
+  },
+  {
+   "name": "Save all images for HDR mode",
+   "what": "If enabled, when using HDR photo mode, the three base exposure images will be saved as well as the final HDR photo.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output",
+    "multishot"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "partial",
+   "match_note": "AE bracket keeps its 3 frames, but there is no merged HDR result"
+  },
+  {
+   "name": "HDR tonemapping",
+   "what": "Algorithm to use for tonemapping in HDR photo mode",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no in-app HDR merge to tonemap"
+  },
+  {
+   "name": "HDR contrast enhancement",
+   "what": "When to use a contrast enhancement algorithm for HDR.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no in-app HDR merge"
+  },
+  {
+   "name": "Exposure Bracketing",
+   "what": "Number of images for exposure bracketing mode",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "partial",
+   "match_note": "AE bracket is fixed at 3 frames, +-1 EV (AeBracketApi2)"
+  },
+  {
+   "name": "Exposure Bracketing Stops",
+   "what": "How many stops to subtract/add for the darkest/brightest image",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": "module:AeBracketApi2",
+   "match": "partial",
+   "match_note": "AE bracket is fixed at 3 frames, +-1 EV (AeBracketApi2)"
+  },
+  {
+   "name": "Panorama auto-crop",
+   "what": "For panorama mode, whether to remove the wavy boundaries",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no panorama"
+  },
+  {
+   "name": "Panorama original images",
+   "what": "Whether to save original images in panorama mode.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "multishot",
+    "output"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no panorama"
+  },
+  {
+   "name": "Front camera mirror",
+   "what": "Whether to mirror the resultant photos when using the front camera",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "output",
+    "lens"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no front-camera mirror option"
+  },
+  {
+   "name": "Remove device Exif data",
+   "what": "Whether to remove device Exif metadata from non-RAW (JPEG/etc) photos.",
+   "where": "settings:Photo settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no EXIF stripping"
+  },
+  {
+   "name": "Artist",
+   "what": "Text to store in the image metadata for the \"artist\" tag, for non-RAW (JPEG/etc) images only.",
+   "where": "settings:Photo settings / Custom Exif tags",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no custom EXIF artist"
+  },
+  {
+   "name": "Copyright",
+   "what": "Text to store in the image metadata for the \"copyright\" tag, for non-RAW (JPEG/etc) images.",
+   "where": "settings:Photo settings / Custom Exif tags",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no custom EXIF copyright"
+  },
+  {
+   "name": "Stamp photos",
+   "what": "Stamp photos with date and time; and also GPS info if location/direction data is enabled",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Datestamp format",
+   "what": "Date format for the photo stamp",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Timestamp format",
+   "what": "Time format for the photo stamp",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "GPS stamp format",
+   "what": "GPS format for the photo stamp",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Distance unit",
+   "what": "Used for GPS altitude for photo stamp and video subtitles",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Custom text",
+   "what": "Stamp photos with a custom text",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Font size",
+   "what": "Font size to use when stamping text onto photos",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Font color",
+   "what": "Font color to use when stamping text onto photos",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Text style",
+   "what": "Style to use when stamping text onto photos",
+   "where": "settings:Photo settings / Photo Stamp",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no photo stamp"
+  },
+  {
+   "name": "Use alternative flash method",
+   "what": "Enable this if your device has buggy flash behaviour with Camera2 API",
+   "where": "settings:Photo settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "device",
+    "exposure_auto"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no alternative flash method"
+  },
+  {
+   "name": "Enable dummy capture HDR/expo fix",
+   "what": "Try enabling this if your device has problems when taking photos with HDR or Expo photo modes (if expo images come out with same exposures).",
+   "where": "settings:Photo settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "device",
+    "multishot"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no dummy-capture bracketing fix"
+  },
+  {
+   "name": "Enable fast HDR/expo burst",
+   "what": "Allows faster capture of the HDR/expo shots.",
+   "where": "settings:Photo settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "multishot",
+    "device"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no fast-burst bracketing option"
+  },
+  {
+   "name": "Allow photos whilst recording video",
+   "what": "Allows taking photos whilst recording videos.",
+   "where": "settings:Photo settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_photo.xml",
+   "facets": [
+    "video",
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no still capture during recording"
+  },
+  {
+   "name": "Preview size",
+   "what": "Match preview to photo aspect ratio (WYSIWYG) or maximise preview",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app",
+    "compose"
+   ],
+   "glasscam": "setting:FORCE_WIDE_PREVIEW",
+   "match": "partial",
+   "match_note": "only forces the widest preview; no match-photo-aspect (WYSIWYG) choice"
+  },
+  {
+   "name": "Ghost image",
+   "what": "Display an image over the preview, to help with alignment.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no ghost-image overlay"
+  },
+  {
+   "name": "Ghost image opacity",
+   "what": "Alpha value to use for ghost images.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no ghost-image overlay"
+  },
+  {
+   "name": "Focus assist",
+   "what": "Whether to zoom in when adjusting manual focus distance",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:ZOOM_ON_MANUALFOCUS",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Show zoom",
+   "what": "Display the current camera zoom level on screen (when zoomed in)",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "strip:M_ZOOM",
+   "match": "partial",
+   "match_note": "zoom value shown on its strip item only"
+  },
+  {
+   "name": "Show angle",
+   "what": "Display the current device orientation angle on screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "same",
+   "match_note": "LevelBarView shows the signed angle (SPEC C7)"
+  },
+  {
+   "name": "Show angle line",
+   "what": "Display horizontal level line",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Show pitch lines",
+   "what": "Display horizontal pitch lines",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no pitch lines"
+  },
+  {
+   "name": "Angle/altitude highlight color",
+   "what": "Highlight color for when camera is nearly level",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose",
+    "app"
+   ],
+   "glasscam": "setting:HORIZONT_LVL",
+   "match": "partial",
+   "match_note": "fixed lime within 0.5 deg (SPEC C7); no colour choice"
+  },
+  {
+   "name": "Show compass direction",
+   "what": "Display the compass direction of the device on screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "CompassDrawer class is in the tree but never instantiated"
+  },
+  {
+   "name": "Show compass direction lines",
+   "what": "Display compass direction lines",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "CompassDrawer class is in the tree but never instantiated"
+  },
+  {
+   "name": "Show battery",
+   "what": "Display the current battery level on screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "info overlay battery (SPEC C6)"
+  },
+  {
+   "name": "Show time",
+   "what": "Display the current time on screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "info overlay time (SPEC C6)"
+  },
+  {
+   "name": "Show camera ID",
+   "what": "Display the current camera ID number on screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "lens",
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no camera-ID readout"
+  },
+  {
+   "name": "Show free memory",
+   "what": "Display the remaining device storage space on screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app",
+    "manage"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "same",
+   "match_note": "info overlay free storage (SPEC C6)"
+  },
+  {
+   "name": "Show ISO",
+   "what": "Display the current ISO level.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "strip:M_MANUAL_ISO",
+   "match": "partial",
+   "match_note": "ISO value shown on its strip item; no always-on ISO readout"
+  },
+  {
+   "name": "Show a histogram",
+   "what": "Whether to display histogram of the colors shown on-screen",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:HISTOGRAM",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Show zebra stripes",
+   "what": "If this option is enabled, zebra stripes will be drawn on-screen showing where the camera preview is over exposed.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "exposure_feedback"
+   ],
+   "glasscam": "column:CLIPPING",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Zebra stripes foreground color",
+   "what": "Color to use for the foreground stripe when showing zebra stripes.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "exposure_feedback",
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "zebra thresholds adjustable (strip:M_ZEBRA_HIGH/LOW) but not colours"
+  },
+  {
+   "name": "Zebra stripes background color",
+   "what": "Color to use for the background stripe when showing zebra stripes.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "exposure_feedback",
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "zebra thresholds adjustable but not colours"
+  },
+  {
+   "name": "Focus peaking",
+   "what": "If this option is enabled, highlights will be shown on in-focus edges (contours).",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "column:FOCUSPEAK",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Focus peaking color",
+   "what": "Which color to use for highlighting the in-focus edges",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "focus"
+   ],
+   "glasscam": "setting:FOCUSPEAK_COLOR",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Show audio level meter",
+   "what": "Whether to show on-screen audio level when recording video",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no audio level meter"
+  },
+  {
+   "name": "Show a grid",
+   "what": "Overlay a composition grid (3x3, phi, 4x2, crosshair, golden spiral/triangles, diagonals)",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Show a crop guide",
+   "what": "A crop guide displays a rectangle showing what the specified aspect ratio looks like - useful if you plan to crop the photo/video afterwards to a different aspect ratio.",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "compose"
+   ],
+   "glasscam": "setting:GUIDE_LIST",
+   "match": "partial",
+   "match_note": "grid list has square-crop guides only; no arbitrary aspect-ratio crop guide"
+  },
+  {
+   "name": "Show thumbnail animation",
+   "what": "Display moving thumbnail animation when taking a photo",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app",
+    "review"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no capture thumbnail animation (the gallery cell just refreshes)"
+  },
+  {
+   "name": "Show border when taking photo",
+   "what": "Display a border on the display to indicate taking a photo",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app",
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no capture border"
+  },
+  {
+   "name": "Rotate preview",
+   "what": "Option to rotate the preview (won't affect resultant photos/videos)",
+   "where": "settings:Camera preview",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_preview.xml",
+   "facets": [
+    "app",
+    "device"
+   ],
+   "glasscam": "setting:ORIENTATION_HACK",
+   "match": "partial",
+   "match_note": "rotates the image 180 deg, not the preview alone"
+  },
+  {
+   "name": "Anti-banding",
+   "what": "Algorithms to help with light flickering.",
+   "where": "settings:Processing settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_processing.xml",
+   "facets": [
+    "exposure_auto"
+   ],
+   "glasscam": "setting:ANTI_BANDING_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Edge mode algorithm",
+   "what": "Algorithm that the camera driver should use for applying edge enhancement.",
+   "where": "settings:Processing settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_processing.xml",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:EDGE_MODE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Noise reduction algorithm",
+   "what": "Algorithm that the camera driver should use for applying noise reduction.",
+   "where": "settings:Processing settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_processing.xml",
+   "facets": [
+    "processing"
+   ],
+   "glasscam": "setting:DENOISE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Enable Bluetooth LE remote control",
+   "what": "Enable Bluetooth LE (BLE) remote control devices",
+   "where": "settings:Bluetooth LE remote control",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_remote_ctrl.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote support"
+  },
+  {
+   "name": "Remote device type",
+   "what": "Type of Bluetooth LE remote/housing device",
+   "where": "settings:Bluetooth LE remote control",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_remote_ctrl.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote support"
+  },
+  {
+   "name": "Select remote device",
+   "what": "Scan for and pick the Bluetooth LE remote device",
+   "where": "settings:Bluetooth LE remote control",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_remote_ctrl.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote support"
+  },
+  {
+   "name": "Remote control action during video recording",
+   "what": "What the remote does while video is recording",
+   "where": "settings:Bluetooth LE remote control",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_remote_ctrl.xml",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote support"
+  },
+  {
+   "name": "Dim screen if remote disconnects",
+   "what": "Dim the screen when the Bluetooth remote disconnects",
+   "where": "settings:Bluetooth LE remote control",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_remote_ctrl.xml",
+   "facets": [
+    "trigger",
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote support"
+  },
+  {
+   "name": "Use Saltwater for depth calculations",
+   "what": "For underwater housings, improves accuracy if correct water type is selected.",
+   "where": "settings:Bluetooth LE remote control",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_remote_ctrl.xml",
+   "facets": [
+    "trigger",
+    "metadata"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no Bluetooth LE remote/housing support"
+  },
+  {
+   "name": "Save settings",
+   "what": "Saves all of Open Camera's settings to a file",
+   "where": "settings:Settings manager",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_settings_manager.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no settings export"
+  },
+  {
+   "name": "Restore settings",
+   "what": "Restores previously saved settings.",
+   "where": "settings:Settings manager",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_settings_manager.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no settings import"
+  },
+  {
+   "name": "Reset settings",
+   "what": "Reset all Open Camera settings to default",
+   "where": "settings:Settings manager",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_settings_manager.xml",
+   "facets": [
+    "app"
+   ],
+   "glasscam": "setting:@setting_featuredetector_header",
+   "match": "partial",
+   "match_note": "Run feature detector resets every setting (SPEC §2) - a side effect, not a reset row"
+  },
+  {
+   "name": "Enable digital video stabilization",
+   "what": "Video stabilization reduces the shaking due to the motion of the camera in both the preview and in recorded videos.",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "stabilise"
+   ],
+   "glasscam": "setting:VIDEO_STABILIZATION",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video format",
+   "what": "Video and audio file format and codecs",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "output"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": "codec/encoder/audio codec in the profile editor; container fixed"
+  },
+  {
+   "name": "Video picture profiles",
+   "what": "Set standard or flat picture profile for video mode",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "processing"
+   ],
+   "glasscam": "column:TONE_CURVE_PARAMETER",
+   "match": "partial",
+   "match_note": "user tone-curve profiles apply to video (VideoToneCurveProfile, Camera2); no stock flat/gamma presets"
+  },
+  {
+   "name": "Video gamma value",
+   "what": "Gamma value to use for video if video picture profile is set to Gamma",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "processing"
+   ],
+   "glasscam": "column:TONE_CURVE_PARAMETER",
+   "match": "partial",
+   "match_note": "curve drawn by hand; no gamma value"
+  },
+  {
+   "name": "Maximum duration of video",
+   "what": "The video recording will stop after the specified duration",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "time"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": "max record time per profile"
+  },
+  {
+   "name": "Restart video after max duration",
+   "what": "If the video has stopped after hitting the maximum duration (if set), this option will make the video restart, up to the specified number of times",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "time"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "partial",
+   "match_note": "profile has a max time; no automatic restart count"
+  },
+  {
+   "name": "Maximum file size of video",
+   "what": "The video recording will stop and/or restart (see option below) when the (approximate) maximum file size is reached.",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": "max record size per profile"
+  },
+  {
+   "name": "Restart on maximum file size",
+   "what": "Whether to automatically restart when the maximum file size is reached (whether the device default max file size, or user specified)",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "partial",
+   "match_note": "profile has a max size; no automatic restart"
+  },
+  {
+   "name": "Record audio",
+   "what": "Record audio when recording video",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": "audio capture switch per profile"
+  },
+  {
+   "name": "Audio source",
+   "what": "Microphone to use for recording audio.",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": "setting:VIDEO_AUDIO_SOURCE",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Audio channels",
+   "what": "Specify mono or stereo for recording audio (stereo only supported on some devices)",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "audio"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "channel count comes from the device profile; the editor has no channels field"
+  },
+  {
+   "name": "Lock screen when recording video",
+   "what": "When recording video, the GUI will be locked to prevent accidentally stopping recording.",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "app"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no UI lock while recording"
+  },
+  {
+   "name": "Video subtitles",
+   "what": "Create a subtitles (.SRT) file storing date and time; and also GPS info if location/direction data is enabled.",
+   "where": "settings:Video settings",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "metadata",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no subtitle file"
+  },
+  {
+   "name": "Video bitrate (approx)",
+   "what": "Set the approximate bitrate of videos (higher means better quality, but takes up more disk space; may cause video recording to fail if bitrate not supported)",
+   "where": "settings:Video settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Video frame rate (approx)",
+   "what": "Set the frame rate (FPS) of videos (may be approx, not guaranteed to be achieved, and may cause video recording to fail if frame rate not supported).",
+   "where": "settings:Video settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Force 4K UHD video (only works on some devices)",
+   "what": "Enable 3840x2160 resolution for video recording on back camera - this option is a hack that may allow 4K devices on 4K cameras that don't expose the option to 3rd party camera apps.",
+   "where": "settings:Video settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "device"
+   ],
+   "glasscam": "fragment:VideoProfileEditorFragment",
+   "match": "partial",
+   "match_note": "a custom profile can request 3840x2160; no dedicated 4K hack"
+  },
+  {
+   "name": "Critical battery check",
+   "what": "Stop video recording if battery level is critically low.",
+   "where": "settings:Video settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "device"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no low-battery stop"
+  },
+  {
+   "name": "Flash while recording video",
+   "what": "If enabled, flash will switch on/off when recording video (can be used to tell camera is still recording at a distance)",
+   "where": "settings:Video settings / Debugging options",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/res/xml/preferences_sub_video.xml",
+   "facets": [
+    "video",
+    "exposure_auto"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no flash blink while recording"
+  },
+  {
+   "name": "Take Photo widget",
+   "what": "Home-screen widget that opens Open Camera and takes a photo",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no home-screen widget"
+  },
+  {
+   "name": "Quick Settings tile: Camera",
+   "what": "Launch camera from quick settings (Android 7+)",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no quick-settings tile"
+  },
+  {
+   "name": "Quick Settings tile: Record video",
+   "what": "Launch straight into video recording",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no quick-settings tile"
+  },
+  {
+   "name": "Quick Settings tile: Selfie",
+   "what": "Launch with front camera",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger",
+    "lens"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no quick-settings tile"
+  },
+  {
+   "name": "App shortcuts",
+   "what": "Long-press launcher icon for camera/video/selfie shortcuts (Android 7.1+)",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no launcher shortcuts"
+  },
+  {
+   "name": "Image capture intent",
+   "what": "Serve other apps that request a photo (IMAGE_CAPTURE)",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamShare",
+   "match": "same",
+   "match_note": "callers must name the package (SPEC I2)"
+  },
+  {
+   "name": "Video capture intent",
+   "what": "Serve other apps that request a video (VIDEO_CAPTURE)",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger",
+    "video"
+   ],
+   "glasscam": null,
+   "match": "none",
+   "match_note": "no VIDEO_CAPTURE handler in the manifest"
+  },
+  {
+   "name": "Secure camera (lockscreen)",
+   "what": "Launch from the lock screen via secure still-image intents",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMainSecure",
+   "match": "same",
+   "match_note": null
+  },
+  {
+   "name": "Still image / video camera launch intents",
+   "what": "Respond to camera-button / launcher intents",
+   "where": "other",
+   "source": "https://sourceforge.net/p/opencamera/code/ci/master/tree/app/src/main/AndroidManifest.xml",
+   "facets": [
+    "trigger"
+   ],
+   "glasscam": "activity:ActivityGlassCamMain",
+   "match": "partial",
+   "match_note": "STILL_IMAGE_CAMERA handled; no VIDEO_CAMERA launch intent"
+  },
+  {
+   "name": "Gallery handling",
+   "what": "Opens most recent item in chosen external gallery app (no built-in gallery)",
+   "where": "gallery",
+   "source": "https://opencamera.org.uk/help.html",
+   "facets": [
+    "review"
+   ],
+   "glasscam": "activity:ActivityGlassCamViewer",
+   "match": "same",
+   "match_note": "built-in gallery instead of an external app"
+  }
+ ]
+}

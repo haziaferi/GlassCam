@@ -1,0 +1,206 @@
+{
+  "app": "Manual Camera (Play title; no 'Pro' in the title)",
+  "package": "pl.vipek.camera2",
+  "basis": "docs https://play.google.com/store/apps/details?id=pl.vipek.camera2 as of 2026-10-20 (v3.9, updated Aug 17, 2025, $3.99). Developer on Play and at geekydevs.com is Geeky Devs Studio; 'vipek' survives only in the package name. Neither Play nor geekydevs.com has a manual or help page, so the listing is the only official source; three items from a user forum are marked '(forum report)'.",
+  "sources": [
+    "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+    "http://geekydevs.com",
+    "https://forums.androidcentral.com/threads/manual-camera.482800/"
+  ],
+  "features": [
+    {
+      "name": "Auto mode",
+      "what": "App starts fully automatic; each parameter is unlocked separately from there",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "exposure_auto",
+        "mode"
+      ],
+      "glasscam": "fragment:NextGenManualsFragment",
+      "match": "same",
+      "match_note": "each manual strip starts on auto"
+    },
+    {
+      "name": "Lock",
+      "what": "Locks one parameter (shutter, focus, ISO, WB or EV) at a time to take it out of auto",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "fragment:NextGenManualsFragment",
+      "match": "same"
+    },
+    {
+      "name": "Wheel",
+      "what": "On-screen rotating wheel that adjusts the locked parameter",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "fragment:NextGenManualsFragment",
+      "match": "same",
+      "match_note": "strip slider instead of a wheel"
+    },
+    {
+      "name": "Manual Shutter Speed",
+      "what": "Sets the exposure time by hand",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_TIME",
+      "match": "same"
+    },
+    {
+      "name": "Manual Focus Distance",
+      "what": "Sets the focus distance by hand",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "focus"
+      ],
+      "glasscam": "strip:M_FOCUS",
+      "match": "same"
+    },
+    {
+      "name": "Manual ISO",
+      "what": "Sets sensor sensitivity by hand",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_MANUAL_ISO",
+      "match": "same"
+    },
+    {
+      "name": "Manual White Balance",
+      "what": "Sets white balance by hand",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "colour"
+      ],
+      "glasscam": "strip:M_WHITEBALANCE",
+      "match": "same"
+    },
+    {
+      "name": "Manual Exposure Compensation",
+      "what": "Brightens or darkens the auto exposure",
+      "where": "camera screen",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "exposure_manual"
+      ],
+      "glasscam": "strip:M_EXPOSURE_COMPENSATION",
+      "match": "same"
+    },
+    {
+      "name": "RAW (DNG)",
+      "what": "Saves a DNG raw file (forum users report JPEG or JPEG+RAW, no RAW-only)",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "output"
+      ],
+      "glasscam": "setting:PICTURE_FORMAT",
+      "match": "same"
+    },
+    {
+      "name": "GPS (geo tagging)",
+      "what": "Adds location to photos",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "metadata"
+      ],
+      "glasscam": "setting:LOCATION_MODE",
+      "match": "same"
+    },
+    {
+      "name": "Timer",
+      "what": "Self-timer before capture",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "column:SELF_TIMER",
+      "match": "same"
+    },
+    {
+      "name": "Gridlines",
+      "what": "Composition grid overlay",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "compose"
+      ],
+      "glasscam": "setting:GUIDE_LIST",
+      "match": "same"
+    },
+    {
+      "name": "Sounds On/Off",
+      "what": "Turns app/shutter sounds on or off",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "setting:PLAY_SHUTTER_SOUND",
+      "match": "same"
+    },
+    {
+      "name": "Max. Screen Brightness On/Off",
+      "what": "Forces full screen brightness while the app is open",
+      "where": "settings:unspecified",
+      "source": "https://play.google.com/store/apps/details?id=pl.vipek.camera2",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "no screen-brightness control"
+    },
+    {
+      "name": "Volume keys as shutter",
+      "what": "(forum report) Volume buttons trigger the shutter",
+      "where": "other",
+      "source": "https://forums.androidcentral.com/threads/manual-camera.482800/",
+      "facets": [
+        "trigger"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "partial",
+      "match_note": "volume keys step the active manual control; only the camera key / headset hook fire the shutter (KeyPressedController, no census entry)"
+    },
+    {
+      "name": "Portrait orientation",
+      "what": "(forum report) UI works in portrait as well as landscape",
+      "where": "camera screen",
+      "source": "https://forums.androidcentral.com/threads/manual-camera.482800/",
+      "facets": [
+        "app"
+      ],
+      "glasscam": null,
+      "match": "none",
+      "match_note": "GlassCam's UI is locked to landscape; controls do not rotate (no portrait)"
+    },
+    {
+      "name": "Settings kept after quitting",
+      "what": "(forum report) Manual settings persist across app launches",
+      "where": "other",
+      "source": "https://forums.androidcentral.com/threads/manual-camera.482800/",
+      "facets": [
+        "app"
+      ],
+      "glasscam": "activity:ActivityGlassCamMain",
+      "match": "same",
+      "match_note": "settings, camera and module persist across launches"
+    }
+  ]
+}
