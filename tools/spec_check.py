@@ -478,6 +478,58 @@ def check_S27():
              f"a detectIntMode caller does not pass an array id: {c[-80:]!r}")
 
 
+def check_S29():
+    """[S-29] one histogram button: the app histogram is added only when the phone has no hardware histogram"""
+    src = read(jfile("NextGenCameraUiFragment.java"))
+    adds = re.findall(r"if \(([^\n]*)\)\s*\n\s*addUiTextSwitch\(aboveRight, \(BooleanSettingModeInterface\) parameterHandler\.get\(SettingKeys\.HISTOGRAM\)", src)
+    need(len(adds) == 1, f"{len(adds)} places add the app histogram button")
+    need(re.search(r"HISTOGRAM_STATS_QCOM\)\s*==\s*null", adds[0]),
+         "the app histogram button is not conditional on the hardware histogram being absent")
+
+
+def check_S30():
+    """[S-30] flash is set on the Flash toggle only: the AE mode row keeps on/off; red-eye is a Flash state"""
+    det = read(jfile("AutoExposureModeDetector.java"))
+    body = method_body(det, "findAndFillSettings")
+    need("R.string.on" in body and "R.string.off" in body and "setValues" in body,
+         "the Auto Exposure Mode row is no longer filtered to on/off")
+    # values are stored as "label,mode" pairs: comparing the whole entry to "On" matched nothing, left the
+    # row with no values and hid it (4.3.95 walk on the 6T, screenshot 251)
+    need(re.search(r"lastIndexOf\(','\)|split\(\",\"\)", body) and re.search(r"label\.equals\(on\)", body),
+         "the on/off filter does not compare the label part of the stored 'label,mode' values")
+    flash = read(jfile("FlashMode.java"))
+    need("font_flash_redeye" in method_body(flash, "setValue"), "FlashMode does not handle the red-eye state")
+    need("CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE" in method_body(flash, "setToRedEye"), "the red-eye state does not set the red-eye AE mode")
+    fdet = read(jfile("FlashDetector.java"))
+    need("CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE" in fdet and "font_flash_redeye" in fdet,
+         "the Flash toggle no longer offers red-eye where the camera supports it")
+    sw = read(jfile("NextGenCameraUiTextSwitch.java"))
+    need(re.search(r'case "red-eye":\s*return c\.getString\(R\.string\.font_flash_redeye\)', sw),
+         "Camera1's red-eye word is not mapped to the red-eye glyph")
+
+
+def check_S31():
+    """[S-31] the camera key takes the picture on press (it never did until 4.3.95)"""
+    src = read(jfile("KeyPressedController.java"))
+    first = re.search(r"if \(keyCode != activeKeyEvent\) \{(.*?)return true;", method_body(src, "onKeyDown"), re.S)
+    need(first and "KEYCODE_CAMERA" in first.group(1) and "startWork(" in first.group(1),
+         "a first camera-key press does not call startWork")
+    need('"Start Work"' not in src, "the key message is hard-coded again (T8)")
+
+
+def check_S32():
+    """[S-32] one row per job: one MFNR row, one save-camera-info row, no rows that can never show"""
+    cfg = read(jfile("SettingGroupConfig.java"))
+    for gone_row in ("SettingKeys.XIAOMI_MFNR", "setting_savecamparams_header", "setting_dump_vendor_keys_header",
+                     "SettingKeys.SECONDARY_SENSOR_SIZE", "SettingKeys.SCENE_DETECT", "SettingKeys.COLOR_CORRECTION_MODE"):
+        need(gone_row not in cfg, f"{gone_row} is a settings row again")
+    need(cfg.count("setting_savecaminfo_header") == 1, "not exactly one Save camera info row")
+    need(cfg.count("SettingKeys.MFNR,") == 1, "not exactly one MFNR row")
+    ph = read(jfile("ParameterHandlerApi2.java"))
+    need(re.search(r"SettingKeys\.MFNR\)\.isSupported\(\)\s*\?\s*SettingKeys\.XIAOMI_MFNR\s*:\s*SettingKeys\.MFNR,\s*new XiaomiMfnr", ph),
+         "Xiaomi's MFNR no longer stands in for the MFNR row")
+
+
 def check_S28():
     """[S-28] noise reduction Off never reaches the Camera2 preview request: every preview write goes through previewValue, which maps Off to Fast"""
     src = read(jfile("CaptureSessionHandler.java"))

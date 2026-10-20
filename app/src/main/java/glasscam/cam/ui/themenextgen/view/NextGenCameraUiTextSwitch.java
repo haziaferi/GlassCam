@@ -81,8 +81,8 @@ public class NextGenCameraUiTextSwitch extends LinearLayout {
      * The glyph slot is set in the icon font. Camera2 parameters already carry the font glyph as
      * their value; Camera1's BaseModeParameter carries the driver's plain word ("off", "auto",
      * "on", "torch", "red-eye"), which the font renders as tofu (walk 2026-09-16, shot 149).
-     * The first four map to the Camera2 flash glyphs. "red-eye" has no glyph in the font and
-     * still falls through as text - an open owner's call (fresh-eyes 2026-09-28), not handled.
+     * The first four map to the Camera2 flash glyphs; "red-eye" maps to the auto glyph with a dot
+     * badge, the same state Camera2's Flash toggle offers (owner, purpose map 2026-10-20).
      */
     private String glyph(String value)
     {
@@ -94,6 +94,7 @@ public class NextGenCameraUiTextSwitch extends LinearLayout {
             case "auto":     return c.getString(R.string.font_flash_auto);
             case "on":       return c.getString(R.string.font_flash_always);
             case "torch":    return c.getString(R.string.font_flash_torch);
+            case "red-eye":  return c.getString(R.string.font_flash_redeye);
             default:         return value;
         }
     }

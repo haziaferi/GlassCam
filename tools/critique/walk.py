@@ -4,7 +4,7 @@
 One command per step so a critique round is reproducible:
 
     python tools/critique/walk.py build            # arm64 debug APK, log + exit code in logs/build.log
-                                                   # runs tools/spec_check.py first (--no-spec to skip)
+                                                   # runs tools/spec_check.py and purpose_map.py --check first (--no-spec to skip)
     python tools/critique/walk.py install          # install -r -g, per-app locale en-US, long screen timeout
     python tools/critique/walk.py launch [main|gallery]
     python tools/critique/walk.py shot NAME        # screencap + uiautomator dump -> screenshots/NN_NAME.{png,xml}
@@ -118,6 +118,11 @@ def cmd_build(*flags):   # accepts --no-spec (read from sys.argv below); it used
         gate = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "spec_check.py")], cwd=ROOT)
         if gate.returncode:
             sys.exit("spec_check failed; update SPEC.md (revision + tagged claims) or pass --no-spec")
+        # the purpose map places every screen, control and settings row; a code change that adds or
+        # removes one must update docs/purpose-map.json in the same round (purpose map 2026-10-20)
+        pmap = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "purpose_map.py"), "--check"], cwd=ROOT)
+        if pmap.returncode:
+            sys.exit("purpose_map --check failed; update docs/purpose-map.json, run tools/purpose_map.py, or pass --no-spec")
     os.makedirs(LOGS, exist_ok=True)
     log = os.path.join(LOGS, "build.log")
     with open(log, "w", encoding="utf-8", newline="\n") as f:

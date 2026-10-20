@@ -34,6 +34,8 @@ public class FlashMode extends BaseModeApi2 {
             setToOff();
         else if (valueToSet.equals(GlassCamApplication.getStringFromRessources(R.string.font_flash_torch)))
             setToTorch();
+        else if (valueToSet.equals(GlassCamApplication.getStringFromRessources(R.string.font_flash_redeye)))
+            setToRedEye();
         currentString = valueToSet;
         settingMode.set(valueToSet);
         fireStringValueChanged(valueToSet);
@@ -52,6 +54,13 @@ public class FlashMode extends BaseModeApi2 {
         captureSessionHandler.SetParameterRepeating(CaptureRequest.CONTROL_AE_MODE,CaptureRequest.CONTROL_AE_MODE_ON_ALWAYS_FLASH,false);
         captureSessionHandler.SetParameterRepeating(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_SINGLE,true);
 
+    }
+
+    private void setToRedEye()
+    {
+        captureSessionHandler.SetParameterRepeating(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_OFF,true);
+        captureSessionHandler.SetParameterRepeating(CaptureRequest.CONTROL_AE_MODE,CaptureRequest.CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE,false);
+        captureSessionHandler.SetParameterRepeating(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_SINGLE,true);
     }
 
     private void setToOff()

@@ -309,3 +309,14 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 - Audio source: the values stay English (`VideoRecorder` compares them by text; now `translatable="false"`), and the settings row and picker show Italian labels - Predefinita, Microfono, Videocamera, Riconoscimento vocale, Comunicazione vocale, Non elaborata.
 - `SDModeParameter.label` became `glasscam.settings.ValueLabels.label(context, key, value)`, scoped by setting so another setting's "Default" is left alone; the picker adapter now knows its setting's key.
 - The Camera2 noise-reduction row is titled "Noise reduction" / "Riduzione rumore" (it was "Wavelet Denoise", a Camera1 filter's name).
+
+### 4.3.95 (295), 2026-10-20 - the purpose map and its redundancy decisions
+
+- Purpose map: `docs/purpose-map.json`/`.md` (six purposes, chosen after scoring five sets against eight reference camera apps and a mock-up), generated and checked by `tools/purpose_map.py`; method and data in `docs/purpose/` (`findings-2026-10-20.md`).
+- One histogram button: the hardware (Qualcomm) histogram where the phone has one, the app's OpenGL-preview histogram only where it does not.
+- Flash behaviour is set on the Flash toggle only: the Auto Exposure Mode row offers on/off; red-eye flash is a new Flash state (auto glyph with a dot badge), also used for Camera1's "red-eye" word, which used to show as text.
+- Edge Mode renamed "Edge sharpening (camera)", with a description that says how it combines with Sharpness; its Italian label was "Vignettatura" (vignetting).
+- One MFNR row (Xiaomi's key stands in where Qualcomm's is missing; "MNFR" typo fixed) and one "Save camera info" row for both camera APIs.
+- The hardware camera key takes the picture (it never did); its "Start Work" message is a string resource now.
+- Removed three settings rows that could never show: Secondary Size, SceneDetection, Correlated Color Temperature.
+- Walked on the 6T before release: the Auto Exposure Mode row vanished in the first build (the on/off filter compared stored `label,mode` pairs to the bare label); fixed, S-30 now checks the comparison and a mutant restores the bug. Everything else passed on the phone (findings page).

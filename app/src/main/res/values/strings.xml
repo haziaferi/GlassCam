@@ -15,9 +15,8 @@
     <string name="setting_matrixchooser_header">CustomMatrix:</string>
     <string name="setting_tonemapchooser_description">Tonemap curve that get applied to the dng</string>
     <string name="setting_tonemapchooser_header">ToneMapProfile:</string>
-    <string name="setting_mfnr_description">Multiframe 3D NR</string>
-    <string name="setting_mfnr_header">MNFR</string>
-    <string name="setting_xiaomimfnr_header">Xiaomi MNFR</string>
+    <string name="setting_mfnr_description">Multi-frame noise reduction, the phone\'s own (Qualcomm or Xiaomi)</string>
+    <string name="setting_mfnr_header">MFNR</string>
     <string name="setting_jpegquality_description">Quality Value in % </string>
     <string name="setting_jpegquality_header">JPEG Quality:</string>
     <string name="setting_picturesize_description">Picture size</string>
@@ -26,8 +25,6 @@
     <string name="setting_mtkaov_description">All on Video</string>
     <string name="setting_mtkaov_header">AoV Mode:</string>
 
-    <string name="setting_secondarypicturesize_description">Secondary Picture size</string>
-    <string name="setting_secondarypicturesize_header">Secondary Size:</string>
     <string name="camera_permission_denied_settings">Camera permission was denied. Enable it from Settings &#9656; Apps &#9656; GlassCam &#9656; Permissions to use the camera.</string>
     <string name="setting_physicalcamera_description">Pin capture to one physical lens instead of the logical camera\'s automatic fusion. "Auto" restores default behavior.</string>
     <string name="setting_physicalcamera_header">Physical Camera:</string>
@@ -105,8 +102,6 @@
     <string name="setting_previewtemplate_description">Template that get used for Preview</string>
     <string name="setting_capturetemplate_header">Capture Template:</string>
     <string name="setting_capturetemplate_description">Template that get used for ImageCapture</string>
-    <string name="setting_savecamparams_header">Save Camera Parameters</string>
-    <string name="setting_savecamparams_description"> </string>
 
     <!-- settings_rightmenufragment  -->
     <string name="setting_camera_">... Settings</string>
@@ -137,8 +132,6 @@
     <string name="setting_mce_description">Boosts Colors equivalent to adobe vibrance</string>
     <string name="setting_redeye_header">Red-Eye Reduction:</string>
     <string name="setting_redeye_description">Emits a small pre-flash before the main flash</string>
-    <string name="setting_scenedec_header">SceneDetection:</string>
-    <string name="setting_scenedec_description">Auto Scene Mode Changer</string>
 
     <string name="setting_temporaldenoise_header">Temporal Denoise:</string>
     <string name="setting_temporaldenoise_description">Multi Frame 3D Noise Reduction</string>
@@ -168,12 +161,10 @@
     <string name="setting_lensfilter_header">Virtual Lens Filter:</string>
     <string name="setting_lensfilter_description">Apply Lens Filter Effect</string>
 
-    <string name="setting_colorcorrection_header">Correlated Color Temperature:</string>
-    <string name="setting_colorcorrection_description">Change this to manual or auto</string>
     <string name="setting_controlmode_header">Camera Control:</string>
     <string name="setting_controlmode_description">Controls the Main Camera Functions, turn off for full manual</string>
-    <string name="setting_edge_header">Edge Mode:</string>
-    <string name="setting_edge_description"></string>
+    <string name="setting_edge_header">Edge sharpening (camera):</string>
+    <string name="setting_edge_description">The camera\'s own edge sharpening: off, fast or high quality. Sharpness on the manual strip sets its strength on top, on phones that offer it.</string>
     <string name="setting_hotpixel_header">Hot Pixel Correction:</string>
     <string name="setting_hotpixel_description"></string>
     <string name="setting_tonemap_header">Tonemap:</string>
@@ -342,8 +333,6 @@
     <string name="setting_disablecameraui_description">If enabled, all camera Ui items are hidden, close GlassCam and remove it from tasks to apply changes</string>
     <string name="setting_disablecameraui_header">Hide camera UI</string>
 
-    <string name="setting_dump_vendor_keys_description">Dump vendor keys</string>
-    <string name="setting_dump_vendor_keys_header">Dump vendor keys</string>
     <string name="setting_pictureformat_header">Picture Format:</string>
     <string name="setting_pictureformat_description">Picture Format to capture</string>
     <string name="setting_exposuremode_header">Auto Exposure Mode:</string>
@@ -439,4 +428,9 @@
     <string name="audio_source_label_voice_recognition">Voice Recognition</string>
     <string name="audio_source_label_voice_communication">Voice Communication</string>
     <string name="audio_source_label_unprocessed">Unprocessed</string>
+    <!-- one row for both camera APIs (purpose map 2026-10-20) -->
+    <string name="setting_savecaminfo_header">Save camera info</string>
+    <string name="setting_savecaminfo_description">Writes this camera\'s parameters (Camera1) or vendor keys (Camera2) to a text file, for bug reports</string>
+    <!-- shown when a hardware key (camera, headset) takes the picture -->
+    <string name="key_capture_started">Taking the picture</string>
 </resources>

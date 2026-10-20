@@ -5,6 +5,10 @@ import android.view.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hazia.glasscam.R;
+
+import glasscam.GlassCamApplication;
+
 import glasscam.cam.apis.CameraApiManager;
 import glasscam.cam.apis.basecamera.parameters.AbstractParameter;
 import glasscam.cam.apis.basecamera.parameters.ParameterInterface;
@@ -58,6 +62,9 @@ public class KeyPressedController
         if (keyCode != activeKeyEvent) {
             activeKeyEvent = keyCode;
             repeat++;
+            // a camera or 3D-mode key press is a shutter press; only the headset key waits for a hold
+            if (keyCode == KeyEvent.KEYCODE_CAMERA || keyCode == KeyEvent.KEYCODE_3D_MODE)
+                startWork(keyCode);
             return true;
         }
         //handel repeating event when button keep pushed
@@ -140,7 +147,7 @@ public class KeyPressedController
             || keyCode == KeyEvent.KEYCODE_CAMERA
             || keyCode == KeyEvent.KEYCODE_HEADSETHOOK)
         {
-            userMessageHandler.sendMSG("Start Work",false);
+            userMessageHandler.sendMSG(GlassCamApplication.getStringFromRessources(R.string.key_capture_started),false);
             cameraApiManager.getCamera().getModuleHandler().startWork();
             return true;
         }
