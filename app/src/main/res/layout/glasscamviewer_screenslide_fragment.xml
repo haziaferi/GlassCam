@@ -178,8 +178,9 @@
                 android:layout_width="@dimen/glasscamviewer_topbar_height"
                 android:layout_height="@dimen/glasscamviewer_topbar_height"
                 android:id="@+id/button_closeView"
+                android:contentDescription="@string/viewer_grid"
                 android:textSize="10sp"
-                android:background="@drawable/go_back"
+                android:background="@drawable/ic_grid"
                 android:layout_marginBottom="@dimen/app_icon_size" />
 
             <Button

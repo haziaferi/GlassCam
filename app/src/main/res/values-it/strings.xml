@@ -215,4 +215,5 @@
     <string name="setting_savecaminfo_header">Salva info fotocamera</string>
     <string name="setting_savecaminfo_description">Scrive in un file di testo i parametri (Camera1) o le chiavi del produttore (Camera2) di questa fotocamera, per le segnalazioni di errori</string>
     <string name="key_capture_started">Scatto in corso</string>
+    <string name="viewer_grid">Griglia</string>
 </resources>

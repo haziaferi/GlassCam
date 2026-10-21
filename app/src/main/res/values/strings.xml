@@ -433,4 +433,5 @@
     <string name="setting_savecaminfo_description">Writes this camera\'s parameters (Camera1) or vendor keys (Camera2) to a text file, for bug reports</string>
     <!-- shown when a hardware key (camera, headset) takes the picture -->
     <string name="key_capture_started">Taking the picture</string>
+    <string name="viewer_grid">Grid</string>
 </resources>

@@ -109,7 +109,9 @@ public class ActivityGlassCamViewer extends ActivityAbstract
             public void handleOnBackPressed() {
                 // no "animator idle" condition: loadGridView cancels a running zoom itself, and a
                 // Back during one used to fall through and finish the gallery (fresh-eyes 2026-09-28)
-                if (slideholder.getVisibility() == View.VISIBLE) {
+                if (slideholder.getVisibility() == View.VISIBLE && openedOnPhoto) {
+                    finish();   // opened from the camera's thumbnail: Back returns to the camera (owner, 4.3.97)
+                } else if (slideholder.getVisibility() == View.VISIBLE) {
                     loadGridView(screenSlideFragment.getPosition(), slideholder);
                 } else {
                     setEnabled(false);
@@ -133,18 +135,44 @@ public class ActivityGlassCamViewer extends ActivityAbstract
             }
         });
 
-        final boolean openNewest = getIntent() != null && getIntent().getBooleanExtra(EXTRA_OPEN_NEWEST_FOLDER, false);
+        openedOnPhoto = getIntent() != null && getIntent().getBooleanExtra(EXTRA_OPEN_NEWEST_PHOTO, false);
         GlassCamPool.Execute(() -> {
             fileListController.loadDefaultFiles();
-            if (openNewest)
+            if (openedOnPhoto)
                 // the grid fragment's adapter must exist or the loaded list is dropped, so open
-                // the folder a beat later on the UI thread - the same path a folder tap takes
-                runOnUiThread(() -> gridholder.postDelayed(() -> gridViewFragmentModelView.openNewestFolder(), 300));
+                // the folder a beat later on the UI thread - the same path a folder tap takes -
+                // then show its newest photo full screen
+                runOnUiThread(() -> gridholder.postDelayed(() -> {
+                    gridViewFragmentModelView.openNewestFolder();
+                    showNewestPhoto();
+                }, 300));
         });
     }
 
-    /** Set by the camera's gallery cell: land in the folder of the newest capture (Batch 3). */
-    public static final String EXTRA_OPEN_NEWEST_FOLDER = "glasscam.viewer.OPEN_NEWEST_FOLDER";
+    /** Set by the camera's gallery cell: open on the newest capture, full screen, and swipe through
+     *  GlassCam's pictures newest first; Back returns to the camera, the grid button opens the grid
+     *  (owner, 4.3.97 - it used to land on the newest folder's grid, Batch 3). */
+    public static final String EXTRA_OPEN_NEWEST_PHOTO = "glasscam.viewer.OPEN_NEWEST_PHOTO";
+
+    /** True while the person is browsing photos they opened from the camera's thumbnail. */
+    private boolean openedOnPhoto;
+
+    private void showNewestPhoto()
+    {
+        List<BaseHolder> files = fileListController.getFiles();
+        if (files == null || files.isEmpty() || files.get(0).IsFolder()) {
+            openedOnPhoto = false;   // nothing to show: stay on the grid
+            return;
+        }
+        if (mCurrentAnimator != null)
+            mCurrentAnimator.cancel();
+        screenSlideFragment.SetPostition(0);
+        slideholder.setScaleX(1f);
+        slideholder.setScaleY(1f);
+        slideholder.setTranslationX(0f);
+        slideholder.setTranslationY(0f);
+        slideholder.setVisibility(View.VISIBLE);
+    }
 
     private void replaceCameraFragment(Fragment fragment, String id, int layout)
     {
@@ -161,7 +189,11 @@ public class ActivityGlassCamViewer extends ActivityAbstract
             GlassCamPool.Execute(() -> fileListController.loadDefaultFiles());
     }
 
-    private final ScreenSlideFragment.ButtonClick onScreenSlideBackClick = this::loadGridView;
+    // the full-screen photo's grid button: from here on Back walks the grid as before
+    private final ScreenSlideFragment.ButtonClick onScreenSlideBackClick = (position, view) -> {
+        openedOnPhoto = false;
+        loadGridView(position, view);
+    };
 
     private final ScreenSlideFragment.ButtonClick onGridItemClick = this::loadScreenSlide;
 
