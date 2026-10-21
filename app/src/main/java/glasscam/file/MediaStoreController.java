@@ -32,25 +32,47 @@ public class MediaStoreController {
         this.context = context;
     }
 
+    /** Where raw sensor dumps (.bayer, .raw, .jps - files with no image MIME type) go: MediaStore only
+     *  lets photos and videos into DCIM (owner, 4.3.96: Documents/GlassCam, on every Android version). */
+    public static final String DUMPS_PATH = "Documents/GlassCam/";
+    static final String DUMP_MIME = "application/octet-stream";
+
+    /** The concrete MIME type for a capture's file name, or null when it has none (a raw dump).
+     *  MediaStore on Android 14 rejects the wildcards "image/*" and "video/*" the app used to send
+     *  ("Unsupported MIME type image/*": every capture crashed on the 9 Pro, walk 2026-10-21). */
+    public static String mimeFor(String fileName)
+    {
+        String lower = fileName.toLowerCase(java.util.Locale.ROOT);
+        if (lower.endsWith(".jpg") || lower.endsWith(".jpeg"))
+            return "image/jpeg";
+        if (lower.endsWith(".dng"))
+            return "image/x-adobe-dng";
+        if (lower.endsWith(".mp4"))
+            return "video/mp4";
+        return null;
+    }
+
     public Uri addImg(File name)
     {
         // Add a specific media item.
         ContentResolver resolver = context.getContentResolver();
-
-        Uri extpath = getUri();
-
-        // Publish a new img.
+        String mime = mimeFor(name.getName());
+        long now = System.currentTimeMillis() / 1000;
         ContentValues newImg = new ContentValues();
         newImg.put(MediaStore.MediaColumns.TITLE, name.getName());
-        newImg.put(MediaStore.Images.Media.DISPLAY_NAME, name.getName());
-        newImg.put(MediaStore.Images.Media.MIME_TYPE,"image/*");
-        newImg.put(MediaStore.Images.Media.DATE_ADDED, (System.currentTimeMillis()/1000));
-        newImg.put(MediaStore.Images.Media.DATE_TAKEN, (System.currentTimeMillis()/1000));
-        newImg.put(MediaStore.Images.Media.DATE_MODIFIED, (System.currentTimeMillis()/1000));
+        newImg.put(MediaStore.MediaColumns.DISPLAY_NAME, name.getName());
+        newImg.put(MediaStore.MediaColumns.DATE_ADDED, now);
+        newImg.put(MediaStore.MediaColumns.DATE_MODIFIED, now);
+        if (mime == null) {
+            // a raw dump is not an image MediaStore will keep in DCIM: Documents/GlassCam, through Files
+            newImg.put(MediaStore.MediaColumns.MIME_TYPE, DUMP_MIME);
+            newImg.put(MediaStore.MediaColumns.RELATIVE_PATH, DUMPS_PATH);
+            return resolver.insert(MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY), newImg);
+        }
+        newImg.put(MediaStore.Images.Media.MIME_TYPE, mime);
+        newImg.put(MediaStore.Images.Media.DATE_TAKEN, now);
         newImg.put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/GlassCam/");
-        Uri ur = resolver.insert(extpath, newImg);
-        return ur;
-
+        return resolver.insert(getUri(), newImg);
     }
 
     public Uri addMovie(File name)
@@ -64,7 +86,7 @@ public class MediaStoreController {
         ContentValues newImg = new ContentValues();
         newImg.put(MediaStore.Video.Media.DISPLAY_NAME, name.getName());
         newImg.put(MediaStore.MediaColumns.TITLE, name.getName());
-        newImg.put(MediaStore.Video.Media.MIME_TYPE,"video/*");
+        newImg.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");   // a wildcard is rejected on Android 14
         newImg.put(MediaStore.Video.Media.DATE_ADDED, (System.currentTimeMillis() / 1000));
         newImg.put(MediaStore.Video.Media.DATE_TAKEN, (System.currentTimeMillis()/1000));
         newImg.put(MediaStore.Video.Media.DATE_MODIFIED, (System.currentTimeMillis()/1000));
@@ -83,12 +105,42 @@ public class MediaStoreController {
     }
 
 
+    /** Raw dumps the app saved in Documents/GlassCam (shown in the gallery's GlassCam folder). */
+    private void getDumps(List<BaseHolder> fileHolders)
+    {
+        String[] projection = { MediaStore.MediaColumns._ID, MediaStore.MediaColumns.DISPLAY_NAME, MediaStore.MediaColumns.DATE_MODIFIED };
+        Uri files = MediaStore.Files.getContentUri(MediaStore.VOLUME_EXTERNAL_PRIMARY);
+        try (Cursor cursor = context.getContentResolver().query(files, projection,
+                MediaStore.MediaColumns.RELATIVE_PATH + " = ?", new String[]{DUMPS_PATH},
+                MediaStore.MediaColumns.DATE_MODIFIED + " DESC")) {
+            if (cursor == null)
+                return;
+            int idColumn = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID);
+            int nameColumn = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME);
+            int dateColumn = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATE_MODIFIED);
+            while (cursor.moveToNext()) {
+                long id = cursor.getLong(idColumn);
+                String name = cursor.getString(nameColumn);
+                if (name != null)
+                    fileHolders.add(new UriHolder(ContentUris.withAppendedId(files, id), name, id, cursor.getLong(dateColumn), false, false));
+            }
+        }
+        catch (SecurityException | IllegalArgumentException ex)
+        {
+            Log.WriteEx(ex);
+        }
+    }
+
     public List<BaseHolder> getFolders()
     {
         List<BaseHolder> fileHolders = new ArrayList<>();
         List<String> folders = new ArrayList<>();
         getImageFolders(folders);
         getMovieFolders(folders);
+        List<BaseHolder> dumps = new ArrayList<>();
+        getDumps(dumps);
+        if (!dumps.isEmpty() && !folders.contains("GlassCam"))
+            folders.add("GlassCam");
         for (String name : folders)
             if (name != null)
                 fileHolders.add(new UriHolder(null, name,0, 0,true,false));
@@ -170,6 +222,7 @@ public class MediaStoreController {
         List<BaseHolder> fileHolders = new ArrayList<>();
         getImages(fileHolders);
         getMovies(fileHolders);
+        getDumps(fileHolders);
         return fileHolders;
     }
 
@@ -277,6 +330,8 @@ public class MediaStoreController {
         List<BaseHolder> fileHolders = new ArrayList<>();
         getImagesFromFolder(folder, fileHolders);
         getMoviesFromFolder(folder,fileHolders);
+        if ("GlassCam".equals(folder))
+            getDumps(fileHolders);   // Documents/GlassCam: the raw dumps DCIM cannot hold
         return fileHolders;
     }
 

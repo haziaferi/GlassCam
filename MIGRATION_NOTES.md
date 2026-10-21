@@ -320,3 +320,15 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 - The hardware camera key takes the picture (it never did); its "Start Work" message is a string resource now.
 - Removed three settings rows that could never show: Secondary Size, SceneDetection, Correlated Color Temperature.
 - Walked on the 6T before release: the Auto Exposure Mode row vanished in the first build (the on/off filter compared stored `label,mode` pairs to the bare label); fixed, S-30 now checks the comparison and a mutant restores the bug. Everything else passed on the phone (findings page).
+
+### 4.3.96 (296), 2026-10-21 - captures crashed on Android 14
+
+- Found on the first walk on the OnePlus 9 Pro (Android 14): every capture crashed while saving - `IllegalArgumentException: Unsupported MIME type image/*` from `MediaStoreController.addImg`. The app registered stills as `image/*` and videos as `video/*`; Android 11 (the 6T) accepted the wildcards, Android 14 does not.
+- Captures now carry their real type (`image/jpeg`, `image/x-adobe-dng`, `video/mp4`) in MediaStore and in a picked SAF folder.
+- Raw sensor dumps (Bayer/Bayer10/Bayer16, `.bayer`/`.raw`, and `.jps`) have no image type and cannot be stored in DCIM through MediaStore; with internal storage they go to `Documents/GlassCam` on every Android version (owner), and the gallery lists them in its GlassCam folder.
+- A MediaStore insert that returns nothing now refuses the capture with the storage message instead of a NullPointerException.
+- Gate S-33, two mutants.
+- The Flash icons for auto and always were swapped: `font_flash_auto` drew the plain bolt and `font_flash_always` the "A" + bolt (rendered from `res/font/glasscam.ttf`). Swapped back; red-eye now badges the real auto glyph. S-30 checks the codepoints.
+- The gallery labelled a .bayer dump "YER" (it showed the last three characters of the name); it shows the whole extension now.
+- Walked on the 9 Pro (Android 14): shutter and camera key save JPEGs; a Bayer10 dump lands in Documents/GlassCam and shows in the gallery; the live preview passed two object-in-front rounds (pen, scissors); one histogram button in either preview mode (the app's own - this ROM has no hardware histogram); no red-eye state (this camera does not list it).
+

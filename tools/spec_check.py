@@ -503,6 +503,10 @@ def check_S30():
     fdet = read(jfile("FlashDetector.java"))
     need("CONTROL_AE_MODE_ON_AUTO_FLASH_REDEYE" in fdet and "font_flash_redeye" in fdet,
          "the Flash toggle no longer offers red-eye where the camera supports it")
+    glyphs = read(os.path.join(R, "values", "fontglyphs.xml"))
+    # E021 is the "A" + bolt glyph, E018 the plain bolt (rendered from res/font/glasscam.ttf, 2026-10-21)
+    need(re.search(r'name="font_flash_auto"[^>]*>\\uE021<', glyphs) and re.search(r'name="font_flash_always"[^>]*>\\uE018<', glyphs),
+         "the auto and always flash icons are swapped again (auto must be the A + bolt glyph, U+E021)")
     sw = read(jfile("NextGenCameraUiTextSwitch.java"))
     need(re.search(r'case "red-eye":\s*return c\.getString\(R\.string\.font_flash_redeye\)', sw),
          "Camera1's red-eye word is not mapped to the red-eye glyph")
@@ -528,6 +532,21 @@ def check_S32():
     ph = read(jfile("ParameterHandlerApi2.java"))
     need(re.search(r"SettingKeys\.MFNR\)\.isSupported\(\)\s*\?\s*SettingKeys\.XIAOMI_MFNR\s*:\s*SettingKeys\.MFNR,\s*new XiaomiMfnr", ph),
          "Xiaomi's MFNR no longer stands in for the MFNR row")
+
+
+def check_S33():
+    """[S-33] captures are stored with a concrete MIME type: no wildcard reaches MediaStore or a SAF createFile; raw dumps go to Documents/GlassCam"""
+    msc = read(jfile("MediaStoreController.java"))
+    flc = read(jfile("FileListController.java"))
+    # Android 14 rejects "image/*" ("Unsupported MIME type"): every capture crashed on the 9 Pro (walk 2026-10-21)
+    for name, src in (("MediaStoreController", msc), ("FileListController", flc)):
+        hits = re.findall(r'(?:MIME_TYPE\s*,|createFile\()\s*"[^"]*\*"', src)
+        need(not hits, f"{name} sends a wildcard MIME type again: {hits[0] if hits else ''}")
+    body = method_body(msc, "mimeFor")
+    need('"image/jpeg"' in body and '"image/x-adobe-dng"' in body and '"video/mp4"' in body, "mimeFor no longer maps jpg/dng/mp4")
+    need(re.search(r'DUMPS_PATH\s*=\s*"Documents/GlassCam/"', msc), "raw dumps no longer go to Documents/GlassCam")
+    need("MediaStore.Files.getContentUri" in method_body(msc, "addImg"), "raw dumps are not inserted through the Files collection")
+    need("getDumps(" in method_body(msc, "getFilesFromFolder"), "the gallery no longer lists the raw dumps")
 
 
 def check_S28():

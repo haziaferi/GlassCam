@@ -356,7 +356,8 @@ public class FileListController {
     {
         if (settingsManager.GetWriteExternal() && getChoosenDocumentFolder() != null) {
             DocumentFile df = getGlassCamDocumentFolder();   // the GlassCam/ child, like movies and DNG output
-            DocumentFile wr = df == null ? null : df.createFile("image/*", file.getName());
+            String mime = MediaStoreController.mimeFor(file.getName());
+            DocumentFile wr = df == null ? null : df.createFile(mime != null ? mime : "application/octet-stream", file.getName());
             if (wr == null) {
                 refuseCapture(file.getName());
                 return null;
@@ -366,6 +367,10 @@ public class FileListController {
         }
         else {
             Uri uri = mediaStoreController.addImg(file);
+            if (uri == null) {   // MediaStore said no: refuse with the message instead of a crash below
+                refuseCapture(file.getName());
+                return null;
+            }
             return new UriHolder(uri,file.getName(),Long.valueOf(uri.getLastPathSegment()), System.currentTimeMillis(),false,settingsManager.GetWriteExternal());
         }
     }
@@ -375,7 +380,7 @@ public class FileListController {
     {
         if (settingsManager.GetWriteExternal() && getChoosenDocumentFolder() != null) {
             DocumentFile df = getGlassCamDocumentFolder();
-            DocumentFile wr = df == null ? null : df.createFile("*/*", file.getName());
+            DocumentFile wr = df == null ? null : df.createFile("video/mp4", file.getName());
             if (wr == null) {
                 refuseCapture(file.getName());
                 return null;
@@ -386,6 +391,10 @@ public class FileListController {
         }
         else {
             Uri uri = mediaStoreController.addMovie(file);
+            if (uri == null) {
+                refuseCapture(file.getName());
+                return null;
+            }
             return new UriHolder(uri,file.getName(),Long.valueOf(uri.getLastPathSegment()), System.currentTimeMillis(),false,settingsManager.GetWriteExternal());
         }
     }
