@@ -45,7 +45,7 @@ public class NextGenGalleryButton extends FrameLayout implements FileListControl
         glyph = findViewById(R.id.textView_gallery_glyph);
         setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), ActivityGlassCamViewer.class);
-            intent.putExtra(ActivityGlassCamViewer.EXTRA_OPEN_NEWEST_FOLDER, true);
+            intent.putExtra(ActivityGlassCamViewer.EXTRA_OPEN_NEWEST_PHOTO, true);
             getContext().startActivity(intent);
         });
     }

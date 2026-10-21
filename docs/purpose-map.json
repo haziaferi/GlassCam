@@ -101,7 +101,7 @@
     "activity:ActivityGlassCamViewer"
    ],
    "where": "screen",
-   "does": "Gallery to browse, view and delete the photos and videos taken.",
+   "does": "Gallery. From the camera's thumbnail it opens on the newest photo full screen and swipes through GlassCam's pictures, newest first; Back returns to the camera (4.3.97). Opened on its own it shows the folders and grid.",
    "api": "app",
    "refs": [
     "fossify",
@@ -1450,13 +1450,13 @@
   },
   {
    "id": "viewer:button_closeView",
-   "name": "Back to the grid",
+   "name": "Grid",
    "purpose": "P5",
    "code": [
     "viewer:button_closeView"
    ],
    "where": "gallery viewer",
-   "does": "Closes the full-screen view and returns to the gallery.",
+   "does": "Opens the thumbnail grid and folders from the full-screen photo (a grid icon since 4.3.97; it was a back arrow).",
    "api": "app",
    "refs": [],
    "overlaps": []

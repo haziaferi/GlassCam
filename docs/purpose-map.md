@@ -127,10 +127,10 @@ _look at what was taken, keep it where I want it, and what the file says about i
 
 | Entry | In the code | Where | API | Reference apps | Overlaps |
 |---|---|---|---|---|---|
-| **GlassGallery**<br>Gallery to browse, view and delete the photos and videos taken. | `activity:ActivityGlassCamViewer` | screen | app | Fossify, FreeDcam, Libre Camera, MA Camera, OnePlus Camera, Open Camera, ProShot |  |
+| **GlassGallery**<br>Gallery. From the camera's thumbnail it opens on the newest photo full screen and swipes through GlassCam's pictures, newest first; Back returns to the camera (4.3.97). Opened on its own it shows the folders and grid. | `activity:ActivityGlassCamViewer` | screen | app | Fossify, FreeDcam, Libre Camera, MA Camera, OnePlus Camera, Open Camera, ProShot |  |
 | **Raw to DNG converter**<br>Converts raw files into DNG files the person can edit. | `activity:DngConvertingActivity` | screen | app | FreeDcam | Use GlassCam DngConverter |
 | **Photo info (EXIF)**<br>Shows the photo's details (EXIF information). | `viewer:button_info` | gallery viewer | app | FreeDcam |  |
-| **Back to the grid**<br>Closes the full-screen view and returns to the gallery. | `viewer:button_closeView` | gallery viewer | app | - |  |
+| **Grid**<br>Opens the thumbnail grid and folders from the full-screen photo (a grid icon since 4.3.97; it was a back arrow). | `viewer:button_closeView` | gallery viewer | app | - |  |
 | **Play video**<br>Plays the selected video. | `viewer:button_play` | gallery viewer | app | FreeDcam |  |
 | **Delete**<br>Deletes the shown file. | `viewer:button_delete` | gallery viewer | app | FreeDcam, Open Camera |  |
 

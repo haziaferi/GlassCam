@@ -195,13 +195,20 @@ def check_S07():
 
 
 def check_S08():
-    """[S-08] the gallery cell opens the viewer inside the newest folder and refreshes on a new capture"""
+    """[S-08] the gallery cell opens the newest photo full screen (swipe through GlassCam's pictures, Back to the camera) and refreshes on a new capture"""
     path = jfile("NextGenGalleryButton.java")
     need(path, "NextGenGalleryButton.java missing")
     src = read(path)
     # fresh-eyes 2026-09-28: the old check passed on the word "viewer" in the import line
     need(re.search(r"new Intent\([^;]*ActivityGlassCamViewer\.class", src), "the gallery cell does not start ActivityGlassCamViewer")
-    need(re.search(r"putExtra\(\s*ActivityGlassCamViewer\.EXTRA_OPEN_NEWEST_FOLDER\s*,\s*true\s*\)", src), "the cell does not ask for the newest folder")
+    need(re.search(r"putExtra\(\s*ActivityGlassCamViewer\.EXTRA_OPEN_NEWEST_PHOTO\s*,\s*true\s*\)", src), "the cell does not ask for the newest photo")
+    viewer = read(jfile("ActivityGlassCamViewer.java"))
+    # owner, 4.3.97: a sliding list of pictures, not a folder to click
+    # the call after the folder loads, not just the method's name (its declaration would match too)
+    need(re.search(r"openNewestFolder\(\);\s*showNewestPhoto\(\);", viewer)
+         and "slideholder.setVisibility(View.VISIBLE)" in method_body(viewer, "showNewestPhoto"),
+         "the viewer no longer opens the newest photo full screen")
+    need(re.search(r"VISIBLE && openedOnPhoto\)\s*\{\s*finish\(\)", viewer), "Back from a photo opened by the cell no longer returns to the camera")
     need("refresh()" in method_body(src, "onCaptureSaved") or "refresh()" in method_body(src, "onFilesChanged"),
          "the cell does not refresh when a capture is saved")
 

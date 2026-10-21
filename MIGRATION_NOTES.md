@@ -334,3 +334,10 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 - Walked on the 6T (Android 11) the same day: shutter and camera key save JPEGs; a Bayer10 dump goes to Documents/GlassCam there too and shows in the gallery as "BAYER"; the Flash list reads A+bolt (auto), bolt (always), off, torch, A+bolt+dot (red-eye).
 - Walked on a third phone, a OnePlus Nord CE4 Lite 5G (Snapdragon 695, Android 16, first run): shutter and camera key save JPEGs, a Bayer10 dump goes to Documents/GlassCam and shows in the gallery, the live preview passed two object rounds; it is the first phone with both the hardware histogram and Qualcomm MFNR - one histogram button in either preview mode, one MFNR row. Photos taken with the phone upright come out portrait (this camera rotates the pixels; the 9 Pro writes an EXIF orientation tag instead) - both correct.
 
+### 4.3.97 (297), 2026-10-21 - the camera's thumbnail opens a sliding list of pictures
+
+- Owner: "The gallery (within the camera app) should be a sliding list of pictures, not a folder to click." The camera's gallery thumbnail now opens the newest photo full screen; swipe sideways through GlassCam's pictures (DCIM/GlassCam, the raw dumps in Documents/GlassCam, or the chosen external folder), newest first. Back returns to the camera.
+- The full-screen photo's back arrow became a grid icon (new vector `ic_grid`, spoken "Grid"/"Griglia") and still opens the thumbnail grid and folders, one tap away.
+- S-08 now pins the new behaviour (two mutants).
+
+- Walked on the 6T (Android 11): the thumbnail opens the newest file full screen; a swipe shows the next older photo; the grid icon opens the thumbnail grid; Back from a photo opened by the thumbnail returns to the camera.
