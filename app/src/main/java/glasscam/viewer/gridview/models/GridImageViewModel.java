@@ -27,7 +27,10 @@ public class GridImageViewModel extends BaseObservable
         this.bitmapHelper = bitmapHelper;
         this.imagePath = imagePath;
         if (!imagePath.IsFolder()) {
-            setFilending(imagePath.getName().substring(imagePath.getName().length() - 3));
+            // the whole extension: the last three characters read "YER" for a .bayer dump (9 Pro walk 2026-10-21)
+            String name = imagePath.getName();
+            int dot = name.lastIndexOf('.');
+            setFilending(dot >= 0 ? name.substring(dot + 1) : "");
             setFoldername("");
         }
         else {

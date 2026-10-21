@@ -21,11 +21,12 @@
     <string name="font_gps" translatable="false">\uE01f</string>
     <string name="font_camera" translatable="false">\uE020</string>
     <string name="font_flash_off" translatable="false">\uE01b</string>
-    <string name="font_flash_auto" translatable="false">\uE018</string>
-    <string name="font_flash_always" translatable="false">\uE021</string>
+    <!-- E021 draws "A" + bolt (auto), E018 a plain bolt (always): the two names pointed at each other's glyph until 4.3.96 -->
+    <string name="font_flash_auto" translatable="false">\uE021</string>
+    <string name="font_flash_always" translatable="false">\uE018</string>
     <string name="font_flash_torch" translatable="false">\uE023</string>
     <!-- auto flash + red-eye pre-flash: the auto glyph with a dot badge (no red-eye glyph in the font) -->
-    <string name="font_flash_redeye" translatable="false">\uE018\u2022</string>
+    <string name="font_flash_redeye" translatable="false">\uE021\u2022</string>
     <string name="font_flash_histogram" translatable="false">\uE024</string>
     <string name="font_exposurelock" translatable="false">\uE025</string>
     <string name="font_tonecurve" translatable="false">\uE026</string>

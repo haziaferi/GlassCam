@@ -34,8 +34,8 @@ android {
     compileSdk 36
     defaultConfig {
         minSdkVersion 30
-        versionCode 295
-        versionName '4.3.95'
+        versionCode 296
+        versionName '4.3.96'
         targetSdk 36
         applicationId "com.hazia.glasscam"
         externalNativeBuild {
