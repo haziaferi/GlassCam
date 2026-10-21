@@ -345,3 +345,4 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 ### CI, 2026-10-21
 
 - GitHub Actions (`.github/workflows/ci.yml`) on every push to main and every pull request: the four gates (spec_check, purpose_map --check, both mutant proofs) and assembleDebug + lintDebug with the pinned NDK; the debug APK and the lint report are kept 14 days. `gradlew` is now executable in git.
+- The Gradle wrapper jar was a 2013 Gradle 1.6 nightly carried over from FreeDcam; CI's wrapper validation refused it. It was regenerated for Gradle 8.14.3, and its SHA-256 matches Gradle's published checksum (7d3a4ac4...6172).
