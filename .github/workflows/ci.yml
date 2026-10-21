@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gates:
+    # The repo's own gates (SPEC.md claims, the purpose map, and the mutant
+    # proofs that each check can fail). Standard library only, no install step.
+    name: Spec and purpose-map gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: spec_check
+        run: python tools/spec_check.py
+      - name: purpose_map --check
+        run: python tools/purpose_map.py --check
+      - name: spec_check mutants
+        run: python tools/spec_check_mutants.py
+      - name: purpose map mutants
+        run: python tools/purpose/map_mutants.py
+
+  build:
+    name: Build and lint (debug)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - name: Install the pinned NDK
+        # app/build.gradle pins ndkVersion; installing it up front keeps the
+        # native build from depending on what the runner image happens to ship.
+        run: sdkmanager --install "ndk;27.3.13750724" "cmake;3.22.1" > /dev/null
+      - uses: gradle/actions/setup-gradle@v4
+      - name: assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
+      - name: lintDebug
+        # lint { abortOnError = false } in app/build.gradle: the report is kept, not gated.
+        run: ./gradlew lintDebug
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lint-report
+          path: app/build/reports/lint-results-debug.*
+          if-no-files-found: ignore
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: glasscam-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 14
