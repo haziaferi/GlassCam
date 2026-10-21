@@ -341,3 +341,7 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 - S-08 now pins the new behaviour (two mutants).
 
 - Walked on the 6T (Android 11): the thumbnail opens the newest file full screen; a swipe shows the next older photo; the grid icon opens the thumbnail grid; Back from a photo opened by the thumbnail returns to the camera.
+
+### CI, 2026-10-21
+
+- GitHub Actions (`.github/workflows/ci.yml`) on every push to main and every pull request: the four gates (spec_check, purpose_map --check, both mutant proofs) and assembleDebug + lintDebug with the pinned NDK; the debug APK and the lint report are kept 14 days. `gradlew` is now executable in git.
