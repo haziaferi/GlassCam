@@ -331,4 +331,5 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 - The Flash icons for auto and always were swapped: `font_flash_auto` drew the plain bolt and `font_flash_always` the "A" + bolt (rendered from `res/font/glasscam.ttf`). Swapped back; red-eye now badges the real auto glyph. S-30 checks the codepoints.
 - The gallery labelled a .bayer dump "YER" (it showed the last three characters of the name); it shows the whole extension now.
 - Walked on the 9 Pro (Android 14): shutter and camera key save JPEGs; a Bayer10 dump lands in Documents/GlassCam and shows in the gallery; the live preview passed two object-in-front rounds (pen, scissors); one histogram button in either preview mode (the app's own - this ROM has no hardware histogram); no red-eye state (this camera does not list it).
+- Walked on the 6T (Android 11) the same day: shutter and camera key save JPEGs; a Bayer10 dump goes to Documents/GlassCam there too and shows in the gallery as "BAYER"; the Flash list reads A+bolt (auto), bolt (always), off, torch, A+bolt+dot (red-eye).
 
