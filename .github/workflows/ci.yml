@@ -48,7 +48,8 @@ jobs:
         # The runner image ships the Android SDK (ANDROID_HOME). app/build.gradle
         # pins ndkVersion; installing it up front keeps the native build from
         # depending on which NDKs the image happens to carry.
-        run: "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;27.3.13750724" "cmake;3.22.1" > /dev/null
+        run: |
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;27.3.13750724" "cmake;3.22.1" > /dev/null
       - uses: gradle/actions/setup-gradle@v5
       - name: assembleDebug
         run: ./gradlew assembleDebug --stacktrace
