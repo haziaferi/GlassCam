@@ -319,6 +319,27 @@ def test_display_record(plant=0):
     return not bad, "all cases as expected" if not bad else f"wrong: {bad}"
 
 
+def test_squares_beside_black_desk(plant=0):
+    """Grey, blotchy ink on paper with a black desk filling a third of the frame (the 6T's view of the
+    upright sheet, 2026-10-23): all four squares must still be found."""
+    rng = np.random.default_rng(6)
+    h, w = 900, 1500
+    yy, xx = np.mgrid[0:h, 0:w].astype(float)
+    img = np.full((h, w), 0.6)
+    img[:, 1000:] = 0.004                                            # the desk, darker than the ink
+    th = math.radians(im.EDGE_ANGLE_DEG)
+    blotch = np.repeat(np.repeat(rng.normal(0, 0.012, (h // 8 + 1, w // 8 + 1)), 8, 0), 8, 1)[:h, :w]
+    for cx, cy in ((270, 240), (730, 240), (270, 660), (730, 660)):
+        u = (xx - cx) * math.cos(th) + (yy - cy) * math.sin(th)
+        v = -(xx - cx) * math.sin(th) + (yy - cy) * math.cos(th)
+        sq = (np.abs(u) < 150) & (np.abs(v) < 150)
+        img[sq] = 0.04 + blotch[sq]
+    if plant:
+        img[:, :1000] = 0.6                                          # planted: no squares on the sheet
+    sq = im.find_squares(img)
+    return len(sq) == 4, f"{len(sq)} squares"
+
+
 def opcode_list(maps):
     """Big-endian OpcodeList bytes holding GainMap opcodes, as a phone writes them."""
     import struct
@@ -355,12 +376,12 @@ def test_gain_maps(plant=0):
 
 TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_with_stray_light,
          test_chart_rotated,
-         test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_mtf_textured_ink, test_overshoot, test_find_squares,
+         test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_mtf_textured_ink, test_overshoot, test_find_squares, test_squares_beside_black_desk,
          test_score_jpeg_run, test_display_record, test_gain_maps]
 PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1,
           test_chart_with_stray_light: 1, test_chart_rotated: 1,
           test_dng_matrices: 0.05, test_interpolation: 0.5, test_ptc: 0.2, test_read_noise_dr: 0.1,
-          test_mtf: 0.3, test_mtf_textured_ink: 1, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1,
+          test_mtf: 0.3, test_mtf_textured_ink: 1, test_overshoot: 1.0, test_find_squares: 1, test_squares_beside_black_desk: 1, test_score_jpeg_run: 1,
           test_display_record: 1, test_gain_maps: 1}
 
 

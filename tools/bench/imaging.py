@@ -319,14 +319,27 @@ def components(mask):
     return out
 
 
+def otsu_threshold(values, bins=256):
+    """Otsu's threshold, computed on log brightness and returned in linear units."""
+    v = np.log(np.maximum(np.asarray(values, float).ravel(), 1e-6))
+    hist, edges = np.histogram(v, bins)
+    p = hist / hist.sum()
+    centres = (edges[:-1] + edges[1:]) / 2
+    w0 = np.cumsum(p)
+    m0 = np.cumsum(p * centres)
+    total = m0[-1]
+    between = (total * w0 - m0) ** 2 / np.maximum(w0 * (1 - w0), 1e-12)
+    return float(np.exp(centres[int(np.argmax(between))]))
+
+
 def find_squares(lum, target_count=4):
     """Dark squares on a lit sheet: list of (cx, cy, side) in pixels, largest first."""
     k = max(1, int(max(lum.shape) / 600))
     small = downsample(lum, k)
-    # threshold at the geometric middle of ink and paper: a fixed half of the paper merged a square with
-    # the lamp-dimmed paper at the sheet's edge (6T, linear raw, faded print: 3 of 4 squares found)
-    paper, ink = np.percentile(small, 90), np.percentile(small, 5)
-    dark = small < np.sqrt(max(ink, 1e-6) * paper)
+    # Otsu's threshold on log brightness: half the paper level merged a square with lamp-dimmed paper, and
+    # the midpoint of the darkest 5 % and the paper fell into the ink once a black desk was in view
+    # (6T edge sheet, 2026-10-23); the split between "dark" and "light" holds for both
+    dark = small < otsu_threshold(small)
     h, w = dark.shape
     found = []
     for p in components(dark):

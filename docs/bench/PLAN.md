@@ -238,7 +238,7 @@ that screenshots leave out, but the camera sees) was turned off. Scores in `base
 | Colour ΔE after white balance (spread) | 5.47 (0.05) | 6.68 (0.07) |
 | Cast on the greys, a* / b* | +8.1 / −14.4 | +3.9 / −9.0 |
 | Dynamic range | 10.1 stops | 10.4 stops |
-| Sharpness | owed: the edge sheet, resting on something solid | |
+| Sharpness, MTF50 (spread of 3) / overshoot | 0.244 (0.014) / 7.8 % | 0.098 (0.001) / 1.8 % |
 
 Raw read noise is 0.717 DN (0.723 in the dry run). The noise fit's floor agrees with the dark frames. The
 6T's NoiseProfile is within about 8 %. Its DNG BlackLevel tag still says 63, against 63.9 measured.
@@ -267,3 +267,16 @@ The attempt fixed four bench faults:
 
 Lamp light flickers at 100 Hz (50 Hz mains), so exposures are whole multiples of 10 ms: 1/100, 1/25,
 1/10 s or longer. GlassCam offers no 1/50.
+
+### Edge sheet, second attempt (2026-10-23, 01:12): done
+
+The sheet stood upright on a board, with nothing hand-held; two views 5 s apart showed no movement. The
+paper sat at 8 % of the raw range at ISO 100 and 1/10 s, so the shots used 0.8 s (paper 0.79, a whole
+number of 100 Hz lamp cycles) with continuous AF: a settle shot and three repeats. Every repeat gave 15
+usable edges. JPEG MTF50 0.252 / 0.238 / 0.243 with 7.7-8.1 % overshoot; DNG 0.099 / 0.098 / 0.098 with
+1.8-1.9 %. The JPEG's 2.5x and its halo are the 6T's built-in sharpening (edge mode Fast), which list
+item 1 will be measured against.
+
+The square finder now thresholds by Otsu on log brightness. The midpoint of the darkest 5 % and the paper
+fell into the ink once a black desk was in view (0 squares). A self-test with a black desk beside a
+blotchy-ink sheet fails on that midpoint and passes with Otsu. 18 checks.
