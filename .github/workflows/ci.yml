@@ -16,7 +16,8 @@ concurrency:
 jobs:
   gates:
     # The repo's own gates (SPEC.md claims, the purpose map, and the mutant
-    # proofs that each check can fail). Standard library only, no install step.
+    # proofs that each check can fail), then the image-quality bench's self-test,
+    # which needs the pinned numpy/Pillow/rawpy from tools/bench/requirements.txt.
     name: Spec and purpose-map gates
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -33,6 +34,10 @@ jobs:
         run: python tools/spec_check_mutants.py
       - name: purpose map mutants
         run: python tools/purpose/map_mutants.py
+      - name: bench self-test
+        run: |
+          python -m pip install --quiet -r tools/bench/requirements.txt
+          python tools/bench/selftest.py
 
   build:
     name: Build and lint (debug)
