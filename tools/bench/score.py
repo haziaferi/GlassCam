@@ -115,6 +115,22 @@ def dng_colour(path):
     return im.colour_report(to_xyz(im.sample_patches(half, c)))
 
 
+def shading_check(run, kind, notes, out):
+    """The phone's lens-shading map adapts to the light and lags a scene change (6T, 2026-10-23: the
+    first chart shot after the black page still carried the dark map, corner gain 1.04 against 3.3).
+    Repeats of one target must carry the same map, or they were not developed alike."""
+    corners = []
+    for p in shots(run, kind, "dng"):
+        maps = im.gain_maps(im.dng_tags(p).get(51009))
+        corners.append(float(np.mean([m["gains"][0, 0] for m in maps])) if maps else None)
+    if not corners or None in corners:
+        return
+    out[f"{kind}_shading_corner_gain"] = [round(c, 3) for c in corners]
+    if max(corners) > 1.05 * min(corners):
+        notes.append(f"{kind}: the repeats' lens-shading maps differ (corner gain {min(corners):.2f} to "
+                     f"{max(corners):.2f}): a shot was taken before the camera settled")
+
+
 def edges_of(lum):
     mtf, over = [], []
     for _, roi in im.edge_rois(lum, im.find_squares(lum)):
@@ -195,6 +211,9 @@ def score(run):
     for fmt, colour_fn in (("dng", dng_colour), ("jpg", jpeg_colour)):
         key = "dng" if fmt == "dng" else "jpeg"
         reports = [colour_fn(p) for p in shots(run, "colour", fmt)]
+        if fmt == "dng":
+            shading_check(run, "colour", notes, result["dng"])
+            shading_check(run, "edges", notes, result["dng"])
         if reports:
             des = [r[0] for r in reports]
             result[key]["colour_mean_de"] = stats([float(d.mean()) for d in des])

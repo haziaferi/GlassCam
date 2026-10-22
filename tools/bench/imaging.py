@@ -373,6 +373,48 @@ def dng_tags(path):
     return tags
 
 
+def gain_maps(opcodes):
+    """The GainMap opcodes (DNG opcode 9) of an OpcodeList as dicts; other opcodes are skipped.
+    Opcode lists are big-endian whatever the file's byte order (DNG spec 1.4, chapter 7)."""
+    import struct
+    if opcodes is None:
+        return []
+    b = bytes(opcodes)
+    count, off, out = struct.unpack(">I", b[:4])[0], 4, []
+    for _ in range(count):
+        oid, _ver, _flags, size = struct.unpack(">IIII", b[off:off + 16])
+        p = b[off + 16:off + 16 + size]
+        if oid == 9:
+            top, left, bottom, right, plane, planes, rp, cp, mv, mh = struct.unpack(">10I", p[:40])
+            sv, sh, ov, oh = struct.unpack(">4d", p[40:72])
+            mp = struct.unpack(">I", p[72:76])[0]
+            gains = np.array(struct.unpack(">%df" % (mv * mh * mp), p[76:76 + 4 * mv * mh * mp]), float)
+            out.append(dict(area=(top, left, bottom, right), plane=plane, pitch=(rp, cp), spacing=(sv, sh),
+                            origin=(ov, oh), gains=gains.reshape(mv, mh, mp)[:, :, 0]))
+        off += 16 + size
+    return out
+
+
+def apply_gain_maps(img, maps):
+    """Multiply a single-plane raw (normalized) by its GainMaps, bilinear between map points and clamped
+    at the edges. Map coordinates are relative to the whole image, as in the DNG SDK."""
+    out = np.array(img, dtype=np.float64)
+    h, w = out.shape
+    for m in maps:
+        top, left, bottom, right = m["area"]
+        rp, cp = m["pitch"]
+        rows, cols = np.arange(top, min(bottom, h), rp), np.arange(left, min(right, w), cp)
+        g = m["gains"]
+        fv = np.clip((rows / h - m["origin"][0]) / m["spacing"][0], 0, g.shape[0] - 1)
+        fh = np.clip((cols / w - m["origin"][1]) / m["spacing"][1], 0, g.shape[1] - 1)
+        v0, h0 = np.minimum(fv.astype(int), g.shape[0] - 2), np.minimum(fh.astype(int), g.shape[1] - 2)
+        wv, wh = (fv - v0)[:, None], (fh - h0)[None, :]
+        along = g[:, h0] * (1 - wh) + g[:, h0 + 1] * wh               # map rows x image columns
+        grid = along[v0] * (1 - wv) + along[v0 + 1] * wv
+        out[top:min(bottom, h):rp, left:min(right, w):cp] *= grid
+    return out
+
+
 class Dng:
     """Raw planes of a DNG plus the DNG-spec camera-to-XYZ(D50) matrix built from its own tags."""
 
@@ -390,8 +432,12 @@ class Dng:
     def channel_of(self, index):
         return "RGB".index(self.desc[index]) if self.desc[index] in "RGB" else None
 
-    def norm(self):
-        return (self.raw - self.black) / (self.white - self.black)
+    def norm(self, shading=True):
+        """Linear 0..1 raw; with shading, the DNG's own lens-shading GainMaps (OpcodeList2) applied, as a
+        raw developer must (phone raw is not shading-corrected; the correction travels in the file).
+        Noise and range use self.raw directly: the gains would rescale the noise."""
+        n = (self.raw - self.black) / (self.white - self.black)
+        return apply_gain_maps(n, gain_maps(self.tags.get(51009))) if shading else n
 
     def plane_means(self, region):
         """Mean R, G, B (normalized) of a boolean pixel region."""

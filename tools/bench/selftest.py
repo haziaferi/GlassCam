@@ -305,15 +305,49 @@ def test_display_record(plant=0):
     return not bad, "all cases as expected" if not bad else f"wrong: {bad}"
 
 
+def opcode_list(maps):
+    """Big-endian OpcodeList bytes holding GainMap opcodes, as a phone writes them."""
+    import struct
+    body = b""
+    for (top, left), g, (sv, sh) in maps:
+        mv, mh = g.shape
+        p = struct.pack(">10I", top, left, 600, 800, 0, 1, 2, 2, mv, mh) + struct.pack(">4d", sv, sh, 0.0, 0.0)
+        p += struct.pack(">I", 1) + struct.pack(">%df" % (mv * mh), *g.ravel())
+        body += struct.pack(">IIII", 9, 0x01030000, 0, len(p)) + p
+    return struct.pack(">I", len(maps)) + body
+
+
+def test_gain_maps(plant=0):
+    """Each Bayer phase gets its own map's gain at its position (linear maps, so bilinear is exact);
+    a phase without a map is untouched."""
+    h, w, mv, mh = 600, 800, 13, 17
+    sv, sh = 1 / (mv - 1), 1 / (mh - 1)
+    ii, jj = np.mgrid[0:mv, 0:mh]
+    red = 1 + 0.4 * ii / (mv - 1) + 0.8 * jj / (mh - 1)          # grows down and to the right
+    blue = 1.5 - 0.2 * ii / (mv - 1)
+    if plant:                                                     # planted: the map read with its axes swapped
+        red = 1 + 0.4 * jj / (mh - 1) + 0.8 * ii / (mv - 1)
+    maps = im.gain_maps(opcode_list([((0, 0), red, (sv, sh)), ((1, 1), blue, (sv, sh))]))
+    out = im.apply_gain_maps(np.ones((h, w)), maps)
+    r, c = np.mgrid[0:h, 0:w]
+    want_red = 1 + 0.4 * np.clip(r / h, 0, 1) + 0.8 * np.clip(c / w, 0, 1)
+    want_blue = 1.5 - 0.2 * np.clip(r / h, 0, 1)
+    err_red = np.abs(out[0::2, 0::2] - want_red[0::2, 0::2]).max()
+    err_blue = np.abs(out[1::2, 1::2] - want_blue[1::2, 1::2]).max()
+    untouched = np.abs(out[0::2, 1::2] - 1).max() + np.abs(out[1::2, 0::2] - 1).max()
+    ok = err_red < 1e-6 and err_blue < 1e-6 and untouched == 0      # gains are float32 in the file
+    return ok, f"max error red {err_red:.2e}, blue {err_blue:.2e}, greens changed by {untouched:.2e}"
+
+
 TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_with_stray_light,
          test_chart_rotated,
          test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_overshoot, test_find_squares,
-         test_score_jpeg_run, test_display_record]
+         test_score_jpeg_run, test_display_record, test_gain_maps]
 PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1,
           test_chart_with_stray_light: 1, test_chart_rotated: 1,
           test_dng_matrices: 0.05, test_interpolation: 0.5, test_ptc: 0.2, test_read_noise_dr: 0.1,
           test_mtf: 0.3, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1,
-          test_display_record: 1}
+          test_display_record: 1, test_gain_maps: 1}
 
 
 def main():
