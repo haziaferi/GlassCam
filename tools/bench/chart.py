@@ -66,7 +66,8 @@ style="font:16px sans-serif;max-width:40em;margin:2em auto;line-height:1.5">
 <h1>Bench targets</h1>
 <p>Dark room; the monitor in its sRGB mode at a fixed brightness; tap or click each page once to make it full screen.</p>
 <ol>
-<li><b>Dark frames</b>: lens covered, two DNGs.</li>
+<li><b>Dark frames</b>: two DNGs with the lens covered, or of <a href="dark.html">dark.html</a> on an OLED
+screen in a dark room (its pixels are off).</li>
 <li><b>Flat fields</b> (phone close to the screen, focus at its nearest so the screen is blurred,
 the screen filling the frame): two shots of each level, JPEG and DNG.<ul>{flats}</ul></li>
 <li><b>Colour chart</b> (in focus, the whole screen in the frame): three shots.
@@ -81,6 +82,7 @@ def main(out):
     os.makedirs(out, exist_ok=True)
     files = {"index.html": index_page(im.FLAT_LEVELS), "colour.html": colour_page(), "edges.html": edges_page()}
     files.update({f"flat_{lv}.html": flat_page(lv) for lv in im.FLAT_LEVELS})
+    files["dark.html"] = flat_page(0)          # an OLED showing black in a dark room = a covered lens
     for name, text in files.items():
         with open(os.path.join(out, name), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(text)

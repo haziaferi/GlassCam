@@ -177,3 +177,19 @@ works, because every run is compared against another run shown on the same monit
 The edge sheet's first version printed blank: its squares were coloured boxes, and browsers drop
 background colours when printing. They're SVG shapes now, proven by printing both versions to PDF with
 background graphics off. `bench_charts/edges.pdf` is the printable sheet: print at 100 %, A4 landscape.
+
+## shoot.py and the first calibration (2026-10-22)
+
+`shoot.py configure` sets GlassCam's camera 0 through its config file, never by tapping. With the app
+stopped it sets: JPEG + 16-bit DNG, auto-exposure off, a manual ISO and shutter, manual focus at a
+distance, a white-balance preset (the 6T offers no manual colour temperature), and the processing modes.
+The phone's own settings are saved to `bench_runs/settings_backup/` on the first run; `shoot.py restore`
+puts them back. `show` puts a target on the display phone over USB (`adb reverse`, the PC serves
+`bench_charts/` on localhost only) and taps it full screen. `shot` fires GlassCam with the camera key and
+pulls the JPEG + DNG pair. `record` writes `run.json` from the display phone's live settings. Photos stay
+on the phone; the bench only copies them.
+
+The 6T on the Nord, read back from GlassCam's screen: Jpg+16bitDng, focus Off (manual 16.1 cm). A test
+shot of `flat_245` at ISO 100 and 1/30 s came out unclipped: green mean 0.44 of the raw range, red 0.25,
+blue 0.28. There's no flicker banding: once the falloff is removed, row means vary by 0.37 % and column
+means by 0.53 %. So the baseline runs at ISO 100, 1/30 s.
