@@ -36,6 +36,9 @@ TREES = {"libraw": "LibRaw", "libtiff": "tiff"}
 # not a multiple of 16; the lossless-JPEG DNG path (DngWriter::process16ToLossless) writes two tiles of
 # width/2 x height, so a sensor 3000 rows tall (or 4656 wide) could not save a compressed DNG. FreeDcam's copy
 # of libtiff 4.0.9 had both checks commented out; this keeps libtiff's warning and drops the refusal.
+#
+# The others are behaviour-identical and exist for the repo's CodeQL gate (a PR may not add a high-severity
+# alert): CodeQL flags them in upstream code although the values cannot overflow (PR #2, 2026-10-22).
 PATCHES = {
     "libtiff": [
         ("libtiff/tif_dir.c",
@@ -43,6 +46,18 @@ PATCHES = {
          "            if (v32 % 16)\n            {\n                if (tif->tif_mode != O_RDONLY)\n                    goto badvalue32;\n",
          "            if (v32 % 16)\n            {\n",
          2),
+        ("libtiff/tif_dir.c",
+         "CodeQL cpp/integer-multiplication-cast-to-long: multiply in tmsize_t (the same size was overflow-checked when tv->value was allocated)",
+         "                    _TIFFmemcpy(tv->value, va_arg(ap, void *),\n                                tv->count * tv_size);\n",
+         "                    _TIFFmemcpy(tv->value, va_arg(ap, void *),\n                                (tmsize_t)tv->count * tv_size);\n",
+         1),
+    ],
+    "libraw": [
+        ("src/decompressors/losslessjpeg.cpp",
+         "CodeQL cpp/comparison-with-wider-type: a uint32_t loop counter (nbits is at most 16, so the uint8_t never wrapped)",
+         "    for (uint8_t len = 0; len < nbits; len++)\n",
+         "    for (uint32_t len = 0; len < nbits; len++)\n",
+         1),
     ],
 }
 
