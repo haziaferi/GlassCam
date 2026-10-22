@@ -1,6 +1,6 @@
 /* -*- C++ -*-
  * File: libraw_c_api.cpp
- * Copyright 2008-2018 LibRaw LLC (info@libraw.org)
+ * Copyright 2008-2025 LibRaw LLC (info@libraw.org)
  * Created: Sat Mar  8 , 2008
  *
  * LibRaw C interface
@@ -34,7 +34,7 @@ extern "C"
     {
       ret = new LibRaw(flags);
     }
-    catch (std::bad_alloc)
+    catch (const std::bad_alloc& )
     {
       return NULL;
     }
@@ -43,7 +43,10 @@ extern "C"
 
   unsigned libraw_capabilities() { return LibRaw::capabilities(); }
   const char *libraw_version() { return LibRaw::version(); }
-  const char *libraw_strprogress(enum LibRaw_progress p) { return LibRaw::strprogress(p); }
+  const char *libraw_strprogress(enum LibRaw_progress p)
+  {
+    return LibRaw::strprogress(p);
+  }
   int libraw_versionNumber() { return LibRaw::versionNumber(); }
   const char **libraw_cameraList() { return LibRaw::cameraList(); }
   int libraw_cameraCount() { return LibRaw::cameraCount(); }
@@ -92,6 +95,7 @@ extern "C"
     return &(lr->other);
   }
 
+#ifndef LIBRAW_NO_IOSTREAMS_DATASTREAM
   int libraw_open_file_ex(libraw_data_t *lr, const char *file, INT64 sz)
   {
     if (!lr)
@@ -99,7 +103,9 @@ extern "C"
     LibRaw *ip = (LibRaw *)lr->parent_class;
     return ip->open_file(file, sz);
   }
-#if defined(_WIN32) && !defined(__MINGW32__) && defined(_MSC_VER) && (_MSC_VER > 1310)
+#endif
+
+#ifdef LIBRAW_WIN32_UNICODEPATHS
   int libraw_open_wfile(libraw_data_t *lr, const wchar_t *file)
   {
     if (!lr)
@@ -108,6 +114,7 @@ extern "C"
     return ip->open_file(file);
   }
 
+#ifndef LIBRAW_NO_IOSTREAMS_DATASTREAM
   int libraw_open_wfile_ex(libraw_data_t *lr, const wchar_t *file, INT64 sz)
   {
     if (!lr)
@@ -116,12 +123,28 @@ extern "C"
     return ip->open_file(file, sz);
   }
 #endif
-  int libraw_open_buffer(libraw_data_t *lr, void *buffer, size_t size)
+#endif
+  int libraw_open_buffer(libraw_data_t *lr, const void *buffer, size_t size)
   {
     if (!lr)
       return EINVAL;
     LibRaw *ip = (LibRaw *)lr->parent_class;
     return ip->open_buffer(buffer, size);
+  }
+  int libraw_open_bayer(libraw_data_t *lr, unsigned char *data,
+                        unsigned datalen, ushort _raw_width, ushort _raw_height,
+                        ushort _left_margin, ushort _top_margin,
+                        ushort _right_margin, ushort _bottom_margin,
+                        unsigned char procflags, unsigned char bayer_pattern,
+                        unsigned unused_bits, unsigned otherflags,
+                        unsigned black_level)
+  {
+    if (!lr)
+      return EINVAL;
+    LibRaw *ip = (LibRaw *)lr->parent_class;
+    return ip->open_bayer(data, datalen, _raw_width, _raw_height, _left_margin,
+                          _top_margin, _right_margin, _bottom_margin, procflags,
+                          bayer_pattern, unused_bits, otherflags, black_level);
   }
   int libraw_unpack(libraw_data_t *lr)
   {
@@ -136,6 +159,13 @@ extern "C"
       return EINVAL;
     LibRaw *ip = (LibRaw *)lr->parent_class;
     return ip->unpack_thumb();
+  }
+  int libraw_unpack_thumb_ex(libraw_data_t *lr, int i)
+  {
+    if (!lr)
+      return EINVAL;
+    LibRaw *ip = (LibRaw *)lr->parent_class;
+    return ip->unpack_thumb_ex(i);
   }
   void libraw_recycle_datastream(libraw_data_t *lr)
   {
@@ -159,7 +189,8 @@ extern "C"
     delete ip;
   }
 
-  void libraw_set_exifparser_handler(libraw_data_t *lr, exif_parser_callback cb, void *data)
+  void libraw_set_exifparser_handler(libraw_data_t *lr, exif_parser_callback cb,
+                                     void *data)
   {
     if (!lr)
       return;
@@ -167,26 +198,38 @@ extern "C"
     ip->set_exifparser_handler(cb, data);
   }
 
-  void libraw_set_memerror_handler(libraw_data_t *lr, memory_callback cb, void *data)
+  void libraw_set_makernotes_handler(libraw_data_t *lr, exif_parser_callback cb,
+                                     void *data)
   {
     if (!lr)
       return;
     LibRaw *ip = (LibRaw *)lr->parent_class;
-    ip->set_memerror_handler(cb, data);
+    ip->set_makernotes_handler(cb, data);
   }
-  void libraw_set_dataerror_handler(libraw_data_t *lr, data_callback func, void *data)
+
+  void libraw_set_dataerror_handler(libraw_data_t *lr, data_callback func,
+                                    void *data)
   {
     if (!lr)
       return;
     LibRaw *ip = (LibRaw *)lr->parent_class;
     ip->set_dataerror_handler(func, data);
   }
-  void libraw_set_progress_handler(libraw_data_t *lr, progress_callback cb, void *data)
+  void libraw_set_progress_handler(libraw_data_t *lr, progress_callback cb,
+                                   void *data)
   {
     if (!lr)
       return;
     LibRaw *ip = (LibRaw *)lr->parent_class;
     ip->set_progress_handler(cb, data);
+  }
+
+  int libraw_adjust_to_raw_inset_crop(libraw_data_t *lr, unsigned mask, float maxcrop)
+  {
+    if (!lr)
+      return EINVAL;
+    LibRaw *ip = (LibRaw *)lr->parent_class;
+    return ip->adjust_to_raw_inset_crop(mask,maxcrop);
   }
 
   // DCRAW
@@ -218,7 +261,8 @@ extern "C"
     LibRaw *ip = (LibRaw *)lr->parent_class;
     return ip->dcraw_process();
   }
-  libraw_processed_image_t *libraw_dcraw_make_mem_image(libraw_data_t *lr, int *errc)
+  libraw_processed_image_t *libraw_dcraw_make_mem_image(libraw_data_t *lr,
+                                                        int *errc)
   {
     if (!lr)
     {
@@ -229,7 +273,8 @@ extern "C"
     LibRaw *ip = (LibRaw *)lr->parent_class;
     return ip->dcraw_make_mem_image(errc);
   }
-  libraw_processed_image_t *libraw_dcraw_make_mem_thumb(libraw_data_t *lr, int *errc)
+  libraw_processed_image_t *libraw_dcraw_make_mem_thumb(libraw_data_t *lr,
+                                                        int *errc)
   {
     if (!lr)
     {
@@ -241,7 +286,10 @@ extern "C"
     return ip->dcraw_make_mem_thumb(errc);
   }
 
-  void libraw_dcraw_clear_mem(libraw_processed_image_t *p) { LibRaw::dcraw_clear_mem(p); }
+  void libraw_dcraw_clear_mem(libraw_processed_image_t *p)
+  {
+    LibRaw::dcraw_clear_mem(p);
+  }
 
   int libraw_raw2image(libraw_data_t *lr)
   {
@@ -289,12 +337,28 @@ extern "C"
     ip->imgdata.params.output_color = value;
   }
 
+  DllDef void libraw_set_adjust_maximum_thr(libraw_data_t *lr, float value)
+  {
+    if (!lr)
+      return;
+    LibRaw *ip = (LibRaw *)lr->parent_class;
+    ip->imgdata.params.adjust_maximum_thr = value;
+  }
+
   DllDef void libraw_set_output_bps(libraw_data_t *lr, int value)
   {
     if (!lr)
       return;
     LibRaw *ip = (LibRaw *)lr->parent_class;
     ip->imgdata.params.output_bps = value;
+  }
+
+  	DllDef void libraw_set_output_tif(libraw_data_t *lr, int value)
+  {
+    if (!lr)
+      return;
+    LibRaw *ip = (LibRaw *)lr->parent_class;
+    ip->imgdata.params.output_tiff = value;
   }
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -380,21 +444,21 @@ extern "C"
   DllDef float libraw_get_cam_mul(libraw_data_t *lr, int index)
   {
     if (!lr)
-      return EINVAL;
+      return -999.f;
     return lr->color.cam_mul[LIM(index, 0, 3)];
   }
 
   DllDef float libraw_get_pre_mul(libraw_data_t *lr, int index)
   {
     if (!lr)
-      return EINVAL;
+      return -999.f;
     return lr->color.pre_mul[LIM(index, 0, 3)];
   }
 
   DllDef float libraw_get_rgb_cam(libraw_data_t *lr, int index1, int index2)
   {
     if (!lr)
-      return EINVAL;
+      return -999.f;
     return lr->color.rgb_cam[LIM(index1, 0, 2)][LIM(index2, 0, 3)];
   }
 

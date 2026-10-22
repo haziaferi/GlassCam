@@ -18,6 +18,20 @@
             />
     </LinearLayout>
 
+    <!-- Everything below the bar scrolls: in landscape the form left the two buttons 0 px tall,
+         so Convert could not be reached (6T walk, 2026-10-22). -->
+    <ScrollView
+        android:id="@+id/dngconvert_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -263,5 +277,7 @@
         class="com.ortiz.touch.TouchImageView"
         android:id="@+id/dngconvert_imageview" />
 
+    </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

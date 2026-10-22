@@ -17,11 +17,13 @@ public:
 
     void clear()
     {
-        Longitude;
-        Latitude;
-        Provider;
-        gpsDate;
-        gpsTime;
+        // these lines named the members without assigning them, so a new GpsInfo held garbage pointers
+        Altitude = 0;
+        Longitude = nullptr;
+        Latitude = nullptr;
+        Provider = nullptr;
+        gpsDate = nullptr;
+        gpsTime = nullptr;
     }
 
     GpsInfo()

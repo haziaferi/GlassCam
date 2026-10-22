@@ -5,6 +5,7 @@
 #include <string.h>
 #include <math.h>
 #include "DngWriter.h"
+#include "TiffSetup.h"
 #include "lj92.h"
 
 
@@ -42,6 +43,7 @@ const char *bit_rep[16] = {
 TIFF* DngWriter::openfTIFF(char *fileSavePath)
 {
     TIFF *tif;
+    installTiffSetup();
     if (!(tif = TIFFOpen (fileSavePath, "w")))
     {
         LOGD("openfTIFF:error while creating outputfile");
@@ -51,6 +53,7 @@ TIFF* DngWriter::openfTIFF(char *fileSavePath)
 
 TIFF* DngWriter::openfTIFFFD(char *fileSavePath, int fd) {
     TIFF *tif;
+    installTiffSetup();
 
     LOGD("FD: %d", fd);
     if (!(tif = TIFFFdOpen (fd,fileSavePath, "w")))
@@ -165,8 +168,8 @@ void DngWriter::writeIfd0(TIFF *tif) {
         TIFFSetField(tif, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
     TIFFSetField (tif, TIFFTAG_SAMPLESPERPIXEL, 1);
     LOGD("sampelsperpixel %i" ,1);
-    TIFFSetField( tif, TIFFTAG_XRESOLUTION, 7200 );
-    TIFFSetField( tif, TIFFTAG_YRESOLUTION, 7200 );
+    TIFFSetField( tif, TIFFTAG_XRESOLUTION, 7200.0 );
+    TIFFSetField( tif, TIFFTAG_YRESOLUTION, 7200.0 );
     TIFFSetField(tif, TIFFTAG_PLANARCONFIG, PLANARCONFIG_CONTIG);
     TIFFSetField(tif, TIFFTAG_RESOLUTIONUNIT, RESUNIT_INCH);
     TIFFSetField(tif, TIFFTAG_SOFTWARE, "FreeDcam DNG Writer 2022");
@@ -175,8 +178,8 @@ void DngWriter::writeIfd0(TIFF *tif) {
     TIFFSetField(tif, TIFFTAG_SAMPLEFORMAT, SAMPLEFORMAT_UINT);
     //30k
     TIFFSetField (tif, TIFFTAG_CFAREPEATPATTERNDIM, CFARepeatPatternDim);
-    TIFFSetField (tif, TIFFTAG_CFAPATTERN, cfa);
-    TIFFSetField(tif, TIFFTAG_EP_STANDARD_ID, "\001\000\0\0");
+    TIFFSetField (tif, TIFFTAG_CFAPATTERN, 4, cfa);
+    TIFFSetField(tif, TIFFTAG_EP_STANDARDID, "\001\000\0\0");
     //50k
     if(_model != NULL){
         TIFFSetField(tif, TIFFTAG_UNIQUECAMERAMODEL, _model);
@@ -199,12 +202,10 @@ void DngWriter::writeIfd0(TIFF *tif) {
     TIFFSetField(tif, TIFFTAG_COLORMATRIX1, 9,customMatrix->colorMatrix1);
     TIFFSetField(tif, TIFFTAG_COLORMATRIX2, 9, customMatrix->colorMatrix2);
 
-    LOGD("reductionMatrix1");
-    if(customMatrix->reductionMatrix1 != NULL)
-        TIFFSetField(tif, TIFFTAG_CAMERACALIBRATION1, 9,  customMatrix->reductionMatrix1);
-    LOGD("reductionMatrix2");
-    if(customMatrix->reductionMatrix2 != NULL)
-        TIFFSetField(tif, TIFFTAG_CAMERACALIBRATION2, 9,  customMatrix->reductionMatrix2);
+    // CameraCalibration1/2 and ActiveArea (below) are not written. FreeDcam's patched libtiff 4.0.9 had no
+    // definition for them, so these TIFFSetField calls always failed and no GlassCam DNG ever carried the tags;
+    // libtiff 4.7.2 knows them, and writing them now would change how every raw developer renders GlassCam's
+    // DNGs. Kept out on purpose until that is decided (SPEC ST8).
     TIFFSetField(tif, TIFFTAG_ASSHOTNEUTRAL, 3, customMatrix->neutralColorMatrix);
 
     LOGD("baselineExposure");
@@ -218,15 +219,6 @@ void DngWriter::writeIfd0(TIFF *tif) {
     TIFFSetField(tif, TIFFTAG_CALIBRATIONILLUMINANT1, 21);
     TIFFSetField(tif, TIFFTAG_CALIBRATIONILLUMINANT2, 17);
 
-    if(dngProfile->activearea != nullptr && crop_width == 0 && crop_height == 0)
-    {
-        TIFFSetField(tif,TIFFTAG_ACTIVEAREA, dngProfile->activearea);
-    }
-    else
-    {
-        int active_area[] = {0,0,crop_width,crop_height};
-        TIFFSetField(tif,TIFFTAG_ACTIVEAREA, active_area);
-    }
 
     LOGD("huesatmapdims");
     if(huesatmapdims != NULL)
@@ -250,21 +242,21 @@ void DngWriter::writeIfd0(TIFF *tif) {
     }
     LOGD("fowardMatrix1");
     if(customMatrix->fowardMatrix1 != NULL)
-        TIFFSetField(tif, TIFFTAG_FOWARDMATRIX1, 9,  customMatrix->fowardMatrix1);
+        TIFFSetField(tif, TIFFTAG_FORWARDMATRIX1, 9,  customMatrix->fowardMatrix1);
     LOGD("fowardMatrix2");
     if(customMatrix->fowardMatrix2 != NULL)
-        TIFFSetField(tif, TIFFTAG_FOWARDMATRIX2, 9,  customMatrix->fowardMatrix2);
+        TIFFSetField(tif, TIFFTAG_FORWARDMATRIX2, 9,  customMatrix->fowardMatrix2);
     //51k
     /*if(opCode != NULL){
         if(opCode->op2Size > 0){
             LOGD("Set OP2 %i", opCode->op2Size);
-            TIFFSetField(tif, TIFFTAG_OPC2, opCode->op2Size, opCode->op2);
+            TIFFSetField(tif, TIFFTAG_OPCODELIST2, opCode->op2Size, opCode->op2);
         }else{
             LOGD("opcode2 null");
         }
         if(opCode->op3Size > 0){
             LOGD("Set OP3 %i", opCode->op3Size);
-            TIFFSetField(tif, TIFFTAG_OPC3, opCode->op3Size, opCode->op3);
+            TIFFSetField(tif, TIFFTAG_OPCODELIST3, opCode->op3Size, opCode->op3);
         }else{
             LOGD("opcode3 null");
         }
@@ -275,7 +267,7 @@ void DngWriter::writeIfd0(TIFF *tif) {
     if(customMatrix->noiseMatrix != NULL)
         TIFFSetField(tif, TIFFTAG_NOISEPROFILE, 6,  customMatrix->noiseMatrix);
     LOGD("baselineExposureOffset");
-    if(baselineExposureOffset != NULL)
+    if(baselineExposureOffset != 0)   // 0 since the constructor sets it; TiffSetup.h registers the tag as SRATIONAL
     {
         TIFFSetField(tif,TIFFTAG_BASELINEEXPOSUREOFFSET, baselineExposureOffset);
     }
@@ -287,7 +279,7 @@ void DngWriter::makeGPS_IFD(TIFF *tif) {
     {
         LOGD("TIFFCreateGPSDirectory() failed" );
     }
-    if (!TIFFSetField( tif, GPSTAG_GPSVersionID, "\002\003\0\0"))
+    if (!TIFFSetField( tif, GPSTAG_VERSIONID, "\002\003\0\0"))
     {
         LOGD("Can't write GPSVersionID" );
     }
@@ -298,13 +290,14 @@ void DngWriter::makeGPS_IFD(TIFF *tif) {
         longitudeRef = "W";
         gpsInfo->Longitude[0] = fabsf(gpsInfo->Longitude[0]);
     }
-    if (!TIFFSetField( tif, GPSTAG_GPSLongitudeRef, longitudeRef))
+    if (!TIFFSetField( tif, GPSTAG_LONGITUDEREF, longitudeRef))
     {
         LOGD("Can't write LongitudeRef" );
     }
     LOGD("LONG REF Written %c", longitudeRef);
 
-    if (!TIFFSetField(tif, GPSTAG_GPSLongitude, gpsInfo->Longitude))
+    double longitude[3] = {gpsInfo->Longitude[0], gpsInfo->Longitude[1], gpsInfo->Longitude[2]};
+    if (!TIFFSetField(tif, GPSTAG_LONGITUDE, longitude))
     {
         LOGD("Can't write Longitude" );
     }
@@ -315,29 +308,31 @@ void DngWriter::makeGPS_IFD(TIFF *tif) {
         gpsInfo->Latitude[0] = fabsf(gpsInfo->Latitude[0]);
     }
     LOGD("PMETH Written");
-    if (!TIFFSetField( tif, GPSTAG_GPSLatitudeRef, latitudeRef)) {
+    if (!TIFFSetField( tif, GPSTAG_LATITUDEREF, latitudeRef)) {
         LOGD("Can't write LAti REf" );
     }
     LOGD("LATI REF Written %c", latitudeRef);
 
-    if (!TIFFSetField( tif, GPSTAG_GPSLatitude,gpsInfo->Latitude))
+    double latitude[3] = {gpsInfo->Latitude[0], gpsInfo->Latitude[1], gpsInfo->Latitude[2]};
+    if (!TIFFSetField( tif, GPSTAG_LATITUDE, latitude))
     {
         LOGD("Can't write Latitude" );
     }
     LOGD("Latitude Written");
-    if (!TIFFSetField( tif, GPSTAG_GPSAltitude,gpsInfo->Altitude))
+    if (!TIFFSetField( tif, GPSTAG_ALTITUDE,gpsInfo->Altitude))
     {
         LOGD("Can't write Altitude" );
     }
     LOGD("Altitude Written");
 
-    if (!TIFFSetField( tif, GPSTAG_GPSTimeStamp, gpsInfo->gpsTime))
+    double gpsTime[3] = {gpsInfo->gpsTime[0], gpsInfo->gpsTime[1], gpsInfo->gpsTime[2]};
+    if (!TIFFSetField( tif, GPSTAG_TIMESTAMP, gpsTime))
         {
             LOGD("Can't write gpsTime" );
         }
     LOGD("GPSTimeStamp Written");
 
-    if (!TIFFSetField( tif, GPSTAG_GPSDateStamp, gpsInfo->gpsDate))
+    if (!TIFFSetField( tif, GPSTAG_DATESTAMP, gpsInfo->gpsDate))
         {
             LOGD("Can't write gpsTime" );
         }
@@ -940,7 +935,7 @@ void DngWriter::WriteDNG() {
         if(opCode->op2Size > 0)
         {
             LOGD("Set OP2 %i", opCode->op2Size);
-            TIFFSetField(tif, TIFFTAG_OPC2, opCode->op2Size, opCode->op2);
+            TIFFSetField(tif, TIFFTAG_OPCODELIST2, opCode->op2Size, opCode->op2);
         }
         else
         {
@@ -949,7 +944,7 @@ void DngWriter::WriteDNG() {
         if(opCode->op3Size > 0)
         {
             LOGD("Set OP3 %i", opCode->op3Size);
-            TIFFSetField(tif, TIFFTAG_OPC3, opCode->op3Size, opCode->op3);
+            TIFFSetField(tif, TIFFTAG_OPCODELIST3, opCode->op3Size, opCode->op3);
         }
         else
         {

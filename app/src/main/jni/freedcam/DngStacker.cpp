@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <android/log.h>
 #include "../tiff/libtiff/tiffio.h"
+#include "TiffSetup.h"
 #define  LOG_TAG    "freedcam.RawToDngNative"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
 
@@ -47,8 +48,9 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
     short blacklevel;
     float * tmpmat = new float[9];
     double * tmpdouble = new double[6];
-    long * whitelvl;
-    long white;
+    uint32_t * whitelvl;
+    uint32_t white;
+    uint16_t n = 0; // count out-parameter of the passcount tags
 
     //short * whitelvltmp;
     //short whitelvl;
@@ -63,6 +65,7 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
     }
 
 
+    installTiffSetup();
     TIFF *tif=TIFFOpen(files[0], "rw");
     //read needed dng tags
     TIFFGetField(tif, TIFFTAG_IMAGEWIDTH, &width);
@@ -72,42 +75,42 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
     TIFFGetField(tif, TIFFTAG_BITSPERSAMPLE, &bitdeeptemp);
     LOGD("GetBitDeep");
     bitdeep = bitdeeptemp;
-    TIFFGetField(tif, TIFFTAG_COLORMATRIX1,9, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_COLORMATRIX1, &n, &tmpmat);
     LOGD("cc1");
     moveToMem(tmpmat, cmat1,9);
-    TIFFGetField(tif, TIFFTAG_COLORMATRIX2,9, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_COLORMATRIX2, &n, &tmpmat);
     LOGD("cc2");
     moveToMem(tmpmat, cmat2,9);
-    TIFFGetField(tif, TIFFTAG_ASSHOTNEUTRAL,3, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_ASSHOTNEUTRAL, &n, &tmpmat);
     LOGD("neutral");
     moveToMem(tmpmat, neutMat,3);
-    TIFFGetField(tif, TIFFTAG_FOWARDMATRIX1,9, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_FORWARDMATRIX1, &n, &tmpmat);
     moveToMem(tmpmat, fmat1,9);
-    TIFFGetField(tif, TIFFTAG_FOWARDMATRIX2,9, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_FORWARDMATRIX2, &n, &tmpmat);
     moveToMem(tmpmat, fmat2,9);
-    TIFFGetField(tif, TIFFTAG_CAMERACALIBRATION1,9, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_CAMERACALIBRATION1, &n, &tmpmat);
     moveToMem(tmpmat, calib1,9);
-    TIFFGetField(tif, TIFFTAG_CAMERACALIBRATION2,9, &tmpmat);
+    TIFFGetField(tif, TIFFTAG_CAMERACALIBRATION2, &n, &tmpmat);
     moveToMem(tmpmat, calib2,9);
-    TIFFGetField(tif, TIFFTAG_NOISEPROFILE,6, &tmpdouble);
+    TIFFGetField(tif, TIFFTAG_NOISEPROFILE, &n, &tmpdouble);
     for (int i = 0; i < 6; ++i) {
         noisemat[i] = tmpdouble[i];
     }
-    TIFFGetField(tif, TIFFTAG_CFAPATTERN, &cfatmp);
+    TIFFGetField(tif, TIFFTAG_CFAPATTERN, &n, &cfatmp);
     for (int i = 0; i < 4; ++i) {
         cfa[i] = cfatmp[i];
     }
     LOGD("cfa pattern %c%c&c&c", cfa[0],cfa[1],cfa[2],cfa[3]);
 
-    TIFFGetField(tif, TIFFTAG_WHITELEVEL, &whitelvl);
+    TIFFGetField(tif, TIFFTAG_WHITELEVEL, &n, &whitelvl);
     LOGD("whitelvl:%i" , whitelvl[0]);
     white = whitelvl[0];
     LOGD("whitelvl:%i" , white);
     //whitelvl = whitelvltmp[0];
-    TIFFGetField(tif, TIFFTAG_BLACKLEVEL, &blackleveltmp);
-    /*TIFFGetField(tif, TIFFTAG_OPC2, &opcodetmp);
+    TIFFGetField(tif, TIFFTAG_BLACKLEVEL, &n, &blackleveltmp);
+    /*TIFFGetField(tif, TIFFTAG_OPCODELIST2, &opcodetmp);
     opcode2 = opcodetmp;
-    TIFFGetField(tif, TIFFTAG_OPC3, &opcodetmp);
+    TIFFGetField(tif, TIFFTAG_OPCODELIST3, &opcodetmp);
     opcode3 = opcodetmp;*/
     blacklevel = blackleveltmp[0];
 
@@ -235,13 +238,10 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
     TIFFSetField(tif, TIFFTAG_ASSHOTNEUTRAL, 3, neutMat);
     LOGD("neutralMatrix");
     if(fmat1 != NULL)
-        TIFFSetField(tif, TIFFTAG_FOWARDMATRIX1, 9,  fmat1);
+        TIFFSetField(tif, TIFFTAG_FORWARDMATRIX1, 9,  fmat1);
     if(fmat2 != NULL)
-        TIFFSetField(tif, TIFFTAG_FOWARDMATRIX2, 9,  fmat2);
-    if(calib1 != NULL)
-        TIFFSetField(tif, TIFFTAG_CAMERACALIBRATION1, 9,  calib1);
-    if(calib2 != NULL)
-        TIFFSetField(tif, TIFFTAG_CAMERACALIBRATION2, 9,  calib2);
+        TIFFSetField(tif, TIFFTAG_FORWARDMATRIX2, 9,  fmat2);
+    // CameraCalibration1/2 are not written, as in DngWriter (SPEC ST8)
     if(noisemat != NULL)
         TIFFSetField(tif, TIFFTAG_NOISEPROFILE, 6,  noisemat);
     TIFFSetField(tif, TIFFTAG_CALIBRATIONILLUMINANT1, 17);
@@ -249,7 +249,7 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
 
     TIFFSetField(tif, TIFFTAG_ORIENTATION, ORIENTATION_TOPLEFT);
 
-    TIFFSetField (tif, TIFFTAG_CFAPATTERN, cfa);
+    TIFFSetField (tif, TIFFTAG_CFAPATTERN, 4, cfa);
     LOGD("whitelvl:%i" , white);
     TIFFSetField (tif, TIFFTAG_WHITELEVEL,1, &white);
 
@@ -266,9 +266,9 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
 
     //TODO find out why OPCODE cause ueof ex in ps
     /*if(sizeof(opcode2)>0)
-        TIFFSetField(tif,TIFFTAG_OPC2, sizeof(opcode2), opcode2);
+        TIFFSetField(tif,TIFFTAG_OPCODELIST2, sizeof(opcode2), opcode2);
     if(sizeof(opcode3)>0)
-        TIFFSetField(tif,TIFFTAG_OPC3, sizeof(opcode3), opcode3);*/
+        TIFFSetField(tif,TIFFTAG_OPCODELIST3, sizeof(opcode3), opcode3);*/
     TIFFCheckpointDirectory(tif);
 
     TIFFWriteRawStrip(tif, 0, rawOutputData, (tmsize_t)width*height*2);
