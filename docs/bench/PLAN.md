@@ -53,7 +53,7 @@ weights, so there are none to choose.
 | Trap | Fix |
 |---|---|
 | The monitor's pixel grid makes moiré, which reads as noise on flat patches | Noise flat fields are shot **defocused** (manual focus at the nearest distance), which blurs the grid away; that is the standard way to get flat fields |
-| Backlight PWM / refresh makes banding at short exposures | Exposure time fixed at a multiple of the refresh period (1/60 s or longer at 60 Hz); bands are checked for on the flat field |
+| Backlight PWM / refresh makes banding at short exposures | Exposure time fixed at a multiple of the refresh period (1/30 s or 1/15 s on the 59.94 Hz monitor: whole refreshes); bands are checked for on the flat field |
 | Room light reflects on the screen | A dark room; the monitor is the only light source |
 | The monitor's colours are not true | Set to sRGB mode and a fixed brightness. Colour error is relative to what the monitor shows, so it compares changes but is not an absolute score. Re-baseline later with a real chart |
 | The phone moves between shots | On the stand, shutter fired by `adb` (the camera key, S-31), with no touch |
