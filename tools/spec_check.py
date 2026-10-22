@@ -606,6 +606,29 @@ def check_S35():
     need(re.search(r"for\s*\(\s*int\s+tenths\s*=\s*-50;\s*tenths\s*<=\s*50;", ae), "the EV list no longer runs -5.0 to +5.0 in whole tenths")
 
 
+def check_S36():
+    """[S-36] a raw file LibRaw could not decode is tried once per process, not on every grid bind"""
+    src = read(jfile("BitmapHelper.java"))
+    # 6T walk 2026-10-22: each 20 MB .bayer was read again on every bind, on up to 8 loader threads
+    body = method_body(src, "createCacheImage")
+    need(re.search(r"Set<String>\s+undecodableRaws\s*=\s*ConcurrentHashMap\.newKeySet\(\)", src), "the set of undecodable raws is gone")
+    need(re.search(r"if\s*\(\s*undecodableRaws\.contains\(file\.getName\(\)\)\s*\)\s*return null;", body), "a refused raw is decoded again on every bind")
+    need(re.search(r"if\s*\(\s*response\s*==\s*null\s*\)\s*undecodableRaws\.add\(file\.getName\(\)\)", body), "a refused raw is no longer remembered")
+
+
+def check_S37():
+    """[S-37] DNG buffer and strip sizes are computed in a wide type, never as an int product"""
+    # CodeQL cpp/integer-multiplication-cast-to-long, 2026-10-22; the stacker's width*height*16 overflowed above ~134 MP
+    bad = []
+    for name in ("DngWriter.cpp", "DngStacker.cpp"):
+        src = re.sub(r"//[^\n]*", "", read(os.path.join(NATIVE, name)))  # commented-out calls do not size anything
+        for m in re.finditer(r"TIFFWriteRawStrip\([^;]*\);|new unsigned char\[[^\]]*\]|long finalsize\s*=[^;]*;", src):
+            expr = m.group(0)
+            if "*" in expr and not re.search(r"\((?:tmsize_t|size_t|long)\)", expr):
+                bad.append(f"{name}: {expr}")
+    need(not bad, "an int product sizes a DNG buffer again: " + "; ".join(bad))
+
+
 # --------------------------------------------------------------------------------------------
 
 def main():

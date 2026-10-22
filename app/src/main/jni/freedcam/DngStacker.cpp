@@ -111,7 +111,8 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
     opcode3 = opcodetmp;*/
     blacklevel = blackleveltmp[0];
 
-    rawOutputData = new unsigned char[((width*height)*16)/8];
+    // 16-bit samples: 2 bytes each, sized in size_t (width*height*16 overflowed an int above ~134 MP)
+    rawOutputData = new unsigned char[(size_t)width*height*2];
 
     int scanlinesize = TIFFStripSize(tif);
     inbuf = (unsigned char*)_TIFFmalloc(scanlinesize);
@@ -270,7 +271,7 @@ JNIEXPORT void JNICALL Java_glasscam_jni_DngStack_startStack(JNIEnv *env, jobjec
         TIFFSetField(tif,TIFFTAG_OPC3, sizeof(opcode3), opcode3);*/
     TIFFCheckpointDirectory(tif);
 
-    TIFFWriteRawStrip(tif, 0, rawOutputData, ((width*height)*16)/8);
+    TIFFWriteRawStrip(tif, 0, rawOutputData, (tmsize_t)width*height*2);
 
     TIFFRewriteDirectory(tif);
 
