@@ -161,13 +161,15 @@ def restore(serial):
 # ---------------------------------------------------------------- display and capture
 
 
-def show(serial, page):
+def show(serial, page, settle=8.0):
     adb(serial, "reverse", f"tcp:{PORT}", f"tcp:{PORT}")
     sh(serial, f"am start -a android.intent.action.VIEW -d http://127.0.0.1:{PORT}/{page}.html -n {BROWSER}")
     time.sleep(2.5)
     w, h = (int(v) for v in re.search(r"(\d+)x(\d+)", sh(serial, "wm size")).groups())
     sh(serial, f"input tap {w // 2} {h // 2}")     # a page tap requests full screen
-    time.sleep(2.5)
+    # the browser's "swipe to exit full screen" hint stays lit about 4 s (it lit the first dark frames),
+    # and the camera's lens-shading map lags a scene change; wait out both
+    time.sleep(settle)
     print(f"{model(serial)} shows {page}")
 
 
@@ -227,6 +229,8 @@ def live_display(serial):
             "brightness": "max, auto-brightness off" if (sett("system", "screen_brightness_mode"), sett(
                 "system", "screen_brightness")) == ("0", "2047") else "not max or automatic",
             "low_flicker": "not offered by this build",
+            # OnePlus's Smart Sidebar handle is an overlay that screenshots leave out, but the camera sees it
+            "smart_sidebar": "off" if sett("secure", "edge_panel_toggle") == "0" else "on",
         }
     raise ValueError(f"no display reader for {cam}")
 

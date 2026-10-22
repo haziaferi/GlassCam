@@ -158,11 +158,12 @@ def jpeg_noise_and_range(run, notes, light=None):
     if not per_level:
         notes.append("JPEG noise: no flat pairs")
         return out
+    clip = float(im.srgb_to_linear(250 / 255))
     snr = {lv: 20 * math.log10(m / math.sqrt(max(v, 1e-12))) for lv, (m, v) in per_level.items()}
-    out["snr_db_by_level"] = {str(k): round(v, 3) for k, v in snr.items()}
+    # a blown-out level has no noise left, so its "SNR" means nothing (6T baseline: grey 245 read 120 dB)
+    out["snr_db_by_level"] = {str(k): ("clipped" if per_level[k][0] >= clip else round(v, 3)) for k, v in snr.items()}
     if 118 in snr:
         out["snr18_db"] = round(snr[118], 3)
-    clip = float(im.srgb_to_linear(250 / 255))
     unclipped = [lv for lv, (m, _) in per_level.items() if m < clip]
     usable = [lv for lv in per_level if snr[lv] >= 0]          # SNR >= 1
     measured = [lv for lv in per_level if light and light.get(lv, 0) > 0]

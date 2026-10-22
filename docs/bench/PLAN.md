@@ -224,3 +224,24 @@ Noise profile check (list item 2): the 6T's per-shot NoiseProfile is right to wi
 Still to do before the real baseline: (1) fix GlassCam's manual shutter (§11 item 16); (2) apply the
 DNG's lens-shading GainMap (OpcodeList2) in the bench's developer, because the DNG colour is otherwise
 scored on uncorrected shading, which differs per shot.
+
+## 6T baseline, 2026-10-23 00:40 (4.3.101, the Nord's screen, dark room)
+
+The first valid run. All 34 shots, settle shots included, carry 1/30 s and ISO 100. Each target got an
+8 s wait and one settle shot, the DNGs are shading-corrected, and the Nord's Smart Sidebar (an overlay
+that screenshots leave out, but the camera sees) was turned off. Scores in `baselines/6T_2026-10-23_scores.json`.
+
+| | JPEG | DNG |
+|---|---|---|
+| Noise, SNR at 18 % grey | 37.3 dB | 31.6 dB |
+| Colour ΔE as shot (spread of 3) | 9.01 (0.03) | 9.60 (0.04) |
+| Colour ΔE after white balance (spread) | 5.47 (0.05) | 6.68 (0.07) |
+| Cast on the greys, a* / b* | +8.1 / −14.4 | +3.9 / −9.0 |
+| Dynamic range | 10.1 stops | 10.4 stops |
+| Sharpness | owed: the printed edge sheet | |
+
+Raw read noise is 0.717 DN (0.723 in the dry run). The noise fit's floor agrees with the dark frames. The
+6T's NoiseProfile is within about 8 %. Its DNG BlackLevel tag still says 63, against 63.9 measured.
+Shading maps agree across the chart repeats (corner gain 3.15-3.19). The JPEG crushes its darkest
+levels: grey 4 is below SNR 1, and grey 8 reads cleaner than grey 16 because the tone curve and noise
+reduction flatten near-black.
