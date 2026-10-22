@@ -726,6 +726,25 @@ def check_S41():
     need(opens and all(m == "rwt" for m in opens), f"the converter opens its output without truncating it: {opens}")
 
 
+def check_S42():
+    """[S-42] a full manual exposure stays manual: no flash state, restored or chosen, switches AE back on"""
+    # 6T bench 2026-10-22: flash "off", restored after the manual ISO and shutter, set CONTROL_AE_MODE_ON,
+    # so every photo was auto-exposed (1/92-1/30-1/48 s at a set 1/30 s)
+    flash = read(jfile("FlashMode.java"))
+    need(re.search(r"getActiveAeState\(\)\s*==\s*AeStates\.manual", flash), "FlashMode no longer reads the AE manager's state")
+    body = method_body(flash, "setValue")
+    guard = re.search(r"if \(isManualExposure\(\)\)\s*\{(.*?)\}\s*else if", body, re.S)
+    need(guard, "FlashMode.setValue sets the AE mode without checking for a manual exposure")
+    need("CONTROL_AE_MODE" not in guard.group(1) and "FLASH_MODE_OFF" in guard.group(1),
+         "under a manual exposure FlashMode touches the AE mode or arms the flash")
+    qcom = read(jfile("AeManagerCamera2Qcom.java"))
+    manual = qcom.split("case manual:", 1)[1].split("case iso_priority:", 1)[0]
+    need("CaptureRequest.FLASH_MODE_OFF" in manual, "Qualcomm's manual mode leaves the flash armed")
+    auto = qcom.split("default:", 1)[1].split("break;", 1)[0]
+    need("get(SettingKeys.FLASH_MODE)" in auto and "setStringValue" in auto,
+         "leaving manual on Qualcomm no longer puts the user's flash choice back")
+
+
 # --------------------------------------------------------------------------------------------
 
 def main():

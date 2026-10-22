@@ -1,0 +1,224 @@
+{
+ "run": {
+  "info": {
+   "camera": "OnePlus 6T",
+   "target": "pair",
+   "display": "Nord screen",
+   "settings": {
+    "display_color_mode": 256,
+    "render_mode": "ColorMode::SRGB",
+    "eye_comfort": "off, and its 22:00 schedule not reached during the session",
+    "brightness": "max, auto-brightness off",
+    "low_flicker": "not offered by this build",
+    "smart_sidebar": "off"
+   },
+   "time": "2026-10-23 00:40"
+  },
+  "problems": [],
+  "notes": []
+ },
+ "dng": {
+  "colour_shading_corner_gain": [
+   3.155,
+   3.15,
+   3.194
+  ],
+  "edges_shading_corner_gain": [
+   3.109,
+   3.118,
+   3.112
+  ],
+  "colour_mean_de": {
+   "mean": 9.600809811330764,
+   "spread": 0.03911918898795719,
+   "n": 3,
+   "values": [
+    9.61233,
+    9.57549,
+    9.61461
+   ]
+  },
+  "colour_max_de": {
+   "mean": 15.463083460115485,
+   "spread": 0.17961203304723838,
+   "n": 3,
+   "values": [
+    15.56904,
+    15.43077,
+    15.38943
+   ]
+  },
+  "colour_mean_de_wb": {
+   "mean": 6.680185527469624,
+   "spread": 0.07493649120906909,
+   "n": 3,
+   "values": [
+    6.71216,
+    6.69118,
+    6.63722
+   ]
+  },
+  "neutral_cast_ab": [
+   3.91,
+   -9.02
+  ],
+  "colour_per_patch": {
+   "dark skin": 8.683,
+   "light skin": 10.079,
+   "blue sky": 6.165,
+   "foliage": 11.879,
+   "blue flower": 4.079,
+   "bluish green": 15.463,
+   "orange": 11.312,
+   "purplish blue": 6.047,
+   "moderate red": 9.435,
+   "purple": 7.559,
+   "yellow green": 12.448,
+   "orange yellow": 11.527,
+   "blue": 6.245,
+   "green": 13.542,
+   "red": 10.254,
+   "yellow": 12.688,
+   "magenta": 9.639,
+   "cyan": 10.991,
+   "white 9.5": 11.51,
+   "neutral 8": 10.509,
+   "neutral 6.5": 9.831,
+   "neutral 5": 8.309,
+   "neutral 3.5": 6.505,
+   "black 2": 5.72
+  },
+  "mtf50": {
+   "mean": 0.0981087439463502,
+   "spread": 0.0017547130030257097,
+   "n": 3,
+   "values": [
+    0.09927,
+    0.09755,
+    0.09751
+   ]
+  },
+  "overshoot_pct": {
+   "mean": 1.8290650961248085,
+   "spread": 0.09576246929067045,
+   "n": 3,
+   "values": [
+    1.86254,
+    1.85788,
+    1.76678
+   ]
+  },
+  "black_measured": 63.916,
+  "black_tag": 63.0,
+  "read_noise_dn": 0.7168,
+  "hot_pixels_centre": 0,
+  "dynamic_range_stops": 10.3859,
+  "ptc_a": 0.11743,
+  "ptc_b": 0.4848,
+  "snr18_db": 31.571,
+  "ptc_levels": 7,
+  "noise_profile_tag": {
+   "S": 0.00011418929970669,
+   "O": 6.008143378523e-07,
+   "measured_S": 0.00012244301178900545,
+   "measured_O": 5.270702215259878e-07
+  }
+ },
+ "jpeg": {
+  "colour_mean_de": {
+   "mean": 9.010212295624108,
+   "spread": 0.03138278343297429,
+   "n": 3,
+   "values": [
+    9.02075,
+    8.98936,
+    9.02053
+   ]
+  },
+  "colour_max_de": {
+   "mean": 15.368156917353872,
+   "spread": 0.13532918906179248,
+   "n": 3,
+   "values": [
+    15.41908,
+    15.28375,
+    15.40164
+   ]
+  },
+  "colour_mean_de_wb": {
+   "mean": 5.46729252253196,
+   "spread": 0.0520310176441825,
+   "n": 3,
+   "values": [
+    5.49022,
+    5.47348,
+    5.43818
+   ]
+  },
+  "neutral_cast_ab": [
+   8.13,
+   -14.35
+  ],
+  "colour_per_patch": {
+   "dark skin": 10.064,
+   "light skin": 12.867,
+   "blue sky": 4.991,
+   "foliage": 4.812,
+   "blue flower": 6.202,
+   "bluish green": 13.509,
+   "orange": 5.788,
+   "purplish blue": 6.876,
+   "moderate red": 10.185,
+   "purple": 9.757,
+   "yellow green": 5.606,
+   "orange yellow": 8.558,
+   "blue": 9.286,
+   "green": 4.959,
+   "red": 6.21,
+   "yellow": 7.614,
+   "magenta": 7.522,
+   "cyan": 9.201,
+   "white 9.5": 5.525,
+   "neutral 8": 10.606,
+   "neutral 6.5": 13.79,
+   "neutral 5": 14.56,
+   "neutral 3.5": 15.368,
+   "black 2": 12.388
+  },
+  "mtf50": {
+   "mean": 0.24410151209415823,
+   "spread": 0.01454733397382793,
+   "n": 3,
+   "values": [
+    0.25216,
+    0.23762,
+    0.24252
+   ]
+  },
+  "overshoot_pct": {
+   "mean": 7.822677690355846,
+   "spread": 0.39444886132925383,
+   "n": 3,
+   "values": [
+    7.69395,
+    8.08427,
+    7.68982
+   ]
+  },
+  "snr_db_by_level": {
+   "4": -7.032,
+   "8": 22.253,
+   "16": 15.165,
+   "32": 22.952,
+   "64": 29.65,
+   "118": 37.273,
+   "180": 43.782,
+   "245": "clipped"
+  },
+  "snr18_db": 37.273,
+  "dynamic_range_light": "measured by the DNG flats",
+  "dynamic_range_stops": 10.094,
+  "dynamic_range_capped": false
+ },
+ "notes": []
+}

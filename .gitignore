@@ -51,3 +51,7 @@ desktop.ini
 # purpose-map analysis: generated outputs (tools/purpose/score.py, mockup.py)
 docs/purpose/scores.json
 docs/purpose/mockup_*.html
+
+# image-quality bench: generated targets and pulled photos
+bench_charts/
+bench_runs/
