@@ -150,8 +150,12 @@ can only list as "Reserved and unset: 256". The display system shows what it doe
 the Nord is already in the equivalent of the 6T's sRGB mode, and nothing needs changing. The two screens
 still differ in panel and factory calibration (and in the 6T's slider, which works in the panel and
 doesn't show in the transform). The pairing makes that harmless: each camera always sees the same screen.
-An eye-comfort schedule (22:00–07:00) is stored on the Nord. It wasn't active at 23:11, but it must be off
-for a session. The low-flicker ("single pulse") switch is still to record.
+Read on the Nord's own eye-comfort page (2026-10-22, opened from its Quick Settings tile, nothing
+changed): eye comfort was off, but its **schedule switches it on at 22:00**, in black-and-white mode. A
+session either ends before 22:00 or has the schedule turned off first. The page has **no low-flicker
+option**. The eye-comfort app lists its low-flicker entries (`single_pulse`, `dc_rm`) as `nonIndexKey`,
+the settings it withholds from search because the device doesn't offer them. The Nord's Display page
+showed brightness 100 %, adaptive brightness off, and Night Light off and never automatic.
 
 ## The monitor (owner, 2026-10-22)
 

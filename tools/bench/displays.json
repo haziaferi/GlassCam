@@ -32,9 +32,9 @@
    "settings": {
     "display_color_mode": 256,
     "render_mode": "ColorMode::SRGB",
-    "eye_comfort": "off",
+    "eye_comfort": "off, and its 22:00 schedule not reached during the session",
     "brightness": "max, auto-brightness off",
-    "low_flicker": null
+    "low_flicker": "not offered by this build"
    }
   }
  }
