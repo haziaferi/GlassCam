@@ -193,3 +193,34 @@ The 6T on the Nord, read back from GlassCam's screen: Jpg+16bitDng, focus Off (m
 shot of `flat_245` at ISO 100 and 1/30 s came out unclipped: green mean 0.44 of the raw range, red 0.25,
 blue 0.28. There's no flicker banding: once the falloff is removed, row means vary by 0.37 % and column
 means by 0.53 %. So the baseline runs at ISO 100, 1/30 s.
+
+**Correction (same night):** that test shot was really exposed at 1/92 s, not 1/30 s; see the first run below.
+
+## First run, 2026-10-22 23:48: a dry run, not a baseline
+
+The 6T against the Nord, dark room: 2 dark frames, 8 flat levels × 2 and 3 colour shots, all pulled and
+scored. The files' own ExposureTime tags show **the exposure was not fixed**. ISO held at 100, but the
+time drifted from 1/92 to 1/30 to 1/45 s, because GlassCam took the photos with auto-exposure on
+(SPEC §11 item 16). The run checked the bench itself, and it found five errors in the scorer, all fixed
+the same night:
+
+| Found on the real files | Fix |
+|---|---|
+| Read noise 1.57 DN from the whole frame: a light leak at one edge | Dark frames use the same centre crop as the flats: **0.72 DN** |
+| The 6T's DNG BlackLevel tag says 63; the sensor sits at 63.9 | The black level is measured in the dark frames, and both values are reported (item 2 finding) |
+| 146,084 "hot pixels" (leak + black offset) | Counted in the centre against the measured black: **0** |
+| The unweighted noise fit put its floor at 0.20 DN² against 0.52 measured | Weighted 1/variance: **0.48** |
+| The Nord's full white gave less light than its grey 180 (OLED power limiting), and it crushes levels 4 and 8 | JPEG dynamic range uses the light the DNG measured at each level, not nominal sRGB |
+| Two flat pairs had different exposures inside the pair | A pair is left out unless both shots match in ExposureTime and ISO |
+
+The colour score now reports ΔE as shot, ΔE after white balance on the grey patches (Imatest/DXOMARK
+practice), and the cast. The cast is large and comes from fixed choices: the Daylight preset (about
+5500 K) against the screen's D65, and the Nord's slightly magenta white. As-shot ΔE is JPEG 9.4 and DNG
+10.2; after white balance it is JPEG 5.5 and DNG 7.4.
+
+Noise profile check (list item 2): the 6T's per-shot NoiseProfile is right to within about 10 %
+(tag S 1.14e-4 / O 6.0e-7, measured 1.24e-4 / 5.3e-7).
+
+Still to do before the real baseline: (1) fix GlassCam's manual shutter (§11 item 16); (2) apply the
+DNG's lens-shading GainMap (OpcodeList2) in the bench's developer, because the DNG colour is otherwise
+scored on uncorrected shading, which differs per shot.

@@ -110,6 +110,26 @@ def colour_errors(xyz_d50):
     de = delta_e2000(xyz_to_lab(xyz_d50 * k), xyz_to_lab(target))
     return de, k
 
+
+def white_balance_on_neutrals(xyz_d50):
+    """The patches adapted (Bradford) so the mid neutrals' average white becomes D50: what remains is
+    colour rendering, without the white-balance cast."""
+    n = xyz_d50[list(SCALE_PATCHES)].sum(0)
+    return xyz_d50 @ bradford(n / n[1], D50).T
+
+
+def neutral_cast(xyz_d50, k):
+    """Average a*, b* of the mid neutrals at the fitted exposure: the white-balance cast."""
+    lab = xyz_to_lab(xyz_d50[list(SCALE_PATCHES)] * k)
+    return float(lab[:, 1].mean()), float(lab[:, 2].mean())
+
+
+def colour_report(xyz_d50):
+    """ΔE as shot, ΔE after white balance on the neutrals, and the cast."""
+    de, k = colour_errors(xyz_d50)
+    de_wb, _ = colour_errors(white_balance_on_neutrals(xyz_d50))
+    return de, de_wb, neutral_cast(xyz_d50, k)
+
 # ---------------------------------------------------------------- chart geometry
 
 
@@ -203,9 +223,13 @@ def pair_stats(a, b):
 
 
 def fit_ptc(means, variances):
-    """Least-squares variance = a * mean + b."""
+    """variance = a * mean + b, each point weighted by 1/variance: a variance estimate scatters in
+    proportion to itself, so unweighted the bright levels decide b, the read-noise floor (6T baseline,
+    2026-10-22: unweighted b = 0.20 DN^2 against the dark frames' 0.52; weighted 0.48)."""
+    y = np.asarray(variances, float)
+    w = 1 / np.sqrt(np.maximum(y, 1e-9))
     A = np.c_[means, np.ones(len(means))]
-    (a, b), *_ = np.linalg.lstsq(A, np.asarray(variances, float), rcond=None)
+    (a, b), *_ = np.linalg.lstsq(A * w[:, None], y * w, rcond=None)
     return float(a), float(b)
 
 
