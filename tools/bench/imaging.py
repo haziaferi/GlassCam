@@ -245,9 +245,19 @@ def slanted_edge(roi, bin_width=0.25):
     rows, cols = roi.shape
     d = np.abs(np.diff(roi, axis=1))
     xs = np.arange(cols - 1) + 0.5
-    pos = (d * xs).sum(1) / np.maximum(d.sum(1), 1e-12)
+    # first guess per row: where the smoothed row crosses halfway between ink and paper, nearest the window's
+    # centre. The gradient centroid over the whole row was pulled off the edge by a laser print's mottled
+    # toner (6T edge sheet, 2026-10-23: a visibly sharp edge read MTF50 0.046)
+    lo, hi = np.percentile(roi, 10), np.percentile(roi, 90)
+    k = np.ones(5) / 5
+    pos = np.empty(rows)
+    for r in range(rows):
+        sm = np.convolve(roi[r], k, mode="same")
+        above = sm > (lo + hi) / 2
+        flips = np.nonzero(above[1:] != above[:-1])[0]
+        pos[r] = flips[np.argmin(np.abs(flips - cols / 2))] + 0.5 if len(flips) else cols / 2
     m, c = np.polyfit(np.arange(rows), pos, 1)
-    for _ in range(2):                                   # refine on a window around the first fit
+    for _ in range(3):                                   # refine on a window around the fit
         win = np.abs(xs[None, :] - (m * np.arange(rows)[:, None] + c)) < 8
         dd = d * win
         pos = (dd * xs).sum(1) / np.maximum(dd.sum(1), 1e-12)
@@ -313,8 +323,10 @@ def find_squares(lum, target_count=4):
     """Dark squares on a lit sheet: list of (cx, cy, side) in pixels, largest first."""
     k = max(1, int(max(lum.shape) / 600))
     small = downsample(lum, k)
-    paper = np.percentile(small, 90)
-    dark = small < 0.5 * paper
+    # threshold at the geometric middle of ink and paper: a fixed half of the paper merged a square with
+    # the lamp-dimmed paper at the sheet's edge (6T, linear raw, faded print: 3 of 4 squares found)
+    paper, ink = np.percentile(small, 90), np.percentile(small, 5)
+    dark = small < np.sqrt(max(ink, 1e-6) * paper)
     h, w = dark.shape
     found = []
     for p in components(dark):
@@ -461,10 +473,16 @@ class Dng:
                 cnt[ch] += 1
         return out / cnt
 
-    def wb_mosaic(self):
-        """Full-resolution mosaic divided by the neutral: for a grey target this is a monochrome image."""
+    def wb_mosaic(self, from_scene=False):
+        """Full-resolution mosaic divided by a neutral: for a grey target this is a monochrome image.
+        from_scene: each CFA site divided by its own paper level (90th percentile), for a black-and-white
+        target under any light; the camera's neutral left a red/blue checkerboard under a warm lamp with
+        the Daylight preset (6T edge sheet, 2026-10-23: 1 usable edge of 16)."""
         n = self.norm()
-        lut = np.array([self.neutral[self.channel_of(i)] for i in range(len(self.desc))])
+        if from_scene:
+            lut = np.array([np.percentile(n[self.colors == i], 90) for i in range(len(self.desc))])
+        else:
+            lut = np.array([self.neutral[self.channel_of(i)] for i in range(len(self.desc))])
         return n / lut[self.colors]
 
     def camera_to_xyz_d50(self):

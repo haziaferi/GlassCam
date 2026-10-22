@@ -198,6 +198,20 @@ def test_mtf(plant=0.0):
     return ok, "; ".join(f"sigma {s}: {g:.4f} vs {e:.4f}" for s, g, e in out)
 
 
+def test_mtf_textured_ink(plant=0.0):
+    """A wide window and a blotchy ink area, like a laser print low on toner: the edge must still be found
+    (the gradient centroid alone read a sharp 6T edge as MTF50 0.046)."""
+    rng = np.random.default_rng(5)
+    sigma = 1.0
+    img = synthetic_edge(sigma + (0.6 if plant else 0), rows=240, cols=160)   # planted: a blurrier edge
+    blotch = np.repeat(np.repeat(rng.normal(0, 0.06, (240 // 6 + 1, 160 // 6 + 1)), 6, 0), 6, 1)[:240, :160]
+    ink = img < 0.5
+    img = img + np.where(ink, blotch, 0) * 3                       # mottle three times a real print's
+    got, _, _ = im.slanted_edge(img)
+    want = expected_mtf50(sigma)
+    return abs(got / want - 1) < 0.08, f"MTF50 {got:.4f} vs {want:.4f} with mottled ink"
+
+
 def test_overshoot(plant=0.0):
     """A plain edge has none; a sharpened one reads what its own pixels show (max over the far plateau)."""
     _, plain, _ = im.slanted_edge(synthetic_edge(1.0))
@@ -341,12 +355,12 @@ def test_gain_maps(plant=0):
 
 TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_with_stray_light,
          test_chart_rotated,
-         test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_overshoot, test_find_squares,
+         test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_mtf_textured_ink, test_overshoot, test_find_squares,
          test_score_jpeg_run, test_display_record, test_gain_maps]
 PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1,
           test_chart_with_stray_light: 1, test_chart_rotated: 1,
           test_dng_matrices: 0.05, test_interpolation: 0.5, test_ptc: 0.2, test_read_noise_dr: 0.1,
-          test_mtf: 0.3, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1,
+          test_mtf: 0.3, test_mtf_textured_ink: 1, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1,
           test_display_record: 1, test_gain_maps: 1}
 
 

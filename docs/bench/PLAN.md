@@ -238,10 +238,32 @@ that screenshots leave out, but the camera sees) was turned off. Scores in `base
 | Colour ΔE after white balance (spread) | 5.47 (0.05) | 6.68 (0.07) |
 | Cast on the greys, a* / b* | +8.1 / −14.4 | +3.9 / −9.0 |
 | Dynamic range | 10.1 stops | 10.4 stops |
-| Sharpness | owed: the printed edge sheet | |
+| Sharpness | owed: the edge sheet, resting on something solid | |
 
 Raw read noise is 0.717 DN (0.723 in the dry run). The noise fit's floor agrees with the dark frames. The
 6T's NoiseProfile is within about 8 %. Its DNG BlackLevel tag still says 63, against 63.9 measured.
 Shading maps agree across the chart repeats (corner gain 3.15-3.19). The JPEG crushes its darkest
 levels: grey 4 is below SNR 1, and grey 8 reads cleaner than grey 16 because the tone curve and noise
 reduction flatten near-black.
+
+### Edge sheet, first attempt (2026-10-23, 01:00): not usable yet
+
+The sheet was hand-held, and the owner's hands shake. The framing moved between checks, and a 1 s exposure
+(needed under a dim lamp at ISO 100) blurred: JPEG MTF50 0.057 at 1 s against 0.10-0.13 at 1/10 s, and
+the two 1/10 s shots differed by 25 %. Next time, the sheet rests on something solid (taped to a wall or
+a box, or flat on the desk with the 6T looking down) and nobody touches it during the shots.
+
+The attempt fixed four bench faults:
+
+- GlassCam's single-shot "Auto" focus is never triggered by its capture path, so it shot out of focus.
+  `shoot.py --focus auto` now means continuous AF, which the capture waits on.
+- The square finder used half the paper level as its threshold, and that merged a square with the
+  lamp-dimmed paper at the sheet's edge. It now thresholds at the geometric middle of ink and paper.
+- The DNG mosaic was balanced with the camera's Daylight neutral under a warm lamp, which left a red/blue
+  checkerboard. For the black-and-white sheet, each CFA site is now divided by its own paper level.
+- The edge locator used the gradient centroid over the whole row, which mottled toner pulls off the edge.
+  It now uses the halfway crossing nearest the window's centre, refined on a window. A self-test case
+  with mottled ink fails on the old locator (0.123 against 0.180) and passes on the new one.
+
+Lamp light flickers at 100 Hz (50 Hz mains), so exposures are whole multiples of 10 ms: 1/100, 1/25,
+1/10 s or longer. GlassCam offers no 1/50.

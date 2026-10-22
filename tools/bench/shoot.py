@@ -130,7 +130,9 @@ def configure(serial, iso="100", shutter="1/30", focus="auto", wb="DAYLIGHT", qu
     blk = label_choice(blk, "exposuremode", "Off")
     blk = index_choice(blk, "iso", iso)
     blk = index_choice(blk, "expotime", shutter)
-    blk = label_choice(blk, "focusmode", "Auto" if focus == "auto" else "Off")
+    # "auto" = continuous AF: GlassCam's single-shot "Auto" mode is never triggered by the capture path, so it
+    # shot the edge sheet out of focus (6T, 2026-10-23); a distance in cm or "inf" = manual focus
+    blk = label_choice(blk, "focusmode", "Continuous Picture" if focus == "auto" else "Off")
     blk = focus_choice(blk, focus)
     blk = label_choice(blk, "whitebalancemode", wb)
     mode = {"fast": "Fast", "hq": "High Quality"}[quality]

@@ -225,7 +225,7 @@ def score(run):
                                                for i, (name, _) in enumerate(im.PATCHES)}
         mtfs, overs = [], []
         for p in shots(run, "edges", fmt):
-            lum = im.Dng(p).wb_mosaic() if fmt == "dng" else im.luminance_from_srgb_linear(im.load_jpeg_linear(p))
+            lum = im.Dng(p).wb_mosaic(from_scene=True) if fmt == "dng" else im.luminance_from_srgb_linear(im.load_jpeg_linear(p))
             m, o = edges_of(lum)
             if m:
                 mtfs.append(float(np.median(m)))
