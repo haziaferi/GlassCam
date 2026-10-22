@@ -1,6 +1,6 @@
 /* -*- C++ -*-
  * File: libraw_alloc.h
- * Copyright 2008-2018 LibRaw LLC (info@libraw.org)
+ * Copyright 2008-2025 LibRaw LLC (info@libraw.org)
  * Created: Sat Mar  22, 2008
  *
  * LibRaw C++ interface
@@ -34,17 +34,19 @@ public:
   {
     size_t alloc_sz = LIBRAW_MSIZE * sizeof(void *);
     mems = (void **)::malloc(alloc_sz);
-    memset(mems, 0, alloc_sz);
+	if(mems)
+		memset(mems, 0, alloc_sz);
   }
   ~libraw_memmgr()
   {
     cleanup();
-    ::free(mems);
+	if(mems)
+		::free(mems);
   }
   void *malloc(size_t sz)
   {
 #ifdef LIBRAW_USE_CALLOC_INSTEAD_OF_MALLOC
-    void *ptr = ::calloc(sz + extra_bytes,1);
+    void *ptr = ::calloc(sz + extra_bytes, 1);
 #else
     void *ptr = ::malloc(sz + extra_bytes);
 #endif
@@ -71,6 +73,7 @@ public:
   }
   void cleanup(void)
   {
+	if (!mems) return;
     for (int i = 0; i < LIBRAW_MSIZE; i++)
       if (mems[i])
       {
@@ -84,28 +87,64 @@ private:
   unsigned extra_bytes;
   void mem_ptr(void *ptr)
   {
-    if (ptr)
-    {
-      for (int i = 0; i < LIBRAW_MSIZE; i++)
-        if (!mems[i])
-        {
-          mems[i] = ptr;
-          return;
-        }
-#ifdef LIBRAW_MEMPOOL_CHECK
-      throw LIBRAW_EXCEPTION_MEMPOOL;
+	  if (!mems) return;
+#if defined(LIBRAW_USE_OPENMP)
+      bool ok = false; /* do not return from critical section */
 #endif
-    }
+
+#if defined(LIBRAW_USE_OPENMP)
+#pragma omp critical
+      {
+#endif
+          if (ptr)
+          {
+              for (int i = 0; i < LIBRAW_MSIZE - 1; i++)
+                  if (!mems[i])
+                  {
+                      mems[i] = ptr;
+#if defined(LIBRAW_USE_OPENMP)
+		      ok = true;
+		      break;
+#else
+                      return;
+#endif
+                  }
+#ifdef LIBRAW_MEMPOOL_CHECK
+#if !defined(LIBRAW_USE_OPENMP)
+              /* remember ptr in last mems item to be free'ed at cleanup */
+              if (!mems[LIBRAW_MSIZE - 1])
+                  mems[LIBRAW_MSIZE - 1] = ptr;
+              throw LIBRAW_EXCEPTION_MEMPOOL;
+#endif
+#endif
+          }
+#if defined(LIBRAW_USE_OPENMP)
+      }
+      if(!ok)
+      {
+          if (!mems[LIBRAW_MSIZE - 1])
+              mems[LIBRAW_MSIZE - 1] = ptr;
+          throw LIBRAW_EXCEPTION_MEMPOOL;
+      }
+#endif
   }
   void forget_ptr(void *ptr)
   {
-    if (ptr)
+	if (!mems) return;
+#if defined(LIBRAW_USE_OPENMP)
+#pragma omp critical
+    {
+#endif
+     if (ptr)
       for (int i = 0; i < LIBRAW_MSIZE; i++)
         if (mems[i] == ptr)
         {
           mems[i] = NULL;
           break;
         }
+#if defined(LIBRAW_USE_OPENMP)
+    }
+#endif
   }
 };
 

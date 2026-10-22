@@ -20,7 +20,8 @@ import tempfile
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PARTS = ["SPEC.md", "build.gradle", "settings.gradle", "gradle/libs.versions.toml", "app/build.gradle",
          "tools/spec_check.py", "app/src/main/AndroidManifest.xml", "app/src/main/java", "app/src/main/res",
-         "app/src/main/jni/freedcam"]
+         "app/src/main/jni/freedcam", "app/src/main/jni/LibRaw", "app/src/main/jni/tiff",
+         "app/src/main/jni/VENDORED.json", "tools/vendor_libs.py"]
 J = "app/src/main/java/glasscam"
 L = "app/src/main/res/layout"
 
@@ -137,6 +138,24 @@ MUTANTS = [
      [("app/src/main/jni/freedcam/DngStacker.cpp",
        "TIFFWriteRawStrip(tif, 0, rawOutputData, (tmsize_t)width*height*2);",
        "TIFFWriteRawStrip(tif, 0, rawOutputData, ((width*height)*16)/8);")]),
+    ("S-38", "a vendored libtiff file edited in place",
+     [("app/src/main/jni/tiff/libtiff/tif_dir.c", "#include \"tiffiop.h\"\n", "#include \"tiffiop.h\"\n/* local edit */\n")]),
+    ("S-39", "CFAPattern set without its count again",
+     [("app/src/main/jni/freedcam/DngWriter.cpp", "TIFFSetField (tif, TIFFTAG_CFAPATTERN, 4, cfa);", "TIFFSetField (tif, TIFFTAG_CFAPATTERN, cfa);")]),
+    ("S-39", "GPS latitude passed as the float array again",
+     [("app/src/main/jni/freedcam/DngWriter.cpp", "TIFFSetField( tif, GPSTAG_LATITUDE, latitude)", "TIFFSetField( tif, GPSTAG_LATITUDE, gpsInfo->Latitude)")]),
+    ("S-40", "the converter without its ScrollView (Convert 0 px tall in landscape)",
+     [("app/src/main/res/layout/dngconvertingfragment.xml", "    <ScrollView\n", "    <FrameLayout\n"),
+      ("app/src/main/res/layout/dngconvertingfragment.xml", "    </ScrollView>\n", "    </FrameLayout>\n")]),
+    ("S-41", "the converter reads a raw dump's URI as a SAF tree again",
+     [(f"{J}/viewer/dngconvert/DngConvertingFragment.java",
+       "DocumentFile.fromSingleUri(getContext(), Uri.parse(s))", "DocumentFile.fromTreeUri(getContext(), Uri.parse(s))")]),
+    ("S-39", "ForwardMatrix1 no longer registered (libtiff 4.7.2 compiles it out: dropped from every DNG)",
+     [("app/src/main/jni/freedcam/TiffSetup.h",
+       "    {TIFFTAG_FORWARDMATRIX1, -1, -1, TIFF_SRATIONAL, FIELD_CUSTOM, 1, 1, (char *)\"ForwardMatrix1\"},\n", "")]),
+    ("S-41", "the converter reopens its output without truncating",
+     [(f"{J}/viewer/dngconvert/DngConvertingFragment.java",
+       "openFileDescriptor(((UriHolder)out).getMediaStoreUri(), \"rwt\")", "openFileDescriptor(((UriHolder)out).getMediaStoreUri(), \"rw\")")]),
     ("S-13", "the same tag on two clauses",
      [("SPEC.md", "| T6 |", "| T6 | `[S-13]` |")]),
 ]

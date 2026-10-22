@@ -318,7 +318,7 @@ public class DngConvertingFragment extends Fragment
             List<BaseHolder> files = fileListController.getFiles();
             for (BaseHolder b : files)
             {
-                if (((UriHolder) b).getMediaStoreUri().toString().equals(path)) {
+                if (path.equals(holderUri(b))) {
                     try {
                         InputStream stream = b.getInputStream();
                         filesize = stream.available();
@@ -353,6 +353,16 @@ public class DngConvertingFragment extends Fragment
         }
     };
 
+    /** The content:// string a holder is listed under, or null for a plain file. */
+    private static String holderUri(BaseHolder b)
+    {
+        if (b instanceof UriHolder && ((UriHolder) b).getMediaStoreUri() != null)
+            return ((UriHolder) b).getMediaStoreUri().toString();
+        if (b instanceof DocumentHolder && ((DocumentHolder) b).getDocumentFile() != null)
+            return ((DocumentHolder) b).getDocumentFile().getUri().toString();
+        return null;
+    }
+
     private class AsyncConverter extends AsyncTask<String[], Integer, Bitmap>
     {
         private ProgressDialog pr;
@@ -367,32 +377,29 @@ public class DngConvertingFragment extends Fragment
             String[] files = params[0];
             ActivityInterface activityInterface = (ActivityInterface)getActivity();
             List<BaseHolder> convertFiles = new ArrayList<>();
-            if (files[0].startsWith("uri"))
+            if (files[0].startsWith("uri") || files[0].startsWith("content"))
             {
+                // A content:// string is a MediaStore item (DCIM, or the raw dumps in Documents/GlassCam since
+                // 4.3.96) or a SAF document. Both are matched against the gallery's own list; until 4.3.100 every
+                // content:// string went to DocumentFile.fromTreeUri, which throws on either (6T walk, 2026-10-22).
                 fileListController.LoadGlassCamDCIMDirsFiles();
                 List<BaseHolder> baseHolders = fileListController.getFiles();
                 for (String s : files)
                 {
+                    BaseHolder match = null;
                     for (BaseHolder b : baseHolders)
                     {
-                        if (b.getHolderType() ==  UriHolder.class) {
-                            if (((UriHolder) b).getMediaStoreUri().toString().equals(s))
-                                convertFiles.add(b);
-                        }
-                        else if (b.getHolderType() == DocumentHolder.class)
-                        {
-                            if (((DocumentHolder) b).getDocumentFile().getUri().toString().equals(s))
-                                convertFiles.add(b);
-                        }
+                        if (s.equals(holderUri(b)))
+                            match = b;
                     }
-                }
-            }
-            else if (files[0].startsWith("content"))
-            {
-                for (String s : files) {
-                    Uri uri = Uri.parse(s);
-                    DocumentFile fi = DocumentFile.fromTreeUri(getContext(),uri);
-                    convertFiles.add(new DocumentHolder(fi,true));
+                    if (match == null && s.startsWith("content"))
+                    {
+                        DocumentFile fi = DocumentFile.fromSingleUri(getContext(), Uri.parse(s));
+                        if (fi != null && fi.exists())
+                            match = new DocumentHolder(fi, true);
+                    }
+                    if (match != null)
+                        convertFiles.add(match);
                 }
             }
             else
@@ -403,6 +410,8 @@ public class DngConvertingFragment extends Fragment
                     convertFiles.add(b);
                 }
             }
+            if (convertFiles.isEmpty())
+                return null;
             if (convertFiles.size() == 1) {
                 return convertRawToDng(convertFiles.get(0));
             }
@@ -481,7 +490,9 @@ public class DngConvertingFragment extends Fragment
                 DocumentFile wr = df.findFile(out.getName());
                 try {
 
-                    pfd = getContext().getContentResolver().openFileDescriptor(wr.getUri(), "rw");
+                    // "rwt": converting the same raw again rewrites its DNG; "rw" left the old bytes in front, so
+                    // libtiff appended (a second conversion doubled the file, A/B on the 6T 2026-10-22)
+                    pfd = getContext().getContentResolver().openFileDescriptor(wr.getUri(), "rwt");
                 } catch (FileNotFoundException | IllegalArgumentException ex) {
                     Log.WriteEx(ex);
                     return null;
@@ -489,7 +500,7 @@ public class DngConvertingFragment extends Fragment
             }
             else {
                 try {
-                    pfd = getContext().getContentResolver().openFileDescriptor(((UriHolder)out).getMediaStoreUri(), "rw");
+                    pfd = getContext().getContentResolver().openFileDescriptor(((UriHolder)out).getMediaStoreUri(), "rwt");
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }

@@ -17,6 +17,7 @@ in every round.
 
 Stdlib only; no device needed. Run from anywhere: paths resolve from this file.
 """
+import json
 import os
 import re
 import sys
@@ -627,6 +628,99 @@ def check_S37():
             if "*" in expr and not re.search(r"\((?:tmsize_t|size_t|long)\)", expr):
                 bad.append(f"{name}: {expr}")
     need(not bad, "an int product sizes a DNG buffer again: " + "; ".join(bad))
+
+
+def check_S38():
+    """[S-38] the vendored LibRaw and libtiff are their release tarballs as tools/vendor_libs.py imported them: no file changed, missing or added (VENDORED.json)"""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import vendor_libs
+    problems = vendor_libs.verify()
+    need(not problems, "; ".join(problems[:3]) + (f" (+{len(problems) - 3} more)" if len(problems) > 3 else ""))
+    entries = json.loads(read(os.path.join(ROOT, "app", "src", "main", "jni", "VENDORED.json")))
+    need(entries["libtiff"]["version"] == "4.7.2" and entries["libraw"]["version"] == "0.22.2",
+         "the vendored versions no longer match SPEC ST8")
+    need(len(entries["libtiff"]["patches"]) == 1 and not entries["libraw"]["patches"], "a patch was added to a vendored library")
+
+
+def check_S39():
+    """[S-39] every tag the DNG code writes is known to libtiff 4.7.2 or registered by TiffSetup.h, is called the way its definition expects, and CameraCalibration/ActiveArea are not written"""
+    # TIFFSetField is variadic: a count where libtiff reads a pointer, or floats where it copies doubles, compiles
+    # cleanly and writes a broken DNG (or crashes). Audited tag by tag for the 4.0.9 -> 4.7.2 upgrade (2026-10-22).
+    srcs = {n: re.sub(r"//[^\n]*|/\*.*?\*/", "", read(os.path.join(NATIVE, n)), flags=re.S) for n in ("DngWriter.cpp", "DngStacker.cpp")}
+    for name, src in srcs.items():
+        sets = re.findall(r"TIFFSetField\s*\(([^;]*)\);", src)
+        cfa = [s for s in sets if "TIFFTAG_CFAPATTERN" in s]
+        need(cfa and all(re.search(r"TIFFTAG_CFAPATTERN\s*,\s*4\s*,", s) for s in cfa), f"{name}: CFAPattern is set without its count")
+        bad = [s for s in sets if re.search(r"TIFFTAG_(CAMERACALIBRATION[12]|ACTIVEAREA)\b", s)]
+        need(not bad, f"{name}: writes {bad[0].split(',')[1].strip() if bad else ''} (SPEC ST8: not written until decided)")
+        need(not re.search(r"TIFFTAG_(OPC[23]|FOWARDMATRIX[12]|EP_STANDARD_ID)\b|GPSTAG_GPS", src), f"{name}: a tag name from FreeDcam's patched libtiff is back")
+    # A/B on the 6T, 2026-10-22: libtiff 4.7.2 compiles its DNG 1.2/1.3 tags and TIFF/EP StandardID out with #if 0,
+    # so ForwardMatrix, NoiseProfile and StandardID were silently dropped ("Unknown tag"). Every tag the DNG code
+    # sets must be active in the vendored libtiff (preprocessor applied) or registered by TiffSetup.h - not both.
+    dirinfo = read(os.path.join(ROOT, "app", "src", "main", "jni", "tiff", "libtiff", "tif_dirinfo.c"))
+    active_src, depth = [], 0
+    for line in dirinfo.splitlines():
+        s = line.strip()
+        if depth:
+            depth += 1 if re.match(r"#\s*if", s) else -1 if re.match(r"#\s*endif", s) else 0
+        elif re.match(r"#\s*if\s+0\b", s):
+            depth = 1
+        else:
+            active_src.append(line)
+    active = set(re.findall(r"\{\s*((?:TIFFTAG|EXIFTAG|GPSTAG)_\w+)\s*,", "\n".join(active_src)))
+    setup = read(os.path.join(NATIVE, "TiffSetup.h"))
+    registered = set(re.findall(r"\{\s*(TIFFTAG_\w+)\s*,", setup))
+    used = set()
+    for src in srcs.values():
+        used |= set(re.findall(r"TIFFSetField\s*\(\s*\w+\s*,\s*((?:TIFFTAG|EXIFTAG|GPSTAG)_\w+)", src))
+    # compared by tag number: TIFFTAG_CFAPATTERN is libtiff's alias of TIFFTAG_EP_CFAPATTERN (33422)
+    tiffh = read(os.path.join(ROOT, "app", "src", "main", "jni", "tiff", "libtiff", "tiff.h"))
+    num = {n: int(v) for n, v in re.findall(r"#define\s+((?:TIFFTAG|EXIFTAG|GPSTAG)_\w+)\s+(\d+)\b", tiffh)}
+    need(all(t in num for t in used | registered), "a tag the DNG code uses is not defined in tiff.h: "
+         + ", ".join(sorted(t for t in used | registered if t not in num)))
+    active_n, registered_n = {num[t] for t in active if t in num}, {num[t] for t in registered}
+    unknown = sorted(t for t in used if num.get(t) not in active_n and num.get(t) not in registered_n)
+    need(not unknown, "libtiff does not know these tags and TiffSetup.h does not register them (they would be dropped): " + ", ".join(unknown))
+    twice = sorted(t for t in registered if num[t] in active_n)
+    need(not twice, "TiffSetup.h registers tags libtiff already defines: " + ", ".join(twice))
+    for name, src in srcs.items():
+        opens = [m.start() for m in re.finditer(r"TIFF(?:Fd)?Open\s*\(", src)]
+        need(opens and "installTiffSetup()" in src, f"{name}: opens TIFFs without installTiffSetup()")
+    w = srcs["DngWriter.cpp"]
+    need(re.search(r"TIFFTAG_PROFILEHUESATMAPDIMS\s*,\s*3\s*,\s*huesatmapdims\s*\)", w), "ProfileHueSatMapDims lost its count (TiffSetup.h registers it with passcount 1)")
+    for tag, arr in (("GPSTAG_LONGITUDE", "longitude"), ("GPSTAG_LATITUDE", "latitude"), ("GPSTAG_TIMESTAMP", "gpsTime")):
+        need(re.search(r"double %s\[3\]" % arr, w) and re.search(r"%s\s*,\s*%s\s*\)" % (tag, arr), w),
+             f"{tag} is not passed as an array of 3 doubles")
+    need(re.search(r"TIFFTAG_XRESOLUTION\s*,\s*7200\.0\s*\)", w) and re.search(r"TIFFTAG_YRESOLUTION\s*,\s*7200\.0\s*\)", w),
+         "X/YResolution are passed as ints again (libtiff reads a double)")
+    ctor = method_body(read(os.path.join(NATIVE, "DngWriter.h")), "DngWriter")
+    need(re.search(r"baselineExposure\s*=\s*0;", ctor) and re.search(r"baselineExposureOffset\s*=\s*0;", ctor),
+         "BaselineExposure/Offset start uninitialized again (the converter wrote whatever was in memory)")
+
+
+def check_S40():
+    """[S-40] the raw-to-DNG converter scrolls, so its Save profile and Convert buttons can be reached in landscape"""
+    # 6T walk 2026-10-22: the form left both buttons 0 px tall, so the converter could not convert anything
+    root = xml_root(layout("dngconvertingfragment.xml"))
+    A = "{http://schemas.android.com/apk/res/android}"
+    scrolls = [e for e in root.iter() if e.tag == "ScrollView"]
+    need(scrolls, "the converter has no ScrollView")
+    inside = {e.get(A + "id") for s in scrolls for e in s.iter()}
+    for bid in ("@+id/button_convertDng", "@+id/button_saveProfile"):
+        need(bid in inside, f"{bid} is outside the scrolling area")
+
+
+def check_S41():
+    """[S-41] the converter resolves a content:// file through the gallery's own list (MediaStore items and SAF documents), never as a SAF tree"""
+    # 6T walk 2026-10-22: the raw dumps are MediaStore items since 4.3.96; DocumentFile.fromTreeUri threw on them
+    src = read(jfile("DngConvertingFragment.java"))
+    need("fromTreeUri(" not in src, "a file URI is read as a SAF tree again")
+    body = method_body(src, "doInBackground")
+    need(re.search(r"startsWith\(\"content\"\)", body) and "holderUri(b)" in body, "content:// files are no longer matched against the gallery's list")
+    need("convertFiles.isEmpty()" in body, "an unresolved file crashes the converter again (get(0) on an empty list)")
+    # a second conversion of the same raw appended to the old DNG (doubled the file) while its output opened "rw"
+    opens = re.findall(r"openFileDescriptor\([^;]*?\"(\w+)\"\)", src)
+    need(opens and all(m == "rwt" for m in opens), f"the converter opens its output without truncating it: {opens}")
 
 
 # --------------------------------------------------------------------------------------------

@@ -107,6 +107,9 @@ public:
         huesatmapdims = NULL;
         crop_width = 0;
         crop_height =0;
+        // the raw-to-DNG converter never sets these, so its DNGs carried whatever was in memory (A/B on the 6T, 2026-10-22)
+        baselineExposure = 0;
+        baselineExposureOffset = 0;
     }
 
     void WriteDNG();

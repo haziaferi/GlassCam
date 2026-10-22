@@ -85,6 +85,7 @@ static jobject copyToJavaBitmap(JNIEnv * env,unsigned char data[],unsigned int d
         LOGD("pixel unlocked");
         return newBitmap;
     }
+    return NULL; // no pixel data: the caller shows no preview (this path used to return nothing at all)
 }
 
 #endif //FREEDCAM_JNIUTILS_H
