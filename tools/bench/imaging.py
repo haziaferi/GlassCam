@@ -145,7 +145,14 @@ def locate_screen(lum):
     not between the background and the bright patches: at 0.5 x the brightest pixels, a screen filling the
     frame lost its background and only the bright patches were "the screen"."""
     thr = 0.2 * np.percentile(lum, 99)
-    ys, xs = np.nonzero(lum > thr)
+    k = max(1, int(max(lum.shape) / 600))
+    mask = downsample(lum, k) > thr
+    blob = max(components(mask), key=len)          # the screen; a lamp or an app overlay is a smaller blob
+    keep = np.zeros_like(mask)
+    keep[blob[:, 0], blob[:, 1]] = True
+    full = np.repeat(np.repeat(keep, k, 0), k, 1)
+    full = np.pad(full, ((0, lum.shape[0] - full.shape[0]), (0, lum.shape[1] - full.shape[1])))
+    ys, xs = np.nonzero((lum > thr) & full)
     s, d = xs + ys, xs - ys
     pick = lambda k: (float(xs[k]), float(ys[k]))
     return [pick(np.argmin(s)), pick(np.argmax(d)), pick(np.argmax(s)), pick(np.argmin(d))]
@@ -251,17 +258,18 @@ def slanted_edge(roi, bin_width=0.25):
     return float(mtf50), float(overshoot), abs(m)
 
 
-def find_squares(lum, target_count=4):
-    """Dark squares on a lit sheet: list of (cx, cy, side) in pixels, largest first."""
-    k = max(1, int(max(lum.shape) / 600))
-    small = lum[: lum.shape[0] // k * k, : lum.shape[1] // k * k]
-    small = small.reshape(small.shape[0] // k, k, small.shape[1] // k, k).mean((1, 3))
-    paper = np.percentile(small, 90)
-    dark = small < 0.5 * paper
-    seen = np.zeros_like(dark)
-    h, w = dark.shape
-    found = []
-    for y0, x0 in zip(*np.nonzero(dark)):
+def downsample(a, k):
+    """Block mean by k x k (the edges that don't fill a block are dropped)."""
+    a = a[: a.shape[0] // k * k, : a.shape[1] // k * k]
+    return a.reshape(a.shape[0] // k, k, a.shape[1] // k, k).mean((1, 3))
+
+
+def components(mask):
+    """4-connected regions of a boolean array, each as an (n, 2) array of (row, col)."""
+    seen = np.zeros_like(mask)
+    h, w = mask.shape
+    out = []
+    for y0, x0 in zip(*np.nonzero(mask)):
         if seen[y0, x0]:
             continue
         stack, pix = [(y0, x0)], []
@@ -270,10 +278,22 @@ def find_squares(lum, target_count=4):
             y, x = stack.pop()
             pix.append((y, x))
             for yy, xx in ((y + 1, x), (y - 1, x), (y, x + 1), (y, x - 1)):
-                if 0 <= yy < h and 0 <= xx < w and dark[yy, xx] and not seen[yy, xx]:
+                if 0 <= yy < h and 0 <= xx < w and mask[yy, xx] and not seen[yy, xx]:
                     seen[yy, xx] = True
                     stack.append((yy, xx))
-        p = np.array(pix)
+        out.append(np.array(pix))
+    return out
+
+
+def find_squares(lum, target_count=4):
+    """Dark squares on a lit sheet: list of (cx, cy, side) in pixels, largest first."""
+    k = max(1, int(max(lum.shape) / 600))
+    small = downsample(lum, k)
+    paper = np.percentile(small, 90)
+    dark = small < 0.5 * paper
+    h, w = dark.shape
+    found = []
+    for p in components(dark):
         bh, bw = np.ptp(p[:, 0]) + 1, np.ptp(p[:, 1]) + 1
         if len(p) < 0.002 * h * w or not 0.7 < bh / bw < 1.4 or len(p) / (bh * bw) < 0.7:
             continue

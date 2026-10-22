@@ -2,7 +2,8 @@
 
     python tools/bench/chart.py [OUT_DIR]        # default bench_charts/ (gitignored)
 
-Open a page in a browser on the monitor and press F11 so it fills the screen. edges.html is for the
+Open a page in a browser on the monitor or the display phone and tap or click it once: it goes full
+screen (F11 also works on the monitor). edges.html is for the
 black-and-white printer: print at 100 % scale (no "fit to page"), A4 landscape.
 The geometry comes from imaging.py, so the scorer always looks where the page drew.
 """
@@ -14,7 +15,9 @@ import imaging as im  # noqa: E402
 
 PAGE = """<!doctype html><html><head><meta charset="utf-8"><title>{title}</title><style>
 html,body{{margin:0;height:100%;overflow:hidden;cursor:none;background:{bg}}}
-div{{position:fixed}}</style></head><body>{body}</body></html>
+div{{position:fixed}}</style></head><body>{body}
+<script>document.addEventListener("click",function(){{var e=document.documentElement;
+(e.requestFullscreen||e.webkitRequestFullscreen).call(e)}})</script></body></html>
 """
 
 
@@ -61,7 +64,7 @@ def index_page(levels):
     return f"""<!doctype html><html><head><meta charset="utf-8"><title>Bench targets</title></head><body
 style="font:16px sans-serif;max-width:40em;margin:2em auto;line-height:1.5">
 <h1>Bench targets</h1>
-<p>Dark room; the monitor in its sRGB mode at a fixed brightness; press F11 on each page.</p>
+<p>Dark room; the monitor in its sRGB mode at a fixed brightness; tap or click each page once to make it full screen.</p>
 <ol>
 <li><b>Dark frames</b>: lens covered, two DNGs.</li>
 <li><b>Flat fields</b> (phone close to the screen, focus at its nearest so the screen is blurred,

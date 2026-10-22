@@ -75,6 +75,19 @@ def test_chart_filling_frame(plant=0.0):
     return de.max() < 0.5, f"mean dE {de.mean():.3f}, max {de.max():.3f}"
 
 
+def test_chart_with_stray_light(plant=0.0):
+    """A lamp in the room and a bright app overlay beside the screen must not move its corners
+    (6T preview, 2026-10-22: both stretched the screen and gave dE 33)."""
+    img = warped_chart()
+    img[20:120, 30:200] = 1.0                       # a lit object at the top left
+    img[10:90, 1050:1180] = (0.2, 1.0, 0.2)         # a bright green overlay at the top right
+    if plant:
+        img = img[..., [1, 0, 2]]
+    lum = im.luminance_from_srgb_linear(img)
+    de, k, _ = im.best_orientation(img, im.locate_screen(lum), im.srgb_linear_to_xyz_d50)
+    return de.max() < 0.5, f"mean dE {de.mean():.3f}, max {de.max():.3f}"
+
+
 def test_chart_rotated(plant=0.0):
     img = np.rot90(warped_chart(), 1) * 0.6          # rotated a quarter turn and underexposed
     if plant:
@@ -292,10 +305,12 @@ def test_display_record(plant=0):
     return not bad, "all cases as expected" if not bad else f"wrong: {bad}"
 
 
-TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_rotated,
+TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_with_stray_light,
+         test_chart_rotated,
          test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_overshoot, test_find_squares,
          test_score_jpeg_run, test_display_record]
-PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1, test_chart_rotated: 1,
+PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1,
+          test_chart_with_stray_light: 1, test_chart_rotated: 1,
           test_dng_matrices: 0.05, test_interpolation: 0.5, test_ptc: 0.2, test_read_noise_dr: 0.1,
           test_mtf: 0.3, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1,
           test_display_record: 1}
