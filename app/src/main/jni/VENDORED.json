@@ -42,7 +42,7 @@
    "src/decoders/sonycc.cpp": "35e5077e11699ac26266258e5fc13ad9c09f416db66e8fad53f43d8103f310c3",
    "src/decoders/unpack.cpp": "6a462fdec8c2961790f2077af3016c314ac00ce3cabe33f1ea33a051c8d9f97c",
    "src/decoders/unpack_thumb.cpp": "fb68744b0250b89bc3d9d29f0d296350b53442f20ad66ac21c1877d907f8c5ac",
-   "src/decompressors/losslessjpeg.cpp": "9b33eafce1b6e84c83bb191f80ee35bf7c80258fe5c6700c3f2e37c3b14853ac",
+   "src/decompressors/losslessjpeg.cpp": "015cc34330e3a4a3f12e5130246c0cc6cecb1bfbd8183b86e34ee836eb50d508",
    "src/demosaic/aahd_demosaic.cpp": "234ec195d9aea3353792397a9d4563997b552926100069021260bfa473f10f05",
    "src/demosaic/ahd_demosaic.cpp": "5445b43a06543f2117cc3a0123e14c7b136cdc7fd92dc64d9af63671a66a6688",
    "src/demosaic/dcb_demosaic.cpp": "38ca1a30367750101ed806b04471c024f1cea7b05d36b313bb20ec3e9e633bf1",
@@ -106,7 +106,13 @@
    "src/x3f/x3f_utils_patched.cpp": "0b642f723dc843e3c2c80c0f09869bbf4fd1ca46e4183034becb5cdda70bdda4"
   },
   "generated": [],
-  "patches": [],
+  "patches": [
+   {
+    "file": "src/decompressors/losslessjpeg.cpp",
+    "matches": 1,
+    "why": "CodeQL cpp/comparison-with-wider-type: a uint32_t loop counter (nbits is at most 16, so the uint8_t never wrapped)"
+   }
+  ],
   "tarball": "LibRaw-0.22.2.tar.gz",
   "tarball_sha256": "627928088300ecde6ca91ffd202e189203f04ad61ad12f0fe9dc57b9a7a0fb3c",
   "version": "0.22.2"
@@ -124,7 +130,7 @@
    "libtiff/tif_color.c": "4e5183a58f908ad6d2fa1805d657fbde67fde90a66b3e431005221bf190983ac",
    "libtiff/tif_compress.c": "e569f3502c4af70f4ccd56b7f78aac0f809fedb438419cb1ae09f69e3b1bfb8e",
    "libtiff/tif_config.h": "ca962505fd7f53f5c6104c20a3ddcbc17bb4cfb07759ba5f6bd7d4b194141813",
-   "libtiff/tif_dir.c": "3c32da0a5aa9d169973653c16e85f39b0d09460759b0d9cd850c7ecd723182d1",
+   "libtiff/tif_dir.c": "14930fbb5b647b8b0e8a22976aa5672cd0e2701a5986a7a128db27478ad4e25a",
    "libtiff/tif_dir.h": "2d9c36a036f169b8521e0e3f0de968576136b5b43f38d8b9904791a6137d342f",
    "libtiff/tif_dirinfo.c": "f0c2d4c491cfc148ac8cb02ad12ee3d17b6a9e64a6f7de2f12fcd5d18ed5f711",
    "libtiff/tif_dirread.c": "9a9220abd10e952c5147207461725630ccd9a0886e157ccabbe8c5a3006445fe",
@@ -182,6 +188,11 @@
     "file": "libtiff/tif_dir.c",
     "matches": 2,
     "why": "allow non-multiple-of-16 tiles when writing (lossless-JPEG DNG tiles are width/2 x height)"
+   },
+   {
+    "file": "libtiff/tif_dir.c",
+    "matches": 1,
+    "why": "CodeQL cpp/integer-multiplication-cast-to-long: multiply in tmsize_t (the same size was overflow-checked when tv->value was allocated)"
    }
   ],
   "tarball": "tiff-4.7.2.tar.gz",

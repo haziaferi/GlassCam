@@ -855,7 +855,7 @@ static int _TIFFVSetField(TIFF *tif, uint32_t tag, va_list ap)
                     /*--: Rational2Double: For Rationals tv_size is set above to
                      * 4 or 8 according to fip->set_get_field_type! */
                     _TIFFmemcpy(tv->value, va_arg(ap, void *),
-                                tv->count * tv_size);
+                                (tmsize_t)tv->count * tv_size);
                     /* Test here for too big values for LONG8, IFD8, SLONG8 in
                      * ClassicTIFF and delete custom field from custom list */
                     if (!(tif->tif_flags & TIFF_BIGTIFF))

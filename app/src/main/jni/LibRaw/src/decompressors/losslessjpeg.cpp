@@ -366,7 +366,7 @@ void HuffTable::initval(uint32_t _bits[17], uint32_t _huffval[256], bool _dng_bu
 
 	int h = 0;
     int pos = 0;
-    for (uint8_t len = 0; len < nbits; len++)
+    for (uint32_t len = 0; len < nbits; len++)
     {
       for (uint32_t i = 0; i < bits[len + 1]; i++)
       {

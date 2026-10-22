@@ -639,7 +639,10 @@ def check_S38():
     entries = json.loads(read(os.path.join(ROOT, "app", "src", "main", "jni", "VENDORED.json")))
     need(entries["libtiff"]["version"] == "4.7.2" and entries["libraw"]["version"] == "0.22.2",
          "the vendored versions no longer match SPEC ST8")
-    need(len(entries["libtiff"]["patches"]) == 1 and not entries["libraw"]["patches"], "a patch was added to a vendored library")
+    # SPEC ST8 names each patch; a new one is a SPEC change too
+    need([p["file"] for p in entries["libtiff"]["patches"]] == ["libtiff/tif_dir.c", "libtiff/tif_dir.c"]
+         and [p["file"] for p in entries["libraw"]["patches"]] == ["src/decompressors/losslessjpeg.cpp"],
+         "the vendored libraries' patches no longer match SPEC ST8")
 
 
 def check_S39():
