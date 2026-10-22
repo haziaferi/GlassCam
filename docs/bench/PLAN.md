@@ -1,6 +1,6 @@
 # Image-quality bench: plan (2026-10-22)
 
-**Status:** the scoring tools and their self-test are built (`tools/bench/`, 13 checks, each also failing on
+**Status:** the scoring tools and their self-test are built (`tools/bench/`, 14 checks, each also failing on
 a planted error; in CI). Still to build: `shoot.py`, which drives the phone. It's built on the first
 connected phone, by watching the running app rather than guessing its screens. After that comes the
 baseline run.
@@ -109,13 +109,41 @@ be kept as the baseline.
 | `chart.py` | writes `bench_charts/`: `colour.html`, `flat_<level>.html` for 8 levels, `edges.html` (print), `index.html` (the shot list) |
 | `score.py RUN_DIR` | scores the pulled photos into `RUN_DIR/scores.json` |
 | `compare.py BASE CAND` | better / same / worse per axis against the repeat spread; accept or reject |
-| `selftest.py` | 13 checks on synthetic images, including a whole JPEG run through `score.py` |
+| `selftest.py` | 14 checks on synthetic images, including a whole JPEG run through `score.py` and the display pairing |
+| `displays.json`, `runinfo.py` | the display pairing, set once, and the check of each run's `run.json` against it |
 | `requirements.txt` | numpy 2.5.4, Pillow 12.2.0, rawpy 0.27.1 (LibRaw 0.22.1, only to unpack sensor values), pinned |
 
 Checked beyond the self-test: the real `colour.html`, rendered by a browser at 16:9 and 4:3 and scored, gives
 ΔE 0.000. That round trip found a real bug the synthetic chart had missed (a screen filling the frame lost
 its background), which is now its own self-test case. The rendered `edges.html` yields 16 usable edges. On
 the two DNGs from the 4.3.100 A/B test, each file's neutral maps to D50 white through its own matrices.
+
+## Displays: paired once (owner, 2026-10-22)
+
+The chart and the flat greys are shown on an OLED phone screen in its sRGB mode for within-phone runs,
+because OLED colour barely shifts with viewing angle and its blacks are true blacks. The L2151w is most
+likely a TN panel, whose colour changes with angle across the screen. The pairing never changes:
+
+| Camera | Paired screen (within-phone verdicts) |
+|---|---|
+| OnePlus 6T | Nord CE4 Lite screen |
+| OnePlus Nord CE4 Lite | 6T screen |
+| OnePlus 9 Pro | 6T screen |
+
+The **monitor is the shared target**: two different phones are compared with each other only on runs
+shot against it, because paired screens differ between cameras and would bias such a comparison.
+
+Every run folder has a `run.json` (camera, target "pair" or "shared", display, the display's settings).
+`score.py` checks it against `tools/bench/displays.json` and keeps the result in `scores.json`;
+`compare.py` refuses (exit 2) two runs whose display or settings differ, or two phones on paired screens.
+
+Settings recorded for the 6T's screen (read from the phone, 2026-10-22): Screen Calibration →
+Advanced → sRGB, Cold–Warm slider `oem_screen_better_value` = 60. It stays at 60: what counts is that it
+never moves. Whether 60 or the centre is the factory D65 point can't be told without a colorimeter.
+Night Light must be off: on the 6T it is set to turn on automatically from sunset to sunrise, which would
+warm the screen during an evening session. Brightness at maximum with auto-brightness off, which also
+keeps OLED flicker (PWM dimming) at its weakest. The Nord's screen settings are recorded the first time
+it is connected; until then `displays.json` refuses runs on it.
 
 ## The monitor (owner, 2026-10-22)
 

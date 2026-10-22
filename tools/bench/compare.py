@@ -3,12 +3,16 @@
     python tools/bench/compare.py BASELINE_RUN CANDIDATE_RUN
 
 A difference counts only when it exceeds the larger of the two runs' own spread between repeated shots
-(and a small floor per axis, for axes measured once). The candidate is accepted when at least one axis is
-better and none is worse, per output (JPEG and DNG separately).
+(and a small floor per axis, for axes measured once). The candidate is accepted when at least one axis
+is better and none is worse, per output (JPEG and DNG separately). Runs are compared only when their
+display records match (runinfo.comparable). Exit 2 = refused, 1 = rejected, 0 = accepted or no change.
 """
 import json
 import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import runinfo  # noqa: E402
 
 # axis: (scores.json key, higher is better, floor)
 AXES = {
@@ -41,6 +45,10 @@ def verdicts(base, cand):
 def main(base_dir, cand_dir):
     load = lambda d: json.load(open(os.path.join(d, "scores.json"), encoding="utf-8"))
     base, cand = load(base_dir), load(cand_dir)
+    ok, reason = runinfo.comparable(base, cand)
+    if not ok:
+        print(f"refused: {reason}")
+        return 2
     accepted_all = True
     for key in ("jpeg", "dng"):
         v = verdicts(base[key], cand[key])

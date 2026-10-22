@@ -8,6 +8,9 @@ RUN_DIR holds (any part may be missing; its scores are then absent):
     colour_<n>.dng/.jpg                        the colour page, n = 1..3
     edges_<n>.dng/.jpg                         the printed edge sheet, n = 1..3
 
+    run.json                                   the display record (runinfo.py); without a matching
+                                               one the run is scored but compare.py refuses it
+
 Axes (docs/bench/PLAN.md): noise (SNR at 18 % grey, dB), colour (mean CIEDE2000), sharpness (MTF50,
 cycles/pixel, with overshoot %), dynamic range (stops). Values from repeated shots carry their spread,
 which compare.py uses as the threshold for "worse".
@@ -23,6 +26,7 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import imaging as im  # noqa: E402
+import runinfo  # noqa: E402
 
 
 def stats(values):
@@ -147,9 +151,17 @@ def jpeg_colour(path):
 # ---------------------------------------------------------------- run
 
 
+def run_record(run):
+    """run.json and its check against displays.json, kept in scores.json for compare.py."""
+    path = os.path.join(run, "run.json")
+    info = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else None
+    problems, notes = runinfo.check_run(info)
+    return {"info": info, "problems": problems, "notes": notes}
+
+
 def score(run):
     notes = []
-    result = {"dng": {}, "jpeg": {}, "notes": notes}
+    result = {"run": run_record(run), "dng": {}, "jpeg": {}, "notes": notes}
     for fmt, colour_fn in (("dng", dng_colour), ("jpg", jpeg_colour)):
         key = "dng" if fmt == "dng" else "jpeg"
         des = [colour_fn(p) for p in shots(run, "colour", fmt)]
@@ -184,8 +196,10 @@ def main(run):
         pick = lambda k: (r[k]["mean"] if isinstance(r.get(k), dict) else r.get(k))
         print(f"{key:5} noise SNR18 {pick('snr18_db')} dB | colour mean dE {pick('colour_mean_de')} | "
               f"MTF50 {pick('mtf50')} c/px, overshoot {pick('overshoot_pct')} % | DR {pick('dynamic_range_stops')} stops")
-    for n in result["notes"]:
+    for n in result["notes"] + result["run"]["notes"]:
         print("note:", n)
+    for p in result["run"]["problems"]:
+        print("DISPLAY:", p)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,34 @@
+{
+ "_about": "Which screen shows the chart for which camera, and its settings. Set once (owner, 2026-10-22); a run whose display record differs from this is scored but marked, and compare.py refuses to compare it. Change an entry only on purpose, and expect a new baseline afterwards.",
+ "pairs": {
+  "OnePlus 6T": "Nord screen",
+  "OnePlus Nord CE4 Lite": "6T screen",
+  "OnePlus 9 Pro": "6T screen"
+ },
+ "shared": "monitor",
+ "displays": {
+  "monitor": {
+   "device": "L2151w",
+   "settings": {
+    "refresh_hz": 59.94,
+    "pixel_format": "YCbCr444",
+    "windows_night_light": "off",
+    "colour_preset": null,
+    "brightness": null
+   }
+  },
+  "6T screen": {
+   "device": "OnePlus 6T",
+   "settings": {
+    "screen_calibration": "Advanced / sRGB",
+    "oem_screen_better_value": 60,
+    "night_light": "off",
+    "brightness": "max, auto-brightness off"
+   }
+  },
+  "Nord screen": {
+   "device": "OnePlus Nord CE4 Lite",
+   "settings": null
+  }
+ }
+}

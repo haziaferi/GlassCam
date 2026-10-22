@@ -264,12 +264,37 @@ def test_score_jpeg_run(plant=0.0):
     return ok, f"dE {de:.3f}, MTF50 {mtf:.4f} (~{want_mtf:.4f}), SNR18 {snr} dB (~{want_snr:.1f})"
 
 
+def test_display_record(plant=0):
+    """The pairing in displays.json is enforced: a matching run passes, and each mismatch is refused."""
+    import runinfo
+    six_t = dict(runinfo.load_displays()["displays"]["6T screen"]["settings"])
+    if plant:
+        six_t["oem_screen_better_value"] = 59                 # planted: the slider moved
+    run = lambda cam, target, disp, settings: {"run": dict(zip(("problems", "notes"), runinfo.check_run(
+        {"camera": cam, "target": target, "display": disp, "settings": settings})), info={
+        "camera": cam, "target": target, "display": disp, "settings": settings})}
+    good = run("OnePlus 9 Pro", "pair", "6T screen", six_t)
+    moved = dict(six_t, oem_screen_better_value=50)
+    cases = {
+        "matching pair run": (good["run"]["problems"] == [], True),
+        "same run twice": (runinfo.comparable(good, good)[0], True),
+        "slider moved": (runinfo.comparable(good, run("OnePlus 9 Pro", "pair", "6T screen", moved))[0], False),
+        "wrong screen for the camera": (run("OnePlus 9 Pro", "pair", "Nord screen", None)["run"]["problems"] == [], False),
+        "screen with no recorded settings": (run("OnePlus 6T", "pair", "Nord screen", {})["run"]["problems"] == [], False),
+        "two phones on paired screens": (runinfo.comparable(good, run("OnePlus Nord CE4 Lite", "pair", "6T screen", six_t))[0], False),
+        "no run.json": (runinfo.comparable({"run": {"problems": None}}, good)[0], False),
+    }
+    bad = [k for k, (got, want) in cases.items() if got != want]
+    return not bad, "all cases as expected" if not bad else f"wrong: {bad}"
+
+
 TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_rotated,
          test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_overshoot, test_find_squares,
-         test_score_jpeg_run]
+         test_score_jpeg_run, test_display_record]
 PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1, test_chart_rotated: 1,
           test_dng_matrices: 0.05, test_interpolation: 0.5, test_ptc: 0.2, test_read_noise_dr: 0.1,
-          test_mtf: 0.3, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1}
+          test_mtf: 0.3, test_overshoot: 1.0, test_find_squares: 1, test_score_jpeg_run: 1,
+          test_display_record: 1}
 
 
 def main():
