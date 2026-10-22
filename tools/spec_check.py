@@ -27,6 +27,7 @@ R = os.path.join(ROOT, "app", "src", "main", "res")
 MANIFEST = os.path.join(ROOT, "app", "src", "main", "AndroidManifest.xml")
 GRADLE = os.path.join(ROOT, "app", "build.gradle")
 SPEC = os.path.join(ROOT, "SPEC.md")
+NATIVE = os.path.join(ROOT, "app", "src", "main", "jni", "freedcam")
 
 VERBOSE = "-v" in sys.argv
 
@@ -565,6 +566,44 @@ def check_S28():
     body = method_body(src, "previewValue")
     need("NOISE_REDUCTION_MODE_OFF" in body and "NOISE_REDUCTION_MODE_FAST" in body,
          "previewValue no longer maps noise reduction Off to Fast")
+
+
+def check_S34():
+    """[S-34] a DNG preview's decoded image is freed with LibRaw's dcraw_clear_mem, never delete, and the file buffer LibRaw reads from is freed only in recycle()"""
+    src = read(os.path.join(NATIVE, "LibRawWrapper.cpp"))
+    # CodeQL cpp/new-free-mismatch, 2026-10-22: dcraw_make_mem_image mallocs; the gallery's DNG thumbnails ran `delete image`
+    body = method_body(src, "LibRawWrapper::getBitmap")
+    need("dcraw_clear_mem(image)" in body, "getBitmap no longer frees the image with dcraw_clear_mem")
+    need(not re.search(r"\bdelete\s+image\b", src), "the malloc'd image is deleted again")
+    need(re.search(r"image\s*==\s*NULL", body), "getBitmap uses the image without a null check")
+    need("free(buffer)" not in body, "getBitmap frees the buffer LibRaw still points into")
+    need("free(buffer)" in method_body(src, "LibRawWrapper::recycle"), "recycle() no longer frees the file buffer")
+
+
+def check_S35():
+    """[S-35] no value list advances an int counter by a float step, and the exposure-compensation list counts whole tenths"""
+    # CodeQL java/implicit-cast-in-compound-assignment, 2026-10-22: `i += step` truncates each add, so a step below 1 never ended
+    # an int `step` read from a device XML defaults to 0 (getIntValue(0)), the same endless loop
+    bad, seen = [], 0
+    for d, _, fs in os.walk(J):
+        for f in fs:
+            if not f.endswith(".java"):
+                continue
+            src = read(os.path.join(d, f))
+            for sig in re.finditer(r"\b(\w+)\s*\(([^)]*\b(float|int)\s+step\b[^)]*)\)\s*\{", src):
+                body = method_body(src[sig.start():], sig.group(1))
+                if not re.search(r"for\s*\(\s*int\s+(\w+)\s*=[^;]*;[^;]*;\s*\1\s*\+=\s*(?:int)?[sS]tep\s*\)", body):
+                    continue
+                seen += 1
+                ok = (re.search(r"\+=\s*intStep\s*\)", body) and "Math.max(1, Math.round(step))" in body) if sig.group(3) == "float" \
+                    else re.search(r"if\s*\(\s*step\s*<\s*1\s*\)\s*step\s*=\s*1;", body)
+                if not ok:
+                    bad.append(f"{f}:{sig.group(1)}")
+    need(seen >= 9, f"only {seen} step loops found; the scan no longer sees them")
+    need(not bad, "a step loop can stall again (float step not rounded, or int step not guarded): " + ", ".join(bad))
+    ae = read(jfile("GlassCamAeManger.java"))
+    need(not re.search(r"for\s*\(\s*float\s+\w+\s*=", ae), "the EV list accumulates a float again (it ended at 4.999995, centre -0.0)")
+    need(re.search(r"for\s*\(\s*int\s+tenths\s*=\s*-50;\s*tenths\s*<=\s*50;", ae), "the EV list no longer runs -5.0 to +5.0 in whole tenths")
 
 
 # --------------------------------------------------------------------------------------------

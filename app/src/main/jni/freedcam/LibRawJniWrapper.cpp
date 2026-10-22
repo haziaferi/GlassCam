@@ -61,6 +61,8 @@ extern "C"
     JNIEXPORT jshortArray JNICALL Java_glasscam_jni_LibRawJniWrapper_getRawData(JNIEnv *env, jobject thiz, jobject byte_buffer) {
         LibRawWrapper* writer = (LibRawWrapper*)env->GetDirectBufferAddress(byte_buffer);
         ushort * img = writer->getRawData();
+        if (img == NULL)
+            return NULL; // unpack() failed
         int len = (writer->width * writer->height);
         jshortArray ret = env->NewShortArray(len);
         env->SetShortArrayRegion(ret, 0, len, reinterpret_cast<const jshort *>(img));

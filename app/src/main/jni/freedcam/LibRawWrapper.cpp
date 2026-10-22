@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "JniUtils.h"
 #include <cstring>
+#include <unistd.h>
 
 #define  LOG_TAG    "freedcam.LibRawWrapper"
 #define  LOGD(...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG,__VA_ARGS__)
@@ -46,23 +47,34 @@ void copyMatrix(float* dest, float colormatrix[4])
 }
 
 void LibRawWrapper::openFD(int fd) {
-    isFP =true;
     FILE *f = fdopen(fd, "r" );
+    if (f == NULL)
+    {
+        LOGD("ERROR fdopen failed");
+        close(fd); // the Java side detached it, so it is ours to close
+        return;
+    }
     LOGD("FileDescriptor open");
     fseek(f, 0, SEEK_END);
-    LOGD("get size");
     long fsize = ftell(f);
-    LOGD("size:%l",fsize);
+    LOGD("size:%ld",fsize);
     fseek(f, 0, SEEK_SET);  /* same as rewind(f); */
-    LOGD("malloc ");
-    buffer = (char *)malloc((fsize+1)*sizeof(char));
-    LOGD("malloc end, fill buffer");
-    fread(buffer, fsize, 1, f);
-    LOGD("buffer filled, close file");
+    if (fsize <= 0 || (buffer = (char *)malloc(fsize + 1)) == NULL)
+    {
+        LOGD("ERROR no buffer for %ld bytes", fsize);
+        fclose(f);
+        return;
+    }
+    isFP = true;
+    size_t read = fread(buffer, 1, fsize, f);
     fclose(f); // Close the file
+    if (read != (size_t)fsize)
+    {
+        LOGD("ERROR short read %zu of %ld", read, fsize);
+        return; // getBitmap() then fails in unpack(); recycle() frees the buffer
+    }
     LOGD("closed file, libraw open buffer");
     raw.open_buffer(buffer,fsize);
-    //free(buffer);
 }
 
 void LibRawWrapper::openFile(const char *strFilename) {
@@ -93,28 +105,33 @@ jobject LibRawWrapper::getBitmap(JNIEnv* env) {
     }
     LOGD("processing dcraw %i", ret);
     libraw_processed_image_t *image = raw.dcraw_make_mem_image(&ret);
+    if (image == NULL)
+    {
+        LOGD("ERROR make_mem_image %s",libraw_strerror(ret));
+        return NULL;
+    }
 
     LOGD("processed image, creating bitmap");
-    if(image->width == 0 || image->height == 0)
-        return NULL;
-    jobject ob = copyToJavaBitmap(env,image->data,image->data_size,image->width,image->height);
+    jobject ob = NULL;
+    if(image->width != 0 && image->height != 0)
+        ob = copyToJavaBitmap(env,image->data,image->data_size,image->width,image->height);
 
-    // recycle() is needed only if we want to free the resources right now.
-    // If we process files in a cycle, the next open_file()
-    // will also call recycle(). If a fatal error has happened, it means that recycle()
-    // has already been called (repeated call will not cause any harm either).
-    // we don't evoke recycle() or call the desctructor; C++ will do everything for us
-    delete image;
-    if (isFP)
-        free(buffer);
-
-    LOGD("rawdata recycled");
+    // dcraw_make_mem_image() mallocs the image; only dcraw_clear_mem() may free it
+    // (until 4.3.98 it went through C++ delete: a malloc/delete mismatch). The file buffer stays alive
+    // until recycle(): LibRaw still points into it.
+    LibRaw::dcraw_clear_mem(image);
 
     return ob;
 }
 
 void LibRawWrapper::recycle() {
     raw.recycle();
+    if (isFP)
+    {
+        free(buffer);
+        buffer = nullptr;
+        isFP = false;
+    }
 }
 
 ushort * LibRawWrapper::getRawData() {

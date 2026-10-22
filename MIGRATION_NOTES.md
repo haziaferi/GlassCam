@@ -346,3 +346,10 @@ Changes in 4.3.91 (versionCode 291), the owner's answers to the audit's question
 
 - GitHub Actions (`.github/workflows/ci.yml`) on every push to main and every pull request: the four gates (spec_check, purpose_map --check, both mutant proofs) and assembleDebug + lintDebug with the pinned NDK; the debug APK and the lint report are kept 14 days. `gradlew` is now executable in git.
 - The Gradle wrapper jar was a 2013 Gradle 1.6 nightly carried over from FreeDcam; CI's wrapper validation refused it. It was regenerated for Gradle 8.14.3, and its SHA-256 matches Gradle's published checksum (7d3a4ac4...6172).
+
+### 4.3.98 (298), 2026-10-22 - CodeQL's alerts in GlassCam's own code
+
+- DNG previews (`LibRawWrapper`): the image `dcraw_make_mem_image` mallocs was freed with `delete` (CodeQL cpp/new-free-mismatch, undefined behaviour); it is now freed with `LibRaw::dcraw_clear_mem`, null-checked, and freed on every path. The file buffer LibRaw reads from is freed in `recycle()` instead of mid-decode; `openFD` checks `fdopen`, the allocation and the read. `getRawData` returns null when unpack fails instead of copying from a null pointer. G4, S-34.
+- Value lists (CodeQL java/implicit-cast-in-compound-assignment): seven builders advanced an `int` counter by a `float` step, so a step below 1, or 0 where unguarded (ISO, CCT, white balance), never ended the loop; they now round to a whole step of at least 1. The two int-step builders (ISO, manual focus) guard a step below 1: a device XML without `<step>` reads 0 and froze the feature detector the same way. The exposure-compensation list counts whole tenths instead of adding 0.1f, which ended at 4.999995 and put "-0.0" in the centre. The gallery's zoom animation rounds its delta once (it was truncated per side), and `TouchImageView` makes its double-to-float cast explicit. D12, S-35.
+- The vendored LibRaw 0.19.1 / libtiff 4.0.9, and the ~70 alerts in their unbuilt tools and samples, are not part of this release (SPEC §11 item 4).
+

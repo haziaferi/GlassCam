@@ -14,7 +14,8 @@ class LibRawWrapper {
 
 private:
     LibRaw raw;
-    char *buffer;
+    // Owned by this wrapper: LibRaw::open_buffer() keeps reading it until recycle().
+    char *buffer = nullptr;
     bool isFP = false;
 public:
     int width;

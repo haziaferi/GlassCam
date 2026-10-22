@@ -53,7 +53,8 @@ public class BurstManualParam extends BaseManualParameter
         ar.add(GlassCamApplication.getStringFromRessources(R.string.off_));
         if (step == 0)
             step = 1;
-        for (int i = min; i < max; i+=step)
+        int intStep = Math.max(1, Math.round(step)); // a fractional step never advanced an int counter
+        for (int i = min; i < max; i+=intStep)
         {
             ar.add(i+"");
         }
