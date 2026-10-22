@@ -275,12 +275,16 @@ def test_display_record(plant=0):
         "camera": cam, "target": target, "display": disp, "settings": settings})}
     good = run("OnePlus 9 Pro", "pair", "6T screen", six_t)
     moved = dict(six_t, oem_screen_better_value=50)
+    unrecorded_nord = runinfo.load_displays()
+    unrecorded_nord["displays"]["Nord screen"]["settings"] = None
     cases = {
         "matching pair run": (good["run"]["problems"] == [], True),
         "same run twice": (runinfo.comparable(good, good)[0], True),
         "slider moved": (runinfo.comparable(good, run("OnePlus 9 Pro", "pair", "6T screen", moved))[0], False),
         "wrong screen for the camera": (run("OnePlus 9 Pro", "pair", "Nord screen", None)["run"]["problems"] == [], False),
-        "screen with no recorded settings": (run("OnePlus 6T", "pair", "Nord screen", {})["run"]["problems"] == [], False),
+        "screen with no recorded settings": (runinfo.check_run(
+            {"camera": "OnePlus 6T", "target": "pair", "display": "Nord screen", "settings": {}},
+            unrecorded_nord)[0] == [], False),
         "two phones on paired screens": (runinfo.comparable(good, run("OnePlus Nord CE4 Lite", "pair", "6T screen", six_t))[0], False),
         "no run.json": (runinfo.comparable({"run": {"problems": None}}, good)[0], False),
     }

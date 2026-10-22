@@ -142,8 +142,16 @@ Advanced → sRGB, Cold–Warm slider `oem_screen_better_value` = 60. It stays a
 never moves. Whether 60 or the centre is the factory D65 point can't be told without a colorimeter.
 Night Light must be off: on the 6T it is set to turn on automatically from sunset to sunrise, which would
 warm the screen during an evening session. Brightness at maximum with auto-brightness off, which also
-keeps OLED flicker (PWM dimming) at its weakest. The Nord's screen settings are recorded the first time
-it is connected; until then `displays.json` refuses runs on it.
+keeps OLED flicker (PWM dimming) at its weakest.
+
+The Nord's screen (read 2026-10-22): its colour mode is vendor mode 256, which Android's own Colors page
+can only list as "Reserved and unset: 256". The display system shows what it does: both phones render in
+**ColorMode::SRGB**, with an identity colour transform and Night display and saturation boost off. So
+the Nord is already in the equivalent of the 6T's sRGB mode, and nothing needs changing. The two screens
+still differ in panel and factory calibration (and in the 6T's slider, which works in the panel and
+doesn't show in the transform). The pairing makes that harmless: each camera always sees the same screen.
+An eye-comfort schedule (22:00–07:00) is stored on the Nord. It wasn't active at 23:11, but it must be off
+for a session. The low-flicker ("single pulse") switch is still to record.
 
 ## The monitor (owner, 2026-10-22)
 

@@ -21,6 +21,7 @@
    "device": "OnePlus 6T",
    "settings": {
     "screen_calibration": "Advanced / sRGB",
+    "render_mode": "ColorMode::SRGB",
     "oem_screen_better_value": 60,
     "night_light": "off",
     "brightness": "max, auto-brightness off"
@@ -28,7 +29,13 @@
   },
   "Nord screen": {
    "device": "OnePlus Nord CE4 Lite",
-   "settings": null
+   "settings": {
+    "display_color_mode": 256,
+    "render_mode": "ColorMode::SRGB",
+    "eye_comfort": "off",
+    "brightness": "max, auto-brightness off",
+    "low_flicker": null
+   }
   }
  }
 }
