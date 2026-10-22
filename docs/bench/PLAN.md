@@ -117,6 +117,20 @@ Checked beyond the self-test: the real `colour.html`, rendered by a browser at 1
 its background), which is now its own self-test case. The rendered `edges.html` yields 16 usable edges. On
 the two DNGs from the 4.3.100 A/B test, each file's neutral maps to D50 white through its own matrices.
 
-## Owner question left (practical)
+## The monitor (owner, 2026-10-22)
 
-- The monitor: size, and whether it has an sRGB mode.
+L2151w, 1920×1080 at 59.94 Hz, 8 bit, SDR. Two settings follow from it:
+
+- The graphics card sends **YCbCr 4:4:4**. That conversion can shift colours and squash the darkest
+  greys, which matters for the colour axis and the JPEG dynamic range from the dark flat levels. Set the
+  output to **RGB 4:4:4 full range** (AMD Software: Display → Pixel Format) before a run, and keep it the
+  same for every run.
+- One refresh lasts 16.68 ms, so flat fields and the chart are shot at **1/30 s or 1/15 s** (whole
+  refreshes) to avoid banding from the backlight; 1/60 s is not quite one refresh.
+
+Open: whether the monitor's own menu has an sRGB or 6500 K preset. If it has neither, the bench still
+works, because every run is compared against another run shown on the same monitor.
+
+The edge sheet's first version printed blank: its squares were coloured boxes, and browsers drop
+background colours when printing. They're SVG shapes now, proven by printing both versions to PDF with
+background graphics off. `bench_charts/edges.pdf` is the printable sheet: print at 100 %, A4 landscape.

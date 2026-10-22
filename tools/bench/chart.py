@@ -37,19 +37,22 @@ def flat_page(level):
 
 
 def edges_page():
+    """The squares are SVG shapes, not coloured boxes: browsers drop background colours when printing
+    unless "background graphics" is ticked, and the first version printed blank (owner, 2026-10-22)."""
     side_mm, gap_x, gap_y = 70, 140, 95
     squares = []
     for row in (0, 1):
         for col in (0, 1):
             cx = 148.5 + (col - 0.5) * gap_x
             cy = 105 + (row - 0.5) * gap_y
-            squares.append(f'<div class="sq" style="left:{cx - side_mm / 2}mm;top:{cy - side_mm / 2}mm"></div>')
+            squares.append(f'<rect x="{cx - side_mm / 2}" y="{cy - side_mm / 2}" width="{side_mm}" '
+                           f'height="{side_mm}" transform="rotate({im.EDGE_ANGLE_DEG} {cx} {cy})"/>')
     return f"""<!doctype html><html><head><meta charset="utf-8"><title>Bench edge sheet</title><style>
 @page {{size: A4 landscape; margin: 0}}
-html,body{{margin:0;width:297mm;height:210mm;background:#fff}}
-.sq{{position:absolute;width:{side_mm}mm;height:{side_mm}mm;background:#000;
-     transform:rotate({im.EDGE_ANGLE_DEG}deg)}}
-</style></head><body>{''.join(squares)}</body></html>
+html,body{{margin:0;background:#fff}}
+svg{{display:block;width:297mm;height:210mm}}
+</style></head><body><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 210" fill="#000">{''.join(squares)}</svg>
+</body></html>
 """
 
 
