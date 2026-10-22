@@ -156,6 +156,12 @@ MUTANTS = [
     ("S-41", "the converter reopens its output without truncating",
      [(f"{J}/viewer/dngconvert/DngConvertingFragment.java",
        "openFileDescriptor(((UriHolder)out).getMediaStoreUri(), \"rwt\")", "openFileDescriptor(((UriHolder)out).getMediaStoreUri(), \"rw\")")]),
+    ("S-42", "a restored flash state switches AE back on under a manual exposure",
+     [(f"{J}/cam/apis/camera2/parameters/modes/FlashMode.java",
+       "        if (isManualExposure()) {", "        if (isManualExposure() && false) {")]),
+    ("S-42", "Qualcomm's manual mode leaves a stored auto flash armed",
+     [(f"{J}/cam/apis/camera2/parameters/ae/AeManagerCamera2Qcom.java",
+       "                cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_OFF,true);\n", "")]),
     ("S-13", "the same tag on two clauses",
      [("SPEC.md", "| T6 |", "| T6 | `[S-13]` |")]),
 ]

@@ -8,7 +8,10 @@ import androidx.annotation.RequiresApi;
 import com.hazia.glasscam.R;
 
 import glasscam.GlassCamApplication;
+import glasscam.cam.apis.basecamera.parameters.ae.AeManager;
+import glasscam.cam.apis.basecamera.parameters.ae.AeStates;
 import glasscam.cam.apis.camera2.Camera2;
+import glasscam.cam.apis.camera2.parameters.ParameterHandlerApi2;
 import glasscam.settings.SettingKeys;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -23,10 +26,22 @@ public class FlashMode extends BaseModeApi2 {
         return new String[]{"Auto","Always","Off","Torch"};
     }*/
 
+    /** Full manual exposure: AE must stay OFF, and every Camera2 flash state is an AE mode (ON_*). */
+    private boolean isManualExposure() {
+        ParameterHandlerApi2 handler = cameraUiWrapper.getParameterHandler();
+        AeManager ae = handler == null ? null : handler.getAeManagerCamera2();
+        return ae != null && ae.getActiveAeState() == AeStates.manual;
+    }
+
     @Override
     protected void setValue(String valueToSet, boolean setToCamera) {
 
-        if (valueToSet.equals(GlassCamApplication.getStringFromRessources(R.string.font_flash_auto)))
+        if (isManualExposure()) {
+            // Restoring "off" after the manual ISO and shutter switched AE back on, so photos were taken
+            // on auto exposure (6T bench, 2026-10-22). The choice is kept; leaving manual re-applies it.
+            captureSessionHandler.SetParameterRepeating(CaptureRequest.FLASH_MODE, CaptureRequest.FLASH_MODE_OFF,true);
+        }
+        else if (valueToSet.equals(GlassCamApplication.getStringFromRessources(R.string.font_flash_auto)))
             setToAuto();
         else if (valueToSet.equals(GlassCamApplication.getStringFromRessources(R.string.font_flash_always)))
             setToAlwaysFlash();

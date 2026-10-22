@@ -23,6 +23,7 @@ import sys
 import time
 
 APP = "com.hazia.glasscam"
+CAMERA = f"{APP}/glasscam.cam.ActivityGlassCamMain"   # GlassCam has two launcher entries: camera and gallery
 CONFIG = f"/sdcard/Android/data/{APP}/files/glasscam_config.xml"
 PHOTOS = "/sdcard/DCIM/GlassCam"
 PORT = 8765
@@ -140,8 +141,10 @@ def configure(serial, iso="100", shutter="1/30", focus="auto", wb="DAYLIGHT", qu
     with open(tmp, "w", encoding="utf-8", newline="") as fh:
         fh.write(new)
     adb(serial, "push", tmp, CONFIG)
-    sh(serial, f"monkey -p {APP} -c android.intent.category.LAUNCHER 1")
+    sh(serial, f"am start -n {CAMERA}")
     time.sleep(4)
+    if foreground(serial) != CAMERA:
+        raise RuntimeError(f"GlassCam's camera did not open on {serial}: {foreground(serial)}")
     print(f"configured {model(serial)}: ISO {iso}, {shutter} s, focus {focus}, WB {wb}, {quality}; "
           f"foreground {foreground(serial)}")
 
@@ -174,8 +177,8 @@ def listing(serial):
 
 
 def shot(serial, run, name, timeout=40):
-    if not foreground(serial).startswith(APP):
-        raise RuntimeError(f"GlassCam is not in front on {serial}: {foreground(serial)}")
+    if foreground(serial) != CAMERA:          # the gallery is GlassCam too, and ignores the camera key
+        raise RuntimeError(f"GlassCam's camera is not in front on {serial}: {foreground(serial)}")
     before = listing(serial)
     sh(serial, "input keyevent KEYCODE_CAMERA")
     deadline, last = time.time() + timeout, None

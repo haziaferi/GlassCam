@@ -10,6 +10,7 @@ import com.hazia.glasscam.R;
 import camera2_hidden_keys.qcom.CaptureRequestQcom;
 import glasscam.GlassCamApplication;
 import glasscam.cam.apis.basecamera.parameters.AbstractParameter;
+import glasscam.cam.apis.basecamera.parameters.ParameterInterface;
 import glasscam.cam.apis.basecamera.parameters.ae.AeStates;
 import glasscam.cam.apis.basecamera.parameters.manual.AbstractManualShutter;
 import glasscam.cam.apis.camera2.Camera2;
@@ -56,6 +57,8 @@ public class AeManagerCamera2Qcom extends AeManagerCamera2 {
                 cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequestQcom.org_codeaurora_qcamera3_iso_exp_priority_select_priority,CaptureRequestQcom.ExposureTimePriority_OFF,true);
                 cameraWrapperInterface.captureSessionHandler.SetPreviewParameterRepeating(CaptureRequestQcom.org_codeaurora_qcamera3_iso_exp_priority_use_iso_exp_priority, CaptureRequestQcom.IsoPriority_OFF, true);
                 cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequest.CONTROL_AE_MODE,CaptureRequest.CONTROL_AE_MODE_OFF,true);
+                // no flash under a manual exposure, as AeManagerCamera2.setToManual (a stored auto flash left FLASH_MODE_SINGLE)
+                cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequest.FLASH_MODE,CaptureRequest.FLASH_MODE_OFF,true);
                 cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequest.SENSOR_SENSITIVITY,isoVal,true);
                 if (exposuretime > MAX_PREVIEW_EXPOSURETIME && !settingsManager.GetCurrentModule().equals(GlassCamApplication.getStringFromRessources(R.string.module_video))) {
                     cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequest.SENSOR_EXPOSURE_TIME,MAX_PREVIEW_EXPOSURETIME,true);
@@ -79,6 +82,10 @@ public class AeManagerCamera2Qcom extends AeManagerCamera2 {
                 cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequestQcom.org_codeaurora_qcamera3_iso_exp_priority_use_iso_exp_priority, CaptureRequestQcom.IsoPriority_OFF,true);
                 exposureCompensation.setViewState(AbstractParameter.ViewState.Enabled);
                 cameraWrapperInterface.captureSessionHandler.SetParameterRepeating(CaptureRequest.CONTROL_AE_MODE,CaptureRequest.CONTROL_AE_MODE_ON,true);
+                // the flash state is an AE mode too: put the user's choice back, as AeManagerCamera2.setToAuto does
+                ParameterInterface flash = cameraWrapperInterface.getParameterHandler().get(SettingKeys.FLASH_MODE);
+                if (flash != null && settingsManager.get(SettingKeys.FLASH_MODE).isSupported())
+                    flash.setStringValue(flash.getStringValue(), true);
                 break;
         }
     }
