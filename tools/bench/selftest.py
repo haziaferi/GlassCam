@@ -340,6 +340,27 @@ def test_squares_beside_black_desk(plant=0):
     return len(sq) == 4, f"{len(sq)} squares"
 
 
+def test_shoot_helpers(plant=0):
+    """shoot.py's option parser keeps every option, wherever it stands, and refuses unknown or valueless
+    ones; a restore carries the phone's current app version (an older one re-runs GlassCam's detection)."""
+    import shoot
+    cases = []
+    opts, pos = shoot.parse_args("configure", ["SERIAL", "--iso", "100", "--shutter", "1/30", "--focus", "16cm"])
+    if plant:
+        opts.pop("focus")                                   # planted: an option dropped, as on 2026-10-22
+    cases.append(opts == {"iso": "100", "shutter": "1/30", "focus": "16cm"} and pos == ["SERIAL"])
+    for bad in (["SERIAL", "--colour", "x"], ["SERIAL", "--iso"]):
+        try:
+            shoot.parse_args("configure", bad)
+            cases.append(False)
+        except ValueError:
+            cases.append(True)
+    saved = "<apis>\n<active_api>camera2</active_api>\n<app_version>300</app_version>\n</apis>"
+    restored = shoot.with_app_version(saved, "301" if not plant else "300")
+    cases.append("<app_version>301</app_version>" in restored and "<app_version>300" not in restored)
+    return all(cases), f"{sum(cases)} of {len(cases)} cases"
+
+
 def opcode_list(maps):
     """Big-endian OpcodeList bytes holding GainMap opcodes, as a phone writes them."""
     import struct
@@ -377,12 +398,12 @@ def test_gain_maps(plant=0):
 TESTS = [test_de2000, test_white_lab, test_chart_sampling, test_chart_filling_frame, test_chart_with_stray_light,
          test_chart_rotated,
          test_dng_matrices, test_interpolation, test_ptc, test_read_noise_dr, test_mtf, test_mtf_textured_ink, test_overshoot, test_find_squares, test_squares_beside_black_desk,
-         test_score_jpeg_run, test_display_record, test_gain_maps]
+         test_score_jpeg_run, test_display_record, test_gain_maps, test_shoot_helpers]
 PLANTS = {test_de2000: 0.01, test_white_lab: 0.05, test_chart_sampling: None, test_chart_filling_frame: 1,
           test_chart_with_stray_light: 1, test_chart_rotated: 1,
           test_dng_matrices: 0.05, test_interpolation: 0.5, test_ptc: 0.2, test_read_noise_dr: 0.1,
           test_mtf: 0.3, test_mtf_textured_ink: 1, test_overshoot: 1.0, test_find_squares: 1, test_squares_beside_black_desk: 1, test_score_jpeg_run: 1,
-          test_display_record: 1, test_gain_maps: 1}
+          test_display_record: 1, test_gain_maps: 1, test_shoot_helpers: 1}
 
 
 def main():

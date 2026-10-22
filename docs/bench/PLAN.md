@@ -1,6 +1,6 @@
 # Image-quality bench: plan (2026-10-22)
 
-**Status:** the scoring tools and their self-test are built (`tools/bench/`, 14 checks, each also failing on
+**Status:** the scoring tools and their self-test are built (`tools/bench/`, 19 checks, each also failing on
 a planted error; in CI). Still to build: `shoot.py`, which drives the phone. It's built on the first
 connected phone, by watching the running app rather than guessing its screens. After that comes the
 baseline run.
@@ -109,7 +109,7 @@ be kept as the baseline.
 | `chart.py` | writes `bench_charts/`: `colour.html`, `flat_<level>.html` for 8 levels, `edges.html` (print), `index.html` (the shot list) |
 | `score.py RUN_DIR` | scores the pulled photos into `RUN_DIR/scores.json` |
 | `compare.py BASE CAND` | better / same / worse per axis against the repeat spread; accept or reject |
-| `selftest.py` | 14 checks on synthetic images, including a whole JPEG run through `score.py` and the display pairing |
+| `selftest.py` | 19 checks on synthetic images, including a whole JPEG run through `score.py`, the display pairing, the gain maps and `shoot.py`'s helpers |
 | `displays.json`, `runinfo.py` | the display pairing, set once, and the check of each run's `run.json` against it |
 | `requirements.txt` | numpy 2.5.4, Pillow 12.2.0, rawpy 0.27.1 (LibRaw 0.22.1, only to unpack sensor values), pinned |
 
