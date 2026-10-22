@@ -118,11 +118,12 @@ def configure(serial, iso="100", shutter="1/30", focus="auto", wb="DAYLIGHT", qu
     time.sleep(2)
     sh(serial, f"am force-stop {APP}")
     xml = adb(serial, "exec-out", f"cat {CONFIG}", binary=True).decode("utf-8")
-    backup = os.path.join(BACKUPS, f"glasscam_config_{model(serial).replace(' ', '_')}.xml")
-    if not os.path.exists(backup):                 # the owner's own settings, kept from the first configure
-        os.makedirs(BACKUPS, exist_ok=True)
-        with open(backup, "w", encoding="utf-8", newline="") as fh:
+    backup, session = backup_paths(serial)
+    if not os.path.exists(session):                # first configure since the last restore: these are the
+        os.makedirs(BACKUPS, exist_ok=True)        # owner's settings now; a copy from an older session
+        with open(backup, "w", encoding="utf-8", newline="") as fh:   # would undo their changes since
             fh.write(xml)
+        open(session, "w").close()
         print(f"saved the phone's own GlassCam settings to {backup} (shoot.py restore puts them back)")
     a, b = camera_block(xml)
     blk = xml[a:b]
@@ -151,14 +152,38 @@ def configure(serial, iso="100", shutter="1/30", focus="auto", wb="DAYLIGHT", qu
           f"foreground {foreground(serial)}")
 
 
+def backup_paths(serial):
+    name = model(serial).replace(" ", "_")
+    return (os.path.join(BACKUPS, f"glasscam_config_{name}.xml"),
+            os.path.join(BACKUPS, f"session_open_{name}"))
+
+
+def with_app_version(xml, version):
+    """The saved settings with the app version the phone has now. An older number makes GlassCam take the
+    restore for an update and re-run its camera detection, which re-seeds the per-camera settings
+    (SPEC 11 item 13; a copy saved under 4.3.100 was put back on 4.3.101, 2026-10-23)."""
+    new, n = re.subn(r"<app_version>\d+</app_version>", f"<app_version>{version}</app_version>", xml, count=1)
+    if n != 1:
+        raise ValueError("the saved settings have no app_version")
+    return new
+
+
 def restore(serial):
-    """Put back the GlassCam settings saved by the first configure, then delete nothing."""
-    backup = os.path.join(BACKUPS, f"glasscam_config_{model(serial).replace(' ', '_')}.xml")
+    """Put back the owner's GlassCam settings saved at the session's first configure; close the session."""
+    backup, session = backup_paths(serial)
     sh(serial, "input keyevent KEYCODE_HOME")
     time.sleep(2)
     sh(serial, f"am force-stop {APP}")
-    adb(serial, "push", backup, CONFIG)
-    print(f"restored {backup}")
+    # the installed app's version code, not the config's: a config put back by an older restore can carry
+    # a stale number itself (the 6T's said 300 under 4.3.101)
+    version = re.search(r"versionCode=(\d+)", sh(serial, f"dumpsys package {APP}")).group(1)
+    tmp = os.path.join(os.environ.get("TEMP", "."), "bench_glasscam_restore.xml")
+    with open(backup, encoding="utf-8", newline="") as fh, open(tmp, "w", encoding="utf-8", newline="") as out:
+        out.write(with_app_version(fh.read(), version))
+    adb(serial, "push", tmp, CONFIG)
+    if os.path.exists(session):
+        os.remove(session)
+    print(f"restored {backup} (app_version {version})")
 
 # ---------------------------------------------------------------- display and capture
 
@@ -257,15 +282,14 @@ def record(run, cam_serial, display, target):
     return 1 if problems else 0
 
 
-def main(argv):
-    if len(argv) < 2:
-        sys.exit(__doc__)
-    cmd, args = argv[0], argv[1:]
+def parse_args(cmd, args):
+    """(options, positionals): "--name value" pairs anywhere, everything else positional. An unknown or
+    valueless option is an error; the first version silently dropped every option (2026-10-22)."""
     opts, pos, i = {}, [], 0
-    while i < len(args):                    # "--name value" pairs anywhere; everything else positional
+    while i < len(args):
         if args[i].startswith("--"):
             if i + 1 >= len(args):
-                sys.exit(f"{args[i]} needs a value")
+                raise ValueError(f"{args[i]} needs a value")
             opts[args[i][2:]] = args[i + 1]
             i += 2
         else:
@@ -273,7 +297,18 @@ def main(argv):
             i += 1
     allowed = {"configure": {"iso", "shutter", "focus", "wb", "quality"}, "record": {"target"}}.get(cmd, set())
     if set(opts) - allowed:
-        sys.exit(f"{cmd} does not take {sorted(set(opts) - allowed)}")
+        raise ValueError(f"{cmd} does not take {sorted(set(opts) - allowed)}")
+    return opts, pos
+
+
+def main(argv):
+    if len(argv) < 2:
+        sys.exit(__doc__)
+    cmd = argv[0]
+    try:
+        opts, pos = parse_args(cmd, argv[1:])
+    except ValueError as e:
+        sys.exit(str(e))
     if cmd == "configure":
         configure(pos[0], **opts)
     elif cmd == "show":

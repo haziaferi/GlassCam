@@ -59,6 +59,10 @@ def main(base_dir, cand_dir):
         over_b, over_c = value(base[key].get("overshoot_pct"))[0], value(cand[key].get("overshoot_pct"))[0]
         if over_b is not None and over_c is not None and over_c > over_b + 2:
             print(f"  warning: edge overshoot rose {over_b:.1f} % -> {over_c:.1f} % (halos)")
+        wb_b, wb_c = value(base[key].get("colour_mean_de_wb"))[0], value(cand[key].get("colour_mean_de_wb"))[0]
+        if wb_b is not None and wb_c is not None:      # information, not a verdict axis: rendering without the cast
+            print(f"  colour after white balance: {wb_b:.2f} -> {wb_c:.2f} "
+                  f"(cast a*b* {base[key].get('neutral_cast_ab')} -> {cand[key].get('neutral_cast_ab')})")
         words = [w for w, *_ in v.values()]
         accepted = "better" in words and "worse" not in words
         accepted_all &= accepted or "better" not in words and "worse" not in words

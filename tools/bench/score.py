@@ -152,6 +152,9 @@ def jpeg_noise_and_range(run, notes, light=None):
         pair = [os.path.join(run, f"flat_{lv}_{n}.jpg") for n in (1, 2)]
         if not all(os.path.exists(p) for p in pair):
             continue
+        if light is not None and lv not in light and os.path.exists(os.path.join(run, f"flat_{lv}_1.dng")):
+            notes.append(f"JPEG flat {lv}: its DNG pair was left out (exposures differ), so the JPEG pair is too")
+            continue
         ya, yb = (im.centre_crop(im.luminance_from_srgb_linear(im.load_jpeg_linear(p))) for p in pair)
         m, v = im.pair_stats(ya, yb)
         per_level[lv] = (m, v)
