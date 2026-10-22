@@ -121,10 +121,13 @@ the two DNGs from the 4.3.100 A/B test, each file's neutral maps to D50 white th
 
 L2151w, 1920×1080 at 59.94 Hz, 8 bit, SDR. Two settings follow from it:
 
-- The graphics card sends **YCbCr 4:4:4**. That conversion can shift colours and squash the darkest
-  greys, which matters for the colour axis and the JPEG dynamic range from the dark flat levels. Set the
-  output to **RGB 4:4:4 full range** (AMD Software: Display → Pixel Format) before a run, and keep it the
-  same for every run.
+- The graphics card sends **YCbCr 4:4:4**. Any colour shift it causes is the same in every run, so it
+  cancels when two runs are compared (owner's point). What would not cancel is limited range merging the
+  darkest flat levels (4, 8, 16) into one black: those shots would then carry no information, and the
+  JPEG dynamic range would be capped identically in every run, blind to shadow changes. So it is
+  measured, not assumed: if the baseline's raw means for levels 4 < 8 < 16 are distinct, YCbCr stays;
+  if they merge, switch to RGB 4:4:4 full range (AMD Software: Display → Pixel Format). Either way the
+  setting must stay the same for every run.
 - One refresh lasts 16.68 ms, so flat fields and the chart are shot at **1/30 s or 1/15 s** (whole
   refreshes) to avoid banding from the backlight; 1/60 s is not quite one refresh.
 
