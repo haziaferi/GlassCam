@@ -263,7 +263,8 @@ public class Camera1FeatureDetectorTask extends AbstractFeatureDetectorTask
         Log.d(TAG,"Create Wbvalues");
         ArrayList<String> t = new ArrayList<>();
         t.add(GlassCamApplication.getStringFromRessources(R.string.auto_));
-        for (int i = min; i<=max;i+=step)
+        int intStep = Math.max(1, Math.round(step)); // a fractional step never advanced an int counter
+        for (int i = min; i<=max;i+=intStep)
         {
             t.add(i+"");
         }
@@ -275,6 +276,8 @@ public class Camera1FeatureDetectorTask extends AbstractFeatureDetectorTask
         Log.d(TAG,"Create Isovalues");
         ArrayList<String> s = new ArrayList<>();
         s.add(GlassCamApplication.getStringFromRessources(R.string.auto_));
+        if (step < 1)
+            step = 1; // a device XML without <step> reads 0, and the loop never ended
         for (int i =miniso; i <= maxiso; i +=step)
         {
             if (xiaomi)
@@ -290,7 +293,8 @@ public class Camera1FeatureDetectorTask extends AbstractFeatureDetectorTask
     {
         ArrayList<String> ar = new ArrayList<>();
         ar.add(GlassCamApplication.getStringFromRessources(R.string.auto_));
-
+        if (step < 1)
+            step = 1; // a device XML without <step> reads 0, and the loop never ended
         for (int i = min; i < max; i+= step)
         {
             ar.add(i+"");

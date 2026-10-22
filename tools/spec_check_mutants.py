@@ -19,7 +19,8 @@ import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PARTS = ["SPEC.md", "build.gradle", "settings.gradle", "gradle/libs.versions.toml", "app/build.gradle",
-         "tools/spec_check.py", "app/src/main/AndroidManifest.xml", "app/src/main/java", "app/src/main/res"]
+         "tools/spec_check.py", "app/src/main/AndroidManifest.xml", "app/src/main/java", "app/src/main/res",
+         "app/src/main/jni/freedcam"]
 J = "app/src/main/java/glasscam"
 L = "app/src/main/res/layout"
 
@@ -115,6 +116,20 @@ MUTANTS = [
     ("S-30", "the auto and always flash icons swapped back",
      [("app/src/main/res/values/fontglyphs.xml",
        'name="font_flash_auto" translatable="false">\\uE021<', 'name="font_flash_auto" translatable="false">\\uE018<')]),
+    ("S-34", "the malloc'd DNG preview image deleted again",
+     [("app/src/main/jni/freedcam/LibRawWrapper.cpp", "    LibRaw::dcraw_clear_mem(image);\n", "    delete image;\n")]),
+    ("S-34", "the file buffer leaks: recycle() stops freeing it",
+     [("app/src/main/jni/freedcam/LibRawWrapper.cpp", "        free(buffer);\n        buffer = nullptr;\n", "        buffer = nullptr;\n")]),
+    ("S-35", "an int loop stepped by the float step again",
+     [(f"{J}/cam/apis/basecamera/parameters/AbstractParameter.java", "i <= max; i+=intStep)", "i <= max; i+=step)")]),
+    ("S-35", "the ISO list loses its guard against a 0 step from a device XML",
+     [(f"{J}/cam/apis/featuredetector/Camera1FeatureDetectorTask.java",
+       "        if (step < 1)\n            step = 1; // a device XML without <step> reads 0, and the loop never ended\n        for (int i =miniso;",
+       "        for (int i =miniso;")]),
+    ("S-35", "the EV list accumulates 0.1 in a float again",
+     [(f"{J}/cam/apis/camera2/parameters/ae/GlassCamAeManger.java",
+       "        for (int tenths = -50; tenths <= 50; tenths++)\n        {\n            String t = String.format(\"%.1f\", tenths / 10f);\n",
+       "        for (float i = -5; i <= 5; i +=0.1)\n        {\n            String t = String.format(\"%.1f\", i);\n")]),
     ("S-13", "the same tag on two clauses",
      [("SPEC.md", "| T6 |", "| T6 | `[S-13]` |")]),
 ]

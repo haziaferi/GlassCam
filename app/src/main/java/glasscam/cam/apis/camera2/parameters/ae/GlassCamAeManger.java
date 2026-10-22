@@ -65,9 +65,10 @@ public class GlassCamAeManger extends AeManagerCamera2 implements MeteringProces
         manualExposureTime.setViewState(AbstractParameter.ViewState.Visible);
         exposureCompensation.setViewState(AbstractParameter.ViewState.Visible);
         List<String> evs = new ArrayList<>();
-        for (float i = -5; i <= 5; i +=0.1)
+        // whole tenths: adding 0.1f a hundred times drifted (last 4.999995, centre "-0.0")
+        for (int tenths = -50; tenths <= 50; tenths++)
         {
-            String t = String.format("%.1f", i);
+            String t = String.format("%.1f", tenths / 10f);
             evs.add(t);
         }
         exposureCompensation.fireStringValuesChanged(evs.toArray(new String[evs.size()]));

@@ -148,7 +148,8 @@ public class BaseCCTManual extends BaseManualParameter
     {
         ArrayList<String> t = new ArrayList<>();
         t.add(GlassCamApplication.getStringFromRessources(R.string.auto_));
-        for (int i = min; i<=max;i+=step)
+        int intStep = Math.max(1, Math.round(step)); // a fractional step never advanced an int counter
+        for (int i = min; i<=max;i+=intStep)
         {
             t.add(i+"");
         }

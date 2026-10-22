@@ -50,7 +50,8 @@ public abstract class BaseParameter1Detector extends BaseParameterDetector<Camer
         ArrayList<String> ar = new ArrayList<>();
         if (step == 0)
             step = 1;
-        for (int i = min; i <= max; i+=step)
+        int intStep = Math.max(1, Math.round(step)); // a fractional step never advanced an int counter
+        for (int i = min; i <= max; i+=intStep)
         {
             ar.add(i+"");
         }
