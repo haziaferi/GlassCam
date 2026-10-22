@@ -130,6 +130,13 @@ MUTANTS = [
      [(f"{J}/cam/apis/camera2/parameters/ae/GlassCamAeManger.java",
        "        for (int tenths = -50; tenths <= 50; tenths++)\n        {\n            String t = String.format(\"%.1f\", tenths / 10f);\n",
        "        for (float i = -5; i <= 5; i +=0.1)\n        {\n            String t = String.format(\"%.1f\", i);\n")]),
+    ("S-36", "a refused .bayer is decoded again on every grid bind",
+     [(f"{J}/viewer/helper/BitmapHelper.java",
+       "                if (undecodableRaws.contains(file.getName()))\n                    return null;\n", "")]),
+    ("S-37", "the DNG stacker sizes its strip with an int product again",
+     [("app/src/main/jni/freedcam/DngStacker.cpp",
+       "TIFFWriteRawStrip(tif, 0, rawOutputData, (tmsize_t)width*height*2);",
+       "TIFFWriteRawStrip(tif, 0, rawOutputData, ((width*height)*16)/8);")]),
     ("S-13", "the same tag on two clauses",
      [("SPEC.md", "| T6 |", "| T6 | `[S-13]` |")]),
 ]

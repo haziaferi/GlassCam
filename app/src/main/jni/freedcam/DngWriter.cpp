@@ -450,7 +450,7 @@ void DngWriter::process10tight(TIFF *tif) {
     LOGD("bytesToSkip: %i", bytesToSkip);
 
     int row = shouldberowsize;
-    out = new unsigned char[shouldberowsize*dngProfile->rawheight];
+    out = new unsigned char[(size_t)shouldberowsize*dngProfile->rawheight];
     if(out == NULL)
     {
         LOGD("failed to set buffer");
@@ -472,7 +472,7 @@ void DngWriter::process10tight(TIFF *tif) {
         out[m++] = (ar[i+2] & 0b00001111 ) << 4 | (ar[i+4] & 0b00110000 )>> 2| (ar[i+3]& 0b11000000)>>6; // 0011 11 00
         out[m++] = (ar[i+3]& 0b00111111)<<2 | (ar[i+4]& 0b11000000)>>6;//110100 00
     }
-    TIFFWriteRawStrip(tif, 0, out, dngProfile->rawheight*shouldberowsize);
+    TIFFWriteRawStrip(tif, 0, out, (tmsize_t)dngProfile->rawheight*shouldberowsize);
     LOGD("Finalizng DNG");
     delete[] out;
 }
@@ -488,7 +488,7 @@ void DngWriter::process12tight(TIFF *tif) {
         bytesToSkip = realrowsize - shouldberowsize;
     LOGD("bytesToSkip: %i", bytesToSkip);
     int row = shouldberowsize;
-    unsigned char* out = new unsigned char[shouldberowsize*dngProfile->rawheight];
+    unsigned char* out = new unsigned char[(size_t)shouldberowsize*dngProfile->rawheight];
     int m = 0;
     for(int i =0; i< rawSize; i+=3)
     {
@@ -501,7 +501,7 @@ void DngWriter::process12tight(TIFF *tif) {
         out[m++] = (ar[i+2] & 0b11110000 ) <<4 | (ar[i+1] & 0b11110000)>>4; // 01 001100
         out[m++] = (ar[i+1]& 0b00001111 )<< 4 | (ar[i+2] & 0b00001111 ) >>4 ;// 10 01 0011
     }
-    TIFFWriteRawStrip(tif, 0, out, dngProfile->rawheight*shouldberowsize);
+    TIFFWriteRawStrip(tif, 0, out, (tmsize_t)dngProfile->rawheight*shouldberowsize);
     LOGD("Finalizng DNG");
     delete[] out;
 }
@@ -727,7 +727,7 @@ void DngWriter::quadBayer16bit(TIFF *tif) {
 void DngWriter::process16to10(TIFF *tif) {
     long j;
     int rowsizeInBytes= dngProfile->rawwidht*10/8;
-    long finalsize = rowsizeInBytes * dngProfile->rawheight;
+    long finalsize = (long)rowsizeInBytes * dngProfile->rawheight;
     unsigned char* byts= bayerBytes;
     unsigned char* pixel = new unsigned char[finalsize];
     unsigned char B_ar[2];
@@ -773,7 +773,7 @@ void DngWriter::process16to10(TIFF *tif) {
         pixel[i+3] = (G2_ar[0] & 0b00111111 ) << 2 | (R_ar[1] & 0b00000011);//333333 H44
         pixel[i+4] = R_ar[0]; //44444444
     }
-    TIFFWriteRawStrip(tif, 0, pixel, dngProfile->rawheight*rowsizeInBytes);
+    TIFFWriteRawStrip(tif, 0, pixel, (tmsize_t)dngProfile->rawheight*rowsizeInBytes);
     LOGD("Finalizng DNG");
 
     LOGD("Free Memory process16to10");
@@ -783,7 +783,7 @@ void DngWriter::process16to10(TIFF *tif) {
 void DngWriter::process16to12(TIFF *tif) {
     long j;
     int rowsizeInBytes= dngProfile->rawwidht*12/8;
-    long finalsize = rowsizeInBytes * dngProfile->rawheight;
+    long finalsize = (long)rowsizeInBytes * dngProfile->rawheight;
     unsigned char* byts= bayerBytes;
     unsigned char* pixel = new unsigned char[finalsize];
     unsigned char B_ar[3];
@@ -832,7 +832,7 @@ void DngWriter::process16to12(TIFF *tif) {
         pixel[i+4] = (G2_ar[0] & 0b00001111 ) << 4 | (R_ar[1] &  0b00001111); //3333 4444
         pixel[i+5] = R_ar[0]; //4444 4444
     }
-    TIFFWriteRawStrip(tif, 0, pixel, dngProfile->rawheight*rowsizeInBytes);
+    TIFFWriteRawStrip(tif, 0, pixel, (tmsize_t)dngProfile->rawheight*rowsizeInBytes);
     LOGD("Finalizng DNG");
 
     LOGD("Free Memory process16to12");

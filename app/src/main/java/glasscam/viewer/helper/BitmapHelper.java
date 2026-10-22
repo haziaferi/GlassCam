@@ -26,6 +26,8 @@ import android.media.ThumbnailUtils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import glasscam.file.holder.BaseHolder;
 import glasscam.utils.Log;
@@ -42,6 +44,10 @@ public class BitmapHelper
     // it - generous for full-screen display, bounded for high-megapixel sources.
     private static final int MAX_FULLVIEW_DIMENSION = 1600;
     private final CacheHelper CACHE;
+    // Raw files LibRaw could not decode. A headerless .bayer dump reads its whole 20 MB on every
+    // grid bind otherwise, on several loader threads at once (6T walk, 2026-10-22); each file is
+    // tried once per process, so a dump LibRaw recognises by its size still previews.
+    private final Set<String> undecodableRaws = ConcurrentHashMap.newKeySet();
     private final int mImageThumbSizeW;
     private final Context context;
 
@@ -160,9 +166,12 @@ public class BitmapHelper
             else if (file.getName().toLowerCase().endsWith(FileEnding.DNG)
                     || file.getName().toLowerCase().endsWith(FileEnding.RAW) || file.getName().toLowerCase().endsWith(FileEnding.BAYER))
             {
-
+                if (undecodableRaws.contains(file.getName()))
+                    return null;
                 try {
                     response = file.getBitmapFromDng(context);
+                    if (response == null)
+                        undecodableRaws.add(file.getName());
                 }
                 catch (IllegalArgumentException ex)
                 {
