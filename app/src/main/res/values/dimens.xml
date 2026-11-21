@@ -4,7 +4,6 @@
     <dimen name="cameraui_settings_margin_left">55dp</dimen>
 
     <dimen name="cameraui_infooverlay_textsize">10sp</dimen>
-    <dimen name="cameraui_shutter_timer_textsize">12sp</dimen>   <!-- recording timer on the shutter (Batch 2) -->
     <dimen name="cameraui_infooverlay_textmargin">3dp</dimen>
     <dimen name="cameraui_focusselector_width">80dp</dimen>
 

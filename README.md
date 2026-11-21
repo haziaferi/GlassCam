@@ -35,6 +35,10 @@ python tools/critique/walk.py install   # adb install -r -g -t on the attached p
 `gradlew.bat assembleDebug` works too. Debug builds are signed with the standard Android debug key.
 When a check in `tools/spec_check.py` changes, `python tools/spec_check_mutants.py` proves it can fail.
 
+**How changes land:** through a pull request to `main`, which the owner reviews and merges; the `main`
+ruleset requires the pull request, a linear history and the code-scanning checks. There are no version
+tags: `versionName` in `app/build.gradle` and SPEC.md's revision line are the version record.
+
 Credits
 -------
 

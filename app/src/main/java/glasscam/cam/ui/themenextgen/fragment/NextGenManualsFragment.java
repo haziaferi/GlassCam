@@ -102,6 +102,9 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
 
     @Override
     public void onDestroyView() {
+        // the camera's parameters outlive this view: drop the button's observer before it goes,
+        // or it keeps this fragment alive and posts to a seekbar that is no longer on screen
+        detachCurrentButton();
         super.onDestroyView();
         cameraApiManager.removeEventListner(this);
         cameraApiManager.removeModuleChangedEventListner(this);
@@ -115,12 +118,7 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
         manualItemsHolder.removeAllViews();
         buttonHashMap.clear();
         supportedManuals.clear();
-        seekbar.setVisibility(View.GONE);
-        if (currentButton != null) {
-            currentButton.SetActive(false);
-            currentButton = null;
-        }
-        afBracketSettingsView.setVisibility(View.GONE);
+        detachCurrentButton();
 
 
         if (cameraUiWrapper != null)
@@ -214,10 +212,8 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
             //when same button gets clicked second time
             if(v == currentButton && seekbar.getVisibility() == View.VISIBLE)
             {
-                //hideseekbar and set color back from button
-                seekbar.setVisibility(View.GONE);
-                currentButton.SetActive(false);
-                afBracketSettingsView.setVisibility(View.GONE);
+                //hide the seekbar, unlight the button and stop observing its parameter
+                detachCurrentButton();
             }
             //if no button was active or a different was clicked
             else
@@ -244,8 +240,7 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
 
                 String[] vals = currentButton.getStringValues();
                 if (vals == null || vals.length == 0) {
-                    currentButton.SetActive(false);
-                    seekbar.setVisibility(View.GONE);
+                    detachCurrentButton();
                     Log.e(TAG, "Values returned from currentButton are NULL!");
                     return;
                 }
@@ -292,7 +287,22 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-        currentButton.setValueToParameters(currentValuePos);
+        if (currentButton != null)   // a posted Hidden state can detach the button mid-drag
+            currentButton.setValueToParameters(currentValuePos);
+    }
+
+    // Drops the active strip button: hides the scale (and the AF-bracket panel), unlights the
+    // button and removes its observer, so a later view-state event on that parameter cannot
+    // re-open the scale with nothing lit (SPEC C19). Until 4.3.103 the observer stayed attached
+    // after a close or a module change, and the scale came back unasked.
+    private void detachCurrentButton() {
+        seekbar.setVisibility(View.GONE);
+        afBracketSettingsView.setVisibility(View.GONE);
+        if (currentButton != null) {
+            currentButton.getParameter().removeOnPropertyChangedCallback(selectedParameterObserver);
+            currentButton.SetActive(false);
+            currentButton = null;
+        }
     }
 
     Observable.OnPropertyChangedCallback selectedParameterObserver = new Observable.OnPropertyChangedCallback() {
@@ -315,11 +325,7 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
             case Hidden:
                 // posted like Disabled/Enabled: the callback can arrive off the UI thread, and
                 // setCameraToUi may have cleared currentButton by the time it runs
-                seekbar.post(() -> {
-                    seekbar.setVisibility(View.GONE);
-                    if (currentButton != null)
-                        currentButton.SetActive(false);
-                });
+                seekbar.post(this::detachCurrentButton);
                 break;
             case Disabled:
                 seekbar.post(() -> {
@@ -328,7 +334,8 @@ public class NextGenManualsFragment extends Fragment implements SeekBar.OnSeekBa
                 break;
             case Enabled:
                 seekbar.post(() -> {
-                    seekbar.setVisibility(View.VISIBLE);
+                    if (currentButton != null)   // queued before a detach: no scale without its button
+                        seekbar.setVisibility(View.VISIBLE);
                 });
                 break;
         }

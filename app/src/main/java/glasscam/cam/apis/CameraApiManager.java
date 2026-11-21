@@ -17,6 +17,7 @@ import glasscam.cam.event.camera.CameraHolderEvent;
 import glasscam.cam.event.camera.CameraHolderEventHandler;
 import glasscam.cam.event.capture.CaptureStateChangedEvent;
 import glasscam.cam.event.capture.CaptureStateChangedEventHandler;
+import glasscam.cam.event.capture.CaptureStates;
 import glasscam.cam.event.module.ModuleChangedEvent;
 import glasscam.cam.event.module.ModuleChangedEventHandler;
 import glasscam.cam.previewpostprocessing.Preview;
@@ -246,6 +247,14 @@ public class CameraApiManager<C extends CameraWrapperInterface> implements Previ
     public void removeCaptureStateChangedListner(CaptureStateChangedEvent listner)
     {
         captureStateChangedEventHandler.removeEventListner(listner);
+    }
+
+    // For capture states the UI raises itself (the shutter's self-timer): every capture-state
+    // listener hears them, the info pill's elapsed time among them (SPEC C6). Until 4.3.103 the
+    // shutter kept selftimerstart/selftimerstop to its own animation.
+    public void fireCaptureState(CaptureStates state)
+    {
+        captureStateChangedEventHandler.fireCaptureStateChangedEvent(state);
     }
 
     public void addModuleChangedEventListner(ModuleChangedEvent listner)

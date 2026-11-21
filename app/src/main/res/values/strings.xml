@@ -434,4 +434,6 @@
     <!-- shown when a hardware key (camera, headset) takes the picture -->
     <string name="key_capture_started">Taking the picture</string>
     <string name="viewer_grid">Grid</string>
+    <!-- before the selected value in a settings picker (SPEC D8, 4.3.103); quoted to keep the space -->
+    <string name="picker_selected_mark" translatable="false">"✓ "</string>
 </resources>

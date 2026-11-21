@@ -745,6 +745,150 @@ def check_S42():
          "leaving manual on Qualcomm no longer puts the user's flash choice back")
 
 
+def check_S44():
+    """[S-44] the normal preview's transform is sized from the preview view, not the screen"""
+    # critique 2026-11-21: the screen size (2412 px) for a 2316 px view squeezed the 9 Pro's frame 4 %
+    src = read(jfile("NormalPreview.java"))
+    rot = method_body(src, "setRotation")
+    need("applyTransform(" in rot, "setRotation no longer goes through applyTransform")
+    # review 2026-11-21: a transform computed once went stale when the view resized (system bars)
+    ctor = method_body(src, "NormalPreview")
+    need("addOnLayoutChangeListener" in ctor and "applyTransform(frameW, frameH, frameRotation)" in ctor,
+         "a resized preview view keeps the transform of its old size")
+    body = method_body(src, "applyTransform")
+    need("view.getWidth() > 0 ? view.getWidth()" in body and "view.getHeight() > 0 ? view.getHeight()" in body,
+         "the transform does not read the preview view's own size")
+    call = re.search(r"MatrixUtil\.getTransFormMatrix\(([^;]*)\);", body)
+    need(call and "displaySize" not in call.group(1), "the transform is given the screen size directly")
+
+
+def check_S45():
+    """[S-45] dropping the active strip button removes its observer, in one place, on every path"""
+    # critique 2026-11-21: a closed scale came back after a module pick with no strip item lit
+    src = read(jfile("NextGenManualsFragment.java"))
+    det = method_body(src, "detachCurrentButton")
+    need("removeOnPropertyChangedCallback(selectedParameterObserver)" in det and "currentButton = null" in det
+         and "seekbar.setVisibility(View.GONE)" in det, "detachCurrentButton does not hide, unlight and unobserve")
+    need(src.count("currentButton = null") == 1, "currentButton is cleared outside detachCurrentButton")
+    click = src.split("manualButtonClickListner = new", 1)[1].split("//####", 1)[0]
+    second_tap = click.split("seekbar.getVisibility() == View.VISIBLE)", 1)[1].split("else", 1)[0]
+    need("detachCurrentButton()" in second_tap, "the second tap hides the scale without detaching the button")
+    # call sites only (the declaration does not count): the reset, the second tap, the no-values path
+    need(len(re.findall(r"\bdetachCurrentButton\(\);", src)) >= 4, "a reset, no-values or destroy path does not detach the button")
+    # review 2026-11-21: a destroyed view left its observer on the parameter, posting to a gone seekbar
+    need("detachCurrentButton();" in method_body(src, "onDestroyView"), "a destroyed strip keeps its button's observer")
+    states = method_body(src, "onViewStateChanged")
+    need("seekbar.post(this::detachCurrentButton)" in states, "a hidden parameter does not detach the button")
+    # review 2026-11-21: an Enabled event queued before a detach re-showed the scale with nothing lit
+    enabled = states.split("case Enabled:", 1)[-1]
+    need("if (currentButton != null)" in enabled, "an Enabled event shows the scale with no button active")
+
+
+def check_S46():
+    """[S-46] the manual strip's glyph and value keep their 100 % size at any system text size"""
+    # owner 4.3.103 / critique 2026-11-21: at 200 % the fixed value boxes cut "(A)6400" to "(A)…"
+    bind = method_body(read(jfile("NextGenManualButton.java")), "bind")
+    need("textViewHeader.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22f)" in bind,
+         "the strip glyph scales with the system text size")
+    need("textViewValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 9f)" in bind,
+         "the strip value scales with the system text size")
+    lay = read(layout("nextgen_manual_button.xml"))
+    need('android:textSize="22sp"' in lay and 'android:textSize="9sp"' in lay,
+         "the layout's 22sp / 9sp no longer match the capped sizes")
+
+
+def check_S47():
+    """[S-47] strip and column backgrounds at #B3000000 at least; drawer secondary text #CCFFFFFF"""
+    # owner / critique 2026-11-21: on #66000000 a white scene pulled the strip's values to 2.85:1 (lime 1.61:1)
+    need(color("nextgen_control_scrim") == "#B3000000", "nextgen_control_scrim is not #B3000000")
+    strip = read(os.path.join(R, "drawable", "halfroundtopcorners.xml"))
+    need("#66000000" not in strip and strip.count("@color/nextgen_control_scrim") == 2,
+         "the strip background is not the control scrim")
+    frag = xml_root(layout("nextgen_cameraui_fragment.xml"))
+    for hid in ("right_top_holder", "linearlayout_previewpostprocessingmodes", "right_ui_items_bottom", "left_ui_holder"):
+        el = by_id(frag, hid)
+        need(el is not None and attrs(el).get("android:background") == "@color/nextgen_control_scrim",
+             f"column holder {hid} is not on the control scrim")
+    need(color("nextgen_menu_secondary_text") == "#CCFFFFFF", "the drawer's secondary text is not #CCFFFFFF")
+
+
+def check_S48():
+    """[S-48] elapsed capture time shows in the info pill (m:ss, after 1 s), not on the shutter"""
+    # owner 4.3.103 / critique 2026-11-21: #00FF00 on a grey band across the stop button measured 2.80:1
+    sah = read(jfile("ShutterAnimationHandler.java"))
+    need("drawText(" not in sah and "Color.GREEN" not in sah, "the shutter still draws a timer")
+    sb = read(jfile("ShutterButton.java"))
+    need("drawTimer(" not in sb, "ShutterButton still switches a shutter timer")
+    # review 2026-11-21: the self-timer states stayed inside the shutter, so the pill never counted them
+    need("cameraApiManager.fireCaptureState(CaptureStates.selftimerstart)" in sb
+         and "cameraApiManager.fireCaptureState(CaptureStates.selftimerstop)" in sb,
+         "the self-timer's states do not reach the other capture-state listeners")
+    iov = read(jfile("InfoOverlayModelView.java"))
+    cap = method_body(iov, "onCaptureStateChanged")
+    for st in ("video_recording_start", "image_capture_start", "continouse_capture_work_start", "selftimerstart"):
+        need(st in cap, f"the pill does not count from {st}")
+    runner = iov.split("private final Runnable runner", 1)[-1]
+    need("elapsed(" in runner and ">= 1000" in runner, "the pill's clock does not switch to the elapsed time after 1 s")
+    el = method_body(iov, "elapsed")
+    need("%d:%02d" in el and "SSS" not in el, "the elapsed time is not m:ss")
+    # review 2026-11-21: a stop event lost while paused left an old count on screen after a resume
+    start = method_body(iov, "start")
+    need("countingSince = 0;" in start and "recording = false;" in start
+         and start.index("countingSince = 0;") < start.index("addCaptureStateChangedEventListner"),
+         "a resume does not start the pill's count from nothing")
+
+
+def check_S49():
+    """[S-49] the picker's selected value carries a check mark and the selected state, not lime alone"""
+    # owner 4.3.103 / critique 2026-11-21: lime vs white is 1.77:1, colour as the only cue
+    bind = method_body(read(jfile("NextGenSettingValuePickerAdapter.java")), "onBindViewHolder")
+    need("R.string.picker_selected_mark" in bind, "the selected value has no check mark")
+    need("setSelected(position == selected)" in bind, "the selected value does not set the view's selected state")
+    # review 2026-11-21: TalkBack read the mark as well as "selected"; an unmatched value marked row 2
+    need("holder.itemView.setContentDescription(label)" in bind, "TalkBack reads the check mark as part of the value")
+    dummy = read(jfile("NextGenSettingDummyFragment.java"))
+    need("int selected = -1;" in dummy and "scrollToPosition(selected >= 0 ? selected : 0)" in dummy,
+         "a stored value that is not offered still marks a row")
+    need(re.search(r'<string name="picker_selected_mark" translatable="false">"✓ "</string>', strings()),
+         "picker_selected_mark is not the untranslated \"✓ \"")
+
+
+def check_S50():
+    """[S-50] no Italian string is empty (an empty translation hides the English)"""
+    # critique 2026-11-21: empty blacklevel / customrowsize left two converter fields unlabelled
+    root = xml_root(os.path.join(R, "values-it", "strings.xml"))
+    empty = [el.get("name") for el in root.iter("string") if not "".join(el.itertext()).strip()]
+    need(not empty, f"empty Italian strings: {', '.join(empty)}")
+
+
+def check_S51():
+    """[S-51] every Spinner in a layout declares a 48 dp minimum height"""
+    # critique 2026-11-21: the converter's wrap_content spinners measured 23 dp
+    short = []
+    for name in sorted(os.listdir(os.path.join(R, "layout"))):
+        if not name.endswith(".xml"):
+            continue
+        for el in xml_root(layout(name)).iter("Spinner"):
+            h = attrs(el).get("android:minHeight", "")
+            m = re.fullmatch(r"(\d+)dp", h)
+            if not (m and int(m.group(1)) >= 48):
+                short.append(f"{name}:{attrs(el).get('android:id', '?')}")
+    need(not short, f"Spinners without a 48 dp minHeight: {', '.join(short)}")
+
+
+def check_S52():
+    """[S-52] the shutter's animation loop paces every frame from that frame's own start"""
+    # 6T walk 2026-11-21: the pause was measured from the loop's start, so after the first frame it
+    # never slept; with the timer text gone the loop flooded the main thread for a whole recording
+    run = method_body(read(jfile("ShutterAnimationHandler.java")), "run")
+    loop = run.split("while (shutteractive)", 1)
+    need(len(loop) == 2, "the shutter's animation loop is not where S-52 looks for it")
+    body = loop[1]
+    need("calcstartTime = System.nanoTime();" in body
+         and body.index("calcstartTime = System.nanoTime();") < body.index("Thread.sleep("),
+         "the animation loop does not restart its frame clock on every frame")
+
+
 # --------------------------------------------------------------------------------------------
 
 def main():

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
@@ -74,6 +75,11 @@ public class NextGenManualButton extends LinearLayout implements ManualButtonInt
     {
         LayoutInflater inflater = LayoutInflater.from(context);
         binding = NextgenManualButtonBinding.inflate(inflater,this,true);
+        // The strip is a row of fixed slots: its glyph and value keep the layout's 22sp / 9sp at
+        // their 100 % size whatever the system text size (SPEC T8, owner 4.3.103). At 200 % the
+        // values used to be cut to "(A)…" and the EV value vanished.
+        binding.textViewHeader.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 22f);
+        binding.textViewValue.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 9f);
     }
 
     private void setArrts(Context context, AttributeSet attrs)
