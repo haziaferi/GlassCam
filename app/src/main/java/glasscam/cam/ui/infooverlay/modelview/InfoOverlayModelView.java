@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
+import android.os.SystemClock;
 
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -15,6 +16,7 @@ import com.hazia.glasscam.R;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import glasscam.GlassCamApplication;
 import glasscam.cam.apis.CameraApiManager;
@@ -97,17 +99,57 @@ public class InfoOverlayModelView extends ViewModel implements LifecycleObserver
         batteryService.startListen();
         backgroundHandlerThread.create();
         started = true;
+        // a stop event lost while paused must not leave an old count on screen (SPEC C6)
+        countingSince = 0;
+        recording = false;
         if (cameraApiManager != null)
             cameraApiManager.addCaptureStateChangedEventListner(this);
         startLooperThread();
     }
 
+    // When the capture in progress started (SystemClock.elapsedRealtime), 0 when none runs. While a
+    // capture has run for 1 s or more, the pill's clock shows its elapsed time (SPEC C6, owner
+    // 4.3.103); it used to be drawn in green across the shutter's stop button, at 2.80:1.
+    private volatile long countingSince = 0;
+    private volatile boolean recording = false;
+
     @Override
     public void onCaptureStateChanged(glasscam.cam.event.capture.CaptureStates states) {
-        if (states == glasscam.cam.event.capture.CaptureStates.video_recording_start)
-            infoOverlayModel.setRecording(true);
-        else if (states == glasscam.cam.event.capture.CaptureStates.video_recording_stop)
-            infoOverlayModel.setRecording(false);
+        switch (states) {
+            case video_recording_start:
+                recording = true;
+                infoOverlayModel.setRecording(true);
+                countingSince = SystemClock.elapsedRealtime();
+                break;
+            case video_recording_stop:
+                recording = false;
+                infoOverlayModel.setRecording(false);
+                countingSince = 0;
+                break;
+            case image_capture_start:
+            case continouse_capture_work_start:
+            case selftimerstart:
+                if (!recording)   // a still taken during a recording keeps the recording's count
+                    countingSince = SystemClock.elapsedRealtime();
+                break;
+            case image_capture_stop:
+            case continouse_capture_work_stop:
+            case cont_capture_stop_while_notworking:
+            case selftimerstop:
+                if (!recording)
+                    countingSince = 0;
+                break;
+            default:
+                break;
+        }
+    }
+
+    // m:ss below an hour, h:mm:ss from an hour; no milliseconds (the shutter's timer showed mm:ss:SSS)
+    static String elapsed(long ms) {
+        long s = ms / 1000;
+        long h = s / 3600, m = (s % 3600) / 60, sec = s % 60;
+        return h > 0 ? String.format(Locale.ROOT, "%d:%02d:%02d", h, m, sec)
+                     : String.format(Locale.ROOT, "%d:%02d", m, sec);
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void stop()
@@ -116,6 +158,8 @@ public class InfoOverlayModelView extends ViewModel implements LifecycleObserver
         if (cameraApiManager != null)
             cameraApiManager.removeCaptureStateChangedListner(this);
         infoOverlayModel.setRecording(false);
+        recording = false;
+        countingSince = 0;
         batteryService.stopListen();
         backgroundHandlerThread.destroy();
         batteryService.setBatteryEventListner(null);
@@ -131,7 +175,10 @@ public class InfoOverlayModelView extends ViewModel implements LifecycleObserver
         @Override
         public void run()
         {
-            infoOverlayModel.setTime(dateFormat.format(new Date()));
+            long since = countingSince;
+            long ms = since == 0 ? 0 : SystemClock.elapsedRealtime() - since;
+            // a short exposure never reaches 1 s, so the clock does not flash "0:00"
+            infoOverlayModel.setTime(ms >= 1000 ? elapsed(ms) : dateFormat.format(new Date()));
             if (cameraApiManager.getCamera() != null){
                 try {
                     getFormat();

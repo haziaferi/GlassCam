@@ -428,7 +428,9 @@ public class NextGenSettingDummyFragment extends Fragment implements CameraHolde
         valuesWithBack[1] = getString(R.string.settings_value_back);
         final android.os.Parcelable listScroll = gridLayoutManager.onSaveInstanceState();
         int i =2;
-        int selected =2;
+        // -1 = the stored value is not among the offered ones: no row is marked (SPEC D8); it used
+        // to default to the first value, which then showed the ✓ and "selected" it did not have
+        int selected = -1;
         for (String s : values) {
             if (s.equals(value))
                 selected = i;
@@ -472,6 +474,6 @@ public class NextGenSettingDummyFragment extends Fragment implements CameraHolde
             gridLayoutManager.setSpanCount(listSpan);
         };
         itemHolder.setAdapter(valuePickerAdapter);
-        itemHolder.scrollToPosition(selected);
+        itemHolder.scrollToPosition(selected >= 0 ? selected : 0);
     }
 }

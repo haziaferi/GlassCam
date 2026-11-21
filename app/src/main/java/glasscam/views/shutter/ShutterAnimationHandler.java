@@ -9,14 +9,8 @@ import android.graphics.PorterDuffXfermode;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.text.TextUtils;
-
-import com.hazia.glasscam.R;
 
 import java.lang.ref.WeakReference;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 import glasscam.cam.event.capture.CaptureStates;
 import glasscam.utils.Log;
@@ -29,7 +23,6 @@ public class ShutterAnimationHandler extends Handler
 {
     private volatile CaptureStates currentShow = CaptureStates.image_capture_stop;   // read by the draw thread without the lock
     int red_top, red_bottom, red_right,red_left, padding_red, red_radius, halfsize;
-    float txt_left, txt_right,txt_top,txt_bottom, txt_length,txt_height;
 
     private final int MSG_START_ANIMATION = 0;
 
@@ -43,8 +36,6 @@ public class ShutterAnimationHandler extends Handler
     //current size of the red rectangle to draw
     private int recordingRadiusRectangle;
 
-    //holds the time from a capture start
-    private volatile long startime;   // written under the lock, read by the draw loop without it
     //frames to draw
     private final int MAXFRAMES = 30;
     //holds the currentframe number
@@ -61,9 +52,6 @@ public class ShutterAnimationHandler extends Handler
     private int SHUTTER_OPEN_STEP;
     private volatile boolean shutteractive = false;
 
-    private volatile boolean drawTimer = false;
-    private final Paint shutteropentimePaint;
-
 // used to track how long values calc took, and reduce depending on it the sleep time for next calc/draw
     private long calcstartTime;
 
@@ -73,17 +61,13 @@ public class ShutterAnimationHandler extends Handler
     private final ShutterButton shutterButton;
     private final UIHandler uiHandler;
 
-    private final int space = 3;
 
     public boolean isRunning()
     {
         return running;
     }
 
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("mm:ss:SSS");
-
     private final int FPS = 1000/ MAXFRAMES;
-    private String shutteropentime;
 
     public ShutterAnimationHandler(Looper looper, Resources resources,ShutterButton shutterButton)
     {
@@ -92,13 +76,8 @@ public class ShutterAnimationHandler extends Handler
         halfsize = shutterButton.getWidth()/2;
         uiHandler = new UIHandler(shutterButton);
         this.shutterButton = shutterButton;
-        //used to draw green timer inside the shutter button
-        shutteropentimePaint = new Paint();
-        shutteropentimePaint.setColor(Color.GREEN);
-        shutteropentimePaint.setTextSize(resources.getDimension(R.dimen.cameraui_shutter_timer_textsize));
-        shutteropentimePaint.setStyle(Paint.Style.FILL);
-        shutteropentimePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_OVER));
-        shutteropentimePaint.setAntiAlias(true);
+        // The elapsed-time text that used to be drawn across the stop button now shows in the
+        // info pill (SPEC C6, owner 4.3.103); the shutter draws only its open and stop states.
 
         //used to open the shutter
         transparent = new Paint();
@@ -132,20 +111,8 @@ public class ShutterAnimationHandler extends Handler
     public void startDrawing() {
         shutteractive = true;
         stopTimer = false;
-        if (isRunning()) {
-            setStartTime(System.currentTimeMillis());
-        }
-        else {
-            setStartTime(System.currentTimeMillis());
+        if (!isRunning())
             startAnimation();
-        }
-    }
-
-    public void drawTimer(boolean drawTimer)
-    {
-        synchronized (this) {
-            this.drawTimer = drawTimer;
-        }
     }
 
     @Override
@@ -159,14 +126,6 @@ public class ShutterAnimationHandler extends Handler
             default:
                 super.handleMessage(msg);
                 break;
-        }
-    }
-
-    public void setStartTime(long startTime)
-    {
-        synchronized (this)
-        {
-            this.startime = startTime;
         }
     }
 
@@ -198,11 +157,6 @@ public class ShutterAnimationHandler extends Handler
                     shutteractive = false;
                 }
             }
-            if (drawTimer)
-                shutteropentime = getTimeGoneString(startime);
-            else
-                shutteropentime = "";
-
             uiHandler.obtainMessage(UIHandler.MSG_INVALIDATE).sendToTarget();
             currentframe++;
             try {
@@ -216,15 +170,6 @@ public class ShutterAnimationHandler extends Handler
         running = false;
 
         uiHandler.obtainMessage(UIHandler.MSG_INVALIDATE).sendToTarget();
-    }
-
-    private String getTimeGoneString(long startime)
-    {
-        long now = System.currentTimeMillis();
-        long dif = now - startime;
-        dateFormat.setTimeZone(TimeZone.getDefault());
-        return dateFormat.format(new Date(dif));
-
     }
 
     private void draw() {
@@ -328,15 +273,6 @@ public class ShutterAnimationHandler extends Handler
                 red_bottom = padding_red + red_radius;
                 red_left = padding_red - red_radius;
                 red_right = padding_red + red_radius;
-                padding_red = red_bottom + red_radius + space;
-            }
-            if (drawTimer && !TextUtils.isEmpty(shutteropentime)) {
-                txt_length = shutteropentimePaint.measureText(shutteropentime);
-                txt_height = shutteropentimePaint.getTextSize();
-                txt_left = halfsize - (txt_length / 2);
-                txt_top = padding_red - txt_height - space;
-                txt_right = halfsize + (txt_length / 2) + space;
-                txt_bottom = padding_red + txt_height / 2 + space;
             }
         //}
         //Log.d(TAG,"shutter_open:" + shutter_open_radius + " recCircle:" + recordingRadiusCircle + " recRect:" + recordingRadiusRectangle +  " captureState:" + currentShow);
@@ -350,17 +286,6 @@ public class ShutterAnimationHandler extends Handler
                 canvas.drawCircle(halfsize, halfsize, recordingRadiusCircle / 2, red);
                 canvas.drawRect(red_left, red_top, red_right, red_bottom, red);
 
-            }
-            if (drawTimer && !TextUtils.isEmpty(shutteropentime)) {
-
-                shutteropentimePaint.setColor(Color.BLACK);
-                shutteropentimePaint.setAlpha(125);
-
-                canvas.drawRect(txt_left - space, txt_top, txt_right, txt_bottom, shutteropentimePaint);
-
-                shutteropentimePaint.setColor(Color.GREEN);
-                shutteropentimePaint.setAlpha(255);
-                canvas.drawText(shutteropentime, txt_left, padding_red, shutteropentimePaint);
             }
         //}
     }

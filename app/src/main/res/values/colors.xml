@@ -26,7 +26,13 @@
          but kept translucent so the live camera preview stays visible behind the panel.
          The accent reuses the app's existing "active control" lime (manual_button_active),
          so the Settings screen reads as the same app as the manual-control strip beside it. -->
-    <color name="nextgen_menu_secondary_text">#99FFFFFF</color>   <!-- supporting/description + unselected tab (~60% white) -->
+    <!-- 80 % white (SPEC C20, owner 4.3.103): over a white scene seen through the panel's scrim it
+         measures 6.20:1; the 60 % white it replaces fell to 4.28:1 -->
+    <color name="nextgen_menu_secondary_text">#CCFFFFFF</color>   <!-- supporting/description + unselected tab -->
+    <!-- Ground for text and glyphs drawn over the live preview: the manual strip and the camera
+         column's holders (SPEC C20). White on it measures 8.59:1 and the active lime 4.86:1 over a
+         white scene; the 40 % black (#66000000) they used gave 2.85:1 and 1.61:1. -->
+    <color name="nextgen_control_scrim">#B3000000</color>
     <color name="nextgen_setting_value">#64DD17</color>          <!-- current value = "active", matches manual_button_active -->
     <color name="nextgen_settings_scrim">#B3000000</color>       <!-- panel fill (~70% black, preview visible behind) -->
     <color name="nextgen_settings_outline">#33FFFFFF</color>     <!-- hairline panel edge (~20% white) -->

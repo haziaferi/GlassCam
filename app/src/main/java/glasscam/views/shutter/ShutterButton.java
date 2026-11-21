@@ -137,7 +137,9 @@ public class ShutterButton extends AppCompatButton implements ModuleChangedEvent
             int selftimer = Integer.parseInt(sf);
             if(selftimer > 0) {
                 uiHandler.postDelayed(selftimerRunner, selftimer*1000);
-                setCaptureState(CaptureStates.selftimerstart);
+                // through the shared handler, so the info pill counts the self-timer too (SPEC C6);
+                // this button hears it back in onCaptureStateChanged
+                cameraApiManager.fireCaptureState(CaptureStates.selftimerstart);
             }
             else
                 cameraUiWrapper.getModuleHandler().startWork();
@@ -148,7 +150,7 @@ public class ShutterButton extends AppCompatButton implements ModuleChangedEvent
     private final Runnable selftimerRunner =new Runnable() {
         @Override
         public void run() {
-            setCaptureState(CaptureStates.selftimerstop);
+            cameraApiManager.fireCaptureState(CaptureStates.selftimerstop);
             cameraUiWrapper.getModuleHandler().startWork();
         }
     };
@@ -176,45 +178,17 @@ public class ShutterButton extends AppCompatButton implements ModuleChangedEvent
         if (!animationHandler.isRunning())
             animationHandler.startDrawing();
 
-        //set specfic mode overides like drawtimer,
-        //setting it that way shutter is already abit opend till the green timer gets visible
+        // the states that end a capture stop the animation loop; the elapsed time is the info
+        // pill's (SPEC C6, owner 4.3.103), so no state switches a timer on the shutter any more
         switch (mode) {
             case video_recording_stop:
-                animationHandler.drawTimer(false);
-                animationHandler.stopShutterTimer();
-                break;
-            case video_recording_start:
-                animationHandler.drawTimer(true);
-                break;
             case image_capture_stop:
-                animationHandler.drawTimer(false);
-                animationHandler.stopShutterTimer();
-                break;
-            case image_capture_start:
-                animationHandler.drawTimer(true);
-                break;
-            case continouse_capture_start:
-                break;
-            case continouse_capture_stop:
-                break;
-            case continouse_capture_work_start:
-                animationHandler.drawTimer(true);
-                break;
-            case continouse_capture_work_stop:
-                animationHandler.drawTimer(false);
-                break;
-            case cont_capture_stop_while_working:
-                break;
             case cont_capture_stop_while_notworking:
-                animationHandler.drawTimer(false);
-                animationHandler.stopShutterTimer();
-                break;
-            case selftimerstart:
-                animationHandler.drawTimer(true);
-                break;
             case selftimerstop:
-                animationHandler.drawTimer(false);
                 animationHandler.stopShutterTimer();
+                break;
+            default:
+                break;
         }
     }
 

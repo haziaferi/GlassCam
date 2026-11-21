@@ -66,11 +66,18 @@ def sh(*args, **kw):
     return adb("shell", *args, **kw)
 
 
+def parse_density(wm_output):
+    """The density dp are measured in: an "Override density" (a changed display size) wins over
+    the "Physical density"; 480 when `wm density` printed neither. Until 2026-11-21 the override
+    was ignored, so every dp figure taken at a changed display size was off by their ratio."""
+    m = re.search(r"Override density: (\d+)", wm_output) or re.search(r"Physical density: (\d+)", wm_output)
+    return int(m.group(1)) if m else 480
+
+
 def density():
     global DENSITY
     if DENSITY is None:
-        m = re.search(r"Physical density: (\d+)", sh("wm", "density"))
-        DENSITY = int(m.group(1)) if m else 480
+        DENSITY = parse_density(sh("wm", "density"))
     return DENSITY
 
 
@@ -318,8 +325,14 @@ def cmd_allow(pkg):
 def cmd_restore():
     s = state()
     sh("cmd", "locale", "set-app-locales", PKG, "--locales", "", check=False)   # API 33+ only
-    if s.get("screen_off_timeout"):
+    # the saved timeout belongs to the phone `install` read it from; restoring it onto another
+    # phone would overwrite that phone's own setting (2026-11-21: the 6T's value sat in the state
+    # while the walk ran on the 9 Pro)
+    serial = adb("get-serialno").strip()
+    if s.get("screen_off_timeout") and s.get("device") == serial:
         sh("settings", "put", "system", "screen_off_timeout", s["screen_off_timeout"])
+    elif s.get("screen_off_timeout"):
+        print(f"timeout not restored: saved for {s.get('device')}")
     sh("rm", "-rf", "/sdcard/critique")
     # SPEC §12 says restore leaves the launcher in front; press HOME only over our own app, never
     # over a package another session may be driving

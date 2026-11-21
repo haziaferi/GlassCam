@@ -4,7 +4,7 @@
     <string name="antibanding_50hz">50 Hz</string>
     <string name="antibanding_60hz">60 Hz</string>
     <string name="auto">Auto</string>
-    <string name="blacklevel"></string>
+    <string name="blacklevel">Livello del nero:</string>
     <string name="color_negativ">Negativo</string>
     <string name="color_sepia">Seppia</string>
     <string name="color_posterize">Posterizza</string>
@@ -12,7 +12,7 @@
     <string name="colorcorrection_transform_matrix">Matrice di Trasformazione</string>
     <string name="controlmode_Scene">Scena</string>
     <string name="converttodng">Converti in DNG</string>
-    <string name="customrowsize"></string>
+    <string name="customrowsize">Dimensione riga personalizzata</string>
     <string name="delete_files">Cancellare i file?</string>
     <string name="denoise_minimal">Minimo</string>
     <string name="fast">Veloce</string>
@@ -70,7 +70,7 @@
     <string name="setting_glasscam_">Impostazioni GlassCam</string>
     <string name="setting_guide_header">Griglia:</string>
     <string name="setting_guide_description">Guide di composizione</string>
-    <string name="setting_horizont_description"></string>
+    <string name="setting_horizont_description">Livella a due assi che mostra se l\'immagine è dritta</string>
     <string name="setting_horizont_header">Livello immagine:</string>
     <string name="setting_hotpixel_header">Correzione Hot Pixel:</string>
     <string name="setting_interval_texter">Intervallo</string>
@@ -115,7 +115,7 @@
     <string name="setting_videohdr_header">Video HDR:</string>
     <string name="setting_videoprofile_description">Profilo media usato per la registrazione video</string>
     <string name="uisetting_wb_header">WB</string>
-    <string name="unknown_raw_add_manual_stuff"></string>
+    <string name="unknown_raw_add_manual_stuff">File RAW sconosciuto: inserisci a mano i valori mancanti</string>
     <string name="width">Larghezza:</string>
     <string name="yes">Sì</string>
     <string name="setting_videoprofile_header">Profilo video:</string>
@@ -125,7 +125,7 @@
     <string name="setting_vs_header">Stabilizzazione video:</string>
     <string name="setting_waveletdenoise_header">Riduzione rumore:</string>
     <string name="setting_waveletdenoise_description">Riduzione del rumore per le foto. Con Off la foto non viene filtrata; con Camera2 l\'anteprima resta su Veloce, così continua a mostrare ciò che vede la fotocamera.</string>
-    <string name="setting_zsl_description"></string>
+    <string name="setting_zsl_description">Tiene le immagini in memoria per uno scatto immediato. Non vale per il RAW, che deve essere spento</string>
     <string name="shutter">otturatore</string>
     <string name="color_mono">Mono</string>
 

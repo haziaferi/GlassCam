@@ -75,12 +75,16 @@ public class NextGenSettingValuePickerAdapter extends RecyclerView.Adapter<NextG
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position)
     {
-        // rows from ROW_VALUE on hold parameter values; ValueLabels translates the ones compared by text
-        holder.textView.setText(position >= ROW_VALUE
-                ? ValueLabels.label(holder.itemView.getContext(), key, values[position]) : values[position]);
-        // Selected value uses the app's "active control" lime (manual_button_active), matching the
-        // rest of the camera UI, instead of a raw pure-green; unselected uses the shared white.
         Context ctx = holder.itemView.getContext();
+        // rows from ROW_VALUE on hold parameter values; ValueLabels translates the ones compared by text
+        String label = position >= ROW_VALUE ? ValueLabels.label(ctx, key, values[position]) : values[position];
+        // The selected value carries a check mark and the view's selected state (TalkBack says
+        // "selected") besides the lime (SPEC D8, owner 4.3.103): lime against white alone is
+        // 1.77:1, colour as the only cue. Unselected values use the shared white.
+        holder.textView.setText(position == selected ? ctx.getString(R.string.picker_selected_mark) + label : label);
+        holder.itemView.setSelected(position == selected);
+        // TalkBack reads the value's name and "selected", not the mark as well
+        holder.itemView.setContentDescription(label);
         holder.textView.setTextColor(ContextCompat.getColor(ctx,
                 position == selected ? R.color.manual_button_active : R.color.nextgen_menu_right_text));
         if (getItemViewType(position) != ROW_TITLE)   // the title is a heading, not a target
