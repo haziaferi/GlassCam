@@ -138,7 +138,6 @@ public class ShutterAnimationHandler extends Handler
     private void run()
     {
         halfsize = shutterButton.getWidth()/2;
-        calcstartTime = System.nanoTime();
         MAX_SHUTTER_OPEN = (shutterButton.getWidth() - 100) / 2;
         SHUTTER_OPEN_STEP = (MAX_SHUTTER_OPEN) / MAXFRAMES;
         MAX_RECORDING_OPEN = shutterButton.getWidth() /4;
@@ -149,6 +148,11 @@ public class ShutterAnimationHandler extends Handler
         running = true;
         while (shutteractive)
         {
+            // each frame's pause is measured from that frame's start (SPEC C6). Measured from the
+            // loop's start it reached zero after the first frame, and the loop then posted redraws
+            // as fast as it could for a whole recording; the timer text it used to format each
+            // frame had hidden that until 4.3.103 (6T: a stop tap answered 34 s late).
+            calcstartTime = System.nanoTime();
             draw();
             if (currentframe >= MAXFRAMES)
             {

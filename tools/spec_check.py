@@ -876,6 +876,19 @@ def check_S51():
     need(not short, f"Spinners without a 48 dp minHeight: {', '.join(short)}")
 
 
+def check_S52():
+    """[S-52] the shutter's animation loop paces every frame from that frame's own start"""
+    # 6T walk 2026-11-21: the pause was measured from the loop's start, so after the first frame it
+    # never slept; with the timer text gone the loop flooded the main thread for a whole recording
+    run = method_body(read(jfile("ShutterAnimationHandler.java")), "run")
+    loop = run.split("while (shutteractive)", 1)
+    need(len(loop) == 2, "the shutter's animation loop is not where S-52 looks for it")
+    body = loop[1]
+    need("calcstartTime = System.nanoTime();" in body
+         and body.index("calcstartTime = System.nanoTime();") < body.index("Thread.sleep("),
+         "the animation loop does not restart its frame clock on every frame")
+
+
 # --------------------------------------------------------------------------------------------
 
 def main():

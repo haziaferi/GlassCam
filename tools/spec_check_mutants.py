@@ -215,6 +215,9 @@ MUTANTS = [
      [(f"{L}/dngconvertingfragment.xml",
        '            android:id="@+id/spinner_rawFormat"\n            android:minHeight="48dp"\n',
        '            android:id="@+id/spinner_rawFormat"\n')]),
+    ("S-52", "the shutter's frame clock started once, before the loop",
+     [(f"{J}/views/shutter/ShutterAnimationHandler.java",
+       "            calcstartTime = System.nanoTime();\n            draw();", "            draw();")]),
     ("S-13", "the same tag on two clauses",
      [("SPEC.md", "| T6 |", "| T6 | `[S-13]` |")]),
 ]
